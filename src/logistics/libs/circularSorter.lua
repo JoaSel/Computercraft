@@ -53,7 +53,6 @@ local function getDestination(item)
 	for _, destinationFunc in pairs(_miscRoutes) do
 		local dest = destinationFunc(item)
 		if(dest) then
-			print("USED MISC ROUTE")
 			return dest
 		end
 	end
