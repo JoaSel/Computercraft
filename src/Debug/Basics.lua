@@ -15,4 +15,4 @@ local function printDump(o)
 	print(dump(o))
 end
 
-return { Dump = dump, PrintDump = printDump }
+return { dump = dump, printDump = printDump }
