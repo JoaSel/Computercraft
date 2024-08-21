@@ -20,6 +20,16 @@ local function updateFile(url, filename)
     end
 
     local socket = http.get(url)
+    if(socket == nil) then
+        print("Error getting " .. url)
+        if(fs.exists(backupFilename)) then
+            print("Restoring old version.")
+            fs.move(backupFilename, filename)
+        else
+            print("Could not find " .. url)
+        end
+    end
+
     local content = socket.readAll()
     socket.close()
 
