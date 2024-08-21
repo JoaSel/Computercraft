@@ -75,12 +75,12 @@ local function exportItems()
 end
 
 while (true) do
-    print(getStatus())
-
     exportItems()
 
-    importItems()
-    importFluids()
+    if(getStatus() == "IDLE") then
+        importItems()
+        importFluids()
+    end
 
     os.sleep(1)
 end
