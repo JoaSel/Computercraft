@@ -46,7 +46,7 @@ end
 print("Installing SquidDev's git clone...")
 updateFile("https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b0b15a5c06c0603b/raw/clone.min.lua", "clone.lua")
 
-os.run({}, "clone.lua")
+os.run({}, "clone.lua", repoName)
 
 print("Installing " .. scriptName .. " from " .. repoName)
 
