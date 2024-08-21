@@ -46,6 +46,10 @@ local function addInputFluids()
     end
 end
 
+for _, inputBus in pairs(inputBuses) do
+    print(peripheral.getName(inputBus))
+end
+
 print(isIdle())
 addInputItems()
 addInputFluids()
