@@ -18,7 +18,7 @@ end
 
 local function installGitClone()
     print("Installing SquidDev's git clone...")
-    local x = shell.run("wget https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b0b15a5c06c0603b/raw/clone.min.lua")
+    local x = shell.run("wget https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b0b15a5c06c0603b/raw/clone.min.lua2")
     print(x)
 end
 
