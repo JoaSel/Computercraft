@@ -1,6 +1,6 @@
 ---@diagnostic disable: param-type-mismatch
 
-local net = require()
+local debug = require("..core.net")
 
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/AE2/craftingHistory.lua
 
