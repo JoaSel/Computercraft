@@ -1,5 +1,13 @@
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua test.lua
+local function reset()
+    term.clear()
+    term.setCursorPos(1, 1)
+end
 
-local more_term = require("more_term")
-more_term.reset()
-more_term.write_center("Hello, world!")
+local function write_center(text)
+    local x, y = term.getCursorPos()
+    local width, height = term.getSize()
+    term.setCursorPos(math.floor((width - #text) / 2) + 1, y)
+    term.write(text)
+end
+
+return { reset = reset, write_center = write_center }
