@@ -27,7 +27,7 @@ local soundBlackList = {
 }
 
 local autoRequestData = net.get(
-"https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/libs/meRequesterData.txt")
+	"https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/libs/meRequesterData.txt")
 
 local function jobStarted(cpuNum, craftingJob)
 	craftingJob.startedTime = os.time("utc")
@@ -57,10 +57,12 @@ end
 
 local function updateProgress(cpuNum, craftingJob)
 	local activeJob = activeJobs[cpuNum]
-	if (activeJob ~= nil and craftingJob.progress > activeJob.progress) then
-		activeJob.progress = craftingJob.progress
-		activeJob.lastUpdated = os.time("utc")
+	if (activeJob ~= nil) then
 		activeJob.stuck = ((activeJob.lastUpdated - activeJob.lastUpdated) > 0.01)
+		if (craftingJob.progress > activeJob.progress) then
+			activeJob.progress = craftingJob.progress
+			activeJob.lastUpdated = os.time("utc")
+		end
 	end
 end
 
@@ -110,7 +112,8 @@ local function render()
 				"\t[" ..
 				getTimeStamp(activeJob.startedTime) ..
 				"] " ..
-				activeJob.storage.amount .. " " .. aeNameUtil.toDisplayName(activeJob.storage.displayName) .. "\t" .. getProgressText(activeJob),
+				activeJob.storage.amount ..
+				" " .. aeNameUtil.toDisplayName(activeJob.storage.displayName) .. "\t" .. getProgressText(activeJob),
 				color)
 		end
 	end

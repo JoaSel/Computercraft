@@ -1,4 +1,5 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua <fileName>
+--https://cloud-catcher.squiddev.cc/
 
 local args = { ... }
 
