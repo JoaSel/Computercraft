@@ -34,17 +34,18 @@ local function importItems()
     local currentBus = inputBuses[busIndex]
     local busSize = currentBus.size() - 1
     for fromSlot, item in pairs(inputItems) do
-        print("Importing " .. item.name .. " to " .. currentBus.name)
-        print(busSize)
-        input.pushItems(currentBus.name, fromSlot, 64)
-        sentToThisBus = sentToThisBus + 1
-
         if(sentToThisBus >= busSize) then
             busIndex = busIndex + 1
             sentToThisBus = 0
             currentBus = inputBuses[busIndex]
             busSize = currentBus.size() - 1
         end
+
+        print("Importing " .. item.name .. " to " .. currentBus.name)
+        print(busSize)
+        input.pushItems(currentBus.name, fromSlot, 64)
+        
+        sentToThisBus = sentToThisBus + 1
     end
 end
 
