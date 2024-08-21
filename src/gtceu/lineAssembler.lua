@@ -63,6 +63,7 @@ local function exportItems()
             outputBus.pushItems(output.name, fromSlot)
         end
 
+        print("test")
         print(outputBus.list())
     end
 end
