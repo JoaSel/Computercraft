@@ -50,10 +50,7 @@ shell.run("wget", "https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b
 
 print("Creating startup file...")
 shell.execute("rm", repoName)
+--This should be backed up
 shell.execute("clone.lua", gitUrl .. repoName)
-
-print("Installing " .. scriptName .. " from " .. repoName)
-
-
-print(scriptName)
+shell.execute(repoName .. "/" .. scriptName)
 
