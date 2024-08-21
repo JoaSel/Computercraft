@@ -6,5 +6,12 @@ local dump = require("dump")
 
 local machine = peripheral.find("blockReader")
 
+local function isIdle()
+    local data = machine.getBlockData()
+
+    return data.status == "IDLE"
+end
+
+print(isIdle())
 dump.printDump(machine.getBlockData())
 
