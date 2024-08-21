@@ -12,9 +12,14 @@ end
 local repoName = "https://github.com/JoaSel/Computercraft"
 local scriptName = args[1]
 
+local function installIfPossible(url, filename)
+
+end
+
 local function installGitClone()
     print("Installing SquidDev's git clone...")
-    shell.run("wget https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b0b15a5c06c0603b/raw/clone.min.lua")
+    local x = shell.run("wget https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b0b15a5c06c0603b/raw/clone.min.lua")
+    print(x)
 end
 
 installGitClone()
