@@ -1,0 +1,3 @@
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua test.lua
+
+print("test")
