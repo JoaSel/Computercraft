@@ -64,12 +64,9 @@ end
 --     end
 -- end
 
-for _, inputBus in pairs(inputBuses) do
-    print(peripheral.getName(inputBus))
-end
 
+pWrapper.find("blockReader")
 pWrapper.find("gtceu:ulv_input_bus")
-print(isIdle())
 
 -- importItems()
 -- importFluids()
