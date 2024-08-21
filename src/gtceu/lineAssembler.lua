@@ -32,7 +32,7 @@ local function importItems()
     local busIndex = 1
     local sentToThisBus = 0
     local currentBus = inputBuses[busIndex]
-    local busSize = currentBus.size()
+    local busSize = currentBus.size() - 1
     for fromSlot, item in pairs(inputItems) do
         print("Importing " .. item.name .. " to " .. currentBus.name)
         print(busSize)
@@ -43,7 +43,7 @@ local function importItems()
             busIndex = busIndex + 1
             sentToThisBus = 0
             currentBus = inputBuses[busIndex]
-            busSize = currentBus.size()
+            busSize = currentBus.size() - 1
         end
     end
 end
