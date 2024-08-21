@@ -1,12 +1,11 @@
 ---@diagnostic disable: param-type-mismatch
----@
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/craftingHistory.lua
+
 package.path = package.path .. ";../core/?.lua"
 package.path = package.path .. ";../debug/?.lua"
 
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/craftingHistory.lua
-
-local debug = require("basics")
-debug.printDump({name = "test"})
+local debug = require("debug")
+local net = require("net")
 
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
@@ -28,28 +27,7 @@ local soundBlackList = {
 	["gtceu:styrene_butadiene_rubber"] = true
 }
 
-local function getRequestData()
-	local socket = http.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/AE2/meRequesterData.txt")
-	if (not socket) then
-		error("Could not get request data.")
-	end
-
-	local content = socket.readAll()
-	if (not content) then
-		error("Could not get request data.")
-	end
-	
-	socket.close()
-
-	local parsed = textutils.unserialize(content)
-	if (not parsed) then
-		error("Could not unserialize request data.")
-	end
-
-	return parsed
-end
-
-local autoRequestData = getRequestData()
+local autoRequestData = net.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/AE2/meRequesterData.txt")
 
 local function jobStarted(cpuNum, craftingJob)
 	craftingJob.startedTime = os.time("utc")
