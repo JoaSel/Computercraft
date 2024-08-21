@@ -66,7 +66,7 @@ end
 
 
 local x = pWrapper.find("blockReader")
-dump.printDump(x)
+print(x.getBlockData())
 --dump.printDump(pWrapper.find("gtceu:ulv_input_bus"))
 
 -- importItems()
