@@ -1,3 +1,5 @@
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua gregSorter
+
 local internalBuffer = peripheral.find("entangled:tile")
 local input = peripheral.find("dankstorage:dank_tile")
 local dimChests = { peripheral.find("dimstorage:dimensional_chest") }
