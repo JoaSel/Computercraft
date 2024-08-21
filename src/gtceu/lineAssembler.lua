@@ -6,5 +6,5 @@ local dump = require("dump")
 
 local machine = peripheral.find("blockReader")
 
-dump.printDump(machine.getBlockInfo())
+dump.printDump(machine.getBlockData())
 
