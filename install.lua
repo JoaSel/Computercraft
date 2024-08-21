@@ -1,4 +1,4 @@
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua gregSorter
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua <fileName>
 
 local args = { ... }
 
