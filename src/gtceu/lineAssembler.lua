@@ -62,7 +62,7 @@ local function exportItems()
     end
 end
 
-for _, inputBus in pairs(inputBuses) do
+for _, inputBus in pairs(outputBuses) do
     print(inputBus.name)
 end
 --dump.printDump(pWrapper.find("gtceu:ulv_input_bus"))
