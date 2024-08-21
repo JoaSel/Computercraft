@@ -11,7 +11,7 @@ if(#args ~= 1) then
 end
 
 local gitUrl = "https://github.com/JoaSel/"
-local repoName = "Computercraft"
+local repoName = "Computercraft2"
 local scriptName = args[1]
 
 -- local function updateFile(url, filename)
@@ -50,7 +50,8 @@ shell.run("wget", "https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b
 
 print("Creating startup file...")
 shell.execute("rm", repoName)
---This should be backed up
-shell.execute("clone.lua", gitUrl .. repoName)
+
+local x = shell.execute("clone.lua", gitUrl .. repoName)
+print(x)
 shell.execute(repoName .. "/" .. scriptName)
 
