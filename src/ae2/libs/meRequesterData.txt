@@ -97,5 +97,10 @@
 		["amount"] = 500,
 		["batch"] = 16,
 		["workGroup"] = "Blast"
+	},
+	["gtceu:hsss_ingot"] = {
+		["amount"] = 500,
+		["batch"] = 16,
+		["workGroup"] = "Blast"
 	}
 }

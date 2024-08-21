@@ -19,10 +19,10 @@ local inputHatches = { ioUtil.findInputHatches() }
 local outputBuses = { ioUtil.findOutputBuses() }
 local outputHatches = { ioUtil.findOutputHatches() }
 
-local function isIdle()
+local function getStatus()
     local data = machine.getBlockData()
 
-    return data.recipeLogic.status == "IDLE"
+    return data.recipeLogic.status
 end
 
 local function importItems()
@@ -75,9 +75,10 @@ local function exportItems()
 end
 
 while (true) do
-    if(isIdle()) then
-        exportItems()
-    end
+    print(getStatus())
+
+    exportItems()
+
     importItems()
     importFluids()
 
