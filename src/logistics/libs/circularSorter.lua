@@ -79,6 +79,7 @@ end
 
 
 local function run()
+	print("Starting to sort...")
 	while (true) do
 		local currentItems = _internalBuffer.list()
 		for slot, item in pairs(currentItems) do
@@ -89,7 +90,7 @@ local function run()
 				if(_verbose) then
 					print(detail.displayName .. " => " .. destination)
 				end
-				
+
 				_internalBuffer.pushItems(_destinationNames[destination], slot, 64)
 			end
 		end
@@ -98,4 +99,4 @@ local function run()
 	end
 end
 
-return { create = create, run = run }
+return { create = create, run = run, hasTag = hasTag }
