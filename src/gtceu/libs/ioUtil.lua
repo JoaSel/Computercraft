@@ -5,7 +5,7 @@ local pWrapper = require("peripheralWrapper")
 
 
 local function findInputBuses()
-    return pWrapper.find("gtceu:ulv_input_bus")
+    return pWrapper.find("gtceu:ulv_input_bus"), pWrapper.find("gtceu:lv_input_bus")
 end
 
 return { findInputBuses = findInputBuses }
