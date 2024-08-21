@@ -25,21 +25,32 @@ local function isIdle()
     return data.recipeLogic.status == "IDLE"
 end
 
+local function fillBus(currSlot, inputBus)
+    for i = 1, inputBus.size() do
+        print("Importing " .. item.name)
+        input.pushItems(inputBus.name, currSlot + i, 64, i)
+    end
+end
+
 local function importItems()
     local inputItems = input.list()
 
-    local test = next(inputBuses)
 
-    dump.printDump(test)
+    local busIndex = 1
+    local sentToThisBus = 0
+    local currentBus = inputBuses[busIndex]
+    local busSize = currentBus.size()
+    for fromSlot, _ in pairs(inputItems) do
+        input.pushItems(currentBus.name, fromSlot)
+        sentToThisBus = sentToThisBus + 1
 
-    -- for fromSlot, item in pairs(inputItems) do
-    --     for _, inputBus in pairs(inputBuses) do
-    --         for i = 1, inputBus.size() do
-    --             print("Importing " .. item.name)
-    --             input.pushItems(inputBus.name, fromSlot, 64, i)
-    --         end
-    --     end
-    -- end
+        if(sentToThisBus >= busSize) then
+            busIndex = busIndex + 1
+            sentToThisBus = 0
+            currentBus = inputBuses[busIndex]
+            busSize = currentBus.size()
+        end
+    end
 end
 
 local function importFluids()
