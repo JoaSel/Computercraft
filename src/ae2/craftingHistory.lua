@@ -1,7 +1,7 @@
 ---@diagnostic disable: param-type-mismatch
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/craftingHistory.lua
 
-local debug = require("src/debug/basics")
+local debug = require("../debug/basics")
 debug.printDump({name = "test"})
 
 local bridge = peripheral.find("meBridge")
