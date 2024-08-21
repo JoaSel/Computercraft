@@ -1,5 +1,7 @@
 ---@diagnostic disable: param-type-mismatch
 
+local net = require()
+
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/AE2/craftingHistory.lua
 
 local bridge = peripheral.find("meBridge")
