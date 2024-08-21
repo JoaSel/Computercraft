@@ -9,7 +9,7 @@ local machine = peripheral.find("blockReader")
 local function isIdle()
     local data = machine.getBlockData()
 
-    return data.status == "IDLE"
+    return data.recipeLogic.status == "IDLE"
 end
 
 print(isIdle())
