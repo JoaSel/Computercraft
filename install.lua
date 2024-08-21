@@ -55,13 +55,13 @@ startupFile.writeLine(string.format("local scriptName = %s", scriptName))
 startupFile.writeLine(string.format("local repoName = %s", repoName))
 startupFile.writeLine(string.format("local repoBakName = %s", repoName .. "Bak"))
 
-startupFile.writeLine("shell.execute(\"rm\", repoBakName)")
-startupFile.writeLine("shell.execute(\"mv\", repoName, repoBakName)")
-startupFile.writeLine("if(not shell.execute(\"clone.lua\", gitUrl .. repoName) and fs.exists(repoBakName)) then")
-startupFile.writeLine("shell.execute(\"mv\", repoBakName, repoName)")
+startupFile.writeLine("shell.run(\"rm\", repoBakName)")
+startupFile.writeLine("shell.run(\"mv\", repoName, repoBakName)")
+startupFile.writeLine("if(not shell.run(\"clone.lua\", gitUrl .. repoName) and fs.exists(repoBakName)) then")
+startupFile.writeLine("shell.run(\"mv\", repoBakName, repoName)")
 startupFile.writeLine("end")
 
-startupFile.writeLine("shell.execute(repoName .. \"/\" .. scriptName)")
+startupFile.writeLine("shell.run(repoName .. \"/\" .. scriptName)")
 
 
 -- local repoBakName = repoName .. "Bak"
