@@ -25,13 +25,6 @@ local function isIdle()
     return data.recipeLogic.status == "IDLE"
 end
 
-local function fillBus(currSlot, inputBus)
-    for i = 1, inputBus.size() do
-        print("Importing " .. item.name)
-        input.pushItems(inputBus.name, currSlot + i, 64, i)
-    end
-end
-
 local function importItems()
     local inputItems = input.list()
 
@@ -40,7 +33,8 @@ local function importItems()
     local sentToThisBus = 0
     local currentBus = inputBuses[busIndex]
     local busSize = currentBus.size()
-    for fromSlot, _ in pairs(inputItems) do
+    for fromSlot, item in pairs(inputItems) do
+        print("Importing " .. item.name)
         input.pushItems(currentBus.name, fromSlot)
         sentToThisBus = sentToThisBus + 1
 
