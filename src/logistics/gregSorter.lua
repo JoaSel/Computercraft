@@ -30,7 +30,7 @@ local tagsRoutes = {
 
 local miscRoutes = {
 	function(item)
-		if (string.match(item.name, "^gtceu:") and hasTag(item, "forge:ores")) then
+		if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:ores")) then
 			return "Macerator"
 		end
 	end
