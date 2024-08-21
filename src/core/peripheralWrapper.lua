@@ -10,6 +10,9 @@ end
 
 local function wrap(peripheralName)
     local p = peripheral.wrap(peripheralName)
+    if(not p) then
+        error("Could not find peripheral: " .. peripheralName)
+    end
 
     p.name = peripheral.getName(p)
 
