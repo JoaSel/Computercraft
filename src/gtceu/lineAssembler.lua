@@ -57,8 +57,9 @@ local function exportItems()
             outputBus.pushItems(output.name, fromSlot)
         end
 
-        print("test")
-        print(outputBus.list())
+        if(#outputBus.list() > 0) then
+            error("Failed to export some items")
+        end
     end
 end
 
