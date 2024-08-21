@@ -1,5 +1,3 @@
-
-
 local function find(peripheralType)
     local peripherals = { peripheral.find(peripheralType) }
 
@@ -10,4 +8,12 @@ local function find(peripheralType)
     return unpack(peripherals)
 end
 
-return { find = find }
+local function wrap(peripheralName)
+    local peripheral = peripheral.wrap(peripheralName)
+
+    peripheral.name = peripheral.getName(p)
+
+    return peripheral
+end
+
+return { find = find, wrap = wrap }

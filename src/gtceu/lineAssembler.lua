@@ -5,25 +5,25 @@ package.path = package.path .. ";../core/?.lua"
 local dump = require("dump")
 local pWrapper = require("peripheralWrapper")
 
-local machine = peripheral.find("blockReader")
+local machine = pWrapper.find("blockReader")
 
-local input = peripheral.wrap("entangled:tile_20")
-local output = peripheral.wrap("entangled:tile_21")
+local input = pWrapper.wrap("entangled:tile_20")
+local output = pWrapper.wrap("entangled:tile_21")
 
-local dataAccessHatch = peripheral.find("gtceu:data_access_hatch")
+local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
 
-local inputBuses = { peripheral.find("gtceu:ulv_input_bus") }
-local inputHatches = { peripheral.find("gtceu:lv_input_hatch") }
+local inputBuses = { pWrapper.find("gtceu:ulv_input_bus") }
+local inputHatches = { pWrapper.find("gtceu:lv_input_hatch") }
 
 table.sort(inputBuses, function (a, b)
-    return peripheral.getName(a) < peripheral.getName(b)
+    return a.name < b.name
 end)
 table.sort(inputHatches, function (a, b)
-    return peripheral.getName(a) < peripheral.getName(b)
+    return a.name < b.name
 end)
 
-local outputBuses = { peripheral.find("gtceu:ulv_output_bus") }
-local outputHatches = { peripheral.find("gtceu:ulv_output_hatch") }
+local outputBuses = { pWrapper.find("gtceu:ulv_output_bus") }
+local outputHatches = { pWrapper.find("gtceu:ulv_output_hatch") }
 
 local function isIdle()
     local data = machine.getBlockData()
@@ -65,12 +65,10 @@ end
 -- end
 
 
-local x = pWrapper.find("blockReader")
-print(x.getBlockData())
 --dump.printDump(pWrapper.find("gtceu:ulv_input_bus"))
 
--- importItems()
--- importFluids()
+importItems()
+importFluids()
 
 -- exportItems()
 -- exportFluids()
