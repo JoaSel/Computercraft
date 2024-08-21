@@ -87,5 +87,10 @@
 	["gtceu:carbon_dust"] = {
 		["amount"] = 1000,
 		["batch"] = 64
+	},
+	["gtceu:ruridit_ingot"] = {
+		["amount"] = 500,
+		["batch"] = 16,
+		["workGroup"] = "Blast"
 	}
 }
