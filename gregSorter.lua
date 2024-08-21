@@ -26,24 +26,24 @@ local tagsToDestination = {
 	["forge:refined_ores"] = "Macerator"
 }
 
+local function dump(o)
+	if type(o) == 'table' then
+	   local s = '{ '
+	   for k,v in pairs(o) do
+		  if type(k) ~= 'number' then k = '"'..k..'"' end
+		  s = s .. '['..k..'] = ' .. dump(v) .. ','
+	   end
+	   return s .. '} '
+	else
+	   return tostring(o)
+	end
+ end
 
-function printDump(o) 
+local function printDump(o) 
 	print(dump(o))
 end
-function dump(o)
-   if type(o) == 'table' then
-      local s = '{ '
-      for k,v in pairs(o) do
-         if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. dump(v) .. ','
-      end
-      return s .. '} '
-   else
-      return tostring(o)
-   end
-end
 
-function hasTag(item, tag)
+local function hasTag(item, tag)
     if(item.tags == nil) then
         return false
     elseif(item.tags[tag] == nil) then
@@ -52,7 +52,7 @@ function hasTag(item, tag)
     return item.tags[tag]
 end
 
-function getDestination(item)
+local function getDestination(item)
 	local itemDest = displayNamesToDestination[item.displayName]
 	if(itemDest ~= nil) then
 		return itemDest
@@ -89,7 +89,7 @@ local function addInputItems(itemsToAdd)
 end
 
 
-function run() 
+local function run() 
 	while(true) do
     	local currentItems = internalBuffer.list()
 		for slot, item in pairs(currentItems) do
