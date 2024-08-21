@@ -8,7 +8,6 @@ local jGui = require("jGui")
 
 local monitor = peripheral.find("monitor")
 local mWidth, mHeight = monitor.getSize()
-monitor.clear()
 
 local bulkStorages = { peripheral.find("dankstorage:dank_tile") }
 local bulkStorageI = 1
@@ -16,6 +15,8 @@ local bulkStorageI = 1
 local nbtStorages = { peripheral.find("entangled:tile") }
 local nbtStorageI = 1
 local nbtStorageLimit = 1024
+
+monitor.clear()
 
 local unstackableItems = {
 	["minecraft:bundle"] = true
