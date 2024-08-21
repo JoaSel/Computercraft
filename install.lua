@@ -25,8 +25,9 @@ local function updateFile(url, filename)
         if(fs.exists(backupFilename)) then
             print("Restoring old version.")
             fs.move(backupFilename, filename)
+            return
         else
-            print("Could not find " .. url)
+            error("Could not find " .. url)
         end
     end
 
