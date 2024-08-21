@@ -54,6 +54,7 @@ local startupFile = fs.open("startup", "w+")
 startupFile.writeLine(string.format("local scriptName = %s", scriptName))
 startupFile.writeLine(string.format("local repoName = %s", repoName))
 startupFile.writeLine(string.format("local repoBakName = %s", repoName .. "Bak"))
+startupFile.writeLine(string.format("local gitUrl = %s", gitUrl))
 
 startupFile.writeLine("shell.run(\"rm\", repoBakName)")
 startupFile.writeLine("shell.run(\"mv\", repoName, repoBakName)")
