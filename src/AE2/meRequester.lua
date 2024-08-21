@@ -18,7 +18,7 @@ local colorTable = {
 monitor.setTextScale(0.5)
 
 local function getRequestData()
-	local socket = http.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/meRequesterData.txt")
+	local socket = http.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/AE2/meRequesterData.txt")
 	if (not socket) then
 		error("Could not get request data.")
 	end
