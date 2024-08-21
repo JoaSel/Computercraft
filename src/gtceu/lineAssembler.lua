@@ -42,9 +42,8 @@ local function importItems()
         end
 
         print("Importing " .. item.name .. " to " .. currentBus.name)
-        print(busSize)
         input.pushItems(currentBus.name, fromSlot, 64)
-        
+
         sentToThisBus = sentToThisBus + 1
     end
 end
