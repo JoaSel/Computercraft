@@ -1,6 +1,6 @@
 ---@diagnostic disable: param-type-mismatch
 
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua craftingHistory.lua
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/AE2/craftingHistory.lua
 
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
