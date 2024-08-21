@@ -3,6 +3,7 @@
 package.path = package.path .. ";../core/?.lua"
 
 local dump = require("dump")
+local pWrapper = require("peripheralWrapper")
 
 local machine = peripheral.find("blockReader")
 
@@ -30,7 +31,7 @@ local function isIdle()
     return data.recipeLogic.status == "IDLE"
 end
 
-local function addInputItems()
+local function importItems()
     local inputItems = input.list()
 
     for fromSlot, item in pairs(inputItems) do
@@ -42,7 +43,7 @@ local function addInputItems()
     end
 end
 
-local function addInputFluids()
+local function importFluids()
     local inputFluids = input.tanks()
 
     for _, item in pairs(inputFluids) do
@@ -53,10 +54,27 @@ local function addInputFluids()
     end
 end
 
+-- local function exportItems()
+--     for fromSlot, item in pairs(inputItems) do
+--         for _, inputBus in pairs(inputBuses) do
+--             for i = 1, inputBus.size() do
+--                 input.pushItems(peripheral.getName(inputBus), fromSlot, 64, i)
+--             end
+--         end
+--     end
+-- end
+
 for _, inputBus in pairs(inputBuses) do
     print(peripheral.getName(inputBus))
 end
 
+pWrapper.find("gtceu:ulv_input_bus")
 print(isIdle())
-addInputItems()
-addInputFluids()
+
+-- importItems()
+-- importFluids()
+
+-- exportItems()
+-- exportFluids()
+
+
