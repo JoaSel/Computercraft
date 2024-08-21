@@ -14,6 +14,9 @@ local dataAccessHatch = peripheral.find("gtceu:data_access_hatch")
 local inputBuses = { peripheral.find("gtceu:ulv_input_bus") }
 local inputHatches = { peripheral.find("gtceu:lv_input_hatch") }
 
+table.sort(inputBuses)
+table.sort(inputHatches)
+
 local outputBuses = { peripheral.find("gtceu:ulv_output_bus") }
 local outputHatches = { peripheral.find("gtceu:ulv_output_hatch") }
 
