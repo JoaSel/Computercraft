@@ -12,14 +12,43 @@ end
 local repoName = "https://github.com/JoaSel/Computercraft"
 local scriptName = args[1]
 
-local function installIfPossible(url, filename)
+local function getRequestData()
+    local requestDataLocationFile = fs.open("requestDataLocation", "r")
+    local requestDataLocation = requestDataLocationFile.readLine()
+    requestDataLocationFile.close()
+    
+    local socket = http.get(requestDataLocation)
+    local content = socket.readAll()
+    socket.close()
+ 
+    if(not content) then
+        error("Could not get request data.")
+    end
+    local parsed = textutils.unserialize(content)
+    if(not parsed) then
+        error("Could not unserialize request data.")
+    end
+ 
+    return parsed 
+end
 
+local function updateFile(url, filename)
+    local backupFilename = filename .. ".bak"
+    print("Moving " .. filename .. " => " .. backupFilename)
+    fs.move(filename, backupFilename)
+
+    -- local requestDataLocationFile = fs.open("requestDataLocation", "r")
+    -- local requestDataLocation = requestDataLocationFile.readLine()
+    -- requestDataLocationFile.close()
+    
+    -- local socket = http.get(url)
+    -- local content = socket.readAll()
+    -- socket.close()
 end
 
 local function installGitClone()
     print("Installing SquidDev's git clone...")
-    local x = shell.run("wget https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b0b15a5c06c0603b/raw/clone.min.lua2")
-    print(x)
+    updateFile("https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b0b15a5c06c0603b/raw/clone.min.lua", "clone.lua")
 end
 
 installGitClone()
