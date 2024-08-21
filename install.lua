@@ -28,5 +28,6 @@ startupFile.writeLine("shell.run(\"mv\", repoBakName, repoName)")
 startupFile.writeLine("end")
 
 startupFile.writeLine("shell.run(repoName .. \"/\" .. scriptName)")
+startupFile.close()
 
 shell.run(repoName .. "/" .. scriptName)
