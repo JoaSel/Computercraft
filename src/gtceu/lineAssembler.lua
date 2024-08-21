@@ -4,7 +4,7 @@ package.path = package.path .. ";../core/?.lua"
 
 local dump = require("dump")
 local pWrapper = require("peripheralWrapper")
-local ioUtil = require("ioUtil")
+local ioUtil = require("libs.ioUtil")
 
 local machine = pWrapper.find("blockReader")
 
