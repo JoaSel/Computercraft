@@ -8,7 +8,7 @@ local ioUtil = require("libs.ioUtil")
 
 local machine = pWrapper.find("blockReader")
 
-local input = pWrapper.wrap("sophisticatedbackpacks:backpack_0")
+local input = pWrapper.wrap("entangled:tile_22")
 local output = pWrapper.wrap("entangled:tile_21")
 
 local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
@@ -33,6 +33,7 @@ local function importItems()
     local currentBus = inputBuses[busIndex]
     local busSize = currentBus.size() - 1
     for fromSlot, item in pairs(inputItems) do
+
         if(sentToThisBus >= busSize) then
             busIndex = busIndex + 1
             sentToThisBus = 0
