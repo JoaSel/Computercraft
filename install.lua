@@ -51,9 +51,9 @@ shell.run("wget", "https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b
 print("Creating startup file...")
 local startupFile = fs.open("startup", "w+")
 
-startupFile.writeLine(string.format("local scriptName = %s"), scriptName)
-startupFile.writeLine(string.format("local repoName = %s"), repoName)
-startupFile.writeLine(string.format("local repoBakName = %s"), repoName .. "Bak")
+startupFile.writeLine(string.format("local scriptName = %s", scriptName))
+startupFile.writeLine(string.format("local repoName = %s", repoName))
+startupFile.writeLine(string.format("local repoBakName = %s", repoName .. "Bak"))
 
 startupFile.writeLine("shell.execute(\"rm\", repoBakName)")
 startupFile.writeLine("shell.execute(\"mv\", repoName, repoBakName)")
