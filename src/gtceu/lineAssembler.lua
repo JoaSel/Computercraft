@@ -4,5 +4,7 @@ package.path = package.path .. ";../core/?.lua"
 
 local dump = require("dump")
 
-dump.printDump({name = "test"})
+local machine = peripheral.find("blockReader")
+
+dump.printDump(machine.getBlockInfo())
 
