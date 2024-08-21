@@ -1,8 +1,8 @@
 ---@diagnostic disable: param-type-mismatch
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/craftingHistory.lua
 
-local debug = require("..core.net")
-
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/AE2/craftingHistory.lua
+local debug = require("src/debug/basics")
+debug.printDump({name = "test"})
 
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
