@@ -56,10 +56,11 @@
 		["workGroup"] = "Greg",
 		["offlineOnly"] = true
 	},
-	["gtceu:iv_electric_motor"] = {
-		["amount"] = 20,
+	["gtceu:luv_electric_motor"] = {
+		["amount"] = 50,
 		["batch"] = 1,
-		["workGroup"] = "Greg"
+		["workGroup"] = "Greg",
+		["offlineOnly"] = true
 	},
 	["gtceu:iv_machine_hull"] = {
 		["amount"] = 10,
