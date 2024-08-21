@@ -47,6 +47,8 @@ local scriptName = args[1]
 print("Installing SquidDev's git clone...")
 shell.run("wget", "https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b0b15a5c06c0603b/raw/clone.min.lua", "clone.lua")
 
+print("Creating startup file...")
+shell.execute("rm", repoName)
 shell.execute("clone.lua", repoName)
 
 print("Installing " .. scriptName .. " from " .. repoName)
