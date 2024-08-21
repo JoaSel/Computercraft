@@ -51,7 +51,18 @@ shell.run("wget", "https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b
 print("Creating startup file...")
 local startupFile = fs.open("startup", "w+")
 
+startupFile.write(string.format("local scriptName = %s"), scriptName)
+startupFile.write(string.format("local repoName = %s"), repoName)
 startupFile.write(string.format("local repoBakName = %s"), repoName .. "Bak")
+
+startupFile.write("shell.execute(\"rm\", repoBakName)")
+startupFile.write("shell.execute(\"mv\", repoName, repoBakName)")
+startupFile.write("if(not shell.execute(\"clone.lua\", gitUrl .. repoName) and fs.exists(repoBakName)) then")
+startupFile.write("shell.execute(\"mv\", repoBakName, repoName)")
+startupFile.write("end")
+
+startupFile.write("shell.execute(repoName .. \"/\" .. scriptName)")
+
 
 -- local repoBakName = repoName .. "Bak"
 -- shell.execute("rm", repoBakName)
