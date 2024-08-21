@@ -41,7 +41,7 @@ local function addInputFluids()
     for _, item in pairs(inputFluids) do
         print("Adding " .. item.name)
         for _, inputHatch in pairs(inputHatches) do
-            inputFluids.pushItems(peripheral.getName(inputHatch))
+            input.pushFluid(peripheral.getName(inputHatch))
         end
     end
 end
