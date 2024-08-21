@@ -17,7 +17,9 @@ local inputHatches = { peripheral.find("gtceu:lv_input_hatch") }
 table.sort(inputBuses, function (a, b)
     return peripheral.getName(a) < peripheral.getName(b)
 end)
---table.sort(inputHatches)
+table.sort(inputHatches, function (a, b)
+    return peripheral.getName(a) < peripheral.getName(b)
+end)
 
 local outputBuses = { peripheral.find("gtceu:ulv_output_bus") }
 local outputHatches = { peripheral.find("gtceu:ulv_output_hatch") }
