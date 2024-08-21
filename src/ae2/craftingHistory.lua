@@ -3,11 +3,11 @@
 
 package.path = package.path .. ";../core/?.lua"
 
+local dump = require("dump")
 local net = require("net")
 local aeNameUtil = require("libs.aeNameUtil")
 
-print(net.get(
-	"https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/libs/meRequesterData.txt"))
+print(dump.printDump("test"))
 
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
