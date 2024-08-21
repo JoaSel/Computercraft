@@ -8,7 +8,7 @@ local ioUtil = require("libs.ioUtil")
 
 local machine = pWrapper.find("blockReader")
 
-local input = pWrapper.wrap("entangled:tile_20")
+local input = pWrapper.wrap("sophisticatedbackpacks:backpack_0")
 local output = pWrapper.wrap("entangled:tile_21")
 
 local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
