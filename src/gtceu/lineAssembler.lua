@@ -14,17 +14,10 @@ local output = pWrapper.wrap("entangled:tile_21")
 local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
 
 local inputBuses = { ioUtil.findInputBuses() }
-local inputHatches = { pWrapper.find("gtceu:lv_input_hatch") }
+local inputHatches = { ioUtil.findInputHatches() }
 
-table.sort(inputBuses, function (a, b)
-    return a.name < b.name
-end)
-table.sort(inputHatches, function (a, b)
-    return a.name < b.name
-end)
-
-local outputBuses = { pWrapper.find("gtceu:ulv_output_bus") }
-local outputHatches = { pWrapper.find("gtceu:ulv_output_hatch") }
+local outputBuses = { ioUtil.findOutputBuses() }
+local outputHatches = { ioUtil.findOutputHatches() }
 
 local function isIdle()
     local data = machine.getBlockData()
