@@ -33,9 +33,11 @@ local function getRequestData()
 end
 
 local function updateFile(url, filename)
-    local backupFilename = filename .. ".bak"
-    print("Moving " .. filename .. " => " .. backupFilename)
-    fs.move(filename, backupFilename)
+    if(fs.exists(filename)) then
+        local backupFilename = filename .. ".bak"
+        print("Backing up " .. filename .. " => " .. backupFilename)
+        fs.move(filename, backupFilename)
+    end
 
     -- local requestDataLocationFile = fs.open("requestDataLocation", "r")
     -- local requestDataLocation = requestDataLocationFile.readLine()
