@@ -1,4 +1,4 @@
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua gregSorter
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/logistics/gregSorter.lua
 
 local internalBuffer = peripheral.find("entangled:tile")
 local input = peripheral.find("dankstorage:dank_tile")

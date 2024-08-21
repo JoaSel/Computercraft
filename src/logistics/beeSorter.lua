@@ -1,3 +1,5 @@
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/logistics/beeSorter.lua
+
 local dimChests = { peripheral.find("dimstorage:dimensional_chest") }
 
 local inputName = "dimstorage:dimensional_chest_24"

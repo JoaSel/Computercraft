@@ -27,7 +27,7 @@ local soundBlackList = {
 }
 
 local autoRequestData = net.get(
-"https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/meRequesterData.txt")
+"https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/libs/meRequesterData.txt")
 
 local function jobStarted(cpuNum, craftingJob)
 	craftingJob.startedTime = os.time("utc")

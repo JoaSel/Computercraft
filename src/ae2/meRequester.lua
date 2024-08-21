@@ -145,7 +145,7 @@ local runCount = 0
 while (true) do
 	if (runCount % 100 == 0) then
 		runCount = 0
-		requestData = net.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/meRequesterData.txt")
+		requestData = net.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/libs/meRequesterData.txt")
 	end
 
 	local activeGroups = {}
