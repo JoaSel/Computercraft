@@ -74,11 +74,12 @@ local function exportItems()
     end
 end
 
+while (true) do
+    if(isIdle()) then
+        exportItems()
+    end
+    importItems()
+    importFluids()
 
-importItems()
-importFluids()
-
---exportItems()
---exportFluids()
-
-
+    os.sleep(1)
+end
