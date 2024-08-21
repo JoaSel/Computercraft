@@ -68,13 +68,15 @@ local function exportItems()
     end
 end
 
-
+for _, inputBus in pairs(inputBuses) do
+    print(inputBus.name)
+end
 --dump.printDump(pWrapper.find("gtceu:ulv_input_bus"))
 
 --importItems()
 --importFluids()
 
-exportItems()
+--exportItems()
 -- exportFluids()
 
 
