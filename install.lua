@@ -49,8 +49,6 @@ local function updateFile(url, filename)
     -- local requestDataLocationFile = fs.open("requestDataLocation", "r")
     -- local requestDataLocation = requestDataLocationFile.readLine()
     -- requestDataLocationFile.close()
-    
-    
 end
 
 local function installGitClone()
