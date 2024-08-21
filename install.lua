@@ -10,7 +10,8 @@ if(#args ~= 1) then
     error("Usage: ....")
 end
 
-local repoName = "https://github.com/JoaSel/Computercraft"
+local gitUrl = "https://github.com/JoaSel/"
+local repoName = "Computercraft"
 local scriptName = args[1]
 
 -- local function updateFile(url, filename)
@@ -49,7 +50,7 @@ shell.run("wget", "https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b
 
 print("Creating startup file...")
 shell.execute("rm", repoName)
-shell.execute("clone.lua", repoName)
+shell.execute("clone.lua", gitUrl .. repoName)
 
 print("Installing " .. scriptName .. " from " .. repoName)
 
