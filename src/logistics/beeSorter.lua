@@ -43,5 +43,17 @@ local miscRoutes = {
 	end
 }
 
+
+for i = 1, #dimChests do
+	if (peripheral.getName(dimChests[i]) == inputName) then
+		print("Initialized " .. inputName .. " as input.")
+		input = dimChests[i]
+	end
+	if (peripheral.getName(dimChests[i]) == internalBufferName) then
+		print("Initialized " .. internalBufferName .. " as internal buffer.")
+		internalBuffer = dimChests[i]
+	end
+end
+
 circularSorter.create(input, internalBuffer, "Storage Input", destinationNames, displayNamesRoutes, tagsRoutes, miscRoutes)
 circularSorter.run()
