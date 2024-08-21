@@ -28,14 +28,18 @@ end
 local function importItems()
     local inputItems = input.list()
 
-    for fromSlot, item in pairs(inputItems) do
-        for _, inputBus in pairs(inputBuses) do
-            for i = 1, inputBus.size() do
-                print("Importing " .. item.name)
-                input.pushItems(inputBus.name, fromSlot, 64, i)
-            end
-        end
-    end
+    local test = next(inputBuses)
+
+    dump.printDump(test)
+
+    -- for fromSlot, item in pairs(inputItems) do
+    --     for _, inputBus in pairs(inputBuses) do
+    --         for i = 1, inputBus.size() do
+    --             print("Importing " .. item.name)
+    --             input.pushItems(inputBus.name, fromSlot, 64, i)
+    --         end
+    --     end
+    -- end
 end
 
 local function importFluids()
@@ -65,10 +69,10 @@ local function exportItems()
 end
 
 
---importItems()
+importItems()
 --importFluids()
 
-exportItems()
+--exportItems()
 --exportFluids()
 
 
