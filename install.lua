@@ -1,2 +1,3 @@
 local args = { ... }
-print(args)
+
+print(#args)
