@@ -85,17 +85,17 @@
 		["batch"] = 64
 	},
 	["gtceu:ruridit_ingot"] = {
-		["amount"] = 500,
+		["amount"] = 512,
 		["batch"] = 16,
 		["workGroup"] = "Blast"
 	},
 	["gtceu:rhodium_plated_palladium_ingot"] = {
-		["amount"] = 500,
+		["amount"] = 512,
 		["batch"] = 16,
 		["workGroup"] = "Blast"
 	},
 	["gtceu:hsss_ingot"] = {
-		["amount"] = 500,
+		["amount"] = 512,
 		["batch"] = 16,
 		["workGroup"] = "Blast"
 	}
