@@ -27,7 +27,7 @@ local soundBlackList = {
 	["gtceu:styrene_butadiene_rubber"] = true
 }
 
-local autoRequestData = net.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/AE2/meRequesterData.txt")
+local autoRequestData = net.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/meRequesterData.txt")
 
 local function jobStarted(cpuNum, craftingJob)
 	craftingJob.startedTime = os.time("utc")
