@@ -2,7 +2,7 @@
 
 package.path = package.path .. ";../debug/?.lua"
 
-local debug = require("src.core.debug")
+local debug = require("src.core.dump")
 
 print(debug)
 debug.printDump({name = "test"})
