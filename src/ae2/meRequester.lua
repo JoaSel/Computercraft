@@ -1,5 +1,7 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/AE2/meRequester.lua
 
+local aeNameUtil = require("libs.aeNameUtil")
+
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
 local playerDetector = peripheral.find("playerDetector")
@@ -71,14 +73,6 @@ local function writeTabbedLine(tabData, ...)
 	monitor.setCursorPos(1, y + 1)
 end
 
-local function toDisplayName(name)
-	if (string.byte(string.sub(name, 1, 1)) == 167) then
-		return string.sub(string.sub(name, 0, #name - 3), 3)
-	end
-
-	return name
-end
-
 local tabData = { 30, 10, 10, 10 }
 local function render(requestData)
 	local workGroups = {}
@@ -101,7 +95,7 @@ local function render(requestData)
 		for _, requestInfo in pairs(workGroup) do
 			monitor.setTextColor(colorTable[requestInfo.status])
 			if (requestInfo.status ~= "FailedToStart") then
-				writeTabbedLine(tabData, toDisplayName(requestInfo.existingItem.displayName),
+				writeTabbedLine(tabData, aeNameUtil.toDisplayName(requestInfo.existingItem.displayName),
 					requestInfo.existingItem.amount, requestInfo.amount, requestInfo.workGroup)
 			else
 				writeTabbedLine(tabData, "ERROR")
