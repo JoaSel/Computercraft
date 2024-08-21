@@ -6,12 +6,11 @@ package.path = package.path .. ";../debug/?.lua"
 
 local debug = require("debug")
 local net = require("net")
+local aeNameUtil = require("libs.aeNameUtil")
 
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
 local speaker = peripheral.find("speaker")
-
---replace §9  and §r
 
 monitor.setTextScale(0.5)
 
@@ -27,7 +26,8 @@ local soundBlackList = {
 	["gtceu:styrene_butadiene_rubber"] = true
 }
 
-local autoRequestData = net.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/meRequesterData.txt")
+local autoRequestData = net.get(
+"https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/meRequesterData.txt")
 
 local function jobStarted(cpuNum, craftingJob)
 	craftingJob.startedTime = os.time("utc")
@@ -107,10 +107,11 @@ local function render()
 				color = color.red
 			end
 			writeLine(
-			"\t[" ..
-			getTimeStamp(activeJob.startedTime) ..
-			"] " ..
-			activeJob.storage.amount .. " " .. activeJob.storage.displayName .. "\t" .. getProgressText(activeJob), color)
+				"\t[" ..
+				getTimeStamp(activeJob.startedTime) ..
+				"] " ..
+				activeJob.storage.amount .. " " .. aeNameUtil.toDisplayName(activeJob.storage.displayName) .. "\t" .. getProgressText(activeJob),
+				color)
 		end
 	end
 
@@ -119,10 +120,11 @@ local function render()
 		writeLine("Finished Crafting:")
 		for _, endedJob in pairs(endedJobs) do
 			writeLine(
-			"\t[" ..
-			getTimeStamp(endedJob.startedTime) ..
-			" => " ..
-			getTimeStamp(endedJob.endedTime) .. "] " .. endedJob.storage.amount .. " " .. endedJob.storage.displayName,
+				"\t[" ..
+				getTimeStamp(endedJob.startedTime) ..
+				" => " ..
+				getTimeStamp(endedJob.endedTime) ..
+				"] " .. endedJob.storage.amount .. " " .. aeNameUtil.toDisplayName(endedJob.storage.displayName),
 				colors.green)
 		end
 	end
