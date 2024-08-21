@@ -7,10 +7,6 @@
 		["amount"] = 1024,
 		["batch"] = 64
 	},
-	["allthetweaks:atm_star"] = {
-		["amount"] = 50000,
-		["batch"] = 1
-	},
 	["productivebees:upgrade_productivity_4"] = {
 		["amount"] = 512,
 		["batch"] = 1
