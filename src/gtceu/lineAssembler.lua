@@ -35,7 +35,7 @@ local function importItems()
     local busSize = currentBus.size()
     for fromSlot, item in pairs(inputItems) do
         print("Importing " .. item.name)
-        input.pushItems(currentBus.name, fromSlot)
+        input.pushItems(currentBus.name, fromSlot, 64)
         sentToThisBus = sentToThisBus + 1
 
         if(sentToThisBus >= busSize) then
