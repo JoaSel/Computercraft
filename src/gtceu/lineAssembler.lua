@@ -10,8 +10,12 @@ local input = peripheral.wrap("entangled:tile_20")
 local output = peripheral.wrap("entangled:tile_21")
 
 local dataAccessHatch = peripheral.find("gtceu:data_access_hatch")
+
 local inputBuses = { peripheral.find("gtceu:ulv_input_bus") }
+local inputHatches = { peripheral.find("gtceu:ulv_input_hatch") }
+
 local outputBuses = { peripheral.find("gtceu:ulv_output_bus") }
+local outputHatches = { peripheral.find("gtceu:ulv_output_hatch") }
 
 local function isIdle()
     local data = machine.getBlockData()
@@ -31,5 +35,16 @@ local function addInputItems()
     end
 end
 
+local function addInputFluids()
+    local inputFluids = input.tanks()
+
+    for _, item in pairs(inputFluids) do
+        for _, inputHatch in pairs(inputHatches) do
+            inputFluids.pushItems(peripheral.getName(inputHatch))
+        end
+    end
+end
+
 print(isIdle())
 addInputItems()
+addInputFluids()
