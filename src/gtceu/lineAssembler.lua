@@ -31,7 +31,7 @@ local function importItems()
     for fromSlot, item in pairs(inputItems) do
         for _, inputBus in pairs(inputBuses) do
             for i = 1, inputBus.size() do
-                print("Adding " .. item.name)
+                print("Importing " .. item.name)
                 input.pushItems(inputBus.name, fromSlot, 64, i)
             end
         end
@@ -42,7 +42,7 @@ local function importFluids()
     local inputFluids = input.tanks()
 
     for _, item in pairs(inputFluids) do
-        print("Adding " .. item.name)
+        print("Importing " .. item.name)
         for _, inputHatch in pairs(inputHatches) do
             input.pushFluid(inputHatch.name)
         end
@@ -54,6 +54,7 @@ local function exportItems()
         local outputItems = outputBus.list()
 
         for fromSlot, item in pairs(outputItems) do
+            print("Exporting " .. item.name)
             outputBus.pushItems(output.name, fromSlot)
         end
 
@@ -63,15 +64,11 @@ local function exportItems()
     end
 end
 
-for _, inputBus in pairs(outputBuses) do
-    print(inputBus.name)
-end
---dump.printDump(pWrapper.find("gtceu:ulv_input_bus"))
 
---importItems()
---importFluids()
+importItems()
+importFluids()
 
-exportItems()
--- exportFluids()
+--exportItems()
+--exportFluids()
 
 
