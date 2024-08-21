@@ -2,7 +2,7 @@ package.path = package.path .. ";../../core/?.lua"
 
 local pWrapper = require("peripheralWrapper")
 
-local tiers = {"ulv", "lv", "mv", "hv", "ev", "iv", "luv", "zpm", "uv", "uhv"}
+local tiers = { "ulv", "lv", "mv", "hv", "ev", "iv", "luv", "zpm", "uv", "uhv" }
 
 local function find(postfix)
     local ret = {}
@@ -15,7 +15,7 @@ local function find(postfix)
         end
     end
 
-    table.sort(ret, function (a, b)
+    table.sort(ret, function(a, b)
         return a.name < b.name
     end)
 
@@ -26,8 +26,21 @@ local function findInputBuses()
     return find("_input_bus")
 end
 
+local function findInputHatches()
+    return find("_input_hatch")
+end
+
 local function findOutputBuses()
     return find("_output_bus")
 end
 
-return { findInputBuses = findInputBuses, findOutputBuses = findOutputBuses }
+local function findOutputHatches()
+    return find("_output_hatch")
+end
+
+return {
+    findInputBuses = findInputBuses,
+    findOutputBuses = findOutputBuses,
+    findInputHatches = findInputHatches,
+    findOutputHatches = findOutputHatches
+}
