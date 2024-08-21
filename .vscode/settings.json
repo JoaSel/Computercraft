@@ -4,5 +4,8 @@
         "shell",
         "http",
         "fs"
+    ],
+    "Lua.diagnostics.disable": [
+        "need-check-nil"
     ]
 }
