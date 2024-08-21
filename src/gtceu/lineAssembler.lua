@@ -28,7 +28,6 @@ end
 local function importItems()
     local inputItems = input.list()
 
-
     local busIndex = 1
     local sentToThisBus = 0
     local currentBus = inputBuses[busIndex]

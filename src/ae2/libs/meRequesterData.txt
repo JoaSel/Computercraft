@@ -92,5 +92,10 @@
 		["amount"] = 500,
 		["batch"] = 16,
 		["workGroup"] = "Blast"
+	},
+	["gtceu:rhodium_plated_palladium_ingot"] = {
+		["amount"] = 500,
+		["batch"] = 16,
+		["workGroup"] = "Blast"
 	}
 }
