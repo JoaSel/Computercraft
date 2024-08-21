@@ -39,13 +39,18 @@ local function updateFile(url, filename)
         fs.move(filename, backupFilename)
     end
 
+    local socket = http.get(url)
+    local content = socket.readAll()
+    socket.close()
+
+    local file = fs.open(filename, "w")
+    file.write(content)
+    file.close()
     -- local requestDataLocationFile = fs.open("requestDataLocation", "r")
     -- local requestDataLocation = requestDataLocationFile.readLine()
     -- requestDataLocationFile.close()
     
-    -- local socket = http.get(url)
-    -- local content = socket.readAll()
-    -- socket.close()
+    
 end
 
 local function installGitClone()
