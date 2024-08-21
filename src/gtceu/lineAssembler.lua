@@ -37,7 +37,8 @@ local function importItems()
     for fromSlot, item in pairs(inputItems) do
         for _, inputBus in pairs(inputBuses) do
             for i = 1, inputBus.size() do
-                input.pushItems(peripheral.getName(inputBus), fromSlot, 64, i)
+                print("Adding " .. item.name)
+                input.pushItems(inputBus.name, fromSlot, 64, i)
             end
         end
     end
@@ -49,28 +50,30 @@ local function importFluids()
     for _, item in pairs(inputFluids) do
         print("Adding " .. item.name)
         for _, inputHatch in pairs(inputHatches) do
-            input.pushFluid(peripheral.getName(inputHatch))
+            input.pushFluid(inputHatch.name)
         end
     end
 end
 
--- local function exportItems()
---     for fromSlot, item in pairs(inputItems) do
---         for _, inputBus in pairs(inputBuses) do
---             for i = 1, inputBus.size() do
---                 input.pushItems(peripheral.getName(inputBus), fromSlot, 64, i)
---             end
---         end
---     end
--- end
+local function exportItems()
+    for _, outputBus in pairs(outputBuses) do
+        local outputItems = outputBus.list()
+
+        for fromSlot, item in pairs(outputItems) do
+            outputBus.pushItems(output.name, fromSlot)
+        end
+
+        print(outputBus.list())
+    end
+end
 
 
 --dump.printDump(pWrapper.find("gtceu:ulv_input_bus"))
 
-importItems()
-importFluids()
+--importItems()
+--importFluids()
 
--- exportItems()
+exportItems()
 -- exportFluids()
 
 
