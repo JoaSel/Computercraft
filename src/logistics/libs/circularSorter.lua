@@ -15,7 +15,7 @@ local function create(input, internalBuffer, defaultDestination, destinationName
 					  miscRoutes)
 	_input = input
 	_internalBuffer = internalBuffer
-	_internalBufferSize = math.ceil(internalBuffer.getSize() / 2)
+	_internalBufferSize = math.ceil(internalBuffer.size() / 2)
 
 	_defaultDestination = defaultDestination
 	_destinationNames = destinationNames
