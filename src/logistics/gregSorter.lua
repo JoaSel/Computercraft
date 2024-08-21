@@ -28,5 +28,14 @@ local tagsRoutes = {
 	["forge:refined_ores"] = "Macerator"
 }
 
-circularSorter.create(input, internalBuffer, "Storage Input", destinationNames, displayNamesRoutes, tagsRoutes, {})
+local miscRoutes = {
+	function(item)
+		if (string.match(item.name, "^gtceu:") and hasTag(item, "forge:ores")) then
+			return "Macerator"
+		end
+	end
+}
+
+
+circularSorter.create(input, internalBuffer, "Storage Input", destinationNames, displayNamesRoutes, tagsRoutes, miscRoutes)
 circularSorter.run()

@@ -11,8 +11,10 @@ local _displayNameRoutes = {}
 local _tagRoutes = {};
 local _miscRoutes = {};
 
+local _verbose = false
+
 local function create(input, internalBuffer, defaultDestination, destinationNames, displayNameRoutes, tagRoutes,
-					  miscRoutes)
+					  miscRoutes, verbose)
 	_input = input
 	_internalBuffer = internalBuffer
 	_internalBufferSize = math.ceil(internalBuffer.size() / 2)
@@ -23,6 +25,8 @@ local function create(input, internalBuffer, defaultDestination, destinationName
 	_displayNameRoutes = displayNameRoutes
 	_tagRoutes = tagRoutes
 	_miscRoutes = miscRoutes
+
+	_verbose = verbose
 end
 
 local function hasTag(item, tag)
@@ -31,7 +35,7 @@ local function hasTag(item, tag)
 	elseif (item.tags[tag] == nil) then
 		return false
 	end
-	return item.tags[tag]
+	return true
 end
 
 local function getDestination(item)
@@ -46,8 +50,12 @@ local function getDestination(item)
 		end
 	end
 
-	if (string.match(item.name, "^gtceu:") and hasTag(item, "forge:ores")) then
-		return "Macerator"
+	for _, destinationFunc in pairs(_miscRoutes) do
+		local dest = destinationFunc(item)
+		if(dest) then
+			print("USED MISC ROUTE")
+			return dest
+		end
 	end
 
 	return _defaultDestination
@@ -77,7 +85,11 @@ local function run()
 			local detail = _internalBuffer.getItemDetail(slot)
 			if (detail ~= nil and detail.displayName ~= nil) then
 				local destination = getDestination(detail)
-				print(detail.displayName .. " => " .. destination)
+
+				if(_verbose) then
+					print(detail.displayName .. " => " .. destination)
+				end
+				
 				_internalBuffer.pushItems(_destinationNames[destination], slot, 64)
 			end
 		end
