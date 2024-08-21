@@ -65,7 +65,8 @@ end
 -- end
 
 
-dump.printDump(pWrapper.find("blockReader"))
+local x = pWrapper.find("blockReader")
+dump.printDump(x)
 --dump.printDump(pWrapper.find("gtceu:ulv_input_bus"))
 
 -- importItems()

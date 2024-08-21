@@ -7,8 +7,7 @@ local function find(peripheralType)
         peripheral.name = peripheral.getName(p)
     end
 
-    return peripherals
-
+    return unpack(peripherals)
 end
 
 return { find = find }
