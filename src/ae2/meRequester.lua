@@ -1,5 +1,10 @@
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/AE2/meRequester.lua
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/meRequester.lua
 
+package.path = package.path .. ";../core/?.lua"
+package.path = package.path .. ";../debug/?.lua"
+
+local debug = require("debug")
+local net = require("net")
 local aeNameUtil = require("libs.aeNameUtil")
 
 local bridge = peripheral.find("meBridge")
@@ -18,27 +23,6 @@ local colorTable = {
 }
 
 monitor.setTextScale(0.5)
-
-local function getRequestData()
-	local socket = http.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/AE2/meRequesterData.txt")
-	if (not socket) then
-		error("Could not get request data.")
-	end
-
-	local content = socket.readAll()
-	if (not content) then
-		error("Could not get request data.")
-	end
-
-	socket.close()
-
-	local parsed = textutils.unserialize(content)
-	if (not parsed) then
-		error("Could not unserialize request data.")
-	end
-
-	return parsed
-end
 
 local function requestItem(itemName, requestInfo, existingItem)
 	local craftCount = math.min(requestInfo.batch, requestInfo.amount - existingItem.amount)
@@ -161,7 +145,7 @@ local runCount = 0
 while (true) do
 	if (runCount % 100 == 0) then
 		runCount = 0
-		requestData = getRequestData()
+		requestData = net.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/meRequesterData.txt")
 	end
 
 	local activeGroups = {}
