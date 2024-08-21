@@ -2,7 +2,6 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/craftingHistory.lua
 
 package.path = package.path .. ";../core/?.lua"
-package.path = package.path .. ";../debug/?.lua"
 
 local debug = require("debug")
 debug.printDump({test="hej"})

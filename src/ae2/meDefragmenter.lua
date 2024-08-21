@@ -1,9 +1,7 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/meDefragmenter.lua
 
 package.path = package.path .. ";../core/?.lua"
-package.path = package.path .. ";../debug/?.lua"
 
-local debug = require("debug")
 local jGui = require("jGui")
 
 local monitor = peripheral.find("monitor")
