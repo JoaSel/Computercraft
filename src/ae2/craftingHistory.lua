@@ -5,6 +5,8 @@ package.path = package.path .. ";../core/?.lua"
 package.path = package.path .. ";../debug/?.lua"
 
 local debug = require("debug")
+debug.printDump({test="hej"})
+
 local net = require("net")
 local aeNameUtil = require("libs.aeNameUtil")
 
