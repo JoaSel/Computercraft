@@ -16,29 +16,30 @@ local colorTable = {
 monitor.setTextScale(0.5)
 
 local function getRequestData()
-	local requestDataLocationFile = fs.open("requestDataLocation", "r")
-	local requestDataLocation = requestDataLocationFile.readLine()
-	requestDataLocationFile.close()
-	
-	local socket = http.get(requestDataLocation)
-	local content = socket.readAll()
-	socket.close()
-
-	if(not content) then
+	local socket = http.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/meRequesterData.txt")
+	if (not socket) then
 		error("Could not get request data.")
 	end
+
+	local content = socket.readAll()
+	if (not content) then
+		error("Could not get request data.")
+	end
+
+	socket.close()
+
 	local parsed = textutils.unserialize(content)
-	if(not parsed) then
+	if (not parsed) then
 		error("Could not unserialize request data.")
 	end
 
-	return parsed 
+	return parsed
 end
 
 local function requestItem(itemName, requestInfo, existingItem)
 	local craftCount = math.min(requestInfo.batch, requestInfo.amount - existingItem.amount)
-	
-	bridge.craftItem({name = itemName, count = craftCount})
+
+	bridge.craftItem({ name = itemName, count = craftCount })
 
 	local event, success, message = os.pullEvent("crafting")
 	if success then
@@ -48,13 +49,13 @@ local function requestItem(itemName, requestInfo, existingItem)
 	end
 end
 
-local function lineBreak() 
+local function lineBreak()
 	local _, y = monitor.getCursorPos()
 	monitor.setCursorPos(1, y + 1)
 end
 
 local function writeTabbedLine(tabData, ...)
-	local texts = {...}
+	local texts = { ... }
 	local x, y
 	local i = 1
 	local currTab = 0
@@ -69,19 +70,19 @@ local function writeTabbedLine(tabData, ...)
 end
 
 local function toDisplayName(name)
-	if(string.byte(string.sub(name, 1, 1)) == 167) then
-		return string.sub(string.sub(name, 0, #name-3), 3)
+	if (string.byte(string.sub(name, 1, 1)) == 167) then
+		return string.sub(string.sub(name, 0, #name - 3), 3)
 	end
 
 	return name
 end
 
-local tabData = {30, 10, 10, 10}
+local tabData = { 30, 10, 10, 10 }
 local function render(requestData)
 	local workGroups = {}
 	for itemName, requestInfo in pairs(requestData) do
 		local workGroup = requestInfo.workGroup or "EmptyGroup"
-		if(workGroups[workGroup] == nil) then
+		if (workGroups[workGroup] == nil) then
 			workGroups[workGroup] = {}
 		end
 		table.insert(workGroups[workGroup], requestInfo)
@@ -89,7 +90,7 @@ local function render(requestData)
 
 	monitor.clear()
 	monitor.setCursorPos(1, 1)
-	
+
 	monitor.setTextColor(colors.white)
 	writeTabbedLine(tabData, "Item", "Current", "Wanted", "Group")
 	monitor.setCursorPos(1, 3)
@@ -97,8 +98,9 @@ local function render(requestData)
 	for _, workGroup in pairs(workGroups) do
 		for _, requestInfo in pairs(workGroup) do
 			monitor.setTextColor(colorTable[requestInfo.status])
-			if(requestInfo.status ~= "FailedToStart") then
-				writeTabbedLine(tabData, toDisplayName(requestInfo.existingItem.displayName), requestInfo.existingItem.amount, requestInfo.amount, requestInfo.workGroup)
+			if (requestInfo.status ~= "FailedToStart") then
+				writeTabbedLine(tabData, toDisplayName(requestInfo.existingItem.displayName),
+					requestInfo.existingItem.amount, requestInfo.amount, requestInfo.workGroup)
 			else
 				writeTabbedLine(tabData, "ERROR")
 			end
@@ -108,60 +110,60 @@ local function render(requestData)
 end
 
 local function updateRequestInfo(itemName, requestInfo, activeGroups, playerOnline)
-	local searchItem = {name = itemName}
+	local searchItem = { name = itemName }
 
 	local existingItem = bridge.getItem(searchItem)
-	if(existingItem == nil or existingItem.amount == nil) then
+	if (existingItem == nil or existingItem.amount == nil) then
 		print("Error getting amount")
 		requestInfo.status = "FailedToStart"
 		return
 	end
 
 	requestInfo.existingItem = existingItem
-	if(existingItem.amount >= requestInfo.amount) then
+	if (existingItem.amount >= requestInfo.amount) then
 		requestInfo.status = "Ok"
 		return
 	end
-	
-	if(requestInfo.offlineOnly and playerOnline) then
+
+	if (requestInfo.offlineOnly and playerOnline) then
 		requestInfo.status = "PlayerOnline"
 		return
 	end
 
-	if(activeGroups.currentJobs >= maxConcurrentJobs) then
+	if (activeGroups.currentJobs >= maxConcurrentJobs) then
 		requestInfo.status = "WorkerBusy"
 		return
 	end
 
 	local isItemCrafing = bridge.isItemCrafting(searchItem)
-	if(isItemCrafing) then
+	if (isItemCrafing) then
 		requestInfo.status = "Crafting"
 		activeGroups.currentJobs = activeGroups.currentJobs + 1
-		if(requestInfo.workGroup) then 
+		if (requestInfo.workGroup) then
 			activeGroups[requestInfo.workGroup] = true
 		end
 		return
 	end
 
 	local groupRequest = requestInfo.workGroup ~= nil and activeGroups[requestInfo.workGroup]
-	if(groupRequest) then
+	if (groupRequest) then
 		requestInfo.status = "WorkerBusy"
 		return
 	end
-	
+
 	activeGroups.currentJobs = activeGroups.currentJobs + 1
-	if(requestInfo.workGroup) then 
+	if (requestInfo.workGroup) then
 		activeGroups[requestInfo.workGroup] = true
 	end
-	
+
 	requestItem(itemName, requestInfo, existingItem)
 end
 
 local requestData = {}
 local runCount = 0
 
-while(true) do
-	if(runCount % 100 == 0) then
+while (true) do
+	if (runCount % 100 == 0) then
 		runCount = 0
 		requestData = getRequestData()
 	end
