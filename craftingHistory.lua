@@ -1,6 +1,6 @@
 ---@diagnostic disable: param-type-mismatch
 
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua craftingHistory
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua craftingHistory.lua
 
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
@@ -23,23 +23,24 @@ local soundBlackList = {
 }
 
 local function getRequestData()
-    local requestDataLocationFile = fs.open("requestDataLocation", "r")
-    local requestDataLocation = requestDataLocationFile.readLine()
-    requestDataLocationFile.close()
-    
-    local socket = http.get(requestDataLocation)
-    local content = socket.readAll()
-    socket.close()
- 
-    if(not content) then
-        error("Could not get request data.")
-    end
-    local parsed = textutils.unserialize(content)
-    if(not parsed) then
-        error("Could not unserialize request data.")
-    end
- 
-    return parsed 
+	local socket = http.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/meRequesterData.txt")
+	if (not socket) then
+		error("Could not get request data.")
+	end
+
+	local content = socket.readAll()
+	if (not content) then
+		error("Could not get request data.")
+	end
+	
+	socket.close()
+
+	local parsed = textutils.unserialize(content)
+	if (not parsed) then
+		error("Could not unserialize request data.")
+	end
+
+	return parsed
 end
 
 local autoRequestData = getRequestData()
@@ -52,15 +53,15 @@ local function jobStarted(cpuNum, craftingJob)
 end
 
 local function jobEnded(cpuNum, craftingJob)
-	if(not autoRequestData[craftingJob.storage.name] and not soundBlackList[craftingJob.storage.name]) then
+	if (not autoRequestData[craftingJob.storage.name] and not soundBlackList[craftingJob.storage.name]) then
 		speaker.playSound("minecraft:block.anvil.place")
 		print(craftingJob.storage.name)
 	end
 
 	local oldJob = activeJobs[cpuNum]
 	activeJobs[cpuNum] = nil
-	
-	if(oldJob ~= nil) then
+
+	if (oldJob ~= nil) then
 		craftingJob.startedTime = oldJob.startedTime
 	end
 
@@ -72,7 +73,7 @@ end
 
 local function updateProgress(cpuNum, craftingJob)
 	local activeJob = activeJobs[cpuNum]
-	if(activeJob ~= nil and craftingJob.progress > activeJob.progress) then
+	if (activeJob ~= nil and craftingJob.progress > activeJob.progress) then
 		activeJob.progress = craftingJob.progress
 		activeJob.lastUpdated = os.time("utc")
 		activeJob.stuck = ((activeJob.lastUpdated - activeJob.lastUpdated) > 0.01)
@@ -84,7 +85,7 @@ local function getProgressText(activeJob)
 end
 
 local function writeLine(text, color)
-	if(color ~= nil) then
+	if (color ~= nil) then
 		local oldColor = monitor.getTextColor()
 		monitor.setTextColor(color)
 		monitor.write(text)
@@ -92,18 +93,18 @@ local function writeLine(text, color)
 	else
 		monitor.write(text)
 	end
-	
+
 	local _, y = monitor.getCursorPos()
 	monitor.setCursorPos(1, y + 1)
 end
 
-local function getTimeStamp(time) 
-	if(time == nil) then
+local function getTimeStamp(time)
+	if (time == nil) then
 		return "??:??"
-	end 
+	end
 
 	local formattedText = textutils.formatTime(time, true)
-	if(string.len(formattedText) < 5) then
+	if (string.len(formattedText) < 5) then
 		formattedText = "0" .. formattedText
 	end
 
@@ -114,22 +115,31 @@ local function render()
 	monitor.clear()
 
 	monitor.setCursorPos(1, 1)
-	if(next(activeJobs) ~= nil) then
+	if (next(activeJobs) ~= nil) then
 		writeLine("Currently Crafting:")
 		for _, activeJob in pairs(activeJobs) do
 			local color = colors.yellow
-			if(activeJob.stuck) then
+			if (activeJob.stuck) then
 				color = color.red
 			end
-			writeLine("\t[" .. getTimeStamp(activeJob.startedTime) .. "] " .. activeJob.storage.amount .. " " .. activeJob.storage.displayName .. "\t" .. getProgressText(activeJob), color)
+			writeLine(
+			"\t[" ..
+			getTimeStamp(activeJob.startedTime) ..
+			"] " ..
+			activeJob.storage.amount .. " " .. activeJob.storage.displayName .. "\t" .. getProgressText(activeJob), color)
 		end
 	end
 
 	monitor.setCursorPos(1, 10)
-	if(next(endedJobs) ~= nil) then
+	if (next(endedJobs) ~= nil) then
 		writeLine("Finished Crafting:")
 		for _, endedJob in pairs(endedJobs) do
-    		writeLine("\t[" .. getTimeStamp(endedJob.startedTime) .. " => " .. getTimeStamp(endedJob.endedTime) .. "] " .. endedJob.storage.amount .. " " .. endedJob.storage.displayName,  colors.green)
+			writeLine(
+			"\t[" ..
+			getTimeStamp(endedJob.startedTime) ..
+			" => " ..
+			getTimeStamp(endedJob.endedTime) .. "] " .. endedJob.storage.amount .. " " .. endedJob.storage.displayName,
+				colors.green)
 		end
 	end
 
@@ -137,20 +147,20 @@ local function render()
 end
 
 local lastCpuInfos = nil
-while(true) do
+while (true) do
 	local cpuInfos = bridge.getCraftingCPUs()
-	if(cpuInfos ~= nil) then
-		if(lastCpuInfos == nil) then
-			lastCpuInfos = cpuInfos 
+	if (cpuInfos ~= nil) then
+		if (lastCpuInfos == nil) then
+			lastCpuInfos = cpuInfos
 		end
 
 		for cpuNum, cpuInfo in pairs(cpuInfos) do
 			local lastCpuInfo = lastCpuInfos[cpuNum]
-			if(lastCpuInfo ~= nil) then
-				if(cpuInfo.craftingJob ~= nil and lastCpuInfo.craftingJob == nil) then
+			if (lastCpuInfo ~= nil) then
+				if (cpuInfo.craftingJob ~= nil and lastCpuInfo.craftingJob == nil) then
 					jobStarted(cpuNum, cpuInfo.craftingJob)
 				end
-				if(cpuInfo.craftingJob == nil and lastCpuInfo.craftingJob ~= nil) then
+				if (cpuInfo.craftingJob == nil and lastCpuInfo.craftingJob ~= nil) then
 					jobEnded(cpuNum, lastCpuInfo.craftingJob)
 				end
 				updateProgress(cpuNum, cpuInfo.craftingJob)
