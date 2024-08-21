@@ -3,11 +3,8 @@
 
 package.path = package.path .. ";../core/?.lua"
 
-local dump = require("dump")
 local net = require("net")
 local aeNameUtil = require("libs.aeNameUtil")
-
-print(dump.printDump("test"))
 
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")

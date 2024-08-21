@@ -1,9 +1,8 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/gtceu/lineAssembler.lua
 
-package.path = package.path .. ";../debug/?.lua"
+package.path = package.path .. ";../core/?.lua"
 
-local debug = require("src.core.dump")
+local dump = require("dump")
 
-print(debug)
-debug.printDump({name = "test"})
+dump.printDump({name = "test"})
 
