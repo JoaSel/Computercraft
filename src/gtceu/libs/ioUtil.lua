@@ -1,9 +1,11 @@
-local function wrapInputBuses(name)
-	if (string.byte(string.sub(name, 1, 1)) == 167) then
-		return string.sub(string.sub(name, 0, #name - 3), 3)
-	end
+package.path = package.path .. ";../../core/?.lua"
 
-	return name
+local dump = require("dump")
+local pWrapper = require("peripheralWrapper")
+
+
+local function findInputBuses()
+    return pWrapper.find("gtceu:ulv_input_bus")
 end
 
-return { toDisplayName = toDisplayName }
+return { findInputBuses = findInputBuses }

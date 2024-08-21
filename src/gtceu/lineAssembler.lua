@@ -4,6 +4,7 @@ package.path = package.path .. ";../core/?.lua"
 
 local dump = require("dump")
 local pWrapper = require("peripheralWrapper")
+local ioUtil = require("ioUtil")
 
 local machine = pWrapper.find("blockReader")
 
@@ -12,7 +13,7 @@ local output = pWrapper.wrap("entangled:tile_21")
 
 local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
 
-local inputBuses = { pWrapper.find("gtceu:ulv_input_bus") }
+local inputBuses = { ioUtil.findInputBuses() }
 local inputHatches = { pWrapper.find("gtceu:lv_input_hatch") }
 
 table.sort(inputBuses, function (a, b)
