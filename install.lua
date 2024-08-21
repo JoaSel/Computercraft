@@ -11,7 +11,7 @@ if(#args ~= 1) then
 end
 
 local gitUrl = "https://github.com/JoaSel/"
-local repoName = "Computercraft2"
+local repoName = "Computercraft"
 local scriptName = args[1]
 
 -- local function updateFile(url, filename)
