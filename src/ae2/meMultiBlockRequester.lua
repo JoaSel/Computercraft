@@ -32,9 +32,14 @@ local function adjustExistingItems(requiredItems)
 	end
 end
 
-
-local x = io.read()
-local inTags = blockData.Items[1].tag["in"]
+print("Press Enter to run.")
+--local x = io.read()
+local firstItem = blockData.Items[1]
+if(not firstItem) then
+	dump.easy(firstItem)
+	print("No pattern found!")
+end
+local inTags = firstItem.tag["in"]
 
 local requiredItems = getRequiredItems(inTags)
 adjustExistingItems(requiredItems)
