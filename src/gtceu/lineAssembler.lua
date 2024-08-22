@@ -84,7 +84,7 @@ local function exportItems()
         dataAccessHatch.pushItems(output.name, fromSlot)
     end
 
-    if(#dataAccessItems.list() > 0) then
+    if(#dataAccessHatch.list() > 0) then
         error("Failed to export data stick")
     end
 end
