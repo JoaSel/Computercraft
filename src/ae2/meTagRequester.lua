@@ -71,8 +71,7 @@ local function render(requestData)
 		mMon.writeLine(tagInfo.displayName)
 
 		for k, v in pairs(data) do
-			mMon.writeLine(k)
-			mMon.writeLine(v)
+			dump.easy(v)
 		end
 	end
 end
