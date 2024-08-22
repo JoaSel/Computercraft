@@ -5,8 +5,8 @@ package.path = package.path .. ";../core/?.lua"
 local pWrapper = require("peripheralWrapper")
 local dump = require("dump")
 
-local x = pWrapper.find("minecraft:chest")
+local chest = pWrapper.find("minecraft:chest")
+local nbtStorage = pWrapper.find("nbtStorage")
 
 
-
-dump.easy(x.getItemDetail(1))
+dump.easy(nbtStorage.read())
