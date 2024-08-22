@@ -40,12 +40,12 @@ local function getRequestData()
 	local ret = {}
 	for _, item in pairs(craftableItems) do
 		for tag, tagInfo in pairs(tagData) do
-			if (hasTag(item, tag) and tagInfo.validationFunc(item)) then
+			if (hasTag(item, tag) and item.amount < tagInfo.amount and tagInfo.validationFunc(item)) then
 				if (not ret[tag]) then
 					ret[tag] = {}
 				end
 				dump.easy(item)
-				table.insert(ret[tag], { name = item.name })
+				table.insert(ret[tag], { name = item.name, amount = item.amount })
 			end
 		end
 	end
