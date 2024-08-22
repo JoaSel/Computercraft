@@ -46,5 +46,6 @@ return
 {
     setMonitor = setMonitor,
     newLine = newLine,
+    writeLine = writeLine,
     writeTabbedLine = writeTabbedLine
 }
