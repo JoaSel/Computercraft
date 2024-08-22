@@ -37,10 +37,15 @@ end
 local function getRequestData()
 	local craftableItems = bridge.listCraftableItems()
 
+	local ret = {}
 	for _, item in pairs(craftableItems) do
 		for tag, tagInfo in pairs(tagData) do
-			if(hasTag(item, tag) and tagInfo.validationFunc(item)) then
-				print(item.name)
+			if (hasTag(item, tag) and tagInfo.validationFunc(item)) then
+				if (not ret[tag]) then
+					ret[tag] = {}
+				end
+
+				table.insert(ret[tag], item.name)
 			end
 		end
 	end
@@ -48,6 +53,6 @@ end
 
 local requestData = getRequestData()
 
-
+dump.easy(requestData)
 
 
