@@ -5,7 +5,7 @@ local dump = require("src.core.dump")
 
 local x = pWrapper.find("blockReader")
 
-for index, value in pairs(x.getBlockData()) do
+for index, value in pairs(x.getBlockData().recipeLogic) do
     print(index)
     print(value)
 end
