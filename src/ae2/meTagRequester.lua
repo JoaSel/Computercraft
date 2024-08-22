@@ -115,8 +115,10 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 	local i = 0
 	for _, itemRequest in pairs(queued) do
 		local toCraft = math.min(tagInfo.batchSize, tagInfo.amount - itemRequest.existingAmount)
+
+		print("starting craft for " .. toCraft .. " " .. itemRequest.name)
 		bridge.craftItem({ name = itemRequest.name, amount = toCraft})
-		
+
 		i = i + 1
 		if(i >= numCraftsToStart) then
 			return
