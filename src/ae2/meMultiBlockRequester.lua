@@ -90,6 +90,7 @@ while (true) do
 	if (not firstItem or firstItem.id ~= "ae2:processing_pattern") then
 		print("No pattern found! Put a pattern in first slot.")
 	else
+		print("test")
 		local requiredItems = getRequiredItems(firstItem.tag["in"])
 		adjustExistingItems(requiredItems)
 
