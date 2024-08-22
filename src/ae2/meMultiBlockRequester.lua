@@ -8,5 +8,8 @@ local dump = require("dump")
 local chest = pWrapper.find("minecraft:chest")
 local nbtStorage = pWrapper.find("blockReader")
 
+for prop, test in pairs(nbtStorage.getBlockData()) do
+	print(prop)
+	print(test)
+end
 
-dump.easy(nbtStorage.getBlockData())
