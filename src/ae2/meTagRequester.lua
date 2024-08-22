@@ -93,6 +93,7 @@ local function updateSingleStatus(itemRequest, tagInfo)
 	itemRequest.existingAmount = 0
 	local existingItem = bridge.getItem(searchTbl)
 	if(existingItem) then
+		print("test")
 		itemRequest.existingAmount = existingItem.amount
 	end
 
