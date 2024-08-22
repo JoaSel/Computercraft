@@ -85,7 +85,7 @@
 		["batch"] = 64
 	},
 	["gtceu:ruridit_ingot"] = {
-		["amount"] = 512,
+		["amount"] = 256,
 		["batch"] = 16,
 		["workGroup"] = "Blast"
 	},
