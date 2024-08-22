@@ -93,9 +93,11 @@ local function updateRequestInfo(itemName, requestInfo, activeGroups, playerOnli
 
 	local existingItem = bridge.getItem(searchItem)
 	if (existingItem == nil or existingItem.amount == nil) then
-		requestInfo.status = "FailedToStart"
-		requestInfo.message = itemName
-		return
+		existingItem = {
+			amount = 0,
+			name = itemName,
+			displayName = itemName
+		}
 	end
 
 	requestInfo.existingItem = existingItem
