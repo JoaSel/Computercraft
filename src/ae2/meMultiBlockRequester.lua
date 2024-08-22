@@ -56,7 +56,7 @@ local function handleItem(itemName, itemInfo)
 	end
 
 	if(inSystemAmount >= itemInfo.needed) then
-		bridge.exportItem({ name = itemName, count =  itemInfo.needed})
+		bridge.exportItem({ name = itemName, count =  itemInfo.needed}, "up")
 		return "InSystem"
 	end
 	if(bridge.isItemCrafting(searchTbl)) then
