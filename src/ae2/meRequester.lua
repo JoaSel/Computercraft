@@ -144,8 +144,7 @@ local runCount = 0
 while (true) do
 	if (runCount % 100 == 0) then
 		runCount = 0
-		print(shell.getRunningProgram())
-		requestData = file.readAllAndParse("libs/meRequesterData.txt")
+		requestData = file.readAllAndParse("Computercraft/src/ae2/libs/meRequesterData.txt")
 	end
 
 	local activeGroups = {}
