@@ -76,6 +76,7 @@ local colorTable = {
 	["Error"] = colors.red,
 }
 local function render(requiredItems)
+	term.clear()
 	for itemName, itemInfo in pairs(requiredItems) do
 		mTerm.cprint(itemInfo.total .. " " .. itemName, colorTable[itemInfo.status])
 	end
