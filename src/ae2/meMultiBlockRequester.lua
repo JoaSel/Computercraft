@@ -67,7 +67,7 @@ for itemName, requiredAmount in pairs(requiredItems) do
 	end
 
 	if(inSystemAmount >= requiredAmount) then
-		bridge.exportItem(searchTbl, chest.name)
+		bridge.exportItem(searchTbl, "up")
 	end
 end
 
