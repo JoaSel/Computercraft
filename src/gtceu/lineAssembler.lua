@@ -4,7 +4,7 @@ package.path = package.path .. ";../core/?.lua"
 
 local dump = require("dump")
 local pWrapper = require("peripheralWrapper")
-local gtceuIO = require("gtceuIO")
+local gtceuIO = require("libs.gtceuIO")
 
 local machine = pWrapper.find("blockReader")
 
