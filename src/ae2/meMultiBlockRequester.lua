@@ -19,8 +19,6 @@ local function getRequiredItems(inTags)
 		if(item.id) then
 			local existingItem = ret[item.id]
 
-			print(item.id)
-
 			if(existingItem) then
 				existingItem.total = existingItem.total + item["#"]
 				existingItem.needed = existingItem.needed + item["#"]
