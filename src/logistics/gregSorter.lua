@@ -19,6 +19,7 @@ local displayNamesRoutes = {
 	["Raw Neodymium"] = "Storage Input",
 	["Purified Sphalerite Ore"] = "Storage Input",
 	["Purified Galena Ore"] = "Storage Input",
+	["Granite Salt Ore"] = "Storage Input",
 	["Red Granite Salt Ore"] = "Storage Input"
 }
 

@@ -116,7 +116,7 @@ local function render()
 		end
 	end
 
-	monitor.setCursorPos(1, 10)
+	monitor.setCursorPos(1, 14)
 	if (next(endedJobs) ~= nil) then
 		writeLine("Finished Crafting:")
 		for _, endedJob in pairs(endedJobs) do
