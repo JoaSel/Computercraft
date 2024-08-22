@@ -9,4 +9,4 @@ local x = pWrapper.find("minecraft:chest")
 
 
 
-dump.printDump(x.getItemDetail(1))
+dump.easy(x.getItemDetail(1))

@@ -15,4 +15,8 @@ local function printDump(o)
 	print(dump(o))
 end
 
-return { dump = dump, printDump = printDump }
+local function easy(o)
+	print(textutils.serialise(o, { compact = true }))
+end
+
+return { dump = dump, printDump = printDump, easy = easy }
