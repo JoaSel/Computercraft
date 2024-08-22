@@ -16,7 +16,7 @@ local tagInfos =
 		displayName = "GregTech Ingots",
 		amount = 256,
 		batchSize = 16,
-		workers = 2,
+		workers = 1,
 		validationFunc = function(item)
 			return string.match(item.name, "^gtceu:hs")
 		end,
