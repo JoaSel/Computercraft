@@ -45,6 +45,10 @@ local function requestItem(itemName, amount, existingItem)
 		requestInfo.status = "FailedToStart"
 	end
 end
+local function handleExistingItem(itemName, requiredAmount)
+	print("Exporting " .. itemName)
+	bridge.exportItem({ name = itemName, count = requiredAmount }, "up")
+end
 
 local function handleItem(itemName, requiredAmount)
 	if(requiredAmount <= 0) then
@@ -60,9 +64,13 @@ local function handleItem(itemName, requiredAmount)
 	end
 
 	if(inSystemAmount >= requiredAmount) then
-		print("Exporting " .. itemName)
-		print(bridge.exportItem({ name = itemName, count = requiredAmount }, "up"))
+		handleExistingItem(itemName, requiredAmount)
 	else
+		if(bridge.isItemCrafting(searchTbl)) then
+			print(itemName .. " is currentl crafting.")
+		elseif(not bridge.isItemCraftable(searchTbl)) then
+			error(itemName .. " is not craftable!")
+		end
 		print("Error trying to fix: " .. itemName)
 	end
 end
