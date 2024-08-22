@@ -16,7 +16,7 @@ local function printDump(o)
 end
 
 local function easy(o)
-	print(textutils.serialise(o, { compact = true }))
+	print(textutils.serialise(o, { allow_repetitions = true }))
 end
 
 return { dump = dump, printDump = printDump, easy = easy }
