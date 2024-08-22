@@ -81,7 +81,7 @@ local function exportItems()
 
     for fromSlot, item in pairs(dataAccessItems) do
         print("Exporting " .. item.name)
-        dataAccessItems.pushItems(output.name, fromSlot)
+        dataAccessHatch.pushItems(output.name, fromSlot)
     end
 
     if(#dataAccessItems.list() > 0) then
