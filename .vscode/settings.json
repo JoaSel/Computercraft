@@ -40,6 +40,7 @@
     },
     "Lua.diagnostics.disable": [
         "undefined-field",
-        "deprecated"
+        "deprecated",
+        "different-requires"
     ],
 }

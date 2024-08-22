@@ -3,6 +3,7 @@
 package.path = package.path .. ";../core/?.lua"
 
 local file = require("file")
+local mMon = require("moreMonitor")
 local aeNameUtil = require("libs.aeNameUtil")
 
 local bridge = peripheral.find("meBridge")
@@ -20,6 +21,7 @@ local colorTable = {
 	["FailedToStart"] = colors.red,
 }
 
+mMon.setMonitor(monitor)
 monitor.setTextScale(0.5)
 
 local function requestItem(itemName, requestInfo, existingItem)
@@ -33,11 +35,6 @@ local function requestItem(itemName, requestInfo, existingItem)
 	else
 		requestInfo.status = "FailedToStart"
 	end
-end
-
-local function lineBreak()
-	local _, y = monitor.getCursorPos()
-	monitor.setCursorPos(1, y + 1)
 end
 
 local function writeTabbedLine(tabData, ...)
@@ -83,7 +80,7 @@ local function render(requestData)
 				writeTabbedLine(tabData, "ERROR: " .. requestInfo.message)
 			end
 		end
-		lineBreak()
+		mMon.newLine()
 	end
 end
 

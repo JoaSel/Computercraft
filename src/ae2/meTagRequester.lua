@@ -3,6 +3,7 @@
 package.path = package.path .. ";../core/?.lua"
 
 local dump = require("dump")
+local mMon = require("moreMonitor")
 local aeNameUtil = require("libs.aeNameUtil")
 
 local bridge = peripheral.find("meBridge")
@@ -11,6 +12,7 @@ local tagData =
 {
 	["minecraft:item/forge:ingots"] =
 	{
+		displayName = "Ingots",
 		amount = 256,
 		batch = 16,
 		workers = 1,
@@ -54,10 +56,12 @@ end
 
 local function render(requestData)
 	for tag, _ in pairs(requestData) do
+		
 	end
 end
 
 local requestData = getRequestData()
+render(requestData)
 
 dump.easy(requestData)
 
