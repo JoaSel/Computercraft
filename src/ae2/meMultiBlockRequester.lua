@@ -6,7 +6,7 @@ local pWrapper = require("peripheralWrapper")
 local dump = require("dump")
 
 local chest = pWrapper.find("minecraft:chest")
-local nbtStorage = pWrapper.find("nbtStorage")
+local nbtStorage = pWrapper.find("blockReader")
 
 
 dump.easy(nbtStorage.read())
