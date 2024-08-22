@@ -10,10 +10,12 @@ local nbtStorage = pWrapper.find("blockReader")
 
 local blockData = nbtStorage.getBlockData()
 
-for prop, test in pairs(blockData.Items[1]) do
+local items = blockData.Items[1].tag["in"]
+
+for prop, test in pairs(items) do
 	print(prop)
-	print(test)
+	dump.easy(test)
 end
 
-dump.easy(blockData.Items[1])
+
 
