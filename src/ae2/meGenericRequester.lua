@@ -2,8 +2,7 @@
 
 package.path = package.path .. ";../core/?.lua"
 
-local file = require("file")
-local net = require("net")
+local dump = require("dump")
 local mItem = require("moreItem")
 local aeNameUtil = require("libs.aeNameUtil")
 
@@ -19,5 +18,7 @@ for _, item in pairs(craftableItems) do
 	end
 end
 
+
+dump.easy(craftableItems[1])
 
 
