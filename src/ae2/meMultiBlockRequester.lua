@@ -83,21 +83,29 @@ local function render(requiredItems)
 	end
 end
 
-print("Press Enter to run.")
---local x = io.read()
-local firstItem = blockData.Items[1]
-if(not firstItem or firstItem.id ~= "ae2:processing_pattern") then
-	print("No pattern found! Put a pattern in first slot.")
-	return
+while (true) do
+	print("Press Enter to run.")
+	local x = io.read()
+
+	local firstItem = blockData.Items[1]
+	if (not firstItem or firstItem.id ~= "ae2:processing_pattern") then
+		print("No pattern found! Put a pattern in first slot.")
+		return
+	end
+
+	local requiredItems = getRequiredItems(firstItem.tag["in"])
+	adjustExistingItems(requiredItems)
+
+	local done = true
+	while not done do
+		for itemName, itemInfo in pairs(requiredItems) do
+			itemInfo.status = handleItem(itemName, itemInfo)
+			if(itemInfo.status ~= "Exported") then
+				done = false
+			end
+		end
+
+		render(requiredItems)
+		os.sleep(5)
+	end
 end
-
-local requiredItems = getRequiredItems(firstItem.tag["in"])
-adjustExistingItems(requiredItems)
-
-for itemName, itemInfo in pairs(requiredItems) do
-	itemInfo.status = handleItem(itemName, itemInfo)
-end
-
-render(requiredItems)
-
-
