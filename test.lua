@@ -5,4 +5,6 @@ local dump = require("src.core.dump")
 
 local x = pWrapper.find("blockReader")
 
-dump.easy(x.getBlockData())
+for index, value in pairs(x.getBlockData()) do
+    print(index .. ": " .. value)
+end
