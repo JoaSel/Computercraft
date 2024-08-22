@@ -44,13 +44,17 @@ local function getRequestData()
 				if (not ret[tag]) then
 					ret[tag] = {}
 				end
-				dump.easy(item)
 				table.insert(ret[tag], { name = item.name, amount = item.amount })
 			end
 		end
 	end
 
 	return ret
+end
+
+local function render(requestData)
+	for tag, _ in pairs(requestData) do
+	end
 end
 
 local requestData = getRequestData()
