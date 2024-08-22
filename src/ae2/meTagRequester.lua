@@ -49,6 +49,8 @@ local function getRequestData()
 			end
 		end
 	end
+
+	return ret
 end
 
 local requestData = getRequestData()
