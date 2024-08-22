@@ -1,5 +1,6 @@
 local function readAll(path)
 	local filestream = fs.open(path, "r")
+	print(path)
 	if (not filestream) then
 		error("Could not open stream on " .. path)
 	end
