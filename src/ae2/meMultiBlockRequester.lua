@@ -10,12 +10,21 @@ local nbtStorage = pWrapper.find("blockReader")
 
 local blockData = nbtStorage.getBlockData()
 
-local items = blockData.Items[1].tag["in"]
+local inTags = blockData.Items[1].tag["in"]
 
-for prop, test in pairs(items) do
-	print(prop)
-	dump.easy(test)
+local function getRequiredItems(inTags)
+	local ret = {}
+
+	for _, item in pairs(inTags) do
+		if(item.id) then
+			ret[item.id] = (ret[item.id] or 0) + item["#"]
+		end
+	end
+
+	return ret
 end
 
+
+dump.easy(getRequiredItems(inTags))
 
 
