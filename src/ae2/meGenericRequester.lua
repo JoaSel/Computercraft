@@ -21,7 +21,7 @@ for _, item in pairs(craftableItems) do
 end
 
 dump.easy(testItem.tags)
-
+print(testItem.tags["minecraft:item/forge:ingots"])
 
 
 
