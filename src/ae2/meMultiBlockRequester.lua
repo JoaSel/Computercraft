@@ -68,7 +68,7 @@ for itemName, requiredAmount in pairs(requiredItems) do
 
 	if(inSystemAmount >= requiredAmount) then
 		print("Exporting " .. itemName)
-		print(bridge.exportItem({ name = itemName, count = requiredAmount }, "top"))
+		print(bridge.exportItem({ name = itemName, count = requiredAmount }, "up"))
 	else
 		print("Error trying to fix: " .. itemName)
 	end
