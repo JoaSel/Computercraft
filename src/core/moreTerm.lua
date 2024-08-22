@@ -5,4 +5,4 @@ local function print(text, color)
     term.setTextColor(oldColor)
 end
 
-return { print = print}
+return { print = print }
