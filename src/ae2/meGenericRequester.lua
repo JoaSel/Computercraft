@@ -13,12 +13,15 @@ local tag = "forge:ingots"
 
 local craftableItems = bridge.listCraftableItems()
 for _, item in pairs(craftableItems) do
+	if(item.name == "gtceu:hsss_ingot") then
+		dump.easy(item)
+	end
 	if(mItem.hasTag(item, tag)) then
     	print(item.name)
 	end
 end
 
 
-dump.easy(craftableItems[1])
+
 
 
