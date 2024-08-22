@@ -9,7 +9,7 @@ local aeNameUtil = require("libs.aeNameUtil")
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
 
-local tagData =
+local tagInfos =
 {
 	["minecraft:item/forge:ingots"] =
 	{
@@ -45,7 +45,7 @@ local function getRequestData()
 
 	local ret = {}
 	for _, item in pairs(craftableItems) do
-		for tag, tagInfo in pairs(tagData) do
+		for tag, tagInfo in pairs(tagInfos) do
 			if (hasTag(item, tag) and item.amount < tagInfo.amount and tagInfo.validationFunc(item)) then
 				if (not ret[tag]) then
 					ret[tag] = {}
@@ -63,7 +63,8 @@ local function render(requestData)
 	monitor.setCursorPos(1, 1)
 
 	for tag, _ in pairs(requestData) do
-		mMon.writeLine(tag)
+		local tagInfo = tagInfos[tag]
+		mMon.writeLine(tagInfo.displayName)
 	end
 end
 
