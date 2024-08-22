@@ -15,7 +15,7 @@ local tagData =
 		batch = 16,
 		workers = 1,
 		validationFunc = function(item)
-			return string.match(item.name, "^gtceu:")
+			return string.match(item.name, "^gtceu:moly")
 		end
 	}
 }
@@ -45,7 +45,7 @@ local function getRequestData()
 					ret[tag] = {}
 				end
 
-				table.insert(ret[tag], item.name)
+				table.insert(ret[tag], { name = item.name })
 			end
 		end
 	end
