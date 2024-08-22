@@ -20,7 +20,7 @@ local function hasTag(item, tag)
 
 	local ret = false;
 
-	for t in item.tags do
+	for _, t in pairs(item.tags) do
 		print(t)
 	end
 
