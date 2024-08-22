@@ -13,12 +13,12 @@ local tagInfos =
 {
 	["minecraft:item/forge:ingots"] =
 	{
-		displayName = "Ingots",
+		displayName = "GregTech Ingots",
 		amount = 256,
 		batch = 16,
 		workers = 2,
 		validationFunc = function(item)
-			return string.match(item.name, "^gtceu:")
+			return string.match(item.name, "^gtceu:hs")
 		end,
 		queued = 0
 	}
