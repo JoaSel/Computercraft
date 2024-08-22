@@ -8,7 +8,8 @@ local gtceuIO = require("gtceuIO")
 
 local machine = pWrapper.find("blockReader")
 
-local input = pWrapper.wrap("entangled:tile_22")
+local itemInput = pWrapper.wrap("entangled:tile_22")
+local fluidInput = pWrapper.wrap("entangled:tile_24")
 local output = pWrapper.wrap("entangled:tile_21")
 
 local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
@@ -26,7 +27,7 @@ local function getStatus()
 end
 
 local function importItems()
-    local inputItems = input.list()
+    local inputItems = itemInput.list()
 
     local busIndex = 1
     local sentToThisBus = 0
@@ -35,7 +36,7 @@ local function importItems()
     for fromSlot, item in pairs(inputItems) do
         if(item.name == "gtceu:data_stick") then
             print("Importing " .. item.name .. " to " .. currentBus.name)
-            input.pushItems(dataAccessHatch.name, fromSlot)
+            itemInput.pushItems(dataAccessHatch.name, fromSlot)
         else
             if(sentToThisBus >= busSize) then
                 busIndex = busIndex + 1
@@ -45,7 +46,7 @@ local function importItems()
             end
 
             print("Importing " .. item.name .. " to " .. currentBus.name)
-            input.pushItems(currentBus.name, fromSlot, 64)
+            itemInput.pushItems(currentBus.name, fromSlot, 64)
 
             sentToThisBus = sentToThisBus + 1
         end
@@ -53,12 +54,12 @@ local function importItems()
 end
 
 local function importFluids()
-    local inputFluids = input.tanks()
+    local inputFluids = fluidInput.tanks()
 
     for _, item in pairs(inputFluids) do
         print("Importing " .. item.name)
         for _, inputHatch in pairs(inputHatches) do
-            input.pushFluid(inputHatch.name)
+            fluidInput.pushFluid(inputHatch.name)
         end
     end
 end
