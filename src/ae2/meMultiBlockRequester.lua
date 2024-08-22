@@ -34,22 +34,22 @@ local function adjustExistingItems(requiredItems)
 	end
 end
 
-local function requestItem(itemName, amount, existingItem)
-	local craftCount = math.min(requestInfo.batch, requestInfo.amount - existingItem.amount)
+-- local function requestItem(itemName, amount, existingItem)
+-- 	local craftCount = math.min(requestInfo.batch, requestInfo.amount - existingItem.amount)
 
-	bridge.craftItem({ name = itemName, count = craftCount })
+-- 	bridge.craftItem({ name = itemName, count = craftCount })
 
-	local event, success, message = os.pullEvent("crafting")
-	if success then
-		requestInfo.status = "Crafting"
-	else
-		requestInfo.status = "FailedToStart"
-	end
-end
-local function handleExistingItem(itemName, requiredAmount)
+-- 	local event, success, message = os.pullEvent("crafting")
+-- 	if success then
+-- 		requestInfo.status = "Crafting"
+-- 	else
+-- 		requestInfo.status = "FailedToStart"
+-- 	end
+-- end
+-- local function handleExistingItem(itemName, requiredAmount)
 	
-	bridge.exportItem({ name = itemName, count = requiredAmount }, "up")
-end
+-- 	bridge.exportItem({ name = itemName, count = requiredAmount }, "up")
+-- end
 
 local function verifyItem(itemName, requiredAmount)
 	if(requiredAmount <= 0) then
@@ -65,7 +65,7 @@ local function verifyItem(itemName, requiredAmount)
 	end
 
 	if(inSystemAmount >= requiredAmount) then
-		mTerm.print(requiredAmount .. " " .. itemName .. " exists.", colors.green)
+		mTerm.cprint(requiredAmount .. " " .. itemName .. " exists.", colors.green)
 	else
 		if(bridge.isItemCrafting(searchTbl)) then
 			print(itemName .. " is currentl crafting.")
