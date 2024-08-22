@@ -65,7 +65,7 @@ local function verifyItem(itemName, requiredAmount)
 	end
 
 	if(inSystemAmount >= requiredAmount) then
-		--mTerm.print(requiredAmount .. " " .. itemName .. " exists.", 8192)
+		mTerm.print(requiredAmount .. " " .. itemName .. " exists.", colors.green)
 	else
 		if(bridge.isItemCrafting(searchTbl)) then
 			print(itemName .. " is currentl crafting.")
