@@ -7,6 +7,7 @@ local dump = require("dump")
 
 local chest = pWrapper.find("minecraft:chest")
 local reader = pWrapper.find("blockReader")
+local bridge = peripheral.find("meBridge")
 
 local blockData = reader.getBlockData()
 
@@ -32,6 +33,19 @@ local function adjustExistingItems(requiredItems)
 	end
 end
 
+local function requestItem(itemName, amount, existingItem)
+	local craftCount = math.min(requestInfo.batch, requestInfo.amount - existingItem.amount)
+
+	bridge.craftItem({ name = itemName, count = craftCount })
+
+	local event, success, message = os.pullEvent("crafting")
+	if success then
+		requestInfo.status = "Crafting"
+	else
+		requestInfo.status = "FailedToStart"
+	end
+end
+
 print("Press Enter to run.")
 --local x = io.read()
 local firstItem = blockData.Items[1]
@@ -39,10 +53,24 @@ if(not firstItem or firstItem.id ~= "ae2:processing_pattern") then
 	print("No pattern found! Put a pattern in first slot.")
 	return
 end
-local inTags = firstItem.tag["in"]
 
-local requiredItems = getRequiredItems(inTags)
+local requiredItems = getRequiredItems(firstItem.tag["in"])
 adjustExistingItems(requiredItems)
+
+for itemName, requiredAmount in pairs(requiredItems) do
+	local searchTbl = { name = itemName }
+	local inSystemAmount = 0
+	local inSystemItem = bridge.getItem(searchTbl)
+
+	if(inSystemItem and inSystemItem.amount) then
+		inSystemAmount = inSystemItem.amount
+	end
+
+	if(inSystemAmount >= requiredAmount) then
+		bridge.export(searchTbl, chest.name)
+	end
+end
+
 
 dump.easy(requiredItems)
 
