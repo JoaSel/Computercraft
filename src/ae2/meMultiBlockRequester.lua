@@ -35,10 +35,9 @@ end
 print("Press Enter to run.")
 --local x = io.read()
 local firstItem = blockData.Items[1]
-dump.easy(firstItem)
-if(not firstItem) then
-	
-	print("No pattern found!")
+if(not firstItem or firstItem.id == "ae2:processing_pattern") then
+	print("No pattern found! Put a pattern in first slot.")
+	return
 end
 local inTags = firstItem.tag["in"]
 
