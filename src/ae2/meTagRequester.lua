@@ -47,7 +47,7 @@ local function getDataBlob()
 	local ret = {}
 	for _, item in pairs(craftableItems) do
 		for tag, tagInfo in pairs(tagInfos) do
-			if (hasTag(item, tag) and item.amount < tagInfo.amount and tagInfo.validationFunc(item)) then
+			if (hasTag(item, tag) and tagInfo.validationFunc(item)) then
 				if (not ret[tag]) then
 					ret[tag] = {}
 				end
@@ -55,7 +55,7 @@ local function getDataBlob()
 				table.insert(ret[tag], { 
 					name = item.name,
 					displayName = item.displayName,
-					amount = item.amount,
+					-- amount = item.amount,
 					status = "Queued"
 				})
 			end
@@ -76,7 +76,7 @@ local function render(dataBlob)
 		mMon.writeLine(tagInfo.displayName)
 		
 		for _, itemRequest in pairs(itemRequests) do
-			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.amount, tagInfo.amount)
+			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
 		end
 	end
 end
@@ -87,10 +87,19 @@ local function handle(dataBlob)
 
 		local simultaneousJobs = 0
 		for _, itemRequest in pairs(itemRequests) do
-			if(bridge.isItemCrafting({name = itemRequest.name})) then
-				simultaneousJobs = simultaneousJobs + 1
+			local searchTbl = {name = itemRequest.name}
+
+			itemRequest.existingAmount = 0
+			local existingItem = bridge.getItem(searchTbl)
+			if(existingItem) then
+				itemRequest.existingAmount = existingItem.amount
 			end
-			itemRequest.status = "Crafting"
+
+			if(bridge.isItemCrafting(searchTbl)) then
+				simultaneousJobs = simultaneousJobs + 1
+				itemRequest.status = "Crafting"
+			end
+			
 		end
 	end
 end
