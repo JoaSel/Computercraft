@@ -76,11 +76,11 @@ local function render(dataBlob)
 
 		mMon.writeLine(string.format("%s (Total: %d, Crafting: %d, Queued: %d)", tagInfo.displayName, #itemRequests, #tagInfo.crafting, #tagInfo.queued))
 		
-		mMon.writeLine("Queued:")
-		for _, itemRequest in pairs(tagInfo.queued) do
-			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
-		end
-		mMon.writeLine("Crafting:")
+		-- mMon.writeLine("Queued:")
+		-- for _, itemRequest in pairs(tagInfo.queued) do
+		-- 	mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+		-- end
+		--mMon.writeLine("Crafting:")
 		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
 		end
@@ -93,7 +93,6 @@ local function updateSingleStatus(itemRequest, tagInfo)
 	itemRequest.existingAmount = 0
 	local existingItem = bridge.getItem(searchTbl)
 	if(existingItem) then
-		print(existingItem.amount)
 		itemRequest.existingAmount = existingItem.amount
 	end
 
