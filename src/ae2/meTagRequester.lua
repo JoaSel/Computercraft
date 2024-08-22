@@ -29,12 +29,10 @@ end
 
 local testItem = nil
 for _, item in pairs(craftableItems) do
-	if(item.name == "gtceu:hsss_ingot") then
-		testItem = item
+	if(hasTag(item, tag)) then
+		print(item.name)
 	end
 end
-
-hasTag(testItem, "")
 
 
 
