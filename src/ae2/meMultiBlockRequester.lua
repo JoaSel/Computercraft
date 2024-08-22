@@ -16,15 +16,17 @@ local function getRequiredItems(inTags)
 	local ret = {}
 
 	for _, item in pairs(inTags) do
-		local existingItem = ret[item.id]
+		if(item.id) then
+			local existingItem = ret[item.id]
 
-		print(item.id)
+			print(item.id)
 
-		if(existingItem) then
-			existingItem.total = existingItem.total + item["#"]
-			existingItem.needed = existingItem.needed + item["#"]
-		else
-			ret[item.id] = { total = item["#"], needed = item["#"]}
+			if(existingItem) then
+				existingItem.total = existingItem.total + item["#"]
+				existingItem.needed = existingItem.needed + item["#"]
+			else
+				ret[item.id] = { total = item["#"], needed = item["#"]}
+			end
 		end
 	end
 
