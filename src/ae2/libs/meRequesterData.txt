@@ -58,7 +58,7 @@
 		["workGroup"] = "Greg",
 		["offlineOnly"] = true
 	},
-	["gtceu:iv_machine_hull"] = {
+	["gtceu:luv_machine_hull"] = {
 		["amount"] = 10,
 		["batch"] = 1,
 		["workGroup"] = "Greg"
