@@ -78,7 +78,3 @@ end
 
 local requestData = getRequestData()
 render(requestData)
-
-dump.easy(requestData)
-
-
