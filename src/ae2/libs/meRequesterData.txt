@@ -83,20 +83,5 @@
 	["gtceu:carbon_dust"] = {
 		["amount"] = 1000,
 		["batch"] = 64
-	},
-	["gtceu:ruridit_ingot"] = {
-		["amount"] = 256,
-		["batch"] = 16,
-		["workGroup"] = "Blast"
-	},
-	["gtceu:rhodium_plated_palladium_ingot"] = {
-		["amount"] = 512,
-		["batch"] = 16,
-		["workGroup"] = "Blast"
-	},
-	["gtceu:hsss_ingot"] = {
-		["amount"] = 512,
-		["batch"] = 16,
-		["workGroup"] = "Blast"
 	}
 }
