@@ -90,7 +90,9 @@ local requiredItems = getRequiredItems(firstItem.tag["in"])
 adjustExistingItems(requiredItems)
 
 for itemName, requiredAmount in pairs(requiredItems) do
-	verifyItem(itemName, requiredAmount)
+	if(not verifyItem(itemName, requiredAmount)) then
+		return
+	end
 end
 
 
