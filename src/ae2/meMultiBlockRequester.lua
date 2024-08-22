@@ -6,11 +6,9 @@ local pWrapper = require("peripheralWrapper")
 local dump = require("dump")
 
 local chest = pWrapper.find("minecraft:chest")
-local nbtStorage = pWrapper.find("blockReader")
+local reader = pWrapper.find("blockReader")
 
-local blockData = nbtStorage.getBlockData()
-
-local inTags = blockData.Items[1].tag["in"]
+local blockData = reader.getBlockData()
 
 local function getRequiredItems(inTags)
 	local ret = {}
@@ -26,13 +24,17 @@ end
 
 local function adjustExistingItems(requiredItems)
 	local existing = chest.list()
-	
+
 	for _, item in pairs(existing) do
 		if(requiredItems[item.name] ~= nil) then
 			requiredItems[item.name] = requiredItems[item.name] - item.count
 		end
 	end
 end
+
+
+local x = io.read()
+local inTags = blockData.Items[1].tag["in"]
 
 local requiredItems = getRequiredItems(inTags)
 adjustExistingItems(requiredItems)
