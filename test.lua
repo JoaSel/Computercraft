@@ -9,3 +9,5 @@ for index, value in pairs(x.getBlockData().recipeLogic) do
     print(index)
     print(value)
 end
+
+dump.easy(x.getBlockData().recipeLogic.lastOriginRecipe)
