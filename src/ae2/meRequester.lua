@@ -37,21 +37,6 @@ local function requestItem(itemName, requestInfo, existingItem)
 	end
 end
 
-local function writeTabbedLine(tabData, ...)
-	local texts = { ... }
-	local x, y
-	local i = 1
-	local currTab = 0
-	for _, text in pairs(texts) do
-		monitor.write(text)
-		x, y = monitor.getCursorPos()
-		currTab = currTab + tabData[i]
-		monitor.setCursorPos(currTab, y)
-		i = i + 1
-	end
-	monitor.setCursorPos(1, y + 1)
-end
-
 local tabData = { 30, 10, 10, 10 }
 local function render(requestData)
 	local workGroups = {}
@@ -67,17 +52,17 @@ local function render(requestData)
 	monitor.setCursorPos(1, 1)
 
 	monitor.setTextColor(colors.white)
-	writeTabbedLine(tabData, "Item", "Current", "Wanted", "Group")
+	mMon.writeTabbedLine(tabData, "Item", "Current", "Wanted", "Group")
 	monitor.setCursorPos(1, 3)
 
 	for _, workGroup in pairs(workGroups) do
 		for _, requestInfo in pairs(workGroup) do
 			monitor.setTextColor(colorTable[requestInfo.status])
 			if (requestInfo.status ~= "FailedToStart") then
-				writeTabbedLine(tabData, aeNameUtil.toDisplayName(requestInfo.existingItem.displayName),
+				mMon.writeTabbedLine(tabData, aeNameUtil.toDisplayName(requestInfo.existingItem.displayName),
 					requestInfo.existingItem.amount, requestInfo.amount, requestInfo.workGroup)
 			else
-				writeTabbedLine(tabData, "ERROR: " .. requestInfo.message)
+				mMon.writeTabbedLine(tabData, "ERROR: " .. requestInfo.message)
 			end
 		end
 		mMon.newLine()

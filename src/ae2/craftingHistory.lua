@@ -4,13 +4,14 @@
 package.path = package.path .. ";../core/?.lua"
 
 local file = require("file")
-local net = require("net")
+local mMon = require("moreMonitor")
 local aeNameUtil = require("libs.aeNameUtil")
 
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
 local speaker = peripheral.find("speaker")
 
+mMon.setMonitor(monitor)
 monitor.setTextScale(0.5)
 
 local activeJobs = {}
@@ -68,20 +69,6 @@ local function getProgressText(activeJob)
 	return "(" .. math.floor((activeJob.progress / activeJob.totalItem) * 100) .. "%) "
 end
 
-local function writeLine(text, color)
-	if (color ~= nil) then
-		local oldColor = monitor.getTextColor()
-		monitor.setTextColor(color)
-		monitor.write(text)
-		monitor.setTextColor(oldColor)
-	else
-		monitor.write(text)
-	end
-
-	local _, y = monitor.getCursorPos()
-	monitor.setCursorPos(1, y + 1)
-end
-
 local function getTimeStamp(time)
 	if (time == nil) then
 		return "??:??"
@@ -100,13 +87,13 @@ local function render()
 
 	monitor.setCursorPos(1, 1)
 	if (next(activeJobs) ~= nil) then
-		writeLine("Currently Crafting:")
+		mMon.writeLine("Currently Crafting:")
 		for _, activeJob in pairs(activeJobs) do
 			local color = colors.yellow
 			if (activeJob.stuck) then
 				color = color.red
 			end
-			writeLine(
+			mMon.writeLine(
 				"\t[" ..
 				getTimeStamp(activeJob.startedTime) ..
 				"] " ..
@@ -118,9 +105,9 @@ local function render()
 
 	monitor.setCursorPos(1, 14)
 	if (next(endedJobs) ~= nil) then
-		writeLine("Finished Crafting:")
+		mMon.writeLine("Finished Crafting:")
 		for _, endedJob in pairs(endedJobs) do
-			writeLine(
+			mMon.writeLine(
 				"\t[" ..
 				getTimeStamp(endedJob.startedTime) ..
 				" => " ..
