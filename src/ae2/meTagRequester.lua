@@ -16,7 +16,7 @@ local tagInfos =
 		displayName = "GregTech Ingots",
 		amount = 256,
 		batchSize = 16,
-		workers = 1,
+		workers = 2,
 		validationFunc = function(item)
 			return string.match(item.name, "^gtceu:hs")
 		end,
@@ -112,7 +112,7 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 	local i = 0
 	for _, itemRequest in pairs(queued) do
 		local toCraft = math.min(tagInfo.batchSize, tagInfo.amount - itemRequest.existingAmount)
-		bridge.craftItem({ name = itemRequest.name, amount = toCraft})
+		bridge.craftItem({ name = itemRequest.name, count = toCraft})
 
 		i = i + 1
 		if(i >= numCraftsToStart) then
