@@ -144,7 +144,7 @@ local runCount = 0
 while (true) do
 	if (runCount % 100 == 0) then
 		runCount = 0
-		shell.getRunningProgram()
+		print(shell.getRunningProgram())
 		requestData = file.readAllAndParse("./libs/meRequesterData.txt")
 	end
 
