@@ -68,6 +68,8 @@ for itemName, requiredAmount in pairs(requiredItems) do
 
 	if(inSystemAmount >= requiredAmount) then
 		bridge.exportItem(searchTbl, "up")
+	else
+		print("Error trying to fix: " .. itemName)
 	end
 end
 
