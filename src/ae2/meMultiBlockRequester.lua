@@ -27,8 +27,11 @@ end
 local function adjustExistingItems(requiredItems)
 	local existing = chest.list()
 
+	
+
 	for _, item in pairs(existing) do
-		if(requiredItems[item.name]) then
+		dump.easy(item)
+		if(requiredItems[item.name] ~= nil) then
 			requiredItems[item.name] = requiredItems[item.name] - item.amount
 		end
 	end
