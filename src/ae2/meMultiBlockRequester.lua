@@ -7,4 +7,6 @@ local dump = require("dump")
 
 local x = pWrapper.find("minecraft:chest")
 
-dump.printDump(x)
+
+
+dump.printDump(x.getItemDetail(1))
