@@ -42,10 +42,9 @@ local function adjustExistingItems(requiredItems)
 	end
 end
 
-local function verifyItem(itemName, itemInfo)
+local function handleItem(itemName, itemInfo)
 	if(itemInfo.needed <= 0) then
-		mTerm.cprint(itemInfo.total .. " " .. itemName, colors.green)
-		return
+		return "Exported"
 	end
 
 	local searchTbl = { name = itemName }
@@ -57,20 +56,30 @@ local function verifyItem(itemName, itemInfo)
 	end
 
 	if(inSystemAmount >= itemInfo.needed) then
-		mTerm.cprint(itemInfo.total .. " " .. itemName, colors.green)
-		return false
+		bridge.exportItem({ name = itemName, count =  itemInfo.needed})
+		return "InSystem"
 	end
 	if(bridge.isItemCrafting(searchTbl)) then
-		mTerm.cprint(itemInfo.total  .. " " .. itemName, colors.yellow)
-		return true
+		return "Crafting"
 	end
 	if(bridge.isItemCraftable(searchTbl)) then
-		mTerm.cprint(itemInfo.total  .. " " .. itemName, colors.orange)
 		bridge.craftItem({ name = itemName, count = itemInfo.needed - inSystemAmount })
-		return true
+		return "Craftable"
 	else
-		mTerm.cprint(itemInfo.total .. " " .. itemName, colors.red)
-		return false
+		return "Error"
+	end
+end
+
+local colorTable = {
+	["Exported"] = colors.green,
+	["InSystem"] = colors.green,
+	["Crafting"] = colors.yellow,
+	["Craftable"] = colors.orange,
+	["Error"] = colors.red,
+}
+local function render(requiredItems)
+	for itemName, itemInfo in pairs(requiredItems) do
+		mTerm.cprint(itemInfo.total .. " " .. itemName, colorTable[itemInfo.status])
 	end
 end
 
@@ -86,9 +95,9 @@ local requiredItems = getRequiredItems(firstItem.tag["in"])
 adjustExistingItems(requiredItems)
 
 for itemName, itemInfo in pairs(requiredItems) do
-	verifyItem(itemName, itemInfo)
+	itemInfo.status = handleItem(itemName, itemInfo)
 end
 
-
+render(requiredItems)
 
 
