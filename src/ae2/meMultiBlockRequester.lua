@@ -82,7 +82,6 @@ local function render(requiredItems)
 		mTerm.cprint(itemInfo.total .. " " .. itemName, colorTable[itemInfo.status])
 	end
 end
-
 while (true) do
 	print("Press Enter to run.")
 	local x = io.read()
@@ -90,22 +89,21 @@ while (true) do
 	local firstItem = blockData.Items[1]
 	if (not firstItem or firstItem.id ~= "ae2:processing_pattern") then
 		print("No pattern found! Put a pattern in first slot.")
-		return
-	end
+	else
+		local requiredItems = getRequiredItems(firstItem.tag["in"])
+		adjustExistingItems(requiredItems)
 
-	local requiredItems = getRequiredItems(firstItem.tag["in"])
-	adjustExistingItems(requiredItems)
-
-	local done = true
-	while not done do
-		for itemName, itemInfo in pairs(requiredItems) do
-			itemInfo.status = handleItem(itemName, itemInfo)
-			if(itemInfo.status ~= "Exported") then
-				done = false
+		local done = true
+		while not done do
+			for itemName, itemInfo in pairs(requiredItems) do
+				itemInfo.status = handleItem(itemName, itemInfo)
+				if (itemInfo.status ~= "Exported") then
+					done = false
+				end
 			end
-		end
 
-		render(requiredItems)
-		os.sleep(5)
+			render(requiredItems)
+			os.sleep(5)
+		end
 	end
 end
