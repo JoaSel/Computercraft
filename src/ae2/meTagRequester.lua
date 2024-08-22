@@ -38,7 +38,7 @@ local function getRequestData()
 	local craftableItems = bridge.listCraftableItems()
 
 	for _, item in pairs(craftableItems) do
-		for tag, tagInfo in pairs(craftableItems) do
+		for tag, tagInfo in pairs(tagData) do
 			if(getTag(item, tag)) then
 				print(item.name)
 			end
