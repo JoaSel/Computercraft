@@ -72,7 +72,10 @@ local function verifyItem(itemName, requiredAmount)
 		mTerm.cprint(requiredAmount .. " " .. itemName, colors.yellow)
 		return true
 	end
-	if(not bridge.isItemCraftable(searchTbl)) then
+	if(bridge.isItemCraftable(searchTbl)) then
+		mTerm.cprint(requiredAmount .. " " .. itemName, colors.orange)
+		return true
+	else
 		mTerm.cprint(requiredAmount .. " " .. itemName, colors.red)
 		return false
 	end
@@ -91,7 +94,6 @@ adjustExistingItems(requiredItems)
 
 local valid = true
 for itemName, requiredAmount in pairs(requiredItems) do
-
 	if(not verifyItem(itemName, requiredAmount)) then
 		valid = false
 	end
