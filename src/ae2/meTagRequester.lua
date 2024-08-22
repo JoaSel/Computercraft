@@ -50,7 +50,11 @@ local function getRequestData()
 				if (not ret[tag]) then
 					ret[tag] = {}
 				end
-				table.insert(ret[tag], { name = item.name, amount = item.amount })
+				table.insert(ret[tag], { 
+					name = item.name,
+					displayName = item.displayName,
+					amount = item.amount
+				})
 			end
 		end
 	end
@@ -62,9 +66,14 @@ local function render(requestData)
 	monitor.clear()
 	monitor.setCursorPos(1, 1)
 
-	for tag, _ in pairs(requestData) do
+	for tag, data in pairs(requestData) do
 		local tagInfo = tagInfos[tag]
 		mMon.writeLine(tagInfo.displayName)
+
+		for k, v in pairs(data) do
+			mMon.writeLine(k)
+			mMon.writeLine(v)
+		end
 	end
 end
 
