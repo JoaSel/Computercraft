@@ -20,6 +20,7 @@ local tagInfos =
 		validationFunc = function(item)
 			return string.match(item.name, "^gtceu:hs")
 		end,
+		crafting = 0,
 		queued = 0
 	}
 }
@@ -73,7 +74,7 @@ local function render(dataBlob)
 	for tag, itemRequests in pairs(dataBlob) do
 		local tagInfo = tagInfos[tag]
 
-		mMon.writeLine(string.format("%s (Total: %d)", tagInfo.displayName, #itemRequests))
+		mMon.writeLine(string.format("%s (Total: %d, Crafting: %d, Queued: %d)", tagInfo.displayName, #itemRequests, tagInfo.crafting, tagInfo.queued))
 		
 		for _, itemRequest in pairs(itemRequests) do
 			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
