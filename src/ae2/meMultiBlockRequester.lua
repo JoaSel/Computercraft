@@ -16,8 +16,13 @@ local function getRequiredItems(inTags)
 	local ret = {}
 
 	for _, item in pairs(inTags) do
-		if(item.id) then
-			ret[item.id] = (ret[item.id] or 0) + item["#"]
+		local existingItem = ret[item.id]
+
+		if(existingItem) then
+			existingItem.total = existingItem.total + item["#"]
+			existingItem.needed = existingItem.needed + item["#"]
+		else
+			ret[item.id] = { total = item["#"], needed = item["#"]}
 		end
 	end
 
@@ -28,31 +33,16 @@ local function adjustExistingItems(requiredItems)
 	local existing = chest.list()
 
 	for _, item in pairs(existing) do
-		if(requiredItems[item.name] ~= nil) then
-			requiredItems[item.name] = requiredItems[item.name] - item.count
+		local existingItem = requiredItems[item.name]
+		if(existingItem) then
+			existingItem.needed = existingItem.needed - item.count
 		end
 	end
 end
 
--- local function requestItem(itemName, amount, existingItem)
--- 	local craftCount = math.min(requestInfo.batch, requestInfo.amount - existingItem.amount)
-
--- 	bridge.craftItem({ name = itemName, count = craftCount })
-
--- 	local event, success, message = os.pullEvent("crafting")
--- 	if success then
--- 		requestInfo.status = "Crafting"
--- 	else
--- 		requestInfo.status = "FailedToStart"
--- 	end
--- end
--- local function handleExistingItem(itemName, requiredAmount)
-	
--- 	bridge.exportItem({ name = itemName, count = requiredAmount }, "up")
--- end
-
-local function verifyItem(itemName, requiredAmount)
-	if(requiredAmount <= 0) then
+local function verifyItem(itemName, itemInfo)
+	if(itemInfo.needed <= 0) then
+		mTerm.cprint(itemInfo.total .. " " .. itemName, colors.green)
 		return
 	end
 
@@ -64,20 +54,20 @@ local function verifyItem(itemName, requiredAmount)
 		inSystemAmount = inSystemItem.amount
 	end
 
-	if(inSystemAmount >= requiredAmount) then
-		mTerm.cprint(requiredAmount .. " " .. itemName, colors.green)
+	if(inSystemAmount >= itemInfo.needed) then
+		mTerm.cprint(itemInfo.total .. " " .. itemName, colors.green)
 		return false
 	end
 	if(bridge.isItemCrafting(searchTbl)) then
-		mTerm.cprint(requiredAmount .. " " .. itemName, colors.yellow)
+		mTerm.cprint(itemInfo.total  .. " " .. itemName, colors.yellow)
 		return true
 	end
 	if(bridge.isItemCraftable(searchTbl)) then
-		mTerm.cprint(requiredAmount .. " " .. itemName, colors.orange)
-		bridge.craftItem({ name = itemName, count = requiredAmount - inSystemAmount })
+		mTerm.cprint(itemInfo.total  .. " " .. itemName, colors.orange)
+		bridge.craftItem({ name = itemName, count = itemInfo.needed - inSystemAmount })
 		return true
 	else
-		mTerm.cprint(requiredAmount .. " " .. itemName, colors.red)
+		mTerm.cprint(itemInfo.total .. " " .. itemName, colors.red)
 		return false
 	end
 end
@@ -93,11 +83,10 @@ end
 local requiredItems = getRequiredItems(firstItem.tag["in"])
 adjustExistingItems(requiredItems)
 
-for itemName, requiredAmount in pairs(requiredItems) do
-	verifyItem(itemName, requiredAmount)
+for itemName, itemInfo in pairs(requiredItems) do
+	verifyItem(itemName, itemInfo)
 end
 
 
-dump.easy(requests)
 
 
