@@ -15,7 +15,7 @@ local tagInfos =
 	{
 		displayName = "GregTech Ingots",
 		amount = 256,
-		batch = 16,
+		batchSize = 16,
 		workers = 2,
 		validationFunc = function(item)
 			return string.match(item.name, "^gtceu:hs")
@@ -111,11 +111,12 @@ local function updateSingleStatus(itemRequest, tagInfo)
 	table.insert(tagInfo.queued, itemRequest)
 end
 
-local function startCrafting(queued, numCraftsToStart)
+local function startCrafting(queued, numCraftsToStart, tagInfo)
 	local i = 0
 	for _, itemRequest in pairs(queued) do
-		dump.easy(itemRequest)
-
+		local toCraft = math.min(tagInfo.batchSize, tagInfo.amount - itemRequest.existingAmount)
+		bridge.craftItem({ name = itemRequest.name, amount = toCraft})
+		
 		i = i + 1
 		if(i >= numCraftsToStart) then
 			return
@@ -140,7 +141,7 @@ local function updateStatus(dataBlob)
 				return a.existingAmount < b.existingAmount
 			end)
 
-			startCrafting(tagInfo.queued, numCraftsToStart)
+			startCrafting(tagInfo.queued, numCraftsToStart, tagInfo)
 		end
 	end
 end
