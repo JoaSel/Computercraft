@@ -125,7 +125,7 @@ local function updateStatus(dataBlob)
 		local numCraftsToStart = tagInfo.workers - tagInfo.crafting
 		if(numCraftsToStart > 0) then
 			table.sort(queued, function (a, b)
-				return a.existingAmount > b.existingAmount
+				return a.existingAmount < b.existingAmount
 			end)
 
 			dump.easy(queued)
