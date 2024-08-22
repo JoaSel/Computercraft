@@ -55,6 +55,7 @@ local function moveItems(fromPeripheral, toLoc, fromSlot, toMoveCount)
 	local ret = 0
 	repeat
 		local moved = fromPeripheral.pushItems(toLoc, fromSlot)
+		print(moved)
 		ret = ret + moved
 	until (ret >= toMoveCount or moved == 0)
 	return ret
