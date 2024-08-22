@@ -20,7 +20,7 @@ for _, item in pairs(craftableItems) do
 	end
 end
 
-dump.easy(testItem)
+dump.easy(testItem.tags)
 
 
 
