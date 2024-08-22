@@ -59,7 +59,7 @@ end
 local tabData = { 30, 10, 10, 10 }
 local function render(requestData)
 	local workGroups = {}
-	for itemName, requestInfo in pairs(requestData) do
+	for _, requestInfo in pairs(requestData) do
 		local workGroup = requestInfo.workGroup or "EmptyGroup"
 		if (workGroups[workGroup] == nil) then
 			workGroups[workGroup] = {}
@@ -81,7 +81,7 @@ local function render(requestData)
 				writeTabbedLine(tabData, aeNameUtil.toDisplayName(requestInfo.existingItem.displayName),
 					requestInfo.existingItem.amount, requestInfo.amount, requestInfo.workGroup)
 			else
-				writeTabbedLine(tabData, "ERROR")
+				writeTabbedLine(tabData, "ERROR: " .. requestInfo.message)
 			end
 		end
 		lineBreak()
@@ -93,8 +93,8 @@ local function updateRequestInfo(itemName, requestInfo, activeGroups, playerOnli
 
 	local existingItem = bridge.getItem(searchItem)
 	if (existingItem == nil or existingItem.amount == nil) then
-		print("Error getting amount")
 		requestInfo.status = "FailedToStart"
+		requestInfo.message = itemName
 		return
 	end
 
