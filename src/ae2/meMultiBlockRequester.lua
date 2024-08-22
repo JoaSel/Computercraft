@@ -65,14 +65,16 @@ local function verifyItem(itemName, requiredAmount)
 	end
 
 	if(inSystemAmount >= requiredAmount) then
-		mTerm.cprint(requiredAmount .. " " .. itemName .. " exists.", colors.green)
-	else
-		if(bridge.isItemCrafting(searchTbl)) then
-			print(itemName .. " is currentl crafting.")
-		elseif(not bridge.isItemCraftable(searchTbl)) then
-			error(itemName .. " is not craftable!")
-		end
-		print("Error trying to fix: " .. itemName)
+		mTerm.cprint(requiredAmount .. " " .. itemName, colors.green)
+		return true
+	end
+	if(bridge.isItemCrafting(searchTbl)) then
+		mTerm.cprint(requiredAmount .. " " .. itemName, colors.yellow)
+		return true
+	end
+	if(not bridge.isItemCraftable(searchTbl)) then
+		mTerm.cprint(requiredAmount .. " " .. itemName, colors.red)
+		return false
 	end
 end
 
