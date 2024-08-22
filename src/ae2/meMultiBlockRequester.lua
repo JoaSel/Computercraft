@@ -94,8 +94,9 @@ while (true) do
 		local requiredItems = getRequiredItems(firstItem.tag["in"])
 		adjustExistingItems(requiredItems)
 
-		local done = true
-		while not done do
+		
+		repeat
+			local done = true
 			for itemName, itemInfo in pairs(requiredItems) do
 				itemInfo.status = handleItem(itemName, itemInfo)
 				if (itemInfo.status ~= "Exported") then
@@ -105,6 +106,6 @@ while (true) do
 
 			render(requiredItems)
 			os.sleep(5)
-		end
+		until done
 	end
 end
