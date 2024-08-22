@@ -9,4 +9,4 @@ local chest = pWrapper.find("minecraft:chest")
 local nbtStorage = pWrapper.find("blockReader")
 
 
-dump.easy(nbtStorage.read())
+dump.easy(nbtStorage.getBlockData())
