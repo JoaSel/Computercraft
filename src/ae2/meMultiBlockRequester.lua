@@ -24,7 +24,19 @@ local function getRequiredItems(inTags)
 	return ret
 end
 
+local function adjustExistingItems(requiredItems)
+	local existing = chest.list()
 
-dump.easy(getRequiredItems(inTags))
+	for _, item in pairs(existing) do
+		if(requiredItems[item.name]) then
+			requiredItems[item.name] = requiredItems[item.name] - item.amount
+		end
+	end
+end
+
+local requiredItems = getRequiredItems(inTags)
+adjustExistingItems(requiredItems)
+
+dump.easy(requiredItems)
 
 
