@@ -20,14 +20,14 @@ local tagData =
 	}
 }
 
-local function getTag(item, tag)
+local function hasTag(item, tag)
 	if (not item.tags) then
 		return false
 	end
 
 	for _, t in pairs(item.tags) do
 		if(t == tag) then
-			return t
+			return true
 		end
 	end
 
@@ -39,7 +39,7 @@ local function getRequestData()
 
 	for _, item in pairs(craftableItems) do
 		for tag, tagInfo in pairs(tagData) do
-			if(getTag(item, tag)) then
+			if(hasTag(item, tag) and tagInfo.validationFunc(item)) then
 				print(item.name)
 			end
 		end
