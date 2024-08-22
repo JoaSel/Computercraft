@@ -113,62 +113,24 @@ local function updateStatus(dataBlob)
 		tagInfo.crafting = 0
 		tagInfo.queued = 0
 
+		local queued = {}
+
 		for _, itemRequest in pairs(itemRequests) do
 			updateSingleStatus(itemRequest, tagInfo)
+			if(itemRequest.status == "Queued") then
+				table.insert(queued, itemRequest)
+			end
+		end
+
+		local numCraftsToStart = tagInfo.workers - tagInfo.crafting
+		if(numCraftsToStart > 0) then
+			table.sort(queued, function (a, b)
+				return a.existingAmount > b.existingAmount
+			end)
+
+			dump.easy(queued)
 		end
 	end
-end
-
-local function updateRequestInfo(itemName, requestInfo, activeGroups, playerOnline)
-	local searchItem = { name = itemName }
-
-	local existingItem = bridge.getItem(searchItem)
-	if (existingItem == nil or existingItem.amount == nil) then
-		existingItem = {
-			amount = 0,
-			name = itemName,
-			displayName = itemName
-		}
-	end
-
-	requestInfo.existingItem = existingItem
-	if (existingItem.amount >= requestInfo.amount) then
-		requestInfo.status = "Ok"
-		return
-	end
-
-	if (requestInfo.offlineOnly and playerOnline) then
-		requestInfo.status = "PlayerOnline"
-		return
-	end
-
-	if (activeGroups.currentJobs >= maxConcurrentJobs) then
-		requestInfo.status = "WorkerBusy"
-		return
-	end
-
-	local isItemCrafing = bridge.isItemCrafting(searchItem)
-	if (isItemCrafing) then
-		requestInfo.status = "Crafting"
-		activeGroups.currentJobs = activeGroups.currentJobs + 1
-		if (requestInfo.workGroup) then
-			activeGroups[requestInfo.workGroup] = true
-		end
-		return
-	end
-
-	local groupRequest = requestInfo.workGroup ~= nil and activeGroups[requestInfo.workGroup]
-	if (groupRequest) then
-		requestInfo.status = "WorkerBusy"
-		return
-	end
-
-	activeGroups.currentJobs = activeGroups.currentJobs + 1
-	if (requestInfo.workGroup) then
-		activeGroups[requestInfo.workGroup] = true
-	end
-
-	requestItem(itemName, requestInfo, existingItem)
 end
 
 local dataBlob = getDataBlob()
