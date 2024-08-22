@@ -34,7 +34,7 @@ for _, item in pairs(craftableItems) do
 	end
 end
 
-testItem:hasTag("")
+hasTag(testItem, "")
 
 
 
