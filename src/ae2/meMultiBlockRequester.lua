@@ -110,6 +110,10 @@ if(not valid) then
 	return
 end
 
+for itemName, amount in pairs(requests) do
+	bridge.craftItem({ name = itemName, count = amount })
+end
+
 
 dump.easy(requests)
 
