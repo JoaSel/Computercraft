@@ -35,8 +35,9 @@ end
 print("Press Enter to run.")
 --local x = io.read()
 local firstItem = blockData.Items[1]
+dump.easy(firstItem)
 if(not firstItem) then
-	dump.easy(firstItem)
+	
 	print("No pattern found!")
 end
 local inTags = firstItem.tag["in"]
