@@ -62,16 +62,17 @@ local function getRequestData()
 	return ret
 end
 
+local tabData = { 30, 10, 10, 10 }
 local function render(requestData)
 	monitor.clear()
 	monitor.setCursorPos(1, 1)
+	mMon.writeTabbedLine(tabData, "Item", "Current", "Wanted", "Group")
 
 	for tag, data in pairs(requestData) do
-		local tagInfo = tagInfos[tag]
-		mMon.writeLine(tagInfo.displayName)
+		local tagInfo = tagInfos[tag]	
 
-		for k, v in pairs(data) do
-			dump.easy(v)
+		for k, item in pairs(data) do
+			mMon.writeTabbedLine(tabData, item.displayName, item.amount, tagInfo.amount, tagInfo.displayName)
 		end
 	end
 end
