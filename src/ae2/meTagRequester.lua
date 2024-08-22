@@ -82,28 +82,39 @@ local function render(dataBlob)
 	end
 end
 
+local function updateSingleStatus(itemRequest, tagInfo)
+	local searchTbl = {name = itemRequest.name}
+
+	itemRequest.existingAmount = 0
+	local existingItem = bridge.getItem(searchTbl)
+	if(existingItem) then
+		itemRequest.existingAmount = existingItem.amount
+	end
+
+	if(itemRequest.existingAmount > tagInfo.amount) then
+		itemRequest.status = "Ok"
+		return
+	end
+
+	if(bridge.isItemCrafting(searchTbl)) then
+		itemRequest.status = "Crafting"
+		tagInfo.crafting = tagInfo.crafting + 1
+		return
+	end
+
+	itemRequest.status = "Queued"
+	tagInfo.queued = tagInfo.queued + 1
+end
+
 local function updateStatus(dataBlob)
 	for tag, itemRequests in pairs(dataBlob) do
 		local tagInfo = tagInfos[tag]
 
-		local crafting = 0
+		tagInfo.crafting = 0
+		tagInfo.queued = 0
+
 		for _, itemRequest in pairs(itemRequests) do
-			local searchTbl = {name = itemRequest.name}
-
-			itemRequest.existingAmount = 0
-			local existingItem = bridge.getItem(searchTbl)
-			if(existingItem) then
-				itemRequest.existingAmount = existingItem.amount
-			end
-
-			if(itemRequest.existingAmount > tagInfo.amount) then
-				itemRequest.status = "Ok"
-			end
-
-			if(bridge.isItemCrafting(searchTbl)) then
-				crafting = crafting + 1
-				itemRequest.status = "Crafting"
-			end
+			updateSingleStatus(itemRequest, tagInfo)
 		end
 	end
 end
