@@ -18,13 +18,13 @@ local function hasTag(item, tag)
 		return false
 	end
 
-	local ret = false;
-
 	for _, t in pairs(item.tags) do
-		print(t)
+		if(t == tag) then
+			return true
+		end
 	end
 
-	return ret
+	return false
 end
 
 local testItem = nil
