@@ -15,3 +15,5 @@ for prop, test in pairs(blockData.Items[1]) do
 	print(test)
 end
 
+dump.easy(blockData.Items[1])
+
