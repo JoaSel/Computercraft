@@ -1,9 +1,11 @@
 ---@diagnostic disable: need-check-nil
 
 local _monitor = nil
+local _oldColor = nil
 
 local function setMonitor(monitor)
     _monitor = monitor
+    _oldColor = _monitor.getTextColor()
 end
 
 local function newLine()
@@ -41,6 +43,16 @@ local function writeTabbedLine(tabData, ...)
 
 	_monitor.setCursorPos(1, y + 1)
 end
+
+local function toggleColor(color)
+    if(color) then
+        _oldColor = _monitor.getTextColor()
+        _monitor.setTextColor(color)
+    else
+        _monitor.setTextColor(_oldColor)
+    end
+end
+
 
 return
 {
