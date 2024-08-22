@@ -1,4 +1,4 @@
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/meGenericRequester.lua
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/meTagRequester.lua
 
 package.path = package.path .. ";../core/?.lua"
 
@@ -35,7 +35,6 @@ for _, item in pairs(craftableItems) do
 end
 
 testItem:hasTag("")
-print(testItem.tags[1])
 
 
 
