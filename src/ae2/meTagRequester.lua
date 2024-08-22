@@ -76,7 +76,12 @@ local function render(dataBlob)
 
 		mMon.writeLine(string.format("%s (Total: %d, Crafting: %d, Queued: %d)", tagInfo.displayName, #itemRequests, #tagInfo.crafting, #tagInfo.queued))
 		
+		mMon.writeLine("Queued:")
 		for _, itemRequest in pairs(tagInfo.queued) do
+			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+		end
+		mMon.writeLine("Crafting:")
+		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
 		end
 	end
@@ -116,6 +121,8 @@ local function updateStatus(dataBlob)
 		for _, itemRequest in pairs(itemRequests) do
 			updateSingleStatus(itemRequest, tagInfo)
 		end
+
+		
 
 		local numCraftsToStart = tagInfo.workers - #tagInfo.crafting
 		if(numCraftsToStart > 0) then
