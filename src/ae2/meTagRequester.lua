@@ -65,17 +65,18 @@ local function getDataBlob()
 	return ret
 end
 
-local tabData = { 5, 30, 10, 10, 10 }
+local tabData = { 2, 30, 5, 10 }
 local function render(dataBlob)
 	monitor.clear()
 	monitor.setCursorPos(1, 1)
 
 	for tag, itemRequests in pairs(dataBlob) do
 		local tagInfo = tagInfos[tag]
+
 		mMon.writeLine(tagInfo.displayName)
 		
 		for _, itemRequest in pairs(itemRequests) do
-			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.amount, tagInfo.amount, tagInfo.displayName)
+			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.amount, tagInfo.amount)
 		end
 	end
 end
