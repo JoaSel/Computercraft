@@ -44,7 +44,7 @@ local function getRequestData()
 				if (not ret[tag]) then
 					ret[tag] = {}
 				end
-
+				dump.easy(item)
 				table.insert(ret[tag], { name = item.name })
 			end
 		end
