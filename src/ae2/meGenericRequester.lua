@@ -12,14 +12,15 @@ local monitor = peripheral.find("monitor")
 local tag = "minecraft:item/forge:ingots"
 
 local craftableItems = bridge.listCraftableItems()
+
+local testItem = nil
 for _, item in pairs(craftableItems) do
 	if(item.name == "gtceu:hsss_ingot") then
-		dump.easy(item)
-	end
-	if(mItem.hasTag(item, tag)) then
-    	print(item.name)
+		testItem = item
 	end
 end
+
+dump.easy(testItem)
 
 
 
