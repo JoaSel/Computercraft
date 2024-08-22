@@ -2,6 +2,7 @@
 
 package.path = package.path .. ";../core/?.lua"
 
+local file = require("file")
 local net = require("net")
 local aeNameUtil = require("libs.aeNameUtil")
 
@@ -143,7 +144,7 @@ local runCount = 0
 while (true) do
 	if (runCount % 100 == 0) then
 		runCount = 0
-		requestData = net.get("https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/libs/meRequesterData.txt")
+		requestData = file.readAllAndParse("./libs/meRequesterData.txt")
 	end
 
 	local activeGroups = {}

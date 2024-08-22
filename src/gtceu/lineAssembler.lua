@@ -4,7 +4,7 @@ package.path = package.path .. ";../core/?.lua"
 
 local dump = require("dump")
 local pWrapper = require("peripheralWrapper")
-local ioUtil = require("libs.ioUtil")
+local gtceuIO = require("gtceuIO")
 
 local machine = pWrapper.find("blockReader")
 
@@ -13,11 +13,11 @@ local output = pWrapper.wrap("entangled:tile_21")
 
 local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
 
-local inputBuses = { ioUtil.findInputBuses() }
-local inputHatches = { ioUtil.findInputHatches() }
+local inputBuses = { gtceuIO.findInputBuses() }
+local inputHatches = { gtceuIO.findInputHatches() }
 
-local outputBuses = { ioUtil.findOutputBuses() }
-local outputHatches = { ioUtil.findOutputHatches() }
+local outputBuses = { gtceuIO.findOutputBuses() }
+local outputHatches = { gtceuIO.findOutputHatches() }
 
 local function getStatus()
     local data = machine.getBlockData()
