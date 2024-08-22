@@ -3,6 +3,7 @@
 
 package.path = package.path .. ";../core/?.lua"
 
+local file = require("file")
 local net = require("net")
 local aeNameUtil = require("libs.aeNameUtil")
 
@@ -24,8 +25,7 @@ local soundBlackList = {
 	["gtceu:styrene_butadiene_rubber"] = true
 }
 
-local autoRequestData = net.get(
-	"https://raw.githubusercontent.com/JoaSel/Computercraft/main/src/ae2/libs/meRequesterData.txt")
+local autoRequestData = file.readAllAndParse("Computercraft/src/ae2/libs/meRequesterData.txt")
 
 local function jobStarted(cpuNum, craftingJob)
 	craftingJob.startedTime = os.time("utc")
