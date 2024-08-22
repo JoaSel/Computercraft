@@ -76,14 +76,11 @@ local function render(dataBlob)
 
 		mMon.writeLine(string.format("%s (Total: %d, Crafting: %d, Queued: %d)", tagInfo.displayName, #itemRequests, #tagInfo.crafting, #tagInfo.queued))
 		
-		-- mMon.writeLine("Queued:")
-		-- for _, itemRequest in pairs(tagInfo.queued) do
-		-- 	mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
-		-- end
-		--mMon.writeLine("Crafting:")
 		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
 		end
+
+		mMon.newLine()
 	end
 end
 
@@ -115,8 +112,6 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 	local i = 0
 	for _, itemRequest in pairs(queued) do
 		local toCraft = math.min(tagInfo.batchSize, tagInfo.amount - itemRequest.existingAmount)
-
-		print("starting craft for " .. toCraft .. " " .. itemRequest.name)
 		bridge.craftItem({ name = itemRequest.name, amount = toCraft})
 
 		i = i + 1
@@ -149,5 +144,10 @@ local function updateStatus(dataBlob)
 end
 
 local dataBlob = getDataBlob()
-updateStatus(dataBlob)
-render(dataBlob)
+
+while (true) do
+	updateStatus(dataBlob)
+	render(dataBlob)
+	os.sleep(5)
+end
+
