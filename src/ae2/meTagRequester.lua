@@ -9,25 +9,6 @@ local aeNameUtil = require("libs.aeNameUtil")
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
 
-local tagInfos =
-{
-	["minecraft:item/forge:ingots"] =
-	{
-		displayName = "GregTech Ingots",
-		amount = 256,
-		batchSize = 16,
-		workers = 2,
-		validationFunc = function(item)
-			return string.match(item.name, "^gtceu:")
-		end,
-		crafting = {},
-		queued = {}
-	}
-}
-
-mMon.setMonitor(monitor)
-monitor.setTextScale(0.5)
-
 local function hasTag(item, tag)
 	if (not item.tags) then
 		return false
@@ -42,18 +23,38 @@ local function hasTag(item, tag)
 	return false
 end
 
+local tagInfos =
+{
+	{
+		displayName = "GregTech Ingots",
+		amount = 256,
+		batchSize = 16,
+		workers = 2,
+		validationFunc = function(item)
+			return hasTag(item, "minecraft:item/forge:ingots") and string.match(item.name, "^gtceu:")
+		end,
+		crafting = {},
+		queued = {}
+	}
+}
+
+mMon.setMonitor(monitor)
+monitor.setTextScale(0.5)
+
+
+
 local function getDataBlob()
 	local craftableItems = bridge.listCraftableItems()
 
 	local ret = {}
 	for _, item in pairs(craftableItems) do
-		for tag, tagInfo in pairs(tagInfos) do
-			if (hasTag(item, tag) and tagInfo.validationFunc(item)) then
-				if (not ret[tag]) then
-					ret[tag] = {}
+		for i, tagInfo in pairs(tagInfos) do
+			if (tagInfo.validationFunc(item)) then
+				if (not ret[i]) then
+					ret[i] = {}
 				end
 
-				table.insert(ret[tag], { 
+				table.insert(ret[i], { 
 					name = item.name,
 					displayName = item.displayName,
 					-- amount = item.amount,
@@ -71,8 +72,8 @@ local function render(dataBlob)
 	monitor.clear()
 	monitor.setCursorPos(1, 1)
 
-	for tag, itemRequests in pairs(dataBlob) do
-		local tagInfo = tagInfos[tag]
+	for i, itemRequests in pairs(dataBlob) do
+		local tagInfo = tagInfos[i]
 
 		mMon.writeLine(string.format("%s (Total: %d, Crafting: %d, Queued: %d)", tagInfo.displayName, #itemRequests, #tagInfo.crafting, #tagInfo.queued))
 		
@@ -122,8 +123,8 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 end
 
 local function updateStatus(dataBlob)
-	for tag, itemRequests in pairs(dataBlob) do
-		local tagInfo = tagInfos[tag]
+	for i, itemRequests in pairs(dataBlob) do
+		local tagInfo = tagInfos[i]
 
 		tagInfo.crafting = {}
 		tagInfo.queued = {}
