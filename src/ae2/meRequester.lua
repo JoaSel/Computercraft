@@ -3,7 +3,6 @@
 package.path = package.path .. ";../core/?.lua"
 
 local file = require("file")
-local net = require("net")
 local aeNameUtil = require("libs.aeNameUtil")
 
 local bridge = peripheral.find("meBridge")
