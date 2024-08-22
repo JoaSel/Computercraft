@@ -63,7 +63,7 @@ local function render(requestData)
 	monitor.setCursorPos(1, 1)
 
 	for tag, _ in pairs(requestData) do
-		monitor.write(tag)
+		mMon.writeLine(tag)
 	end
 end
 
