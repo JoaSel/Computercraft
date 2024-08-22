@@ -98,12 +98,12 @@ local function updateSingleStatus(itemRequest, tagInfo)
 
 	if(bridge.isItemCrafting(searchTbl)) then
 		itemRequest.status = "Crafting"
-		tagInfo.crafting = tagInfo.crafting + 1
+		table.insert(tagInfo.crafting, itemRequest)
 		return
 	end
 
 	itemRequest.status = "Queued"
-	tagInfo.queued = tagInfo.queued + 1
+	table.insert(tagInfo.queued, itemRequest)
 end
 
 local function updateStatus(dataBlob)
@@ -115,12 +115,6 @@ local function updateStatus(dataBlob)
 
 		for _, itemRequest in pairs(itemRequests) do
 			updateSingleStatus(itemRequest, tagInfo)
-			if(itemRequest.status == "Crafting") then
-				table.insert(tagInfo.crafting, itemRequest)
-			end
-			if(itemRequest.status == "Queued") then
-				table.insert(tagInfo.queued, itemRequest)
-			end
 		end
 
 		local numCraftsToStart = tagInfo.workers - tagInfo.crafting
