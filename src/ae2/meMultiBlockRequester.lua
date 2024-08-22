@@ -66,18 +66,19 @@ local function verifyItem(itemName, requiredAmount)
 
 	if(inSystemAmount >= requiredAmount) then
 		mTerm.cprint(requiredAmount .. " " .. itemName, colors.green)
-		return {isValid = true}
+		return false
 	end
 	if(bridge.isItemCrafting(searchTbl)) then
 		mTerm.cprint(requiredAmount .. " " .. itemName, colors.yellow)
-		return {isValid = true}
+		return true
 	end
 	if(bridge.isItemCraftable(searchTbl)) then
 		mTerm.cprint(requiredAmount .. " " .. itemName, colors.orange)
-		return {isValid = true, craftNeeded = requiredAmount - inSystemAmount}
+		bridge.craftItem({ name = itemName, count = requiredAmount - inSystemAmount })
+		return true
 	else
 		mTerm.cprint(requiredAmount .. " " .. itemName, colors.red)
-		return {isValid = false}
+		return false
 	end
 end
 
@@ -92,26 +93,8 @@ end
 local requiredItems = getRequiredItems(firstItem.tag["in"])
 adjustExistingItems(requiredItems)
 
-local valid = true
-local requests = {}
 for itemName, requiredAmount in pairs(requiredItems) do
-	local verification = verifyItem(itemName, requiredAmount)
-
-	if(verification.craftNeeded) then
-		requests[itemName] = verification.craftNeeded
-	end
-
-	if(not verification.isValid) then
-		valid = false
-	end
-end
-
-if(not valid) then
-	return
-end
-
-for itemName, amount in pairs(requests) do
-	bridge.craftItem({ name = itemName, count = amount })
+	verifyItem(itemName, requiredAmount)
 end
 
 
