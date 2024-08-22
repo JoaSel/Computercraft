@@ -111,6 +111,18 @@ local function updateSingleStatus(itemRequest, tagInfo)
 	table.insert(tagInfo.queued, itemRequest)
 end
 
+local function startCrafting(queued, numCraftsToStart)
+	local i = 0
+	for _, itemRequest in pairs(queued) do
+		dump.easy(itemRequest)
+
+		i = i + 1
+		if(i >= numCraftsToStart) then
+			return
+		end
+	end
+end
+
 local function updateStatus(dataBlob)
 	for tag, itemRequests in pairs(dataBlob) do
 		local tagInfo = tagInfos[tag]
@@ -122,13 +134,13 @@ local function updateStatus(dataBlob)
 			updateSingleStatus(itemRequest, tagInfo)
 		end
 
-		
-
 		local numCraftsToStart = tagInfo.workers - #tagInfo.crafting
 		if(numCraftsToStart > 0) then
 			table.sort(tagInfo.queued, function (a, b)
 				return a.existingAmount < b.existingAmount
 			end)
+
+			startCrafting(tagInfo.queued, numCraftsToStart)
 		end
 	end
 end
