@@ -35,7 +35,7 @@ end
 print("Press Enter to run.")
 --local x = io.read()
 local firstItem = blockData.Items[1]
-if(not firstItem or firstItem.id == "ae2:processing_pattern") then
+if(not firstItem or firstItem.id ~= "ae2:processing_pattern") then
 	print("No pattern found! Put a pattern in first slot.")
 	return
 end
