@@ -89,10 +89,16 @@ end
 local requiredItems = getRequiredItems(firstItem.tag["in"])
 adjustExistingItems(requiredItems)
 
+local valid = true
 for itemName, requiredAmount in pairs(requiredItems) do
+
 	if(not verifyItem(itemName, requiredAmount)) then
-		return
+		valid = false
 	end
+end
+
+if(not valid) then
+	return
 end
 
 
