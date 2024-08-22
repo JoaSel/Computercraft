@@ -6,5 +6,6 @@ local dump = require("src.core.dump")
 local x = pWrapper.find("blockReader")
 
 for index, value in pairs(x.getBlockData()) do
-    print(index .. ": " .. (value or nil))
+    print(index)
+    print(value)
 end
