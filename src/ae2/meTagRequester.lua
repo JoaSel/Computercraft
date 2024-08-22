@@ -18,7 +18,7 @@ local tagInfos =
 		batch = 16,
 		workers = 2,
 		validationFunc = function(item)
-			return string.match(item.name, "^gtceu:moly")
+			return string.match(item.name, "^gtceu:")
 		end,
 		queued = 0
 	}
