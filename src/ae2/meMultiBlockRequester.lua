@@ -10,8 +10,6 @@ local chest = pWrapper.find("minecraft:chest")
 local reader = pWrapper.find("blockReader")
 local bridge = peripheral.find("meBridge")
 
-local blockData = reader.getBlockData()
-
 local function getRequiredItems(inTags)
 	local ret = {}
 
@@ -82,10 +80,12 @@ local function render(requiredItems)
 		mTerm.cprint(itemInfo.total .. " " .. itemName, colorTable[itemInfo.status])
 	end
 end
+
 while (true) do
 	print("Press Enter to run.")
 	local x = io.read()
 
+	local blockData = reader.getBlockData()
 	local firstItem = blockData.Items[1]
 	if (not firstItem or firstItem.id ~= "ae2:processing_pattern") then
 		print("No pattern found! Put a pattern in first slot.")
