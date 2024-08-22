@@ -73,7 +73,7 @@ local function render(dataBlob)
 	for tag, itemRequests in pairs(dataBlob) do
 		local tagInfo = tagInfos[tag]
 
-		mMon.writeLine(tagInfo.displayName)
+		mMon.writeLine(string.format("%s (Total: %d)", tagInfo.displayName, #itemRequests))
 		
 		for _, itemRequest in pairs(itemRequests) do
 			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
@@ -81,11 +81,11 @@ local function render(dataBlob)
 	end
 end
 
-local function handle(dataBlob)
+local function updateStatus(dataBlob)
 	for tag, itemRequests in pairs(dataBlob) do
 		local tagInfo = tagInfos[tag]
 
-		local simultaneousJobs = 0
+		local crafting = 0
 		for _, itemRequest in pairs(itemRequests) do
 			local searchTbl = {name = itemRequest.name}
 
@@ -95,11 +95,14 @@ local function handle(dataBlob)
 				itemRequest.existingAmount = existingItem.amount
 			end
 
+			if(itemRequest.existingAmount > tagInfo.amount) then
+				itemRequest.status = "Ok"
+			end
+
 			if(bridge.isItemCrafting(searchTbl)) then
-				simultaneousJobs = simultaneousJobs + 1
+				crafting = crafting + 1
 				itemRequest.status = "Crafting"
 			end
-			
 		end
 	end
 end
@@ -157,5 +160,5 @@ local function updateRequestInfo(itemName, requestInfo, activeGroups, playerOnli
 end
 
 local dataBlob = getDataBlob()
-handle(dataBlob)
+updateStatus(dataBlob)
 render(dataBlob)
