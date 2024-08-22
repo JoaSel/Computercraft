@@ -46,18 +46,11 @@ local function requestItem(itemName, amount, existingItem)
 	end
 end
 
-print("Press Enter to run.")
---local x = io.read()
-local firstItem = blockData.Items[1]
-if(not firstItem or firstItem.id ~= "ae2:processing_pattern") then
-	print("No pattern found! Put a pattern in first slot.")
-	return
-end
+local function handleItem(itemName, requiredAmount)
+	if(requiredAmount <= 0) then
+		return
+	end
 
-local requiredItems = getRequiredItems(firstItem.tag["in"])
-adjustExistingItems(requiredItems)
-
-for itemName, requiredAmount in pairs(requiredItems) do
 	local searchTbl = { name = itemName }
 	local inSystemAmount = 0
 	local inSystemItem = bridge.getItem(searchTbl)
@@ -72,6 +65,21 @@ for itemName, requiredAmount in pairs(requiredItems) do
 	else
 		print("Error trying to fix: " .. itemName)
 	end
+end
+
+print("Press Enter to run.")
+--local x = io.read()
+local firstItem = blockData.Items[1]
+if(not firstItem or firstItem.id ~= "ae2:processing_pattern") then
+	print("No pattern found! Put a pattern in first slot.")
+	return
+end
+
+local requiredItems = getRequiredItems(firstItem.tag["in"])
+adjustExistingItems(requiredItems)
+
+for itemName, requiredAmount in pairs(requiredItems) do
+	handleItem(itemName, requiredAmount)
 end
 
 
