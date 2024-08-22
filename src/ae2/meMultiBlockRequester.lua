@@ -3,6 +3,7 @@
 package.path = package.path .. ";../core/?.lua"
 
 local pWrapper = require("peripheralWrapper")
+local mTerm = require("moreTerm")
 local dump = require("dump")
 
 local chest = pWrapper.find("minecraft:chest")
@@ -46,11 +47,11 @@ local function requestItem(itemName, amount, existingItem)
 	end
 end
 local function handleExistingItem(itemName, requiredAmount)
-	print("Exporting " .. itemName)
+	
 	bridge.exportItem({ name = itemName, count = requiredAmount }, "up")
 end
 
-local function handleItem(itemName, requiredAmount)
+local function verifyItem(itemName, requiredAmount)
 	if(requiredAmount <= 0) then
 		return
 	end
@@ -64,7 +65,7 @@ local function handleItem(itemName, requiredAmount)
 	end
 
 	if(inSystemAmount >= requiredAmount) then
-		handleExistingItem(itemName, requiredAmount)
+		mTerm.print(requiredAmount .. " " .. itemName .. " exists.", colors.green)
 	else
 		if(bridge.isItemCrafting(searchTbl)) then
 			print(itemName .. " is currentl crafting.")
@@ -87,7 +88,7 @@ local requiredItems = getRequiredItems(firstItem.tag["in"])
 adjustExistingItems(requiredItems)
 
 for itemName, requiredAmount in pairs(requiredItems) do
-	handleItem(itemName, requiredAmount)
+	verifyItem(itemName, requiredAmount)
 end
 
 

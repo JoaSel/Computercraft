@@ -1,0 +1,8 @@
+local function print(text, color)
+    local oldColor = term.getTextColor()
+    term.setTextColor(color)
+    print(text)
+    term.setTextColor(oldColor)
+end
+
+return { print = print}
