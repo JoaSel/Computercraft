@@ -20,8 +20,8 @@ local tagInfos =
 		validationFunc = function(item)
 			return string.match(item.name, "^gtceu:hs")
 		end,
-		crafting = 0,
-		queued = 0
+		crafting = {},
+		queued = {}
 	}
 }
 
@@ -74,7 +74,7 @@ local function render(dataBlob)
 	for tag, itemRequests in pairs(dataBlob) do
 		local tagInfo = tagInfos[tag]
 
-		mMon.writeLine(string.format("%s (Total: %d, Crafting: %d, Queued: %d)", tagInfo.displayName, #itemRequests, tagInfo.crafting, tagInfo.queued))
+		mMon.writeLine(string.format("%s (Total: %d, Crafting: %d, Queued: %d)", tagInfo.displayName, #itemRequests, #tagInfo.crafting, #tagInfo.queued))
 		
 		for _, itemRequest in pairs(itemRequests) do
 			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
@@ -110,25 +110,24 @@ local function updateStatus(dataBlob)
 	for tag, itemRequests in pairs(dataBlob) do
 		local tagInfo = tagInfos[tag]
 
-		tagInfo.crafting = 0
-		tagInfo.queued = 0
-
-		local queued = {}
+		tagInfo.crafting = {}
+		tagInfo.queued = {}
 
 		for _, itemRequest in pairs(itemRequests) do
 			updateSingleStatus(itemRequest, tagInfo)
+			if(itemRequest.status == "Crafting") then
+				table.insert(tagInfo.crafting, itemRequest)
+			end
 			if(itemRequest.status == "Queued") then
-				table.insert(queued, itemRequest)
+				table.insert(tagInfo.queued, itemRequest)
 			end
 		end
 
 		local numCraftsToStart = tagInfo.workers - tagInfo.crafting
 		if(numCraftsToStart > 0) then
-			table.sort(queued, function (a, b)
+			table.sort(tagInfo.queued, function (a, b)
 				return a.existingAmount < b.existingAmount
 			end)
-
-			dump.easy(queued)
 		end
 	end
 end
