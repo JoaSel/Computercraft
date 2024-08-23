@@ -138,6 +138,12 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 			print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, err))
 		end
 
+		local _, evSuccess, evMessage = os.pullEvent("crafting")
+		print(string.format("%s", evMessage))
+		if(not evSuccess) then
+			print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, evMessage))
+		end
+
 		i = i + 1
 		if(i >= numCraftsToStart) then
 			return
