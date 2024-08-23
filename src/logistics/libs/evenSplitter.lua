@@ -45,7 +45,7 @@ local function trySend(items, fluids, destination)
 	end
 
 	while next(_input.tanks()) do
-		_input.pushFluid(destination.name)
+		_input.pushFluid(destination.name, 64000)
 		os.sleep(1)
 	end
 
