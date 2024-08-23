@@ -33,6 +33,17 @@ local tagInfos =
 		end,
 		crafting = {},
 		queued = {}
+	},
+	{
+		displayName = "GregTech Motors",
+		amount = 50,
+		batchSize = 1,
+		workers = 2,
+		validationFunc = function(item)
+			return string.match(item.name, "^gtceu:") and string.match(item.name, "electric_motor$")
+		end,
+		crafting = {},
+		queued = {}
 	}
 }
 
