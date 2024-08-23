@@ -19,7 +19,7 @@ local function create(input, destinationType, onlyEmpty, verbose)
 	_input = pWrapper.wrap(input)
 	_destinations = { pWrapper.find(destinationType) }
 
-	mTable.removeAll(_destinations, function (d)
+	mTable.removeAll(_destinations, function(d)
 		return d.name == _input.name
 	end)
 
@@ -37,9 +37,8 @@ local function trySend(items, fluids, destination)
 	local destinationItemsCount = #destination.list()
 	local destinationFluidsCount = #destination.tanks()
 	local itemSpaceLeft = destination.size() - destinationItemsCount
-	
 
-	if(_onlyEmpty and ((sendItemsCount > 0 and destinationItemsCount > 0) or (sendFluidsCount > 0 and destinationFluidsCount > 0))) then
+	if (_onlyEmpty and ((sendItemsCount > 0 and destinationItemsCount > 0) or (sendFluidsCount > 0 and destinationFluidsCount > 0))) then
 		return false
 	elseif ((sendItemsCount > 0 and itemSpaceLeft < sendItemsCount) or (sendFluidsCount > 0 and destinationFluidsCount > 0)) then
 		return false
@@ -48,9 +47,8 @@ local function trySend(items, fluids, destination)
 	for slot, _ in pairs(items) do
 		_input.pushItems(destination.name, slot)
 	end
-
 	for _, fluid in pairs(fluids) do
-		_input.pushFluid(destination.name, nil, fluid.name)
+		print(_input.pushFluid(destination.name, nil, fluid.name))
 	end
 
 	return true
@@ -60,7 +58,7 @@ local function send(items, fluids)
 	repeat
 		local destination = _destinations[destinationI]
 
-		if(_verbose) then
+		if (_verbose) then
 			print("Trying to send to " .. destination.name)
 		end
 		local success = trySend(items, fluids, destination)
