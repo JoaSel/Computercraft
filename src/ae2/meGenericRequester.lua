@@ -121,13 +121,19 @@ end
 local function updateSingleStatus(itemRequest, tagInfo)
 	local searchTbl = {name = itemRequest.name}
 
-	itemRequest.existingAmount = 0
 	local existingItem = bridge.getItem(searchTbl)
 	if(existingItem) then
+		if(existingItem.amount > itemRequest.existingAmount) then
+			itemRequest.startingTries = 0
+		end
+		
 		itemRequest.existingAmount = existingItem.amount
+	else
+		itemRequest.existingAmount = 0
 	end
 
 	if(itemRequest.existingAmount > tagInfo.amount) then
+		itemRequest.startingTries = 0
 		itemRequest.status = "Ok"
 		return
 	end
