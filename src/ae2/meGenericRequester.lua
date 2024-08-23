@@ -82,7 +82,7 @@ local function render(dataBlob)
 		local queued = #tagInfo.queued
 		local ratio = (crafting + queued) / total
 
-		mMon.writeLine(string.format("[%.2f%%] %s (Total: %d, Crafting: %d, Queued: %d)", ratio, tagInfo.displayName, total, crafting, queued))
+		mMon.writeLine(string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", ratio, tagInfo.displayName, total, crafting, queued))
 		
 		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
