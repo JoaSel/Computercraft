@@ -5,6 +5,10 @@ local function find(peripheralType)
         p.name = peripheral.getName(p)
     end
 
+    table.sort(peripherals, function(a, b)
+        return a.name < b.name
+    end)
+
     return unpack(peripherals)
 end
 
