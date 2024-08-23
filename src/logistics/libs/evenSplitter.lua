@@ -79,7 +79,7 @@ local function run()
 		if (#items > 0 or #fluids > 0) then
 			send(items, fluids)
 		else
-			os.sleep(2)
+			--os.sleep(2)
 		end
 	end
 end
