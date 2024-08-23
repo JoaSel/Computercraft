@@ -76,6 +76,7 @@ local function run()
 		local fluids = _input.tanks()
 
 		if (#items > 0 or #fluids > 0) then
+			print("sending")
 			send(items, fluids)
 		else
 			--os.sleep(2)
