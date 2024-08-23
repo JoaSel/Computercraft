@@ -1,6 +1,6 @@
 ---@diagnostic disable: need-check-nil
 
-package.path = package.path .. ";../core/?.lua"
+package.path = package.path .. ";../../core/?.lua"
 
 local pWrapper = require("peripheralWrapper")
 
