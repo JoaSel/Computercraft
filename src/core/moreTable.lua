@@ -30,4 +30,4 @@ local function removeAll(table, predicate)
     return #toRemove
 end
 
-return {  find = find, findKey = findKey, removeAll }
+return {  find = find, findKey = findKey, removeAll = removeAll }
