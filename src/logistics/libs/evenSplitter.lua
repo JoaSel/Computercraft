@@ -27,9 +27,7 @@ local function create(input, destinationType, onlyEmpty, verbose)
 
 	_verbose = verbose
 
-	if(_verbose) then
-		print(string.format("Setup evenSplitter with %d outputs.", #_destinations))
-	end
+	print(string.format("Setup evenSplitter with %d outputs.", #_destinations))
 end
 
 local function trySend(items, fluids, destination)
@@ -72,6 +70,7 @@ local function send(items, fluids)
 end
 
 local function run()
+	print("Starting to split!")
 	while (true) do
 		local items = _input.list()
 		local fluids = _input.tanks()

@@ -4,5 +4,5 @@ local evenSplitter = require("libs.evenSplitter")
 local input = "entangled:tile_27"
 local destinationType = "entangled:tile"
 
-evenSplitter.create(input, destinationType, true, true)
+evenSplitter.create(input, destinationType, false, true)
 evenSplitter.run()
