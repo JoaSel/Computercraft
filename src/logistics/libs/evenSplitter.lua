@@ -75,6 +75,8 @@ local function run()
 		local items = _input.list()
 		local fluids = _input.tanks()
 
+		dump.easy(_input.tanks())
+
 		if (#items > 0 or #fluids > 0) then
 			print("sending")
 			send(items, fluids)
