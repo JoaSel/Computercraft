@@ -75,11 +75,10 @@ local function run()
 		local items = _input.list()
 		local fluids = _input.tanks()
 
-		dump.easy(_input.tanks())
-		print(#fluids)
+		print(next(fluids))
+		print(next(fluids))
 
-		if (#items > 0 or #fluids > 0) then
-			print("sending")
+		if (#items > 0 or next(fluids)) then
 			send(items, fluids)
 		else
 			--os.sleep(2)
