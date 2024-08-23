@@ -14,4 +14,18 @@ local function findKey(table, predicate)
     end
 end
 
+local function removeAll(table, predicate)
+    local toDelete = {}
+
+    for key, value in pairs(table) do
+        if(predicate(value)) then
+            table.insert(toDelete, key)
+        end
+    end
+
+    for _, deleteKey in pairs(toDelete) do
+        table.remove(table, deleteKey)
+    end
+end
+
 return {  find = find, findKey = findKey }

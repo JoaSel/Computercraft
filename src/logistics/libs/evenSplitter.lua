@@ -19,7 +19,9 @@ local function create(input, destinationType, verbose)
 	local inputIndex = mTable.findKey(_destinations, function (d)
 		return d.name == _input.name
 	end)
-	
+
+	print(table.remove(_destinations, 1000))
+
 	print(inputIndex)
 
 	_verbose = verbose
