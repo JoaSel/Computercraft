@@ -28,8 +28,10 @@ local function create(input, destinationType, verbose)
 end
 
 local function trySend(items, destination)
-	local spaceLeft = destination.size() - #destination.list()
-	if (spaceLeft < #items) then
+	local itemSpaceLeft = destination.size() - #destination.list()
+	print(destination.tanks())
+
+	if (itemSpaceLeft < #items) then
 		return false
 	end
 
