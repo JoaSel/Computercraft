@@ -59,5 +59,6 @@ return
     setMonitor = setMonitor,
     newLine = newLine,
     writeLine = writeLine,
-    writeTabbedLine = writeTabbedLine
+    writeTabbedLine = writeTabbedLine,
+	toggleColor = toggleColor
 }

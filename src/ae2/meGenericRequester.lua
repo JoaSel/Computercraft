@@ -81,6 +81,13 @@ local function getDataBlob()
 end
 
 local tabData = { 2, 30, 5, 10 }
+local colorTable = {
+	["Ok"] = colors.green,
+	["Crafting"] = colors.yellow,
+	["Queued"] = colors.orange,
+	["Error"] = colors.red,
+}
+
 local function render(dataBlob)
 	monitor.clear()
 	monitor.setCursorPos(1, 1)
@@ -96,7 +103,9 @@ local function render(dataBlob)
 		mMon.writeLine(string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", ratio, tagInfo.displayName, total, crafting, queued))
 		
 		for _, itemRequest in pairs(tagInfo.crafting) do
+			mMon.toggleColor(colorTable[itemRequest.status])
 			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+			mMon.toggleColor()
 		end
 
 		mMon.newLine()
@@ -118,6 +127,7 @@ local function updateSingleStatus(itemRequest, tagInfo)
 	end
 
 	if(bridge.isItemCrafting(searchTbl)) then
+		itemRequest.startingTries = 0
 		itemRequest.status = "Crafting"
 		table.insert(tagInfo.crafting, itemRequest)
 		return
