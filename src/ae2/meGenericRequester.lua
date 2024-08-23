@@ -98,7 +98,7 @@ local function render(dataBlob)
 		local total = #itemRequests
 		local crafting =#tagInfo.crafting
 		local queued = #tagInfo.queued
-		local ratio = (crafting + queued) / total
+		local ratio = (total - crafting - queued) / total
 
 		mMon.writeLine(string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", ratio, tagInfo.displayName, total, crafting, queued))
 		
