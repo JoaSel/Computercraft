@@ -56,6 +56,17 @@ local tagInfos =
 		end,
 		crafting = {},
 		queued = {}
+	},
+	{
+		displayName = "G. Processors",
+		amount = 50,
+		batchSize = 1,
+		workers = 2,
+		validationFunc = function(item)
+			return string.match(item.name, "^gtceu:nano_processor")
+		end,
+		crafting = {},
+		queued = {}
 	}
 }
 
@@ -224,6 +235,6 @@ local dataBlob = getDataBlob()
 while (true) do
 	updateStatus(dataBlob)
 	render(dataBlob)
-	os.sleep(5)
+	os.sleep(2)
 end
 
