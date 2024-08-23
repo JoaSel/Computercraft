@@ -46,6 +46,10 @@ monitor.setTextScale(0.5)
 local function getDataBlob()
 	local craftableItems = bridge.listCraftableItems()
 
+	if(not craftableItems) then
+		craftableItems = bridge.listCraftableItems()
+	end
+
 	local ret = {}
 	for _, item in pairs(craftableItems) do
 		for i, tagInfo in pairs(tagInfos) do
