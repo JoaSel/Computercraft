@@ -41,7 +41,6 @@ local function adjustExistingItems(requiredItems)
 		if(existingItem) then
 			existingItem.needed = existingItem.needed - item.count
 		end
-		dump.easy(existingItem)
 	end
 end
 
