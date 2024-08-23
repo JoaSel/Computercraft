@@ -152,6 +152,7 @@ local function updateStatus(dataBlob)
 		end
 
 		local numCraftsToStart = tagInfo.workers - #tagInfo.crafting
+		print(string.format("Want to start %d crafts for %s", numCraftsToStart, tagInfo.displayName))
 		if(numCraftsToStart > 0) then
 			table.sort(tagInfo.queued, function (a, b)
 				return a.existingAmount < b.existingAmount
