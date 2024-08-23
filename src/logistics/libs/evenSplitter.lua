@@ -9,17 +9,21 @@ local pWrapper = require("peripheralWrapper")
 local _input = nil
 local _destinations = nil
 
+local _onlyEmpty = false
+
 local _verbose = false
 
 local destinationI = 1
 
-local function create(input, destinationType, verbose)
+local function create(input, destinationType, onlyEmpty, verbose)
 	_input = pWrapper.wrap(input)
 	_destinations = { pWrapper.find(destinationType) }
 
 	mTable.removeAll(_destinations, function (d)
 		return d.name == _input.name
 	end)
+
+	_onlyEmpty = onlyEmpty
 
 	_verbose = verbose
 
@@ -29,18 +33,23 @@ local function create(input, destinationType, verbose)
 end
 
 local function trySend(items, fluids, destination)
-	local itemSpaceLeft = destination.size() - #destination.list()
-	local presentFluids = destination.tanks()
+	local sendItemsCount = #items
+	local sendFluidsCount = #fluids
 
-	if ((#items > 0 and itemSpaceLeft < #items) or (#fluids > 0 and #presentFluids > 0)) then
+	local destinationItemsCount = #destination.list()
+	local destinationFluidsCount = #destination.tanks()
+	local itemSpaceLeft = destination.size() - destinationItemsCount
+	
+
+	if(_onlyEmpty and ((sendItemsCount > 0 and destinationItemsCount > 0) or (sendFluidsCount > 0 and destinationFluidsCount > 0))) then
+		return false
+	elseif ((sendItemsCount > 0 and itemSpaceLeft < sendItemsCount) or (sendFluidsCount > 0 and destinationFluidsCount > 0)) then
 		return false
 	end
 
 	for slot, _ in pairs(items) do
 		_input.pushItems(destination.name, slot)
 	end
-
-	dump.easy(fluids)
 
 	for _, fluid in pairs(fluids) do
 		_input.pushFluid(destination.name, nil, fluid.name)
