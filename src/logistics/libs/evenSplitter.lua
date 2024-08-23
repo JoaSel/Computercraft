@@ -21,6 +21,10 @@ local function create(input, destinationType, verbose)
 	end)
 
 	_verbose = verbose
+
+	if(_verbose) then
+		print("Setup evenSplitter with %d", 52)
+	end
 end
 
 local function trySend(items, destination)
