@@ -16,7 +16,10 @@ local function create(input, destinationType, verbose)
 	_input = pWrapper.wrap(input)
 	_destinations = { pWrapper.find(destinationType) }
 
-	local inputIndex = mTable.findKey(_destinations, _input)
+	local inputIndex = mTable.findKey(_destinations, function (d)
+		return d.name == _input.name
+	end)
+	
 	print(inputIndex)
 
 	_verbose = verbose
