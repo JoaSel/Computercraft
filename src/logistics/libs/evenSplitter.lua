@@ -47,7 +47,8 @@ local function trySend(items, fluids, destination)
 	for slot, _ in pairs(items) do
 		_input.pushItems(destination.name, slot)
 	end
-	
+
+	dump.easy(_input.tanks())
 	while #_input.tanks() > 0 do
 		_input.pushFluid(destination.name)
 	end
