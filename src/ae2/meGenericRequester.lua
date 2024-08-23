@@ -1,10 +1,8 @@
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/meTagRequester.lua
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/meGenericRequester.lua
 
 package.path = package.path .. ";../core/?.lua"
 
-local dump = require("dump")
 local mMon = require("moreMonitor")
-local aeNameUtil = require("libs.aeNameUtil")
 
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
@@ -79,7 +77,12 @@ local function render(dataBlob)
 	for i, itemRequests in pairs(dataBlob) do
 		local tagInfo = tagInfos[i]
 
-		mMon.writeLine(string.format("%s (Total: %d, Crafting: %d, Queued: %d)", tagInfo.displayName, #itemRequests, #tagInfo.crafting, #tagInfo.queued))
+		local total = #itemRequests
+		local crafting =#tagInfo.crafting
+		local queued = #tagInfo.queued
+		local ratio = (crafting + queued) / total
+
+		mMon.writeLine(string.format("[%.2f%%] %s (Total: %d, Crafting: %d, Queued: %d)", ratio, tagInfo.displayName, total, crafting, queued))
 		
 		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
