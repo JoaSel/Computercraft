@@ -3,6 +3,7 @@
 package.path = package.path .. ";../core/?.lua"
 
 local mMon = require("moreMonitor")
+local mTable = require("moreTable")
 
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
@@ -178,8 +179,11 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 			if(not success) then
 				print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, err))
 			else
-				-- itemRequest.status = "Crafting"
-				-- table.insert(tagInfo.crafting, itemRequest)
+				itemRequest.status = "Crafting"
+				table.insert(tagInfo.crafting, itemRequest)
+				mTable.removeAll(tagInfo.queued, function (r)
+					return r.name == itemRequest.name
+				end)
 			end
 
 			i = i + 1
@@ -218,7 +222,6 @@ end
 local dataBlob = getDataBlob()
 
 while (true) do
-	updateStatus(dataBlob)
 	updateStatus(dataBlob)
 	render(dataBlob)
 	os.sleep(5)
