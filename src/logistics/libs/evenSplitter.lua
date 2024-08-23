@@ -44,16 +44,13 @@ local function trySend(items, fluids, destination)
 		return false
 	end
 
-	dump.easy(fluids)
 	while next(_input.tanks()) do
 		_input.pushFluid(destination.name)
 	end
-	
+
 	for slot, _ in pairs(items) do
 		_input.pushItems(destination.name, slot)
 	end
-
-	
 
 	return true
 end
