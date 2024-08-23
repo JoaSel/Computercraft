@@ -43,7 +43,7 @@ local function trySend(items, fluids, destination)
 	dump.easy(fluids)
 
 	for _, fluid in pairs(fluids) do
-		_input.pushFluid(destination.name, nil, fluid)
+		_input.pushFluid(destination.name, nil, fluid.name)
 	end
 
 	return true
