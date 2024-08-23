@@ -75,7 +75,7 @@ local function run()
 		local items = _input.list()
 		local fluids = _input.tanks()
 
-		if (next(items) > 0 or next(fluids)) then
+		if (next(items) or next(fluids)) then
 			send(items, fluids)
 		else
 			--os.sleep(2)
