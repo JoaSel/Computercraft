@@ -145,7 +145,7 @@ local function updateSingleStatus(itemRequest, tagInfo)
 		itemRequest.existingAmount = 0
 	end
 
-	tagInfo.missingItems = (tagInfo.missingItems or 0) + math.max(tagInfo.amount - existingItem.amount, 0)
+	tagInfo.missingItems = (tagInfo.missingItems or 0) + math.max(tagInfo.amount - itemRequest.existingAmount, 0)
 
 	if(itemRequest.existingAmount >= tagInfo.amount) then
 		itemRequest.startingTries = 0
