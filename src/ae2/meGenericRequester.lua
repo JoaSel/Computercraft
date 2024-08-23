@@ -61,7 +61,7 @@ local tagInfos =
 		displayName = "G. Processors",
 		amount = 50,
 		batchSize = 1,
-		workers = 2,
+		workers = 1,
 		validationFunc = function(item)
 			return string.match(item.name, "^gtceu:nano_processor")
 		end,
