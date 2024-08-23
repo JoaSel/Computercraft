@@ -16,13 +16,11 @@ local function create(input, destinationType, verbose)
 	_input = pWrapper.wrap(input)
 	_destinations = { pWrapper.find(destinationType) }
 
-	local inputIndex = mTable.findKey(_destinations, function (d)
+	local removed = mTable.removeAll(_destinations, function (d)
 		return d.name == _input.name
 	end)
 
-	print(table.remove(_destinations, 1000))
-
-	print(inputIndex)
+	print(removed)
 
 	_verbose = verbose
 end
