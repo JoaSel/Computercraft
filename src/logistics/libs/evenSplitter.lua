@@ -2,6 +2,7 @@
 
 package.path = package.path .. ";../core/?.lua"
 
+local mTable = require("moreTable")
 local pWrapper = require("peripheralWrapper")
 
 local _input = nil
@@ -15,7 +16,7 @@ local function create(input, destinationType, verbose)
 	_input = pWrapper.wrap(input)
 	_destinations = { pWrapper.find(destinationType) }
 
-	local inputIndex = table.find(_destinations, _input)
+	local inputIndex = mTable.findKey(_destinations, _input)
 	print(inputIndex)
 
 	_verbose = verbose
