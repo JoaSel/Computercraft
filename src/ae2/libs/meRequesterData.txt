@@ -51,7 +51,7 @@
 		["batch"] = 1,
 		["workGroup"] = "Greg",
 		["offlineOnly"] = true
-	}
+	},
 	["gtceu:nano_processor_computer"] = {
 		["amount"] = 50,
 		["batch"] = 1,
