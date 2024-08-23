@@ -2,6 +2,7 @@
 
 package.path = package.path .. ";../core/?.lua"
 
+local dump = require("dump")
 local mTable = require("moreTable")
 local pWrapper = require("peripheralWrapper")
 
@@ -29,7 +30,7 @@ end
 
 local function trySend(items, destination)
 	local itemSpaceLeft = destination.size() - #destination.list()
-	print(destination.tanks())
+	dump.easy(destination.tanks())
 
 	if (itemSpaceLeft < #items) then
 		return false
