@@ -183,6 +183,8 @@ local function updateStatus(dataBlob)
 	for i, itemRequests in pairs(dataBlob) do
 		local tagInfo = tagInfos[i]
 
+		tagInfo.missingItems = 0
+
 		tagInfo.crafting = {}
 		tagInfo.queued = {}
 		tagInfo.stuck = {}
