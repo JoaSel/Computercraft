@@ -39,7 +39,6 @@ local function adjustExistingItems(requiredItems)
 		end
 		dump.easy(existingItem)
 	end
-	
 end
 
 local function handleItem(itemName, itemInfo)
@@ -94,9 +93,10 @@ while (true) do
 		print("No pattern found! Put a pattern in first slot.")
 	else
 		local requiredItems = getRequiredItems(firstItem.tag["in"])
-		adjustExistingItems(requiredItems)
 
 		repeat
+			adjustExistingItems(requiredItems)
+
 			local done = true
 			for itemName, itemInfo in pairs(requiredItems) do
 				itemInfo.status = handleItem(itemName, itemInfo)
