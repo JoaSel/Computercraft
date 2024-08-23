@@ -219,8 +219,8 @@ local dataBlob = getDataBlob()
 
 while (true) do
 	updateStatus(dataBlob)
-	render(dataBlob)
 	updateStatus(dataBlob)
+	render(dataBlob)
 	os.sleep(5)
 end
 
