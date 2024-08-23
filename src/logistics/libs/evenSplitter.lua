@@ -48,7 +48,7 @@ local function trySend(items, fluids, destination)
 		_input.pushItems(destination.name, slot)
 	end
 	for _, fluid in pairs(fluids) do
-		print(_input.pushFluid(destination.name, nil, fluid.name))
+		print(_input.pushFluid(destination.name, 2000000000, fluid.name))
 	end
 
 	return true
