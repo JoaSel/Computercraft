@@ -51,18 +51,7 @@
 		["batch"] = 1,
 		["workGroup"] = "Greg",
 		["offlineOnly"] = true
-	},
-	["gtceu:luv_electric_motor"] = {
-		["amount"] = 50,
-		["batch"] = 1,
-		["workGroup"] = "Greg",
-		["offlineOnly"] = true
-	},
-	["gtceu:luv_machine_hull"] = {
-		["amount"] = 10,
-		["batch"] = 1,
-		["workGroup"] = "Greg"
-	},
+	}
 	["gtceu:nano_processor_computer"] = {
 		["amount"] = 50,
 		["batch"] = 1,

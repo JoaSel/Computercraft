@@ -24,7 +24,7 @@ end
 local tagInfos =
 {
 	{
-		displayName = "GregTech Ingots",
+		displayName = "G. Ingots",
 		amount = 256,
 		batchSize = 16,
 		workers = 2,
@@ -35,12 +35,23 @@ local tagInfos =
 		queued = {}
 	},
 	{
-		displayName = "GregTech Motors",
+		displayName = "G. Motors",
 		amount = 50,
 		batchSize = 1,
 		workers = 2,
 		validationFunc = function(item)
 			return string.match(item.name, "^gtceu:") and string.match(item.name, "electric_motor$")
+		end,
+		crafting = {},
+		queued = {}
+	},
+	{
+		displayName = "G. Machine Hull",
+		amount = 50,
+		batchSize = 1,
+		workers = 2,
+		validationFunc = function(item)
+			return string.match(item.name, "^gtceu:") and string.match(item.name, "machine_hull$")
 		end,
 		crafting = {},
 		queued = {}
