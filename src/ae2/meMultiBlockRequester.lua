@@ -78,7 +78,7 @@ local colorTable = {
 local function render(requiredItems)
 	term.clear()
 	for itemName, itemInfo in pairs(requiredItems) do
-		mTerm.cprint(itemInfo.total .. " " .. itemName, colorTable[itemInfo.status])
+		mTerm.cprint(string.format("%d of %d %s", itemInfo.needed, itemInfo.total, itemName), colorTable[itemInfo.status])
 	end
 end
 
