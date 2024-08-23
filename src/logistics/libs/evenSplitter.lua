@@ -23,7 +23,7 @@ local function create(input, destinationType, verbose)
 	_verbose = verbose
 
 	if(_verbose) then
-		print("Setup evenSplitter with %d", 52)
+		print(string.format("Setup evenSplitter with %d outputs.", #_destinations))
 	end
 end
 
