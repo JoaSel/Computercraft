@@ -131,22 +131,23 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 	local i = 0
 	for _, itemRequest in pairs(queued) do
 		local toCraft = math.min(tagInfo.batchSize, tagInfo.amount - itemRequest.existingAmount)
-		
-		print(string.format("Trying to start craft for: %s...", itemRequest.name))
-		local success, err = bridge.craftItem({ name = itemRequest.name, count = toCraft})
-		if(not success) then
-			print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, err))
-		end
 
-		local _, evSuccess, evMessage = os.pullEvent("crafting")
-		print(string.format("%s", evMessage))
-		if(not evSuccess) then
-			print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, evMessage))
-		end
+		itemRequest.startingTries = (itemRequest.startingTries or 0) + 1
+		if(itemRequest.startingTries > 5) then
+			itemRequest.status = "Error"
+		else
+			local success, err = bridge.craftItem({ name = itemRequest.name, count = toCraft})
 
-		i = i + 1
-		if(i >= numCraftsToStart) then
-			return
+			if(not success) then
+				print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, err))
+			else
+				itemRequest.status = "Crafting"
+			end
+
+			i = i + 1
+			if(i >= numCraftsToStart) then
+				return
+			end
 		end
 	end
 end
