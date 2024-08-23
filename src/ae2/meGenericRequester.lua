@@ -96,11 +96,12 @@ local function render(dataBlob)
 		local tagInfo = tagInfos[i]
 
 		local total = #itemRequests
+		local totalSum = total * tagInfo.amount
 		local crafting =#tagInfo.crafting
 		local queued = #tagInfo.queued
-		local ratio = (total - crafting - queued) / total
+		local complete = ((totalSum- tagInfo.missingItems) / totalSum) * 100
 
-		mMon.writeLine(string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", ratio, tagInfo.displayName, total, crafting, queued))
+		mMon.writeLine(string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting, queued))
 		
 		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.toggleColor(colorTable[itemRequest.status])
@@ -131,6 +132,8 @@ local function updateSingleStatus(itemRequest, tagInfo)
 	else
 		itemRequest.existingAmount = 0
 	end
+
+	tagInfo.missingItems = (tagInfo.missingItems or 0) + math.max(tagInfo.amount - existingItem.amount, 0)
 
 	if(itemRequest.existingAmount > tagInfo.amount) then
 		itemRequest.startingTries = 0
