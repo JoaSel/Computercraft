@@ -72,7 +72,7 @@ local function send(items, fluids)
 end
 
 local function run()
-	--while (true) do
+	while (true) do
 		local items = _input.list()
 		local fluids = _input.tanks()
 
@@ -81,7 +81,7 @@ local function run()
 		else
 			os.sleep(2)
 		end
-	--end
+	end
 end
 
 
