@@ -16,11 +16,9 @@ local function create(input, destinationType, verbose)
 	_input = pWrapper.wrap(input)
 	_destinations = { pWrapper.find(destinationType) }
 
-	local removed = mTable.removeAll(_destinations, function (d)
+	mTable.removeAll(_destinations, function (d)
 		return d.name == _input.name
 	end)
-
-	print(removed)
 
 	_verbose = verbose
 end
