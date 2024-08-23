@@ -31,8 +31,8 @@ local function create(input, destinationType, onlyEmpty, verbose)
 end
 
 local function trySend(items, fluids, destination)
-	local sendItemsCount = #items
-	local sendFluidsCount = #fluids
+	local sendItemsCount = mTable.length(items)
+	local sendFluidsCount = mTable.length(fluids)
 
 	local destinationItemsCount = #destination.list()
 	local destinationFluidsCount = #destination.tanks()
@@ -75,10 +75,7 @@ local function run()
 		local items = _input.list()
 		local fluids = _input.tanks()
 
-		print(next(fluids))
-		print(next(fluids))
-
-		if (#items > 0 or next(fluids)) then
+		if (next(items) > 0 or next(fluids)) then
 			send(items, fluids)
 		else
 			--os.sleep(2)

@@ -30,4 +30,12 @@ local function removeAll(t, predicate)
     return #toRemove
 end
 
-return {  find = find, findKey = findKey, removeAll = removeAll }
+local function length(t)
+    local ret = 0
+    for _ in pairs(t) do
+        ret = ret + 1
+    end
+    return ret
+end
+
+return {  find = find, findKey = findKey, removeAll = removeAll, length = length }
