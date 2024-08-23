@@ -80,7 +80,7 @@ local function getDataBlob()
 	return ret
 end
 
-local tabData = { 2, 30, 5, 10 }
+local tabData = { 2, 30, 5, 10, 10 }
 local colorTable = {
 	["Ok"] = colors.green,
 	["Crafting"] = colors.yellow,
@@ -104,13 +104,13 @@ local function render(dataBlob)
 		
 		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.toggleColor(colorTable[itemRequest.status])
-			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount, itemRequest.startingTries)
 			mMon.toggleColor()
 		end
 
 		for _, itemRequest in pairs(tagInfo.stuck) do
 			mMon.toggleColor(colorTable[itemRequest.status])
-			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount, itemRequest.startingTries)
 			mMon.toggleColor()
 		end
 
