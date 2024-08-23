@@ -49,7 +49,7 @@ local function trySend(items, fluids, destination)
 		_input.pushFluid(destination.name)
 	end
 
-	for slot, _ in pairs(items) do
+	for slot, _ in pairs(_input.list()) do
 		print("pushing items to " .. destination.name)
 		_input.pushItems(destination.name, slot)
 	end
