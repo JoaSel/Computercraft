@@ -105,13 +105,13 @@ local function render(dataBlob)
 		
 		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.toggleColor(colorTable[itemRequest.status])
-			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount, itemRequest.startingTries)
+			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
 			mMon.toggleColor()
 		end
 
 		for _, itemRequest in pairs(tagInfo.stuck) do
 			mMon.toggleColor(colorTable[itemRequest.status])
-			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount, itemRequest.startingTries)
+			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
 			mMon.toggleColor()
 		end
 
