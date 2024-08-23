@@ -45,13 +45,11 @@ local function trySend(items, fluids, destination)
 	end
 
 	while next(_input.tanks()) do
-		print("pushing fluid to " .. destination.name)
-		_input.pushFluid(destination.name, 64000)
+		_input.pushFluid(destination.name)
 		os.sleep(1)
 	end
 
 	for slot, _ in pairs(items) do
-		print("pushing items to " .. destination.name)
 		_input.pushItems(destination.name, slot)
 	end
 
