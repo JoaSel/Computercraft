@@ -32,6 +32,10 @@ end
 local function adjustExistingItems(requiredItems)
 	local existing = chest.list()
 
+	for _, existingItem in pairs(requiredItems) do
+		existingItem.needed = existingItem.total
+	end
+
 	for _, item in pairs(existing) do
 		local existingItem = requiredItems[item.name]
 		if(existingItem) then
