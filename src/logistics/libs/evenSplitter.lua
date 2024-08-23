@@ -15,7 +15,7 @@ local function create(input, destinationType, verbose)
 	_input = pWrapper.wrap(input)
 	_destinations = { pWrapper.find(destinationType) }
 
-	local inputIndex = _destinations.find(_input)
+	local inputIndex = table.find(_destinations, _input)
 	print(inputIndex)
 
 	_verbose = verbose
