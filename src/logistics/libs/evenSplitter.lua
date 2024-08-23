@@ -28,11 +28,11 @@ local function create(input, destinationType, verbose)
 	end
 end
 
-local function trySend(items, destination)
+local function trySend(items, fluids, destination)
 	local itemSpaceLeft = destination.size() - #destination.list()
-	dump.easy(destination.tanks())
+	local presentFluids = destination.tanks()
 
-	if (itemSpaceLeft < #items) then
+	if ((#items > 0 and itemSpaceLeft < #items) or (#fluids > 0 and #presentFluids > 0)) then
 		return false
 	end
 
@@ -40,33 +40,41 @@ local function trySend(items, destination)
 		_input.pushItems(destination.name, slot)
 	end
 
+	dump.easy(fluids)
+
+	for _, fluid in pairs(fluids) do
+		_input.pushFluid(destination.name, nil, fluid)
+	end
+
 	return true
 end
 
-local function send(items)
+local function send(items, fluids)
 	repeat
 		local destination = _destinations[destinationI]
 
 		if(_verbose) then
 			print("Trying to send to " .. destination.name)
 		end
-		local success = trySend(items, destination)
+		local success = trySend(items, fluids, destination)
 
 		destinationI = (destinationI % #_destinations) + 1
 	until success
 end
 
 local function run()
-	while (true) do
+	--while (true) do
 		local items = _input.list()
-		if (#items > 0) then
-			send(items)
+		local fluids = _input.tanks()
+
+		if (#items > 0 or #fluids > 0) then
+			send(items, fluids)
 		else
 			os.sleep(2)
 		end
-	end
+	--end
 end
 
 
 
-return { create = create, run = run, hasTag = hasTag }
+return { create = create, run = run }
