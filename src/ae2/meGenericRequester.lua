@@ -178,8 +178,8 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 			if(not success) then
 				print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, err))
 			else
-				itemRequest.status = "Crafting"
-				table.insert(tagInfo.crafting, itemRequest)
+				-- itemRequest.status = "Crafting"
+				-- table.insert(tagInfo.crafting, itemRequest)
 			end
 
 			i = i + 1
@@ -220,6 +220,7 @@ local dataBlob = getDataBlob()
 while (true) do
 	updateStatus(dataBlob)
 	render(dataBlob)
+	updateStatus(dataBlob)
 	os.sleep(5)
 end
 
