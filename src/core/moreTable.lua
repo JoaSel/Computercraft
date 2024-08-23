@@ -14,4 +14,4 @@ local function findKey(table, predicate)
     end
 end
 
-return {  find, findKey }
+return {  find = find, findKey = findKey }
