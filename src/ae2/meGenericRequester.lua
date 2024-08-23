@@ -108,6 +108,12 @@ local function render(dataBlob)
 			mMon.toggleColor()
 		end
 
+		for _, itemRequest in pairs(tagInfo.stuck) do
+			mMon.toggleColor(colorTable[itemRequest.status])
+			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+			mMon.toggleColor()
+		end
+
 		mMon.newLine()
 	end
 end
@@ -145,6 +151,7 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 		itemRequest.startingTries = (itemRequest.startingTries or 0) + 1
 		if(itemRequest.startingTries > 5) then
 			itemRequest.status = "Error"
+			table.insert(tagInfo.stuck, itemRequest)
 		else
 			local success, err = bridge.craftItem({ name = itemRequest.name, count = toCraft})
 
@@ -169,6 +176,7 @@ local function updateStatus(dataBlob)
 
 		tagInfo.crafting = {}
 		tagInfo.queued = {}
+		tagInfo.stuck = {}
 
 		for _, itemRequest in pairs(itemRequests) do
 			updateSingleStatus(itemRequest, tagInfo)
