@@ -38,6 +38,9 @@ local function createSlider(name, maxValue, x, y, length, height, sliderColor, b
 		length = _mWidth + length
 	end
 
+	print(length)
+	print(_monitor.getSize())
+
 	-- fills in values
 	sliders[name] = {}
 	sliders[name]["maxValue"] = maxValue
