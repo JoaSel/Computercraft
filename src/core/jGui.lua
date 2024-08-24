@@ -111,6 +111,8 @@ local function drawNumbers(v, percentDraw)
 end
 
 local function draw(sliderName)
+	local oldColor = _monitor.getTextColor()
+
 	local slider = sliders[sliderName]
 	if(not slider) then
 		return
@@ -141,6 +143,7 @@ local function draw(sliderName)
 		end
 	end
 
+	_monitor.setTextColor(oldColor)
 	_monitor.setCursorPos(1, startY + slider.height)
 end
 
