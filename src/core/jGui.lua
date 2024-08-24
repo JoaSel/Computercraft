@@ -16,7 +16,7 @@ local function setMonitor(monitor)
 		error("Monitor Doesn't Support Colors")
 	end
 	_monitor = monitor
-	_, _mWidth = _monitor.getSize()
+	_mWidth, _  = _monitor.getSize()
 	_textScale = _monitor.getTextScale()
 end
 
