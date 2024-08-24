@@ -263,7 +263,7 @@ end
 parallel.waitForAny(
 	function()
 		while (true) do
-			updateStatus(dataBlob)
+			--updateStatus(dataBlob)
 			render(dataBlob)
 			os.sleep(2)
 		end
