@@ -29,9 +29,12 @@ local function click(x, y)
 	print(x)
 	print(y)
 
-	local test = next(sliders)
+	local slider = sliders[next(sliders)]
 
-	print(test)
+	print(slider.x)
+	print(slider.y)
+	print(slider.length)
+	print(slider.height)
 
 	if(not hit or not hit.onClick) then
 		return
