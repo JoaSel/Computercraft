@@ -266,6 +266,7 @@ parallel.waitForAny(
 			local event, button, x, y = os.pullEvent("monitor_touch")
 
 			print("The mouse button ", button, " was pressed at ", x, " and ", y)
+			onClick()
 			jGui.click(x, y)
 
 		end
