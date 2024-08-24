@@ -3,6 +3,7 @@
 package.path = package.path .. ";../core/?.lua"
 
 
+local dump = require("dump")
 local mMon = require("moreMonitor")
 local mTable = require("moreTable")
 local jGui = require("jGui")
@@ -256,7 +257,7 @@ jGui.draw()
 local dataBlob = getDataBlob()
 for key, value in pairs(dataBlob) do
 	print(key)
-	print(value.displayName)
+	dump.easy(value)
 end
 
 
