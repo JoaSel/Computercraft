@@ -256,7 +256,7 @@ jGui.draw()
 local dataBlob = getDataBlob()
 for key, value in pairs(dataBlob) do
 	print(key)
-	print(value)
+	print(value.displayName)
 end
 
 
