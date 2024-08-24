@@ -181,7 +181,7 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 		local toCraft = math.min(tagInfo.batchSize, tagInfo.amount - itemRequest.existingAmount)
 
 		itemRequest.startingTries = (itemRequest.startingTries or 0) + 1
-		if(itemRequest.startingTries > 5) then
+		if(itemRequest.startingTries > 5 and itemRequest.startingTries % 5 ~= 0) then
 			itemRequest.status = "Error"
 			table.insert(tagInfo.stuck, itemRequest)
 		else
