@@ -39,8 +39,8 @@ local function createSlider(name, maxValue, x, y, length, height, barForegroundC
 		length = _mWidth + length - x
 	end
 
-	print(length)
-	print(_monitor.getSize())
+	print("Length: " .. length)
+	print("Mon size: " .. _monitor.getSize())
 
 	-- fills in values
 	sliders[name] = {}
@@ -122,6 +122,7 @@ local function draw(name)
 					_monitor.setBackgroundColor(v.barBackgroundColor)
 					_monitor.setCursorPos(v.x, yPos)
 					_monitor.write(string.rep(" ", (1 / _textScale) * v.length))
+					print(_monitor.getCursorPos())
 
 					-- _monitor.setCursorPos(v.x, yPos)
 					-- _monitor.setBackgroundColor(v.barForegroundColor)
