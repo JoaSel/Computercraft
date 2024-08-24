@@ -227,8 +227,8 @@ local function renderDefault(dataBlob)
 	end
 end
 
-local function renderTag(dataBlob, tag)
-	local tagInfo = dataBlob[tag]
+local function renderTag(tag)
+	local tagInfo = tagInfos[tag]
 
 	jGui.writeClickableText("HomeBtn", "right")
 	mMon.writeCenter(tag)
