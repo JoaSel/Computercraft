@@ -91,7 +91,7 @@ local function render()
 		for _, activeJob in pairs(activeJobs) do
 			local color = colors.yellow
 			if (activeJob.stuck) then
-				color = color.red
+				color = colors.red
 			end
 			mMon.writeLine(
 				"\t[" ..
