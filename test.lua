@@ -15,7 +15,7 @@ jGui.createSlider("bulkSlider", 100, 2, 2, -2, 2, colors.red, colors.lime, "Perc
 jGui.draw()
 
 while true do
-    os.sleep(1)
+    
 end
 
 -- local x, y = monitor.getSize()
