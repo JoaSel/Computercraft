@@ -6,8 +6,8 @@ local _mWidth = 0
 
 local infoTypeLookup = {
 	["None"] = 0,
-	["Percent"] = 0,
-	["Numbers"] = 0
+	["Percent"] = 1,
+	["Numbers"] = 2
 }
 
 local function setMonitor(monitor)
@@ -30,7 +30,7 @@ local function createSlider(name, maxValue, x, y, length, height, sliderColor, b
 		barColor = colors.white
 	end
 	print(infoType)
-	
+
 	if(infoType == nil or infoTypeLookup[infoType] == nil) then
 		infoType = 1
 	else
