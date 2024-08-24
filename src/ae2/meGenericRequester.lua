@@ -269,7 +269,10 @@ parallel.waitForAny(
 
 			print("The mouse button ", button, " was pressed at ", x, " and ", y)
 			onClick()
-			jGui.click(x, y)()
+			local  test = jGui.click(x, y)
+			if(test) then
+				test()
+			end
 
 		end
 	end
