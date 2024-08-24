@@ -131,6 +131,7 @@ local function draw(sliderName)
 		_monitor.setCursorPos(startX, yPos)
 		_monitor.setBackgroundColor(slider.barForegroundColor)
 		_monitor.write(string.rep(" ", percentDraw))
+		print(_monitor.getCursorPos())
 
 		if (slider.infoType == 1) then
 			drawPercent(slider, percentDraw)
