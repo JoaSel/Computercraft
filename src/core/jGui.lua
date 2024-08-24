@@ -23,7 +23,7 @@ end
 
 local function click(x, y)
 	local hit = mTable.firstOrDefault(sliders, function (s)
-		return x >= s.hitBox.xMin and x <= s.hitBox.xMax and y >= s.hitBox.yMin and x <= s.hitBox.yMax
+		return x >= s.x and x <= s.x + s.length and y >= s.y and x <= s.y + s.height
 	end)
 
 	if(not hit or not hit.onClick) then
@@ -49,15 +49,9 @@ local function createSlider(name, maxValue, length, height, barForegroundColor, 
 	else
 		infoType = infoTypeLookup[infoType]
 	end
-	-- if(length <= 0) then
-	-- 	length = _mWidth + length - x + 1
-	-- end
 
-	-- fills in values
 	sliders[name] = {}
 	sliders[name].maxValue = maxValue
-	-- sliders[name].x = x
-	-- sliders[name].y = y
 	sliders[name].originalLength = length
 	sliders[name].height = height
 	sliders[name].barForegroundColor = barForegroundColor
