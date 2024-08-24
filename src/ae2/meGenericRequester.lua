@@ -230,8 +230,10 @@ end
 local function renderTag(tag)
 	local tagInfo = tagInfos[tag]
 
+	dump.easy(tagInfo)
+
 	jGui.writeClickableText("HomeBtn", "right")
-	mMon.writeCenter(tag)
+	mMon.writeCenter(tagInfo.displayName)
 	mMon.newLine()
 
 	for _, itemRequest in pairs(tagInfo.stuck) do
