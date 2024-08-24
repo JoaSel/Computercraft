@@ -21,8 +21,9 @@ local colorTable = {
 	["FailedToStart"] = colors.red,
 }
 
-mMon.setMonitor(monitor)
 monitor.setTextScale(0.5)
+mMon.setMonitor(monitor)
+
 
 local function requestItem(itemName, requestInfo, existingItem)
 	local craftCount = math.min(requestInfo.batch, requestInfo.amount - existingItem.amount)

@@ -72,9 +72,9 @@ local tagInfos =
 	}
 }
 
+monitor.setTextScale(0.5)
 mMon.setMonitor(monitor)
 jGui.setMonitor(monitor)
-monitor.setTextScale(0.5)
 
 
 local function getDataBlob()
