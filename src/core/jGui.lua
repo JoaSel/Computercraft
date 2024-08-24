@@ -36,7 +36,7 @@ local function createSlider(name, maxValue, x, y, length, height, barForegroundC
 	else
 		infoType = infoTypeLookup[infoType]
 	end
-	if(length < 0) then
+	if(length <= 0) then
 		length = _mWidth + length - x + 2
 	end
 
