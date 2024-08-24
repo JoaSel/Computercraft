@@ -230,8 +230,6 @@ end
 local function renderTag(tagIndex)
 	local tagInfo = tagInfos[tagIndex]
 
-	dump.easy(tagInfo)
-
 	jGui.writeClickableText("HomeBtn", "right")
 	mMon.writeCenter(tagInfo.displayName)
 	mMon.newLine()
