@@ -251,8 +251,8 @@ local dataBlob = getDataBlob()
 parallel.waitForAny(
 	function()
 		while (true) do
-			updateStatus(dataBlob)
-			render(dataBlob)
+			--updateStatus(dataBlob)
+			--render(dataBlob)
 			os.sleep(2)
 		end
 	end,
