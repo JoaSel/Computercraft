@@ -1,5 +1,7 @@
 ---@diagnostic disable: need-check-nil
 
+local mTable = require("moreTable")
+
 local sliders = {}
 local _monitor = nil
 local _mWidth = 0
@@ -22,12 +24,10 @@ local function setMonitor(monitor, enableClicking)
 	end
 end
 
-local function onClick()
-	local event, side, xPos, yPos = os.pullEvent("monitor_touch")
-
-	print(event .. " => Side: " .. tostring(side) .. ", " ..
-		"X: " .. tostring(xPos) .. ", " ..
-		"Y: " .. tostring(yPos))
+local function hit(x, y)
+	return mTable.firstOrDefault(sliders, function (s)
+		return x >= s.hitBox.xMin and x <= s.hitBox.xMax and y >= s.hitBox.yMin and x <= s.hitBox.yMax
+	end)
 end
 
 local function createSlider(name, maxValue, x, y, length, height, barForegroundColor, barBackgroundColor, infoType)
@@ -62,6 +62,12 @@ local function createSlider(name, maxValue, x, y, length, height, barForegroundC
 	sliders[name].value = 0
 	sliders[name].textColor = colors.black
 	sliders[name].infoType = infoType
+
+	sliders[name].hitBox = {}
+	sliders[name].hitBox.xMin = x
+	sliders[name].hitBox.xMax = x + length
+	sliders[name].hitBox.yMin = y
+	sliders[name].hitBox.yMax = y + height
 end
 
 local function updateSlider(name, value)
@@ -155,5 +161,6 @@ return {
 	setMonitor = setMonitor,
 	createSlider = createSlider,
 	updateSlider = updateSlider,
-	draw = draw
+	draw = draw,
+	hit = hit
 }

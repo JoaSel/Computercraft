@@ -38,4 +38,14 @@ local function length(t)
     return ret
 end
 
-return {  find = find, findKey = findKey, removeAll = removeAll, length = length }
+local function firstOrDefault(t, predicate)
+    for key, value in pairs(t) do
+        if(predicate(value)) then
+            return value
+        end
+    end
+
+    return nil
+end
+
+return {  find = find, findKey = findKey, removeAll = removeAll, length = length, firstOrDefault = firstOrDefault }

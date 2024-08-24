@@ -246,9 +246,7 @@ local function render(dataBlob)
 end
 
 local dataBlob = getDataBlob()
---jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, "Percent")
-
-
+jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, "Percent")
 
 parallel.waitForAny(
 	function()
@@ -263,6 +261,8 @@ parallel.waitForAny(
 			local event, button, x, y = os.pullEvent("monitor_touch")
 
 			print("The mouse button ", button, " was pressed at ", x, " and ", y)
+			local clickedAt = jGui.hit(x, y)
+			print(clickedAt)
 		end
 	end
 )
