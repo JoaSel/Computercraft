@@ -17,6 +17,7 @@ local function setMonitor(monitor)
 	end
 	_monitor = monitor
 	_, _mWidth = _monitor.getSize()
+	_textScale = _monitor.getTextScale()
 end
 
 local function createSlider(name, maxValue, x, y, length, height, barForegroundColor, barBackgroundColor, infoType)
@@ -39,7 +40,7 @@ local function createSlider(name, maxValue, x, y, length, height, barForegroundC
 		length = _mWidth + length - x
 	end
 
-	print(_monitor.getTextScale())
+	print("textScale: " .. _monitor.getTextScale())
 	print("Length: " .. length)
 	print("Mon size: ")
 	print(_monitor.getSize())
