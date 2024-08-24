@@ -33,7 +33,7 @@ local function click(x, y)
 	hit.onClick()
 end
 
-local function createSlider(name, maxValue, x, y, length, height, barForegroundColor, barBackgroundColor, infoType, onClick)
+local function createSlider(name, maxValue, length, height, barForegroundColor, barBackgroundColor, infoType, onClick)
 	onClick()
 
 	if (sliders[name]) then
@@ -51,15 +51,15 @@ local function createSlider(name, maxValue, x, y, length, height, barForegroundC
 	else
 		infoType = infoTypeLookup[infoType]
 	end
-	if(length <= 0) then
-		length = _mWidth + length - x + 1
-	end
+	-- if(length <= 0) then
+	-- 	length = _mWidth + length - x + 1
+	-- end
 
 	-- fills in values
 	sliders[name] = {}
 	sliders[name].maxValue = maxValue
-	sliders[name].x = x
-	sliders[name].y = y
+	-- sliders[name].x = x
+	-- sliders[name].y = y
 	sliders[name].length = length
 	sliders[name].height = height
 	sliders[name].barForegroundColor = barForegroundColor
@@ -68,12 +68,6 @@ local function createSlider(name, maxValue, x, y, length, height, barForegroundC
 	sliders[name].textColor = colors.black
 	sliders[name].infoType = infoType
 	sliders[name].onClick = onClick
-
-	sliders[name].hitBox = {}
-	sliders[name].hitBox.xMin = x
-	sliders[name].hitBox.xMax = x + length
-	sliders[name].hitBox.yMin = y
-	sliders[name].hitBox.yMax = y + height
 end
 
 local function updateSlider(name, value)
@@ -115,52 +109,33 @@ local function drawNumbers(v, percentDraw)
 	drawCenterInfo(v, text, percentDraw)
 end
 
-local function draw(name)
-	if _monitor == nil then
-		setMonitor(term)
-		if not (_monitor.isColor()) then
-			error("Monitor doesn't support Colors")
+local function draw(sliderName)
+	local slider = sliders[sliderName]
+	if(not slider) then
+		return
+	end
+
+	local startX, startY = _monitor.getCursorPos()
+
+	local percentDraw = slider.length * (slider.value / slider.maxValue)
+	for yPos = startY, startY + slider.height - 1 do
+		_monitor.setBackgroundColor(slider.barBackgroundColor)
+		_monitor.setCursorPos(startX, yPos)
+		_monitor.write(string.rep(" ", slider.length))
+
+		_monitor.setCursorPos(startX, yPos)
+		_monitor.setBackgroundColor(slider.barForegroundColor)
+		_monitor.write(string.rep(" ", percentDraw))
+
+		if (slider.infoType == 1) then
+			drawPercent(slider, percentDraw)
+		end
+		if (slider.infoType == 2) then
+			drawNumbers(slider, percentDraw)
 		end
 	end
 
-	if not (type(name) == "table") then
-		if not (type(name) == "string") then
-			name = {}
-			for k, v in pairs(sliders) do
-				table.insert(name, k)
-			end
-		else
-			name = { name }
-		end
-	end
-
-	for k, v in pairs(sliders) do
-		for s = 0, #name + 1 do
-			if k == name[s] then
-				local percentDraw = v.length * (v.value / v.maxValue)
-				for yPos = v.y, v.y + v.height - 1 do
-					_monitor.setBackgroundColor(v.barBackgroundColor)
-					_monitor.setCursorPos(v.x, yPos)
-					_monitor.write(string.rep(" ", v.length))
-
-					_monitor.setCursorPos(v.x, yPos)
-					_monitor.setBackgroundColor(v.barForegroundColor)
-					_monitor.write(string.rep(" ", percentDraw))
-
-					if (v.infoType == 1) then
-						drawPercent(v, percentDraw)
-					end
-					if (v.infoType == 2) then
-						drawNumbers(v, percentDraw)
-					end
-				end
-			end
-		end
-
-		_monitor.setBackgroundColor(colors.black)
-		_monitor.setTextColor(colors.white)
-		_monitor.setCursorPos(1, 1)
-	end
+	_monitor.setCursorPos(1, startY + slider.height)
 end
 
 return {

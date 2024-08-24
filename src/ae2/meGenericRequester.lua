@@ -250,7 +250,7 @@ local function onClick()
 	print("testing")
 end
 
-jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, "Percent", onClick)
+-- jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, "Percent", onClick)
 jGui.draw()
 
 local dataBlob = getDataBlob()

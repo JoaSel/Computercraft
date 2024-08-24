@@ -1,18 +1,24 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua test.lua
 
-local jGui = require("src.core.jGui")
-local dump = require("src.core.dump")
+package.path = package.path .. ";./core/?.lua"
+
+local jGui = require("jGui")
+local dump = require("dump")
 
 local monitor = peripheral.find("monitor")
 
 monitor.setTextScale(0.5)
 monitor.clear()
 
-jGui.setMonitor(monitor, true)
+jGui.setMonitor(monitor)
 
-jGui.createSlider("bulkSlider", 100, 2, 2, -2, 2, colors.red, colors.lime, "Percent")
+jGui.createSlider("testSlider", 100, -2, 2, colors.red, colors.lime, "Percent")
 
-jGui.draw()
+jGui.draw("testSlider")
+
+monitor.setCursorPos(5, 5)
+
+jGui.draw("testSlider")
 
 -- while true do
     
