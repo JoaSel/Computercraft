@@ -71,7 +71,7 @@ local function createSlider(name, maxValue, length, height, barForegroundColor, 
 	sliders[name].onClick = onClick
 end
 
-local function updateSlider(name, value)
+local function updateSliderValue(name, value)
 	local slider = sliders[name]
 	if (slider) then
 		if (value > slider.maxValue) then
@@ -80,6 +80,16 @@ local function updateSlider(name, value)
 			error(name .. ": Value can not be under 0!")
 		end
 		slider.value = value
+	end
+end
+
+local function updateSliderMaxValue(name, maxValue)
+	local slider = sliders[name]
+	if (slider) then
+		if maxValue < 0 then
+			error(name .. ": Max value can not be under 0!")
+		end
+		slider.maxValue = maxValue
 	end
 end
 
@@ -153,7 +163,8 @@ end
 return {
 	setMonitor = setMonitor,
 	createSlider = createSlider,
-	updateSlider = updateSlider,
+	updateSliderValue = updateSliderValue,
+	updateSliderMaxValue = updateSliderMaxValue,
 	draw = draw,
 	click = click
 }
