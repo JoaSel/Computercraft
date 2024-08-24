@@ -93,7 +93,6 @@ local function getDataBlob()
 				table.insert(ret[i], { 
 					name = item.name,
 					displayName = item.displayName,
-					-- amount = item.amount,
 					status = "Queued"
 				})
 			end
@@ -124,7 +123,9 @@ local function render(dataBlob)
 		local queued = #tagInfo.queued
 		local complete = ((totalSum- tagInfo.missingItems) / totalSum) * 100
 
-		mMon.writeLine(string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting, queued))
+		local writeColor = #tagInfo.stuck > 0 and colorTable["Error"] or colorTable["Ok"]
+		mMon.writeLine(string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting, queued), writeColor)
+		mMon.toggleColor()
 		
 		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.toggleColor(colorTable[itemRequest.status])
