@@ -134,10 +134,10 @@ local function draw(sliderName)
 		print(_monitor.getCursorPos())
 
 		if (slider.infoType == 1) then
-			drawPercent(slider, percentDraw)
+			--drawPercent(slider, percentDraw)
 		end
 		if (slider.infoType == 2) then
-			drawNumbers(slider, percentDraw)
+			--drawNumbers(slider, percentDraw)
 		end
 	end
 
