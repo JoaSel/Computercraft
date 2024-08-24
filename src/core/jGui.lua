@@ -24,13 +24,19 @@ local function setMonitor(monitor, enableClicking)
 	end
 end
 
-local function hit(x, y)
-	return mTable.firstOrDefault(sliders, function (s)
+local function click(x, y)
+	local hit = mTable.firstOrDefault(sliders, function (s)
 		return x >= s.hitBox.xMin and x <= s.hitBox.xMax and y >= s.hitBox.yMin and x <= s.hitBox.yMax
 	end)
+
+	if(not hit) then
+		return
+	end
+
+	hit.onClick()
 end
 
-local function createSlider(name, maxValue, x, y, length, height, barForegroundColor, barBackgroundColor, infoType)
+local function createSlider(name, maxValue, x, y, length, height, barForegroundColor, barBackgroundColor, infoType, onClick)
 	if (sliders[name]) then
 		error(name .. " already exist!")
 	end
@@ -62,6 +68,7 @@ local function createSlider(name, maxValue, x, y, length, height, barForegroundC
 	sliders[name].value = 0
 	sliders[name].textColor = colors.black
 	sliders[name].infoType = infoType
+	sliders[name].onClick = onClick
 
 	sliders[name].hitBox = {}
 	sliders[name].hitBox.xMin = x
