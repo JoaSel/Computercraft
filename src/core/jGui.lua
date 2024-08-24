@@ -35,7 +35,7 @@ local function createSlider(name, maxValue, x, y, length, height, sliderColor, b
 		infoType = infoTypeLookup[infoType]
 	end
 	if(length < 0) then
-		length = _mWidth - length
+		length = _mWidth + length
 	end
 
 	-- fills in values
