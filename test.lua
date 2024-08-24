@@ -1,13 +1,10 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua test.lua
 
-local pWrapper = require("src.core.peripheralWrapper")
+local jGui = require("src.core.jGui")
 local dump = require("src.core.dump")
 
-local x = pWrapper.find("blockReader")
 
-for index, value in pairs(x.getBlockData().recipeLogic) do
-    print(index)
-    print(value)
-end
+jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, "Percent")
 
-dump.easy(x.getBlockData().recipeLogic.lastOriginRecipe)
+jGui.draw()
+
