@@ -128,6 +128,8 @@ local function render(dataBlob)
 			writeColor = colorTable["Error"]
 		elseif(crafting == 0 and queued == 0) then
 			writeColor = colorTable["Ok"]
+		elseif(crafting == 0 and queued > 0) then
+			writeColor = colorTable["Queued"]
 		end
 
 
