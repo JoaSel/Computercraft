@@ -18,13 +18,14 @@ local function setMonitor(monitor, enableClicking)
 	_mWidth, _ = _monitor.getSize()
 
 	if (enableClicking) then
-		local clickRoutine = coroutine.create(function()
-			local event, side, xPos, yPos = os.pullEvent("monitor_touch")
+		-- local clickRoutine = coroutine.create(function()
+			
+		-- end)
+		local event, side, xPos, yPos = os.pullEvent("monitor_touch")
 			
 			print(event .. " => Side: " .. tostring(side) .. ", " ..
 				"X: " .. tostring(xPos) .. ", " ..
 				"Y: " .. tostring(yPos))
-		end)
 	end
 end
 
