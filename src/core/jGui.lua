@@ -91,11 +91,11 @@ local function drawCenterInfo(slider, text, percentDraw)
 	_monitor.setTextColor(slider.textColor)
 
 	for i = 0, #text do
-		if (textX + i > percentDraw + 2) then
-			_monitor.setBackgroundColor(slider.barBackgroundColor)
-		else
-			_monitor.setBackgroundColor(slider.barForegroundColor)
-		end
+		-- if (textX + i > percentDraw + 2) then
+		-- 	_monitor.setBackgroundColor(slider.barBackgroundColor)
+		-- else
+		-- 	_monitor.setBackgroundColor(slider.barForegroundColor)
+		-- end
 		_monitor.write(string.sub(text, i, i))
 	end
 end
@@ -134,10 +134,10 @@ local function draw(sliderName)
 		print(_monitor.getCursorPos())
 
 		if (slider.infoType == 1) then
-			--drawPercent(slider, percentDraw)
+			drawPercent(slider, percentDraw)
 		end
 		if (slider.infoType == 2) then
-			--drawNumbers(slider, percentDraw)
+			drawNumbers(slider, percentDraw)
 		end
 	end
 
