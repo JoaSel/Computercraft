@@ -223,25 +223,31 @@ local function renderDefault(dataBlob)
 		mMon.toggleColor()
 		jGui.drawSlider(tagInfo.displayName, 3)
 
-		for _, itemRequest in pairs(tagInfo.crafting) do
-			mMon.toggleColor(colorTable[itemRequest.status])
-			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
-			mMon.toggleColor()
-		end
-
-		for _, itemRequest in pairs(tagInfo.stuck) do
-			mMon.toggleColor(colorTable[itemRequest.status])
-			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
-			mMon.toggleColor()
-		end
-
 		mMon.newLine()
 	end
 end
 
 local function renderTag(dataBlob, tag)
+	local tagInfo = dataBlob[tag]
+
 	jGui.writeClickableText("HomeBtn", "right")
 	mMon.writeCenter(tag)
+
+	for _, itemRequest in pairs(tagInfo.stuck) do
+		mMon.toggleColor(colorTable[itemRequest.status])
+		mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+		mMon.toggleColor()
+	end
+	for _, itemRequest in pairs(tagInfo.crafting) do
+		mMon.toggleColor(colorTable[itemRequest.status])
+		mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+		mMon.toggleColor()
+	end
+	for _, itemRequest in pairs(tagInfo.queued) do
+		mMon.toggleColor(colorTable[itemRequest.status])
+		mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+		mMon.toggleColor()
+	end
 end
 
 local renderPage = "HOME"
