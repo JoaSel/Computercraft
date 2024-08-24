@@ -26,6 +26,9 @@ local function click(x, y)
 		return x >= s.x and x <= s.x + s.length and y >= s.y and x <= s.y + s.height
 	end)
 
+	print(x)
+	print(y)
+
 	if(not hit or not hit.onClick) then
 		return
 	end
