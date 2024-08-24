@@ -120,7 +120,7 @@ local function drawNumbers(v, percentDraw)
 	drawCenterInfo(v, text, percentDraw)
 end
 
-local function draw(sliderName)
+local function draw(sliderName, indent)
 	local oldColor = _monitor.getTextColor()
 	local oldBackgroundColor = _monitor.getBackgroundColor()
 
@@ -128,10 +128,9 @@ local function draw(sliderName)
 	if(not slider) then
 		return
 	end
-
 	local startX, startY = _monitor.getCursorPos()
 
-	slider.x = startX
+	slider.x = startX + (indent or 0)
 	slider.y = startY
 	slider.length = slider.originalLength > 0 and slider.originalLength or _mWidth + slider.originalLength - slider.x
 
@@ -139,10 +138,10 @@ local function draw(sliderName)
 	for yPos = slider.y, slider.y + slider.height - 1 do
 		print(yPos)
 		_monitor.setBackgroundColor(slider.barBackgroundColor)
-		_monitor.setCursorPos(startX, yPos)
+		_monitor.setCursorPos(slider.x, yPos)
 		_monitor.write(string.rep(" ", slider.length))
 
-		_monitor.setCursorPos(startX, yPos)
+		_monitor.setCursorPos(slider.x, yPos)
 		_monitor.setBackgroundColor(slider.barForegroundColor)
 		_monitor.write(string.rep(" ", percentDraw))
 		print(_monitor.getCursorPos())

@@ -227,6 +227,7 @@ local function render(dataBlob)
 		string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting,
 			queued), writeColor)
 		mMon.toggleColor()
+		monitor.setCursorPos()
 		jGui.draw(tagInfo.displayName)
 
 		for _, itemRequest in pairs(tagInfo.crafting) do
@@ -243,8 +244,6 @@ local function render(dataBlob)
 
 		mMon.newLine()
 	end
-
-	--
 end
 
 local function onClick()
