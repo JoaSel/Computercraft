@@ -170,18 +170,18 @@ local function updateStatus(dataBlob)
 		tagInfo.queued = {}
 		tagInfo.stuck = {}
 
-		for _, itemRequest in pairs(itemRequests) do
-			updateSingleStatus(itemRequest, tagInfo)
-		end
+		-- for _, itemRequest in pairs(itemRequests) do
+		-- 	updateSingleStatus(itemRequest, tagInfo)
+		-- end
 
-		local numCraftsToStart = tagInfo.workers - #tagInfo.crafting
-		if(numCraftsToStart > 0) then
-			table.sort(tagInfo.queued, function (a, b)
-				return a.existingAmount < b.existingAmount
-			end)
+		-- local numCraftsToStart = tagInfo.workers - #tagInfo.crafting
+		-- if(numCraftsToStart > 0) then
+		-- 	table.sort(tagInfo.queued, function (a, b)
+		-- 		return a.existingAmount < b.existingAmount
+		-- 	end)
 
-			startCrafting(tagInfo.queued, numCraftsToStart, tagInfo)
-		end
+		-- 	startCrafting(tagInfo.queued, numCraftsToStart, tagInfo)
+		-- end
 	end
 end
 
@@ -272,7 +272,7 @@ end)
 parallel.waitForAny(
 	function()
 		while (true) do
-			--updateStatus(dataBlob)
+			updateStatus(dataBlob)
 			render(dataBlob)
 			os.sleep(2)
 		end
