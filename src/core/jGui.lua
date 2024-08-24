@@ -2,6 +2,7 @@
 
 local sliders = {}
 local _monitor = nil
+local _mWidth = 0
 
 local None = 0
 local Percent = 1
@@ -12,6 +13,7 @@ local function setMonitor(monitor)
 		error("Monitor Doesn't Support Colors")
 	end
 	_monitor = monitor
+	_, _mWidth = _monitor.getSize()
 end
 
 local function createSlider(name, maxValue, x, y, length, height, sliderColor, barColor, infoType)
@@ -27,6 +29,9 @@ local function createSlider(name, maxValue, x, y, length, height, sliderColor, b
 	end
 	if infoType == nil then
 		infoType = 1
+	end
+	if(y < 0) then
+		y = _mWidth - y
 	end
 
 	-- fills in values
@@ -84,7 +89,7 @@ end
 
 local function draw(name)
 	if _monitor == nil then
-		_monitor = term
+		setMonitor(term)
 		if not (_monitor.isColor()) then
 			error("Monitor doesn't support Colors")
 		end
