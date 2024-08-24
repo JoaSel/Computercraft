@@ -42,6 +42,7 @@ local function createSlider(name, maxValue, x, y, length, height, barForegroundC
 	print("Length: " .. length)
 	print("Mon size: ")
 	print(_monitor.getSize())
+	print("----------------")
 	
 
 	-- fills in values
