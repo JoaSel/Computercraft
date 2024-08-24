@@ -119,7 +119,7 @@ local function draw(sliderName)
 	slider.y = startY
 
 	local percentDraw = slider.length * (slider.value / slider.maxValue)
-	for yPos = startY, startY + slider.height - 1 do
+	for yPos = slider.y, slider.y + slider.height - 1 do
 		_monitor.setBackgroundColor(slider.barBackgroundColor)
 		_monitor.setCursorPos(startX, yPos)
 		_monitor.write(string.rep(" ", slider.length))
