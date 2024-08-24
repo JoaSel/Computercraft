@@ -122,9 +122,9 @@ local function draw(name)
 					_monitor.write(string.rep(" ", v.length))
 					print(_monitor.getCursorPos())
 
-					-- _monitor.setCursorPos(v.x, yPos)
-					-- _monitor.setBackgroundColor(v.barForegroundColor)
-					-- _monitor.write(string.rep(" ", percentDraw))
+					_monitor.setCursorPos(v.x, yPos)
+					_monitor.setBackgroundColor(v.barForegroundColor)
+					_monitor.write(string.rep(" ", percentDraw))
 
 					if (v.infoType == 1) then
 						drawPercent(v, percentDraw)
