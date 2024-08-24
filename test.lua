@@ -5,12 +5,12 @@ local dump = require("src.core.dump")
 
 local monitor = peripheral.find("monitor")
 
+monitor.setTextScale(0.5)
 monitor.clear()
 
-monitor.setTextScale(0.5)
 jGui.setMonitor(monitor)
 
-jGui.createSlider("bulkSlider", 100, 2, 3, -2, 3, colors.red, colors.lime, "Percent")
+jGui.createSlider("bulkSlider", 100, 2, 2, -2, 3, colors.red, colors.lime, "Percent")
 
 jGui.draw()
 
