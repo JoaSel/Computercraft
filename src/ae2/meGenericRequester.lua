@@ -2,7 +2,6 @@
 
 package.path = package.path .. ";../core/?.lua"
 
-
 local dump = require("dump")
 local mMon = require("moreMonitor")
 local mTable = require("moreTable")
@@ -228,6 +227,7 @@ local function render(dataBlob)
 		string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting,
 			queued), writeColor)
 		mMon.toggleColor()
+		jGui.draw(tagInfo.displayName)
 
 		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.toggleColor(colorTable[itemRequest.status])
@@ -244,20 +244,17 @@ local function render(dataBlob)
 		mMon.newLine()
 	end
 
-	--jGui.draw()
+	--
 end
 
 local function onClick()
 	print("testing")
 end
 
--- jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, "Percent", onClick)
-jGui.draw()
 
 local dataBlob = getDataBlob()
-for key, value in pairs(dataBlob) do
-	print(key)
-	dump.easy(value)
+for _, tagInfo in pairs(tagInfos) do
+	jGui.createSlider(tagInfo.displayName, 100, -2, 2, colors.red, colors.lime, "Percent", onClick)
 end
 
 
