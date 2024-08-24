@@ -118,8 +118,6 @@ local function draw(sliderName)
 	slider.x = startX
 	slider.y = startY
 
-	exit()
-
 	local percentDraw = slider.length * (slider.value / slider.maxValue)
 	for yPos = slider.y, slider.y + slider.height - 1 do
 		print(yPos)
