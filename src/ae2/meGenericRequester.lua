@@ -246,8 +246,7 @@ end
 
 local renderPage = "HOME"
 local function render(dataBlob)
-	monitor.clear()
-	monitor.setCursorPos(1, 1)
+	jGui.resetClickables();
 
 	if(renderPage == "HOME") then
 		renderDefault(dataBlob)

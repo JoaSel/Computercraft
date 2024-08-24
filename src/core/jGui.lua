@@ -38,12 +38,20 @@ local function click(x, y)
 	hit.onClick()
 end
 
+
 local function resetClickables()
 	mTable.forEach(clickables, function (c)
 		c.x = 1000
 		c.y = 1000
 	end)
 end
+
+local function reset()
+	resetClickables()
+	_monitor.clear()
+	_monitor.setCursorPos(1, 1)
+end
+
 
 local function createClickableText(id, text, onClick)
 	local clickable = {
@@ -202,5 +210,6 @@ return {
 	click = click,
 	createClickableText= createClickableText,
 	writeClickableText = writeClickableText,
+	reset = reset,
 	resetClickables = resetClickables
 }
