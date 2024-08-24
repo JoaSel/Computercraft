@@ -40,7 +40,7 @@ local function createSlider(name, maxValue, x, y, length, height, barForegroundC
 		length = _mWidth + length - x
 	end
 
-	print("textScale: " .. _monitor.getTextScale())
+	print("textScale: " .. _textScale)
 	print("Length: " .. length)
 	print("Mon size: ")
 	print(_monitor.getSize())
