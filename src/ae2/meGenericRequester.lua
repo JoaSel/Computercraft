@@ -239,6 +239,11 @@ local function renderDefault(dataBlob)
 	end
 end
 
+local function renderTag(dataBlob, tag)
+	jGui.writeClickableText("HomeBtn")
+	mMon.writeCenter(tag)
+end
+
 local renderPage = "HOME"
 local function render(dataBlob)
 	monitor.clear()
@@ -247,7 +252,7 @@ local function render(dataBlob)
 	if(renderPage == "HOME") then
 		renderDefault(dataBlob)
 	else
-		mMon.writeCenter("◄ " .. renderPage)
+		renderTag(dataBlob, renderPage)
 	end
 end
 
@@ -258,7 +263,8 @@ for _, tagInfo in pairs(tagInfos) do
 		render(dataBlob)
 	end)
 end
-jGui.createClickableText("Home", "Home", function ()
+
+jGui.createClickableText("HomeBtn", "Home", function ()
 	renderPage = "HOME"
 	render(dataBlob)
 end)
