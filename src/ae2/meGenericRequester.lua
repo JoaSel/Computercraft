@@ -252,16 +252,11 @@ local function render(dataBlob)
 	end
 end
 
-
-local function onClick()
-	print("testing")
-end
-
-
 local dataBlob = getDataBlob()
 for _, tagInfo in pairs(tagInfos) do
 	jGui.createSlider(tagInfo.displayName, 100, -2, 2, colors.lime, colors.red, "Percent", function ()
 		renderPage = tagInfo.displayName
+		render(dataBlob)
 	end)
 end
 
