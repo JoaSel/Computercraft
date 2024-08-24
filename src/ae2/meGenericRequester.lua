@@ -214,6 +214,10 @@ local function render(dataBlob)
 		local queued = #tagInfo.queued
 		local complete = ((totalSum- tagInfo.missingItems) / totalSum) * 100
 
+		jGui.updateSliderMaxValue(tagInfo.displayName, 200)
+		jGui.updateSliderValue(tagInfo.displayName, 100)
+		
+
 		local writeColor = colorTable["Crafting"]
 		if(#tagInfo.stuck > 0) then
 			writeColor = colorTable["Error"]
