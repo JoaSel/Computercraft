@@ -171,5 +171,5 @@ return {
 	createSlider = createSlider,
 	updateSlider = updateSlider,
 	draw = draw,
-	hit = hit
+	click = click
 }
