@@ -123,7 +123,14 @@ local function render(dataBlob)
 		local queued = #tagInfo.queued
 		local complete = ((totalSum- tagInfo.missingItems) / totalSum) * 100
 
-		local writeColor = #tagInfo.stuck > 0 and colorTable["Error"] or colorTable["Ok"]
+		local writeColor = colorTable["Crafting"]
+		if(#tagInfo.stuck > 0) then
+			writeColor = colorTable["Error"]
+		elseif(crafting == 0 and queued == 0) then
+			writeColor = colorTable["Ok"]
+		end
+
+
 		mMon.writeLine(string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting, queued), writeColor)
 		mMon.toggleColor()
 		
