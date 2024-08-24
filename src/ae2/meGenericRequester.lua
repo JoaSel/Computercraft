@@ -221,7 +221,7 @@ local function renderDefault(dataBlob)
 		string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting,
 			queued), writeColor)
 		mMon.toggleColor()
-		jGui.draw(tagInfo.displayName, 3)
+		jGui.drawSlider(tagInfo.displayName, 3)
 
 		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.toggleColor(colorTable[itemRequest.status])
