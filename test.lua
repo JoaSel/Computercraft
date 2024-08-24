@@ -10,7 +10,7 @@ monitor.clear()
 monitor.setTextScale(1)
 jGui.setMonitor(monitor)
 
-jGui.createSlider("bulkSlider", 100, 5, 3, -2, 3, colors.red, colors.lime, "Percent")
+jGui.createSlider("bulkSlider", 100, 7, 3, -2, 3, colors.red, colors.lime, "Percent")
 
 jGui.draw()
 
