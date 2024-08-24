@@ -2,8 +2,8 @@
 
 local sliders = {}
 local monitor = nil
-local mWidth = nil
-local mHeight = nil
+-- local mWidth = nil
+-- local mHeight = nil
 
 local None = 0
 local Percent = 1
@@ -14,13 +14,6 @@ local function setMonitor(peripheral)
 		error("Monitor Doesn't Support Colors")
 	end
 	monitor = peripheral
-	mWidth, _ = peripheral.getSize()
-end
-
-local function writeCenter(text)
-	local _, y = monitor.getCursorPos()
-	monitor.setCursorPos(math.floor((mWidth / 2) - (#text / 2)) + 1, y)
-	monitor.write(text)
 end
 
 local function createSlider(name, maxValue, x, y, length, height, sliderColor, barColor, infoType)
@@ -141,11 +134,7 @@ end
 
 return {
 	setMonitor = setMonitor,
-	writeCenter = writeCenter,
 	createSlider = createSlider,
 	updateSlider = updateSlider,
-	drawCenterInfo = drawCenterInfo,
-	drawPercent = drawPercent,
-	drawNumbers = drawNumbers,
 	draw = draw
 }

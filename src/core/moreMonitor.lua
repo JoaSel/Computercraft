@@ -2,10 +2,12 @@
 
 local _monitor = nil
 local _oldColor = nil
+local _mWidth = nil
 
 local function setMonitor(monitor)
     _monitor = monitor
     _oldColor = _monitor.getTextColor()
+	_mWidth, _ = _monitor.getSize()
 end
 
 local function newLine()
@@ -53,6 +55,18 @@ local function toggleColor(color)
     end
 end
 
+local function writeCenter(text, line)
+	local y = 0
+	if(line) then
+		y = line
+	else
+		_, y = _monitor.getCursorPos()
+	end
+
+	_monitor.setCursorPos(math.floor((_mWidth / 2) - (#text / 2)) + 1, y)
+	_monitor.write(text)
+end
+
 
 return
 {
@@ -60,5 +74,6 @@ return
     newLine = newLine,
     writeLine = writeLine,
     writeTabbedLine = writeTabbedLine,
-	toggleColor = toggleColor
+	toggleColor = toggleColor,
+	writeCenter = writeCenter
 }
