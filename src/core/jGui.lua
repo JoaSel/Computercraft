@@ -30,9 +30,8 @@ local function createSlider(name, maxValue, x, y, length, height, sliderColor, b
 	if infoType == nil then
 		infoType = 1
 	end
-	if(y < 0) then
-		y = _mWidth - y
-		print(y)
+	if(length < 0) then
+		length = _mWidth - length
 	end
 
 	-- fills in values

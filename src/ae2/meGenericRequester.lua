@@ -104,58 +104,6 @@ local function getDataBlob()
 	return ret
 end
 
-local tabData = { 2, 30, 5, 10, 10 }
-local colorTable = {
-	["Ok"] = colors.green,
-	["Crafting"] = colors.yellow,
-	["Queued"] = colors.orange,
-	["Error"] = colors.red,
-}
-
-local function render(dataBlob)
-	monitor.clear()
-	monitor.setCursorPos(1, 1)
-
-	for i, itemRequests in pairs(dataBlob) do
-		local tagInfo = tagInfos[i]
-
-		local total = #itemRequests
-		local totalSum = total * tagInfo.amount
-		local crafting =#tagInfo.crafting
-		local queued = #tagInfo.queued
-		local complete = ((totalSum- tagInfo.missingItems) / totalSum) * 100
-
-		local writeColor = colorTable["Crafting"]
-		if(#tagInfo.stuck > 0) then
-			writeColor = colorTable["Error"]
-		elseif(crafting == 0 and queued == 0) then
-			writeColor = colorTable["Ok"]
-		elseif(crafting == 0 and queued > 0) then
-			writeColor = colorTable["Queued"]
-		end
-
-
-		mMon.writeLine(string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting, queued), writeColor)
-		mMon.toggleColor()
-		
-		for _, itemRequest in pairs(tagInfo.crafting) do
-			mMon.toggleColor(colorTable[itemRequest.status])
-			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
-			mMon.toggleColor()
-		end
-
-		for _, itemRequest in pairs(tagInfo.stuck) do
-			mMon.toggleColor(colorTable[itemRequest.status])
-			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
-			mMon.toggleColor()
-		end
-
-		mMon.newLine()
-	end
-
-	jGui.draw()
-end
-
 local function updateSingleStatus(itemRequest, tagInfo)
 	local searchTbl = {name = itemRequest.name}
 
@@ -242,6 +190,59 @@ local function updateStatus(dataBlob)
 			startCrafting(tagInfo.queued, numCraftsToStart, tagInfo)
 		end
 	end
+end
+
+
+local tabData = { 2, 30, 5, 10, 10 }
+local colorTable = {
+	["Ok"] = colors.green,
+	["Crafting"] = colors.yellow,
+	["Queued"] = colors.orange,
+	["Error"] = colors.red,
+}
+
+local function render(dataBlob)
+	monitor.clear()
+	monitor.setCursorPos(1, 1)
+
+	for i, itemRequests in pairs(dataBlob) do
+		local tagInfo = tagInfos[i]
+
+		local total = #itemRequests
+		local totalSum = total * tagInfo.amount
+		local crafting =#tagInfo.crafting
+		local queued = #tagInfo.queued
+		local complete = ((totalSum- tagInfo.missingItems) / totalSum) * 100
+
+		local writeColor = colorTable["Crafting"]
+		if(#tagInfo.stuck > 0) then
+			writeColor = colorTable["Error"]
+		elseif(crafting == 0 and queued == 0) then
+			writeColor = colorTable["Ok"]
+		elseif(crafting == 0 and queued > 0) then
+			writeColor = colorTable["Queued"]
+		end
+
+
+		mMon.writeLine(string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting, queued), writeColor)
+		mMon.toggleColor()
+		
+		for _, itemRequest in pairs(tagInfo.crafting) do
+			mMon.toggleColor(colorTable[itemRequest.status])
+			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+			mMon.toggleColor()
+		end
+
+		for _, itemRequest in pairs(tagInfo.stuck) do
+			mMon.toggleColor(colorTable[itemRequest.status])
+			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+			mMon.toggleColor()
+		end
+
+		mMon.newLine()
+	end
+
+	jGui.draw()
 end
 
 local dataBlob = getDataBlob()
