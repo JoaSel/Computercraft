@@ -12,7 +12,7 @@ monitor.clear()
 
 jGui.setMonitor(monitor)
 
-jGui.createSlider("testSlider", 100, -2, 2, colors.red, colors.lime, "Percent")
+jGui.createSlider("testSlider", 100, 20, 2, colors.red, colors.lime, "Percent")
 
 jGui.draw("testSlider")
 
@@ -26,5 +26,6 @@ jGui.draw("testSlider")
 
 -- local x, y = monitor.getSize()
 -- monitor.setCursorPos(x, 1)
+
 -- monitor.write("Test")
 
