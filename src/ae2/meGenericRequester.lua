@@ -243,7 +243,7 @@ local function render(dataBlob)
 		mMon.newLine()
 	end
 
-	jGui.draw()
+	--jGui.draw()
 end
 
 local function onClick()
@@ -254,6 +254,10 @@ end
 jGui.draw()
 
 local dataBlob = getDataBlob()
+for key, value in pairs(dataBlob) do
+	print(key)
+	print(value)
+end
 
 
 parallel.waitForAny(
