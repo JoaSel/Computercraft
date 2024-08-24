@@ -54,4 +54,4 @@ local function forEach(t, func)
     end
 end
 
-return {  find = find, findKey = findKey, removeAll = removeAll, length = length, firstOrDefault = firstOrDefault }
+return {  find = find, findKey = findKey, removeAll = removeAll, length = length, firstOrDefault = firstOrDefault, forEach = forEach }
