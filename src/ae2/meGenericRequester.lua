@@ -248,7 +248,7 @@ local function render(dataBlob)
 	if(renderPage == "DEFAULT") then
 		renderDefault(dataBlob)
 	else
-		mMon.writeCenter(renderPage)
+		mMon.writeCenter("◄ " .. renderPage)
 	end
 end
 
