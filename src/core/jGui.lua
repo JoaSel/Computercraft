@@ -13,16 +13,12 @@ local infoTypeLookup = {
 	["Numbers"] = 2
 }
 
-local function setMonitor(monitor, enableClicking)
+local function setMonitor(monitor)
 	if not (monitor.isColor()) then
 		error("Monitor Doesn't Support Colors")
 	end
 	_monitor   = monitor
 	_mWidth, _ = _monitor.getSize()
-
-	if (enableClicking) then
-		--parallel.waitForAny
-	end
 end
 
 local function click(x, y)
@@ -32,7 +28,7 @@ local function click(x, y)
 
 	dump.easy(hit)
 
-	if(not hit) then
+	if(not hit or not hit.onClick) then
 		return
 	end
 

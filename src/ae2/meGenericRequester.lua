@@ -250,7 +250,7 @@ local function onClick()
 end
 
 local dataBlob = getDataBlob()
-jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, "Percent")
+jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, "Percent", onClick)
 jGui.draw()
 
 parallel.waitForAny(
