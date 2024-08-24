@@ -29,6 +29,8 @@ local function click(x, y)
 		return x >= s.hitBox.xMin and x <= s.hitBox.xMax and y >= s.hitBox.yMin and x <= s.hitBox.yMax
 	end)
 
+	print(hit)
+
 	if(not hit) then
 		return
 	end
