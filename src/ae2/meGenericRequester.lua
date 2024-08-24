@@ -263,7 +263,7 @@ for _, tagInfo in pairs(tagInfos) do
 	end)
 end
 
-jGui.createClickableText("HomeBtn", "<Back>", function ()
+jGui.createClickableText("HomeBtn", "X", function ()
 	renderPage = "HOME"
 	render(dataBlob)
 end)
