@@ -32,6 +32,7 @@ local function createSlider(name, maxValue, x, y, length, height, sliderColor, b
 	end
 	if(y < 0) then
 		y = _mWidth - y
+		print(y)
 	end
 
 	-- fills in values
