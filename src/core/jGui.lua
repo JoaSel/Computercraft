@@ -26,13 +26,11 @@ local function click(x, y)
 		return x >= s.hitBox.xMin and x <= s.hitBox.xMax and y >= s.hitBox.yMin and x <= s.hitBox.yMax
 	end)
 
-	dump.easy(hit)
-
 	if(not hit or not hit.onClick) then
 		return
 	end
 
-	return hit.onClick
+	hit.onClick()
 end
 
 local function createSlider(name, maxValue, x, y, length, height, barForegroundColor, barBackgroundColor, infoType, onClick)
