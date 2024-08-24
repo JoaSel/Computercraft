@@ -158,8 +158,8 @@ while (true) do
 	moveToBulk()
 
 	if (not created) then
-		jGui.createSlider("bulkSlider", bulkTot, 2, 2, mWidth - 2, 3, colors.red, colors.lime, jGui.Numbers)
-		jGui.createSlider("nbtSlider", nbtTot, 2, 7, mWidth - 2, 3, colors.red, colors.lime, jGui.Numbers)
+		jGui.createSlider("bulkSlider", bulkTot, 2, 2, mWidth - 2, 3, colors.red, colors.lime, "Numbers")
+		jGui.createSlider("nbtSlider", nbtTot, 2, 7, mWidth - 2, 3, colors.red, colors.lime, "Numbers")
 		created = true
 	end
 
