@@ -15,6 +15,6 @@ jGui.createSlider("bulkSlider", 100, 2, 3, -2, 3, colors.red, colors.lime, "Perc
 --jGui.draw()
 
 local x, y = monitor.getSize()
-monitor.setCursorPos(x - 1, 1)
+monitor.setCursorPos(x, 1)
 monitor.write("Test")
 
