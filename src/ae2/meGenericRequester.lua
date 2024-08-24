@@ -27,7 +27,7 @@ end
 local tagInfos =
 {
 	{
-		displayName = "G. Ingots",
+		displayName = "Greg Ingots",
 		amount = 256,
 		batchSize = 16,
 		workers = 2,
@@ -36,16 +36,19 @@ local tagInfos =
 		end
 	},
 	{
-		displayName = "G. Motors",
+		displayName = "Greg Componens",
 		amount = 50,
 		batchSize = 1,
 		workers = 2,
 		validationFunc = function(item)
-			return string.match(item.name, "^gtceu:") and string.match(item.name, "electric_motor$")
+			return
+				(string.match(item.name, "^gtceu:") and (
+					string.match(item.name, "electric_motor$") or
+					string.match(item.name, "robot_arm$")))
 		end
 	},
 	{
-		displayName = "G. Machine Hull",
+		displayName = "Greg Machine Hull",
 		amount = 50,
 		batchSize = 1,
 		workers = 2,
@@ -54,7 +57,7 @@ local tagInfos =
 		end
 	},
 	{
-		displayName = "G. Processors",
+		displayName = "Greg Processors",
 		amount = 50,
 		batchSize = 1,
 		workers = 1,
