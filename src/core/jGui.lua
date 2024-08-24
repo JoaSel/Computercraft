@@ -3,7 +3,12 @@
 local mTable = require("moreTable")
 local dump = require("dump")
 
+local clickables = {}
+
 local sliders = {}
+local clickableTexts = {}
+
+
 local _monitor = nil
 local _mWidth = 0
 
@@ -17,21 +22,55 @@ local function setMonitor(monitor)
 	if not (monitor.isColor()) then
 		error("Monitor Doesn't Support Colors")
 	end
-	_monitor   = monitor
+	_monitor = monitor
 	_mWidth, _ = _monitor.getSize()
 end
 
 local function click(x, y)
-	local hit = mTable.firstOrDefault(sliders, function (s)
+	local hit = mTable.firstOrDefault(clickables, function (s)
 		return x >= s.x and x <= s.x + s.length and y >= s.y and y <= s.y + s.height
 	end)
-	
+
 	if(not hit or not hit.onClick) then
 		return
 	end
 
 	hit.onClick()
 end
+
+local function resetClickables()
+	mTable.forEach(clickables, function (c)
+		c.x = 1000
+		c.y = 1000
+	end)
+end
+
+local function createClickableText(id, text, onClick)
+	local clickable = {
+		id = id,
+		text = text,
+		x = 1000,
+		y = 1000,
+		length = string.len(text),
+		height = 1,
+		onClick = onClick
+	}
+
+	clickableTexts[id] = clickable
+	table.insert(clickables, clickable)
+end
+
+local function writeClickableText(id)
+	local clickableText = clickableTexts[id]
+	if(not clickableText) then
+		return
+	end
+
+	clickableText.x, clickableText.y = _monitor.getCursorPos()
+	_monitor.write(clickableText.text)
+end
+
+
 
 local function createSlider(name, maxValue, length, height, barForegroundColor, barBackgroundColor, infoType, onClick)
 	if (sliders[name]) then
@@ -64,7 +103,10 @@ local function createSlider(name, maxValue, length, height, barForegroundColor, 
 	sliders[name].y = 1000
 	sliders[name].length = 0
 
-	sliders[name].onClick = onClick
+	if(onClick) then
+		sliders[name].onClick = onClick
+		table.insert(clickables, sliders[name])
+	end
 end
 
 local function updateSliderValue(name, value)
@@ -116,7 +158,7 @@ local function drawNumbers(v, percentDraw)
 	drawCenterInfo(v, text, percentDraw)
 end
 
-local function draw(sliderName, indent)
+local function drawSlider(sliderName, indent)
 	local oldColor = _monitor.getTextColor()
 	local oldBackgroundColor = _monitor.getBackgroundColor()
 
@@ -158,6 +200,9 @@ return {
 	createSlider = createSlider,
 	updateSliderValue = updateSliderValue,
 	updateSliderMaxValue = updateSliderMaxValue,
-	draw = draw,
-	click = click
+	drawSlider = drawSlider,
+	click = click,
+	createClickableText= createClickableText,
+	writeClickableText = writeClickableText,
+	resetClickables = resetClickables
 }
