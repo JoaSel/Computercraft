@@ -32,7 +32,7 @@ local function click(x, y)
 		return
 	end
 
-	hit.onClick()
+	return hit.onClick
 end
 
 local function createSlider(name, maxValue, x, y, length, height, barForegroundColor, barBackgroundColor, infoType, onClick)

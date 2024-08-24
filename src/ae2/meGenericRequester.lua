@@ -269,7 +269,7 @@ parallel.waitForAny(
 
 			print("The mouse button ", button, " was pressed at ", x, " and ", y)
 			onClick()
-			jGui.click(x, y)
+			jGui.click(x, y)()
 
 		end
 	end
