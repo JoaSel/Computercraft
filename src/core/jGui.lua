@@ -80,18 +80,18 @@ local function updateSlider(name, value)
 	end
 end
 
-local function drawCenterInfo(v, text, percentDraw)
-	local textX = math.floor(v.x + (v.length / 2) - (#text / 2))
-	local textY = math.floor(v.y + v.height - (v.height / 2))
+local function drawCenterInfo(slider, text, percentDraw)
+	local textX = math.floor(slider.x + (slider.length / 2) - (#text / 2))
+	local textY = math.floor(slider.y + slider.height - (slider.height / 2))
 
 	_monitor.setCursorPos(textX, textY)
-	_monitor.setTextColor(v.textColor)
+	_monitor.setTextColor(slider.textColor)
 
 	for i = 0, #text do
 		if (textX + i > percentDraw + 2) then
-			_monitor.setBackgroundColor(v.barBackgroundColor)
+			_monitor.setBackgroundColor(slider.barBackgroundColor)
 		else
-			_monitor.setBackgroundColor(v.barForegroundColor)
+			_monitor.setBackgroundColor(slider.barForegroundColor)
 		end
 		_monitor.write(string.sub(text, i, i))
 	end
@@ -114,6 +114,9 @@ local function draw(sliderName)
 	end
 
 	local startX, startY = _monitor.getCursorPos()
+
+	slider.x = startX
+	slider.y = startY
 
 	local percentDraw = slider.length * (slider.value / slider.maxValue)
 	for yPos = startY, startY + slider.height - 1 do
