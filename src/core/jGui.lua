@@ -129,7 +129,7 @@ local function draw(name)
 				for yPos = v.y, v.y + v.height - 1 do
 					_monitor.setBackgroundColor(v.barBackgroundColor)
 					_monitor.setCursorPos(v.x, yPos)
-					_monitor.write(string.rep(" ", (1 / _textScale) * v.length))
+					_monitor.write(string.rep(" ", v.length))
 					print(_monitor.getCursorPos())
 
 					-- _monitor.setCursorPos(v.x, yPos)
