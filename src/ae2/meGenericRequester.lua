@@ -249,7 +249,7 @@ end
 
 local dataBlob = getDataBlob()
 for _, tagInfo in pairs(tagInfos) do
-	jGui.createSlider(tagInfo.displayName, 100, -2, 2, colors.red, colors.lime, "Percent", onClick)
+	jGui.createSlider(tagInfo.displayName, 100, -2, 2, colors.lime, colors.red, "Percent", onClick)
 end
 
 
