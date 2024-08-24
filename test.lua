@@ -14,9 +14,15 @@ jGui.setMonitor(monitor)
 
 jGui.createSlider("testSlider", 100, 20, 2, colors.red, colors.lime, "Percent")
 
+monitor.setCursorPos(2, 2)
+
 jGui.draw("testSlider")
 
 monitor.setCursorPos(5, 5)
+
+jGui.draw("testSlider")
+
+monitor.setCursorPos(5, 10)
 
 jGui.draw("testSlider")
 
