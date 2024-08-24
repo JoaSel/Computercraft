@@ -219,14 +219,15 @@ local function render(dataBlob)
 			writeColor = colorTable["Error"]
 		elseif(crafting == 0 and queued == 0) then
 			writeColor = colorTable["Ok"]
-		elseif(crafting == 0 and queued > 0) then
+		elseif (crafting == 0 and queued > 0) then
 			writeColor = colorTable["Queued"]
 		end
 
-
-		mMon.writeLine(string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting, queued), writeColor)
+		mMon.writeLine(
+		string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting,
+			queued), writeColor)
 		mMon.toggleColor()
-		
+
 		for _, itemRequest in pairs(tagInfo.crafting) do
 			mMon.toggleColor(colorTable[itemRequest.status])
 			mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
@@ -258,19 +259,15 @@ local dataBlob = getDataBlob()
 parallel.waitForAny(
 	function()
 		while (true) do
-			--updateStatus(dataBlob)
-			--render(dataBlob)
+			updateStatus(dataBlob)
+			render(dataBlob)
 			os.sleep(2)
 		end
 	end,
 	function()
-		
-
 		while true do
-			local event, button, x, y = os.pullEvent("monitor_touch")
-			print(button)
+			local _, _, x, y = os.pullEvent("monitor_touch")
 			jGui.click(x, y)
-
 		end
 	end
 )
