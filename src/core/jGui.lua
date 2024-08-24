@@ -37,7 +37,7 @@ local function createSlider(name, maxValue, x, y, length, height, barForegroundC
 		infoType = infoTypeLookup[infoType]
 	end
 	if(length < 0) then
-		length = _mWidth + length - x + 1
+		length = _mWidth + length - x + 2
 	end
 
 	print("textScale: " .. _textScale)
