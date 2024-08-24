@@ -4,9 +4,11 @@ local sliders = {}
 local _monitor = nil
 local _mWidth = 0
 
-local None = 0
-local Percent = 1
-local Numbers = 2
+local infoTypeLookup = {
+	["None"] = 0,
+	["Percent"] = 0,
+	["Numbers"] = 0
+}
 
 local function setMonitor(monitor)
 	if not (monitor.isColor()) then
@@ -27,9 +29,12 @@ local function createSlider(name, maxValue, x, y, length, height, sliderColor, b
 	if barColor == nil then
 		barColor = colors.white
 	end
-	if infoType == nil then
+	if(infoType == nil or infoTypeLookup[infoType] == nil) then
 		infoType = 1
+	else
+		infoType = infoTypeLookup[infoType]
 	end
+
 	if(length < 0) then
 		length = _mWidth - length
 	end
