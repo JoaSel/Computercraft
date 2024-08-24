@@ -2,8 +2,10 @@
 
 package.path = package.path .. ";../core/?.lua"
 
+
 local mMon = require("moreMonitor")
 local mTable = require("moreTable")
+local jGui = require("jGui")
 
 local bridge = peripheral.find("meBridge")
 local monitor = peripheral.find("monitor")
@@ -71,8 +73,8 @@ local tagInfos =
 }
 
 mMon.setMonitor(monitor)
+jGui.setMonitor(monitor)
 monitor.setTextScale(0.5)
-
 
 
 local function getDataBlob()
@@ -150,6 +152,8 @@ local function render(dataBlob)
 
 		mMon.newLine()
 	end
+
+	jGui.draw()
 end
 
 local function updateSingleStatus(itemRequest, tagInfo)
@@ -241,6 +245,8 @@ local function updateStatus(dataBlob)
 end
 
 local dataBlob = getDataBlob()
+
+jGui.createSlider("bulkSlider", 100, 2, 25, 50, 3, colors.red, colors.lime, jGui.Numbers)
 
 while (true) do
 	updateStatus(dataBlob)

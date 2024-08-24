@@ -1,19 +1,17 @@
 ---@diagnostic disable: need-check-nil
 
 local sliders = {}
-local monitor = nil
--- local mWidth = nil
--- local mHeight = nil
+local _monitor = nil
 
 local None = 0
 local Percent = 1
 local Numbers = 2
 
-local function setMonitor(peripheral)
-	if not (peripheral.isColor()) then
+local function setMonitor(monitor)
+	if not (monitor.isColor()) then
 		error("Monitor Doesn't Support Colors")
 	end
-	monitor = peripheral
+	_monitor = monitor
 end
 
 local function createSlider(name, maxValue, x, y, length, height, sliderColor, barColor, infoType)
@@ -61,16 +59,16 @@ local function drawCenterInfo(v, text, percentDraw)
 	local textX = math.floor(v.x + (v.length / 2) - (#text / 2))
 	local textY = math.floor(v.y + v.height - (v.height / 2))
 
-	monitor.setCursorPos(textX, textY)
-	monitor.setTextColor(v.textColor)
+	_monitor.setCursorPos(textX, textY)
+	_monitor.setTextColor(v.textColor)
 
 	for i = 0, #text do
 		if (textX + i > percentDraw + 2) then
-			monitor.setBackgroundColor(v.barColor)
+			_monitor.setBackgroundColor(v.barColor)
 		else
-			monitor.setBackgroundColor(v.sliderColor)
+			_monitor.setBackgroundColor(v.sliderColor)
 		end
-		monitor.write(string.sub(text, i, i))
+		_monitor.write(string.sub(text, i, i))
 	end
 end
 
@@ -85,9 +83,9 @@ local function drawNumbers(v, percentDraw)
 end
 
 local function draw(name)
-	if monitor == nil then
-		monitor = term
-		if not (monitor.isColor()) then
+	if _monitor == nil then
+		_monitor = term
+		if not (_monitor.isColor()) then
 			error("Monitor doesn't support Colors")
 		end
 	end
@@ -108,13 +106,13 @@ local function draw(name)
 			if k == name[s] then
 				local percentDraw = v.length * (v.value / v.maxValue)
 				for yPos = v.y, v.y + v.height - 1 do
-					monitor.setBackgroundColor(v.barColor)
-					monitor.setCursorPos(v.x, yPos)
-					monitor.write(string.rep(" ", v.length))
+					_monitor.setBackgroundColor(v.barColor)
+					_monitor.setCursorPos(v.x, yPos)
+					_monitor.write(string.rep(" ", v.length))
 
-					monitor.setCursorPos(v.x, yPos)
-					monitor.setBackgroundColor(v.sliderColor)
-					monitor.write(string.rep(" ", percentDraw))
+					_monitor.setCursorPos(v.x, yPos)
+					_monitor.setBackgroundColor(v.sliderColor)
+					_monitor.write(string.rep(" ", percentDraw))
 
 					if (v.infoType == 1) then
 						drawPercent(v, percentDraw)
@@ -126,9 +124,9 @@ local function draw(name)
 			end
 		end
 
-		monitor.setBackgroundColor(colors.black)
-		monitor.setTextColor(colors.white)
-		monitor.setCursorPos(1, 1)
+		_monitor.setBackgroundColor(colors.black)
+		_monitor.setTextColor(colors.white)
+		_monitor.setCursorPos(1, 1)
 	end
 end
 
