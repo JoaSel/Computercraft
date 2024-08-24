@@ -10,7 +10,7 @@ monitor.clear()
 
 jGui.setMonitor(monitor)
 
-jGui.createSlider("bulkSlider", 100, 2, 2, -2, 3, colors.red, colors.lime, "Percent")
+jGui.createSlider("bulkSlider", 100, 2, 2, -2, 2, colors.red, colors.lime, "Percent")
 
 jGui.draw()
 
