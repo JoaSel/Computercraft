@@ -36,6 +36,8 @@ local function click(x, y)
 end
 
 local function createSlider(name, maxValue, x, y, length, height, barForegroundColor, barBackgroundColor, infoType, onClick)
+	onClick()
+
 	if (sliders[name]) then
 		error(name .. " already exist!")
 	end
