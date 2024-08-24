@@ -29,19 +29,14 @@ local function createSlider(name, maxValue, x, y, length, height, sliderColor, b
 	if barColor == nil then
 		barColor = colors.white
 	end
-	print(infoType)
-
 	if(infoType == nil or infoTypeLookup[infoType] == nil) then
 		infoType = 1
 	else
 		infoType = infoTypeLookup[infoType]
 	end
-
 	if(length < 0) then
 		length = _mWidth - length
 	end
-
-	print(infoType)
 
 	-- fills in values
 	sliders[name] = {}
