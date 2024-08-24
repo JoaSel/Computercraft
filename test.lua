@@ -8,7 +8,7 @@ local monitor = peripheral.find("monitor")
 monitor.setTextScale(0.5)
 monitor.clear()
 
-jGui.setMonitor(monitor)
+jGui.setMonitor(monitor, true)
 
 jGui.createSlider("bulkSlider", 100, 2, 2, -2, 2, colors.red, colors.lime, "Percent")
 

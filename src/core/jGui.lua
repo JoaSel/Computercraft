@@ -3,7 +3,6 @@
 local sliders = {}
 local _monitor = nil
 local _mWidth = 0
-local _textScale = 0.5
 
 local infoTypeLookup = {
 	["None"] = 0,
@@ -11,13 +10,22 @@ local infoTypeLookup = {
 	["Numbers"] = 2
 }
 
-local function setMonitor(monitor)
+local function setMonitor(monitor, enableClicking)
 	if not (monitor.isColor()) then
 		error("Monitor Doesn't Support Colors")
 	end
-	_monitor = monitor
-	_mWidth, _  = _monitor.getSize()
-	_textScale = _monitor.getTextScale()
+	_monitor   = monitor
+	_mWidth, _ = _monitor.getSize()
+
+	if (enableClicking) then
+		local clickRoutine = coroutine.create(function()
+			local event, side, xPos, yPos = os.pullEvent("monitor_touch")
+			
+			print(event .. " => Side: " .. tostring(side) .. ", " ..
+				"X: " .. tostring(xPos) .. ", " ..
+				"Y: " .. tostring(yPos))
+		end)
+	end
 end
 
 local function createSlider(name, maxValue, x, y, length, height, barForegroundColor, barBackgroundColor, infoType)
