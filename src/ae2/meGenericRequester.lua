@@ -246,12 +246,22 @@ local function render(dataBlob)
 end
 
 local dataBlob = getDataBlob()
+--jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, "Percent")
 
-jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, "Percent")
+parallel.waitForAny(
+	function()
+		while (true) do
+			updateStatus(dataBlob)
+			render(dataBlob)
+			os.sleep(2)
+		end
+	end,
+	function()
+		while true do
+			local event, button, x, y = os.pullEvent("mouse_click")
 
-while (true) do
-	updateStatus(dataBlob)
-	render(dataBlob)
-	os.sleep(2)
-end
+			print("The mouse button ", button, " was pressed at ", x, " and ", y)
+		end
+	end
+)
 
