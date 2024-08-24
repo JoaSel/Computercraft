@@ -207,8 +207,8 @@ local function render(dataBlob)
 		local queued = #tagInfo.queued
 		local complete = ((totalSum- tagInfo.missingItems) / totalSum) * 100
 
-		jGui.updateSliderMaxValue(tagInfo.displayName, 200)
-		jGui.updateSliderValue(tagInfo.displayName, 100)
+		jGui.updateSliderMaxValue(tagInfo.displayName, totalSum)
+		jGui.updateSliderValue(tagInfo.displayName, totalSum- tagInfo.missingItems)
 		
 
 		local writeColor = colorTable["Crafting"]
