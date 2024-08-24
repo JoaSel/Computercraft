@@ -8,7 +8,7 @@ local monitor = peripheral.find("monitor")
 monitor.clear()
 jGui.setMonitor(monitor)
 
-jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, "Percent")
+jGui.createSlider("bulkSlider", 100, 2, 2, -2, 3, colors.red, colors.lime, "Percent")
 
 jGui.draw()
 

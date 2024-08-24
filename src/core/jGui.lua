@@ -17,7 +17,6 @@ local function setMonitor(monitor)
 	end
 	_monitor = monitor
 	_, _mWidth = _monitor.getSize()
-	_textScale = _monitor.getTextScale()
 end
 
 local function createSlider(name, maxValue, x, y, length, height, sliderColor, barColor, infoType)
