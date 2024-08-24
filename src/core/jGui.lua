@@ -70,8 +70,6 @@ local function writeClickableText(id)
 	_monitor.write(clickableText.text)
 end
 
-
-
 local function createSlider(name, maxValue, length, height, barForegroundColor, barBackgroundColor, infoType, onClick)
 	if (sliders[name]) then
 		error(name .. " already exist!")

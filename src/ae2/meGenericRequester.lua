@@ -239,13 +239,12 @@ local function renderDefault(dataBlob)
 	end
 end
 
-local renderPage = "DEFAULT"
-
+local renderPage = "HOME"
 local function render(dataBlob)
 	monitor.clear()
 	monitor.setCursorPos(1, 1)
 
-	if(renderPage == "DEFAULT") then
+	if(renderPage == "HOME") then
 		renderDefault(dataBlob)
 	else
 		mMon.writeCenter("◄ " .. renderPage)
@@ -259,6 +258,10 @@ for _, tagInfo in pairs(tagInfos) do
 		render(dataBlob)
 	end)
 end
+jGui.createClickableText("Home", "Home", function ()
+	renderPage = "HOME"
+	render(dataBlob)
+end)
 
 
 parallel.waitForAny(
