@@ -227,8 +227,8 @@ local function renderDefault(dataBlob)
 	end
 end
 
-local function renderTag(tag)
-	local tagInfo = tagInfos[tag]
+local function renderTag(tagIndex)
+	local tagInfo = tagInfos[tagIndex]
 
 	dump.easy(tagInfo)
 
@@ -253,27 +253,27 @@ local function renderTag(tag)
 	end
 end
 
-local renderPage = "HOME"
+local renderPage = 0
 local function render(dataBlob)
 	jGui.reset();
 
-	if(renderPage == "HOME") then
+	if(renderPage == 0) then
 		renderDefault(dataBlob)
 	else
-		renderTag(dataBlob, renderPage)
+		renderTag(renderPage)
 	end
 end
 
 local dataBlob = getDataBlob()
-for _, tagInfo in pairs(tagInfos) do
+for tagIndex, tagInfo in pairs(tagInfos) do
 	jGui.createSlider(tagInfo.displayName, 100, -2, 2, colors.lime, colors.red, "Percent", function ()
-		renderPage = tagInfo.displayName
+		renderPage = tagIndex
 		render(dataBlob)
 	end)
 end
 
 jGui.createClickableText("HomeBtn", "X", function ()
-	renderPage = "HOME"
+	renderPage = 0
 	render(dataBlob)
 end)
 
