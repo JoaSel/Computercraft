@@ -44,16 +44,16 @@ local function createSlider(name, maxValue, x, y, length, height, sliderColor, b
 
 	-- fills in values
 	sliders[name] = {}
-	sliders[name]["maxValue"] = maxValue
-	sliders[name]["x"] = x
-	sliders[name]["y"] = y
-	sliders[name]["length"] = length
-	sliders[name]["height"] = height
-	sliders[name]["sliderColor"] = sliderColor
-	sliders[name]["barColor"] = barColor
-	sliders[name]["value"] = 0
-	sliders[name]["textColor"] = colors.black
-	sliders[name]["infoType"] = infoType
+	sliders[name].maxValue = maxValue
+	sliders[name].x = x
+	sliders[name].y = y
+	sliders[name].length = length
+	sliders[name].height = height
+	sliders[name].sliderColor = sliderColor
+	sliders[name].barColor = barColor
+	sliders[name].value = 0
+	sliders[name].textColor = colors.black
+	sliders[name].infoType = infoType
 end
 
 local function updateSlider(name, value)
