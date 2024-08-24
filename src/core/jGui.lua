@@ -120,7 +120,6 @@ local function draw(name)
 					_monitor.setBackgroundColor(v.barBackgroundColor)
 					_monitor.setCursorPos(v.x, yPos)
 					_monitor.write(string.rep(" ", v.length))
-					print(_monitor.getCursorPos())
 
 					_monitor.setCursorPos(v.x, yPos)
 					_monitor.setBackgroundColor(v.barForegroundColor)
