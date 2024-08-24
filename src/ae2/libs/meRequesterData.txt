@@ -52,25 +52,9 @@
 		["workGroup"] = "Greg",
 		["offlineOnly"] = true
 	},
-	["gtceu:nano_processor_computer"] = {
-		["amount"] = 50,
-		["batch"] = 1,
-		["workGroup"] = "Greg",
-		["offlineOnly"] = true
-	},
-	["gtceu:nano_processor_mainframe"] = {
-		["amount"] = 50,
-		["batch"] = 1,
-		["workGroup"] = "Greg",
-		["offlineOnly"] = true
-	},
 	["gtceu:quantum_star"] = {
 		["amount"] = 50,
 		["batch"] = 1,
 		["workGroup"] = "Greg"
-	},
-	["gtceu:carbon_dust"] = {
-		["amount"] = 1000,
-		["batch"] = 64
 	}
 }
