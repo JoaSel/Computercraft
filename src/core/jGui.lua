@@ -99,7 +99,7 @@ local function drawCenterInfo(slider, text, percentDraw)
 	_monitor.setTextColor(slider.textColor)
 
 	for i = 0, #text do
-		if (textX + i > percentDraw) then
+		if (textX + i > percentDraw - 10) then
 			_monitor.setBackgroundColor(slider.barBackgroundColor)
 		else
 			_monitor.setBackgroundColor(slider.barForegroundColor)
