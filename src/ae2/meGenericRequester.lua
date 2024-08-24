@@ -247,7 +247,7 @@ end
 
 local dataBlob = getDataBlob()
 
-jGui.createSlider("bulkSlider", 100, 2, -2, 50, 3, colors.red, colors.lime, jGui.Numbers)
+jGui.createSlider("bulkSlider", 100, 2, 25, -2, 3, colors.red, colors.lime, jGui.Numbers)
 
 while (true) do
 	updateStatus(dataBlob)
