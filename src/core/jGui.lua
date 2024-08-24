@@ -26,15 +26,21 @@ local function click(x, y)
 		return x >= s.x and x <= s.x + s.length and y >= s.y and x <= s.y + s.height
 	end)
 
+	print("---------------")
+	print("Clicked")
 	print(x)
 	print(y)
 
 	local slider = sliders[next(sliders)]
 
+	print("---------------")
+
 	print(slider.x)
 	print(slider.y)
 	print(slider.length)
 	print(slider.height)
+
+	print("---------------")
 
 	if(not hit or not hit.onClick) then
 		return
