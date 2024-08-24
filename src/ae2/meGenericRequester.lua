@@ -72,6 +72,7 @@ local tagInfos =
 	}
 }
 
+monitor.clear()
 monitor.setTextScale(0.5)
 mMon.setMonitor(monitor)
 jGui.setMonitor(monitor)
