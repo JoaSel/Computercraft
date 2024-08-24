@@ -194,10 +194,7 @@ local colorTable = {
 	["Error"] = colors.red,
 }
 
-local function render(dataBlob)
-	monitor.clear()
-	monitor.setCursorPos(1, 1)
-
+local function renderDefault(dataBlob)
 	for i, itemRequests in pairs(dataBlob) do
 		local tagInfo = tagInfos[i]
 
@@ -242,6 +239,20 @@ local function render(dataBlob)
 	end
 end
 
+local renderPage = "DEFAULT"
+
+local function render(dataBlob)
+	monitor.clear()
+	monitor.setCursorPos(1, 1)
+
+	if(renderPage == "DEFAULT") then
+		renderDefault(dataBlob)
+	else
+		mMon.writeCenter(renderPage)
+	end
+end
+
+
 local function onClick()
 	print("testing")
 end
@@ -249,7 +260,9 @@ end
 
 local dataBlob = getDataBlob()
 for _, tagInfo in pairs(tagInfos) do
-	jGui.createSlider(tagInfo.displayName, 100, -2, 2, colors.lime, colors.red, "Percent", onClick)
+	jGui.createSlider(tagInfo.displayName, 100, -2, 2, colors.lime, colors.red, "Percent", function ()
+		renderPage = tagInfo.displayName
+	end)
 end
 
 
