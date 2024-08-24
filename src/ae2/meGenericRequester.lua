@@ -77,7 +77,7 @@ local function getDataBlob()
 	local craftableItems = bridge.listCraftableItems()
 
 	if(not craftableItems) then
-		craftableItems = bridge.listCraftableItems()
+		return nil
 	end
 
 	local ret = {}
@@ -271,7 +271,17 @@ local function render(dataBlob)
 	end
 end
 
-local dataBlob = getDataBlob()
+
+
+local dataBlob = nil
+
+repeat
+	dataBlob = getDataBlob()
+	if(not dataBlob) then
+		os.sleep(5)
+	end
+until dataBlob
+
 for tagIndex, tagInfo in pairs(tagInfos) do
 	jGui.createSlider(tagInfo.displayName, 100, -2, 2, colors.lime, colors.red, "Percent", function ()
 		renderPage = tagIndex
