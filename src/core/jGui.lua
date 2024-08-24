@@ -210,6 +210,5 @@ return {
 	click = click,
 	createClickableText= createClickableText,
 	writeClickableText = writeClickableText,
-	reset = reset,
-	resetClickables = resetClickables
+	reset = reset
 }

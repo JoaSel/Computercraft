@@ -246,7 +246,7 @@ end
 
 local renderPage = "HOME"
 local function render(dataBlob)
-	jGui.resetClickables();
+	jGui.reset();
 
 	if(renderPage == "HOME") then
 		renderDefault(dataBlob)
