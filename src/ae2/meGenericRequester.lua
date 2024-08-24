@@ -232,6 +232,7 @@ local function renderTag(tag)
 
 	jGui.writeClickableText("HomeBtn", "right")
 	mMon.writeCenter(tag)
+	mMon.newLine()
 
 	for _, itemRequest in pairs(tagInfo.stuck) do
 		mMon.toggleColor(colorTable[itemRequest.status])
