@@ -29,6 +29,10 @@ local function click(x, y)
 	print(x)
 	print(y)
 
+	local test = next(sliders)
+
+	print(test)
+
 	if(not hit or not hit.onClick) then
 		return
 	end
