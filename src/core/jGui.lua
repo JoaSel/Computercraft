@@ -136,7 +136,6 @@ local function draw(sliderName, indent)
 
 	local percentDraw = slider.length * (slider.value / slider.maxValue)
 	for yPos = slider.y, slider.y + slider.height - 1 do
-		print(yPos)
 		_monitor.setBackgroundColor(slider.barBackgroundColor)
 		_monitor.setCursorPos(slider.x, yPos)
 		_monitor.write(string.rep(" ", slider.length))
@@ -144,7 +143,6 @@ local function draw(sliderName, indent)
 		_monitor.setCursorPos(slider.x, yPos)
 		_monitor.setBackgroundColor(slider.barForegroundColor)
 		_monitor.write(string.rep(" ", percentDraw))
-		print(_monitor.getCursorPos())
 
 		if (slider.infoType == 1) then
 			drawPercent(slider, percentDraw)
