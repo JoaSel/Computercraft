@@ -3,6 +3,7 @@
 package.path = package.path .. ";../core/?.lua"
 
 local jGui = require("jGui")
+local mMon = require("moreMonitor")
 
 local monitor = peripheral.find("monitor")
 local mWidth, mHeight = monitor.getSize()
@@ -14,6 +15,8 @@ local nbtStorages = { peripheral.find("entangled:tile") }
 local nbtStorageI = 1
 local nbtStorageLimit = 1024
 
+mMon.setMonitor(monitor)
+jGui.setMonitor(monitor)
 monitor.clear()
 
 local unstackableItems = {
@@ -131,33 +134,27 @@ local function moveToBulk()
 	end
 end
 
-local function setTextLine(text, line)
-	monitor.setCursorPos(1, line)
-	monitor.clearLine()
-	jGui.writeCenter(text)
-end
 
-jGui.setMonitor(monitor)
 
-setTextLine("Bulk Storage", 1)
-setTextLine("NBT Storage", 6)
+mMon.writeCenter("Bulk Storage", 1)
+mMon.writeCenter("NBT Storage", 6)
 
 local created = false
 while (true) do
-	setTextLine("Defragmenting", 11)
-	setTextLine("Bulk Storage", 12)
+	mMon.writeCenter("Defragmenting", 11)
+	mMon.writeCenter("Bulk Storage", 12)
 	local bulkOcc, bulkTot = defragmentStorages(bulkStorages)
 
-	setTextLine("Moving items to", 11)
-	setTextLine("NBT Storage", 12)
+	mMon.writeCenter("Moving items to", 11)
+	mMon.writeCenter("NBT Storage", 12)
 	moveToNbt()
 
-	setTextLine("Defragmenting", 11)
-	setTextLine("NBT Storage", 12)
+	mMon.writeCenter("Defragmenting", 11)
+	mMon.writeCenter("NBT Storage", 12)
 	local nbtOcc, nbtTot = defragmentStorages(nbtStorages)
 
-	setTextLine("Moving items to", 11)
-	setTextLine("Bulk Storage", 12)
+	mMon.writeCenter("Moving items to", 11)
+	mMon.writeCenter("Bulk Storage", 12)
 	moveToBulk()
 
 	if (not created) then

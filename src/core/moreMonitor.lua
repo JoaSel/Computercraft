@@ -64,6 +64,7 @@ local function writeCenter(text, line)
 	end
 
 	_monitor.setCursorPos(math.floor((_mWidth / 2) - (#text / 2)) + 1, y)
+	_monitor.clearLine()
 	_monitor.write(text)
 end
 
