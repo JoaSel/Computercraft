@@ -19,7 +19,7 @@ local function setMonitor(monitor)
 	_, _mWidth = _monitor.getSize()
 end
 
-local function createSlider(name, maxValue, x, y, length, height, sliderColor, barColor, infoType)
+local function createSlider(name, maxValue, x, y, length, height, sliderColor, barBackgroundColor, infoType)
 	if (sliders[name]) then
 		error(name .. " already exist!")
 	end
@@ -27,8 +27,8 @@ local function createSlider(name, maxValue, x, y, length, height, sliderColor, b
 	if sliderColor == nil then
 		sliderColor = colors.gray
 	end
-	if barColor == nil then
-		barColor = colors.white
+	if barBackgroundColor == nil then
+		barBackgroundColor = colors.white
 	end
 	if(infoType == nil or infoTypeLookup[infoType] == nil) then
 		infoType = 1
@@ -50,7 +50,7 @@ local function createSlider(name, maxValue, x, y, length, height, sliderColor, b
 	sliders[name].length = length
 	sliders[name].height = height
 	sliders[name].sliderColor = sliderColor
-	sliders[name].barColor = barColor
+	sliders[name].barBackgroundColor = barBackgroundColor
 	sliders[name].value = 0
 	sliders[name].textColor = colors.black
 	sliders[name].infoType = infoType
@@ -77,7 +77,7 @@ local function drawCenterInfo(v, text, percentDraw)
 
 	for i = 0, #text do
 		if (textX + i > percentDraw + 2) then
-			_monitor.setBackgroundColor(v.barColor)
+			_monitor.setBackgroundColor(v.barBackgroundColor)
 		else
 			_monitor.setBackgroundColor(v.sliderColor)
 		end
@@ -119,7 +119,7 @@ local function draw(name)
 			if k == name[s] then
 				local percentDraw = v.length * (v.value / v.maxValue)
 				for yPos = v.y, v.y + v.height - 1 do
-					_monitor.setBackgroundColor(v.barColor)
+					_monitor.setBackgroundColor(v.barBackgroundColor)
 					_monitor.setCursorPos(v.x, yPos)
 					_monitor.write(string.rep(" ", v.length))
 
