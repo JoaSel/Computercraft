@@ -116,6 +116,7 @@ local function updateSingleStatus(itemRequest, tagInfo)
 	if(itemRequest.existingAmount >= tagInfo.amount) then
 		itemRequest.startingTries = 0
 		itemRequest.status = "Ok"
+		table.insert(tagInfo.ok, itemRequest)
 		return
 	end
 
@@ -166,6 +167,7 @@ local function updateStatus(dataBlob)
 
 		tagInfo.missingItems = 0
 
+		tagInfo.ok = {}
 		tagInfo.crafting = {}
 		tagInfo.queued = {}
 		tagInfo.stuck = {}
@@ -206,7 +208,6 @@ local function renderDefault(dataBlob)
 
 		jGui.updateSliderMaxValue(tagInfo.displayName, totalSum)
 		jGui.updateSliderValue(tagInfo.displayName, totalSum- tagInfo.missingItems)
-		
 
 		local writeColor = colorTable["Crafting"]
 		if(#tagInfo.stuck > 0) then
@@ -245,6 +246,11 @@ local function renderTag(tagIndex)
 		mMon.toggleColor()
 	end
 	for _, itemRequest in pairs(tagInfo.queued) do
+		mMon.toggleColor(colorTable[itemRequest.status])
+		mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
+		mMon.toggleColor()
+	end
+	for _, itemRequest in pairs(tagInfo.ok) do
 		mMon.toggleColor(colorTable[itemRequest.status])
 		mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
 		mMon.toggleColor()
