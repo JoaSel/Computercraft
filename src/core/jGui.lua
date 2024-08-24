@@ -23,7 +23,7 @@ end
 
 local function click(x, y)
 	local hit = mTable.firstOrDefault(sliders, function (s)
-		return x >= s.x and x <= s.x + s.length and y >= s.y and x <= s.y + s.height
+		return x >= s.x and x <= s.x + s.length and y >= s.y and y <= s.y + s.height
 	end)
 
 	print("---------------")
