@@ -60,6 +60,10 @@ local function createSlider(name, maxValue, length, height, barForegroundColor, 
 	sliders[name].textColor = colors.black
 	sliders[name].infoType = infoType
 
+	sliders[name].x = 1000
+	sliders[name].y = 1000
+	sliders[name].length = 0
+
 	sliders[name].onClick = onClick
 end
 
