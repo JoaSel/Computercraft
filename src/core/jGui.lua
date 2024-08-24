@@ -58,7 +58,7 @@ local function createSlider(name, maxValue, length, height, barForegroundColor, 
 	sliders[name].maxValue = maxValue
 	-- sliders[name].x = x
 	-- sliders[name].y = y
-	sliders[name].length = length
+	sliders[name].originalLength = length
 	sliders[name].height = height
 	sliders[name].barForegroundColor = barForegroundColor
 	sliders[name].barBackgroundColor = barBackgroundColor
@@ -123,6 +123,7 @@ local function draw(sliderName)
 
 	slider.x = startX
 	slider.y = startY
+	slider.length = slider.originalLength > 0 and slider.originalLength or _mWidth + slider.originalLength - slider.x
 
 	local percentDraw = slider.length * (slider.value / slider.maxValue)
 	for yPos = slider.y, slider.y + slider.height - 1 do
