@@ -57,7 +57,7 @@ end
 local function updateProgress(cpuNum, craftingJob)
 	local activeJob = activeJobs[cpuNum]
 	if (activeJob ~= nil) then
-		activeJob.stuck = ((os.time("utc") - activeJob.lastUpdated) > 0.01)
+		activeJob.stuck = ((os.time("utc") - activeJob.lastUpdated) > 0.05)
 		if (craftingJob.progress > activeJob.progress) then
 			activeJob.progress = craftingJob.progress
 			activeJob.lastUpdated = os.time("utc")
