@@ -68,10 +68,15 @@ local function createClickableText(id, text, onClick)
 	table.insert(clickables, clickable)
 end
 
-local function writeClickableText(id)
+local function writeClickableText(id, position)
 	local clickableText = clickableTexts[id]
 	if(not clickableText) then
 		return
+	end
+
+	if(position == "right") then
+		local currX, currY = _monitor.getCursorPos()
+		_monitor.setCursorPos(_mWidth - string.len(clickableText.text), currY)
 	end
 
 	clickableText.x, clickableText.y = _monitor.getCursorPos()

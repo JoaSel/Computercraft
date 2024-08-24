@@ -240,7 +240,7 @@ local function renderDefault(dataBlob)
 end
 
 local function renderTag(dataBlob, tag)
-	jGui.writeClickableText("HomeBtn")
+	jGui.writeClickableText("HomeBtn", "right")
 	mMon.writeCenter(tag)
 end
 
