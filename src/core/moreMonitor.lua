@@ -65,9 +65,10 @@ local function writeCenter(text, color)
 		_monitor.write(text)
 	end
 	local _, y = _monitor.getCursorPos()
-	
+
 	_monitor.setCursorPos(math.floor((_mWidth / 2) - (#text / 2)) + 1, y)
 	_monitor.write(text)
+	_monitor.setCursorPos(1, y + 1)
 end
 
 
