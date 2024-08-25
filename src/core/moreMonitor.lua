@@ -56,6 +56,9 @@ local function toggleColor(color)
 end
 
 local function writeCenter(text, color)
+	local _, y = _monitor.getCursorPos()
+	_monitor.setCursorPos(math.floor((_mWidth / 2) - (#text / 2)) + 1, y)
+
 	if (color ~= nil) then
 		local oldColor = _monitor.getTextColor()
 		_monitor.setTextColor(color)
@@ -64,10 +67,7 @@ local function writeCenter(text, color)
 	else
 		_monitor.write(text)
 	end
-	local _, y = _monitor.getCursorPos()
 
-	_monitor.setCursorPos(math.floor((_mWidth / 2) - (#text / 2)) + 1, y)
-	_monitor.write(text)
 	_monitor.setCursorPos(1, y + 1)
 end
 
