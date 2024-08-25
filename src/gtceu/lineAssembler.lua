@@ -64,7 +64,11 @@ local function importFluids()
     end
 end
 
-local function exportItems()
+local function exportItems(count)
+    if(count > 3) then
+        error("Failed to export some items")
+    end
+
     for _, outputBus in pairs(outputBuses) do
         local outputItems = outputBus.list()
 
@@ -74,7 +78,7 @@ local function exportItems()
         end
 
         if(#outputBus.list() > 0) then
-            error("Failed to export some items")
+            exportItems(count + 1)
         end
     end
 
@@ -91,7 +95,7 @@ local function exportItems()
 end
 
 while (true) do
-    exportItems()
+    exportItems(0)
 
     if(getStatus() == "IDLE") then
         importItems()

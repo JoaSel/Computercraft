@@ -36,7 +36,7 @@ local tagInfos =
 		end
 	},
 	{
-		displayName = "Greg Componens",
+		displayName = "Greg Components",
 		amount = 50,
 		batchSize = 1,
 		workers = 2,
