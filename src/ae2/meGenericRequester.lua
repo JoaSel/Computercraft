@@ -57,12 +57,12 @@ local tagInfos =
 		end
 	},
 	{
-		displayName = "Greg Processors",
+		displayName = "Greg Chips",
 		amount = 50,
 		batchSize = 1,
 		workers = 1,
 		validationFunc = function(item)
-			return string.match(item.name, "^gtceu:nano_processor")
+			return string.match(item.name, "^gtceu:(.*)processor")
 		end
 	}
 }
@@ -221,8 +221,8 @@ local function renderDefault(dataBlob)
 			writeColor = colorTable["Queued"]
 		end
 
-		mMon.writeLine(
-		string.format("[%.2f%%] %s (Tot: %d, Craft: %d, Queue: %d)", complete, tagInfo.displayName, total, crafting,
+		mMon.writeCenter(
+		string.format("%s (Tot: %d, Craft: %d, Queue: %d)", tagInfo.displayName, total, crafting,
 			queued), writeColor)
 		mMon.toggleColor()
 		jGui.drawSlider(tagInfo.displayName, 3)
