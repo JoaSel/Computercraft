@@ -162,6 +162,8 @@ local function startCrafting(queued, stuck, numCraftsToStart, tagInfo)
 			if(startCraftingItem(itemRequest, tagInfo)) then
 				craftsStarted = craftsStarted + 1
 			end
+		else
+			itemRequest.startingTries = (itemRequest.startingTries or 0) + 1
 		end
 
 		if(craftsStarted >= numCraftsToStart) then
