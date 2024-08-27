@@ -14,7 +14,12 @@ local destinationNames = {
 
 local displayNamesRoutes = {
 	["Crushed Rock Salt Ore"] = "Thermal Centrifuge",
+	["Purified Pentlandite Ore"] = "Storage Input",
+	["Purified Tetrahedrite Ore"] = "Storage Input",
+	["Purified Chalcocite Ore"] = "Storage Input",
 	["Purified Sheldonite Ore"] = "Storage Input",
+	["Purified Bornite Ore"] = "Storage Input",
+	["Purified Chalcopyrite Ore"] = "Storage Input",
 	["Rare Earth Dust"] = "Centrifuge Input",
 	["Raw Neodymium"] = "Storage Input",
 	["Purified Sphalerite Ore"] = "Storage Input",
