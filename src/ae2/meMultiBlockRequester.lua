@@ -6,7 +6,7 @@ local pWrapper = require("peripheralWrapper")
 local mTerm = require("moreTerm")
 local dump = require("dump")
 
-local chest = pWrapper.find("minecraft:chest")
+local chest = pWrapper.find("sophisticatedstorage:shulker_box")
 local reader = pWrapper.find("blockReader")
 local bridge = peripheral.find("meBridge")
 
