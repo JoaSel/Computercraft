@@ -20,6 +20,7 @@ local function easy(o)
 end
 
 local function shallow(o)
+	print("dumping: " .. type(o))
 	if type(o) == 'table' then
 		local s = '{ '
 		for k, v in pairs(o) do
