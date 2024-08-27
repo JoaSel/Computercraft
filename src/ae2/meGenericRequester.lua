@@ -149,11 +149,11 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 			if(not success) then
 				print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, err))
 			else
-				itemRequest.status = "Crafting"
-				table.insert(tagInfo.crafting, itemRequest)
-				mTable.removeAll(tagInfo.queued, function (r)
-					return r.name == itemRequest.name
-				end)
+				-- itemRequest.status = "Crafting"
+				-- table.insert(tagInfo.crafting, itemRequest)
+				-- mTable.removeAll(tagInfo.queued, function (r)
+				-- 	return r.name == itemRequest.name
+				-- end)
 			end
 
 			i = i + 1
