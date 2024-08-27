@@ -130,6 +130,12 @@ local function updateSingleStatus(itemRequest, tagInfo)
 		return
 	end
 
+	if(itemRequest.startingTries > 5) then
+		itemRequest.status = "Error"
+		table.insert(tagInfo.stuck, itemRequest)
+		return
+	end
+
 	itemRequest.status = "Queued"
 	table.insert(tagInfo.queued, itemRequest)
 end
@@ -141,25 +147,17 @@ local function startCrafting(queued, numCraftsToStart, tagInfo)
 
 		itemRequest.startingTries = (itemRequest.startingTries or 0) + 1
 		if(itemRequest.startingTries > 5 and itemRequest.startingTries % 5 ~= 0) then
-			itemRequest.status = "Error"
-			table.insert(tagInfo.stuck, itemRequest)
-		else
-			local success, err = bridge.craftItem({ name = itemRequest.name, count = toCraft})
+			return
+		end
 
-			if(not success) then
-				print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, err))
-			else
-				-- itemRequest.status = "Crafting"
-				-- table.insert(tagInfo.crafting, itemRequest)
-				-- mTable.removeAll(tagInfo.queued, function (r)
-				-- 	return r.name == itemRequest.name
-				-- end)
-			end
+		local success, err = bridge.craftItem({ name = itemRequest.name, count = toCraft})
+		if(not success) then
+			print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, err))
+		end
 
-			i = i + 1
-			if(i >= numCraftsToStart) then
-				return
-			end
+		i = i + 1
+		if(i >= numCraftsToStart) then
+			return
 		end
 	end
 end
