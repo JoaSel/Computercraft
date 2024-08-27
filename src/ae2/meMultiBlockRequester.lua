@@ -92,7 +92,7 @@ while (true) do
 
 	local blockData = reader.getBlockData()
 
-	dump.shallow(blockData.storageWrapper.contents)
+	dump.shallow(blockData.storageWrapper.contents.inventory)
 
 	local firstItem = blockData.Items[1]
 	if (not firstItem or firstItem.id ~= "ae2:processing_pattern") then
