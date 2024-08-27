@@ -37,7 +37,7 @@ end
 
 local function jobEnded(cpuNum, craftingJob)
 	if (not autoRequestData[craftingJob.storage.name] and not soundBlackList[craftingJob.storage.name]) then
-		speaker.playSound("minecraft:block.anvil.place")
+		--speaker.playSound("minecraft:block.anvil.place")
 		print(craftingJob.storage.name)
 	end
 
