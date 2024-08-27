@@ -236,6 +236,15 @@ local function renderTag(tagIndex)
 	mMon.writeCenter(tagInfo.displayName)
 	mMon.newLine()
 
+	local sortFunc = function (a, b)
+		return a.displayName > b.displayName
+	end
+
+	table.sort(tagInfo.stuck, sortFunc);
+	table.sort(tagInfo.crafting, sortFunc);
+	table.sort(tagInfo.queued, sortFunc);
+	table.sort(tagInfo.ok, sortFunc);
+
 	for _, itemRequest in pairs(tagInfo.stuck) do
 		mMon.toggleColor(colorTable[itemRequest.status])
 		mMon.writeTabbedLine(tabData, "", itemRequest.displayName, itemRequest.existingAmount, tagInfo.amount)
