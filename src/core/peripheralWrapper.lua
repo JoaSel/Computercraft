@@ -1,5 +1,5 @@
 local function find(peripheralType)
-    local peripherals = { peripheral.find(peripheralType) }
+    local peripherals = { peripheral.find(peripheralType) or error("Can't find any peripheral with type: " .. peripheralType) }
 
     for _, p in pairs(peripherals) do
         p.name = peripheral.getName(p)
@@ -13,7 +13,7 @@ local function find(peripheralType)
 end
 
 local function wrap(peripheralName)
-    local p = peripheral.wrap(peripheralName)
+    local p = peripheral.wrap(peripheralName) or error("Can't find any peripheral with name: " .. peripheralName)
     if(not p) then
         error("Could not find peripheral: " .. peripheralName)
     end
