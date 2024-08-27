@@ -140,23 +140,41 @@ local function updateSingleStatus(itemRequest, tagInfo)
 	table.insert(tagInfo.queued, itemRequest)
 end
 
-local function startCrafting(queued, numCraftsToStart, tagInfo)
-	local i = 0
-	for _, itemRequest in pairs(queued) do
-		local toCraft = math.min(tagInfo.batchSize, tagInfo.amount - itemRequest.existingAmount)
+local function startCraftingItem(itemRequest, tagInfo)
+	local toCraft = math.min(tagInfo.batchSize, tagInfo.amount - itemRequest.existingAmount)
 
-		itemRequest.startingTries = (itemRequest.startingTries or 0) + 1
-		if(itemRequest.startingTries > 5 and itemRequest.startingTries % 5 ~= 0) then
+	itemRequest.startingTries = (itemRequest.startingTries or 0) + 1
+
+	local success, err = bridge.craftItem({ name = itemRequest.name, count = toCraft})
+	if(not success) then
+		print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, err))
+		return false
+	end
+
+	return true
+end
+
+local function startCrafting(queued, stuck, numCraftsToStart, tagInfo)
+	local craftsStarted = 0
+
+	for _, itemRequest in pairs(stuck) do
+		if(itemRequest.startingTries % 5 == 0) then
+			if(startCraftingItem(itemRequest, tagInfo)) then
+				craftsStarted = craftsStarted + 1
+			end
+		end
+
+		if(craftsStarted >= numCraftsToStart) then
 			return
 		end
+	end
 
-		local success, err = bridge.craftItem({ name = itemRequest.name, count = toCraft})
-		if(not success) then
-			print(string.format("Error trying to start craft for: %s. Message: %s", itemRequest.name, err))
+	for _, itemRequest in pairs(queued) do
+		if(startCraftingItem(itemRequest, tagInfo)) then
+			craftsStarted = craftsStarted + 1
 		end
 
-		i = i + 1
-		if(i >= numCraftsToStart) then
+		if(craftsStarted >= numCraftsToStart) then
 			return
 		end
 	end
@@ -183,7 +201,7 @@ local function updateStatus(dataBlob)
 				return a.existingAmount < b.existingAmount
 			end)
 
-			startCrafting(tagInfo.queued, numCraftsToStart, tagInfo)
+			startCrafting(tagInfo.queued, tagInfo.stuck, numCraftsToStart, tagInfo)
 		end
 	end
 end
