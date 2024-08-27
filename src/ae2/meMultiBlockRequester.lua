@@ -91,6 +91,9 @@ while (true) do
 	local x = io.read()
 
 	local blockData = reader.getBlockData()
+
+	dump.easy(blockData)
+
 	local firstItem = blockData.Items[1]
 	if (not firstItem or firstItem.id ~= "ae2:processing_pattern") then
 		print("No pattern found! Put a pattern in first slot.")
