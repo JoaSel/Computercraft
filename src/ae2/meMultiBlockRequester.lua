@@ -92,7 +92,7 @@ while (true) do
 
 	local blockData = reader.getBlockData()
 
-	dump.easy(blockData)
+	dump.shallow(blockData)
 
 	local firstItem = blockData.Items[1]
 	if (not firstItem or firstItem.id ~= "ae2:processing_pattern") then

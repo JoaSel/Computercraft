@@ -19,4 +19,17 @@ local function easy(o)
 	print(textutils.serialise(o, { allow_repetitions = true }))
 end
 
-return { dump = dump, printDump = printDump, easy = easy }
+local function shallow(o)
+	if type(o) == 'table' then
+		local s = '{ '
+		for k, v in pairs(o) do
+			if type(k) ~= 'number' then k = '"' .. k .. '"' end
+			s = s .. '[' .. k .. '] = ' .. tostring(v) .. ','
+		end
+		return s .. '} '
+	else
+		return tostring(o)
+	end
+end
+
+return { dump = dump, printDump = printDump, easy = easy, shallow = shallow }
