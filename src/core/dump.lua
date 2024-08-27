@@ -20,12 +20,11 @@ local function easy(o)
 end
 
 local function shallow(o)
-	print("dumping: " .. type(o))
 	if type(o) == 'table' then
 		print('{ ')
 		for k, v in pairs(o) do
 			if type(k) ~= 'number' then k = '"' .. k .. '"' end
-			print('[' .. k .. '] = ' .. tostring(v) .. ',')
+			print('\t[' .. k .. '] = ' .. tostring(v) .. ',')
 		end
 		print('} ')
 	else
