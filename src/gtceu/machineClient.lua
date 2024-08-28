@@ -9,6 +9,7 @@ local gtceuIO = require("libs.gtceuIO")
 local modem = pWrapper.find("modem")
 local blockReader = pWrapper.find("blockReader")
 
+print("test")
 dump.print(blockReader.getBlockName())
 print("test")
 
