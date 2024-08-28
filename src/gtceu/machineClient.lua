@@ -14,9 +14,9 @@ while(true) do
     local data = blockReader.getBlockData()
 
     if(data) then
-        modem.transmit(43, 43, "Hello, world!")
+        modem.transmit(43, 43, data)
     end
-    
+
     os.sleep(2)
 end
 
