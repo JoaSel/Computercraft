@@ -37,3 +37,23 @@ local event, side, channel, replyChannel, message, distance
 --   paintingColor = -1,
 --   isMuffled = 0,
 -- }
+
+
+-- {
+--   recipeLogic = {
+--     duration = 750,
+--     status = "WORKING",
+--     fuelMaxTime = 0,
+--     progress = 128,
+--     fuelTime = 0,
+--     isActive = 1,
+--     totalContinuousRunningTime = 128,
+--   },
+--   isFormed = 1,
+--   ForgeCaps = {},
+--   cover = {},
+--   activeRecipeType = 0,
+--   isFlipped = 0,
+--   paintingColor = -1,
+--   isMuffled = 0,
+-- }
