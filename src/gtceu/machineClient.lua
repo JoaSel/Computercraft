@@ -9,9 +9,7 @@ local gtceuIO = require("libs.gtceuIO")
 local modem = pWrapper.find("modem")
 local blockReader = pWrapper.find("blockReader")
 
-print("test")
-dump.print(blockReader.getBlockStates())
-print("test")
+local machineName = blockReader.getBlockName()
 
 while(true) do
     local data = blockReader.getBlockData()
@@ -23,6 +21,8 @@ while(true) do
         if(data.recipeLogic.lastOriginRecipe) then
             data.recipeLogic.lastOriginRecipe = nil
         end
+
+        data.machineName = machineName
 
         modem.transmit(43, 43, data)
     end
