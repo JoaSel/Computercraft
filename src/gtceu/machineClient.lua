@@ -7,7 +7,16 @@ local pWrapper = require("peripheralWrapper")
 local gtceuIO = require("libs.gtceuIO")
 
 local modem = pWrapper.find("modem")
---modem.open(43) -- Open 43 so we can receive replies
+local blockReader = pWrapper.find("bloackReader")
 
--- Send our message
-modem.transmit(43, 43, "Hello, world!")
+
+while(true) do
+    local data = blockReader.getBlockData()
+
+    if(data) then
+        modem.transmit(43, 43, "Hello, world!")
+    end
+    
+    os.sleep(2)
+end
+
