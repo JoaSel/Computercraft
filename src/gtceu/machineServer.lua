@@ -14,6 +14,6 @@ local event, side, channel, replyChannel, message, distance
 --while (true) do
   event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
   if(channel == 43) then
-    dump.shallow(message)
+    dump.shallow(message.recipeLogic)
   end
 --end
