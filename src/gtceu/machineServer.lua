@@ -9,13 +9,15 @@ local gtceuIO = require("libs.gtceuIO")
 local modem = pWrapper.find("modem")
 modem.open(43) -- Open 43 so we can receive replies
 
+print("Listening...")
+
 local event, side, channel, replyChannel, message, distance
 
 --while (true) do
-  event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
-  if(channel == 43) then
-    dump.print(message)
-  end
+  -- event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
+  -- if(channel == 43) then
+  --   dump.print(message)
+  -- end
 --end
 
 
