@@ -7,7 +7,7 @@ local pWrapper = require("peripheralWrapper")
 local gtceuIO = require("libs.gtceuIO")
 
 local modem = pWrapper.find("modem")
-local blockReader = pWrapper.find("bloackReader")
+local blockReader = pWrapper.find("blockReader")
 
 
 while(true) do
@@ -19,4 +19,3 @@ while(true) do
 
     os.sleep(2)
 end
-
