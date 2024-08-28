@@ -14,12 +14,26 @@ local event, side, channel, replyChannel, message, distance
 --while (true) do
   event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
   if(channel == 43) then
-    if(message.recipeLogic.lastRecipe) then
-      dump.toPastebin(message)
-    end
+    dump.toPastebin(message)
   end
 --end
 
 
---lastRecipe
---lastOriginRecipe
+-- {
+--   recipeLogic = {
+--     fuelMaxTime = 0,
+--     status = "IDLE",
+--     duration = 0,
+--     progress = 0,
+--     fuelTime = 0,
+--     isActive = 0,
+--     totalContinuousRunningTime = 0,
+--   },
+--   isFormed = 1,
+--   ForgeCaps = {},
+--   cover = {},
+--   activeRecipeType = 0,
+--   isFlipped = 0,
+--   paintingColor = -1,
+--   isMuffled = 0,
+-- }
