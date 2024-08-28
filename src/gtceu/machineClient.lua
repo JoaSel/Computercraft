@@ -14,6 +14,13 @@ while(true) do
     local data = blockReader.getBlockData()
 
     if(data) then
+        if(data.recipeLogic.lastRecipe) then
+            data.recipeLogic.lastRecipe = nil
+        end
+        if(data.recipeLogic.lastOriginRecipe) then
+            data.recipeLogic.lastOriginRecipe = nil
+        end
+
         modem.transmit(43, 43, data)
     end
 
