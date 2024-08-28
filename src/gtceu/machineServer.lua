@@ -14,7 +14,7 @@ local event, side, channel, replyChannel, message, distance
 --while (true) do
   event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
   if(channel == 43) then
-    dump.toPastebin(message)
+    dump.print(message)
   end
 --end
 
