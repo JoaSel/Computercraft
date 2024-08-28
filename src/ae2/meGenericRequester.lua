@@ -130,7 +130,7 @@ local function updateSingleStatus(itemRequest, tagInfo)
 		return
 	end
 
-	if(itemRequest.startingTries > 5) then
+	if((itemRequest.startingTries or 0) > 5) then
 		itemRequest.status = "Error"
 		table.insert(tagInfo.stuck, itemRequest)
 		return
