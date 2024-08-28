@@ -7,7 +7,7 @@ local pWrapper = require("peripheralWrapper")
 local gtceuIO = require("libs.gtceuIO")
 
 local modem = pWrapper.find("modem")
-modem.open(43) -- Open 43 so we can receive replies
+--modem.open(43) -- Open 43 so we can receive replies
 
 -- Send our message
-modem.transmit(43, 43, "Hello, world!")
+modem.transmit(43, nil, "Hello, world!")
