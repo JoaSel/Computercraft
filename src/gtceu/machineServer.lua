@@ -11,9 +11,9 @@ modem.open(43) -- Open 43 so we can receive replies
 
 local event, side, channel, replyChannel, message, distance
 
-while (true) do
+--while (true) do
   event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
   if(channel == 43) then
-    dump.easy(message)
+    dump.shallow(message)
   end
-end
+--end
