@@ -11,6 +11,8 @@ local blockReader = pWrapper.find("blockReader")
 
 local machineName = blockReader.getBlockName()
 
+print("Monitoring...")
+
 while(true) do
     local data = blockReader.getBlockData()
 
