@@ -32,6 +32,16 @@ local function toFile(o, filename)
 	file.close()
 end
 
+local function toPastebin(o)
+	local data = serialise(o)
+
+	local file = fs.open("pastebinData", "w+")
+	file.write(data)
+	file.close()
+
+	shell.run("pastebin put \"pastebinData\"")
+end
+
 local function shallow(o)
 	if type(o) == 'table' then
 		print('{ ')
@@ -45,4 +55,4 @@ local function shallow(o)
 	end
 end
 
-return { print = print, shallow = shallow, toFile = toFile }
+return { print = print, shallow = shallow, toFile = toFile, toPastebin = toPastebin }
