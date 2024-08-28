@@ -10,7 +10,7 @@ local modem = pWrapper.find("modem")
 local blockReader = pWrapper.find("blockReader")
 
 print("test")
-dump.print(blockReader.getBlockName())
+dump.print(blockReader.getBlockStates())
 print("test")
 
 while(true) do
