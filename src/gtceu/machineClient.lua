@@ -9,12 +9,11 @@ local gtceuIO = require("libs.gtceuIO")
 local modem = pWrapper.find("modem")
 local blockReader = pWrapper.find("blockReader")
 
+local machineName = blockReader.getBlockName()
 
-
---print(string.format("Monitoring %s...", machineName))
+print(string.format("Monitoring %s...", machineName))
 
 while(true) do
-local machineName = blockReader.getName()
     local data = blockReader.getBlockData()
 
     if(data) then
