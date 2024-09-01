@@ -9,7 +9,7 @@ local gtceuIO = require("libs.gtceuIO")
 local sendChannel = 43
 local ackChannel = 44
 
-local modem = pWrapper.find("modem")
+--local modem = pWrapper.find("modem")
 local blockReader = pWrapper.find("blockReader")
 
 local machineName = blockReader.getBlockName()
