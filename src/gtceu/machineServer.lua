@@ -17,9 +17,9 @@ local monitor = pWrapper.find("monitor")
 modem.open(sendChannel)
 mMon.setMonitor(monitor, 0.5)
 
+local machines = {}
 
-
-local function render(machines)
+local function render()
   while (true) do
     mMon.reset()
 
@@ -31,7 +31,7 @@ local function render(machines)
   end
 end
 
-local function handleMessages(machines)
+local function handleMessages()
   local event, side, channel, replyChannel, message, distance
   print("started")
   local sortFunc = function (a, b)
@@ -59,18 +59,14 @@ local function handleMessages(machines)
   end
 end
 
-local machines = {}
 
-handleMessages(machines)
 
--- parallel.waitForAny(
--- 	function()
--- 		render(machines)
--- 	end,
--- 	function()
--- 		handleMessages(machines)
--- 	end
--- )
+
+
+parallel.waitForAny(
+	render,
+	handleMessages
+)
 
 
 
