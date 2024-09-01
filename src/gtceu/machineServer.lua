@@ -6,6 +6,7 @@ local dump = require("dump")
 local pWrapper = require("peripheralWrapper")
 local gtceuIO = require("libs.gtceuIO")
 local mMon = require("moreMonitor")
+local time = require("time")
 
 local sendChannel = 43
 local ackChannel = 44
@@ -14,14 +15,16 @@ local modem = pWrapper.find("modem")
 local monitor = pWrapper.find("monitor")
 
 modem.open(sendChannel)
+monitor.setTextScale(0.5)
 mMon.setMonitor(monitor)
 
 local event, side, channel, replyChannel, message, distance
 
 while (true) do
   event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
+  monitor.clear();
   if(channel == 43) then
-    mMon.writeLine(os.time("utc"))
+    mMon.writeLine(time.getTime())
     mMon.newLine()
     mMon.writeLine(dump.text(message))
   end

@@ -1,9 +1,6 @@
----@diagnostic disable: param-type-mismatch
-
-local lastCalled = os.time("utc")
-
-local function sleep(secondsShort, secondsLong)
-
+local function getTime(locale)
+    locale = locale or "utc"
+    return textutils.formatTime(os.time(locale))
 end
 
-return { sleep = sleep }
+return { getTime = getTime }
