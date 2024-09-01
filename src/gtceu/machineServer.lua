@@ -30,6 +30,10 @@ local flex = main:addFlexbox():setWrap("wrap"):setBackground(colors.lightGray):s
 
 flex:addLabel():setSize("parent.w/2", 10):setText("Test!")
 
+flex:addLabel():setSize("parent.w/2", 10):setText("Test!")
+
+flex:addLabel():setSize("parent.w/2", 10):setText("Test!")
+
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
   print("started")
