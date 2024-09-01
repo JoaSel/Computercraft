@@ -9,14 +9,13 @@ local gtceuIO = require("libs.gtceuIO")
 local machine = pWrapper.find("blockReader")
 
 local input = pWrapper.wrap("entangled:tile_22")
--- local fluidInput = pWrapper.wrap("entangled:tile_24")
 local output = pWrapper.wrap("entangled:tile_21")
 
 local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
 
 local inputBuses = { gtceuIO.findInputBuses() }
 local inputHatches = { gtceuIO.findInputHatches() }
-
+print("test")
 local outputBuses = { gtceuIO.findOutputBuses() }
 local outputHatches = { gtceuIO.findOutputHatches() }
 
