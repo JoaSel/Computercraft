@@ -14,18 +14,23 @@ local basalt = require("basalt")
 
 local machines = {}
 
-local monitorFrame = basalt.addMonitor()
-monitorFrame:setMonitor(monitor)
+local main = basalt.addMonitor()
+main:setMonitor(monitor)
 
+-- local button = main
+--         :addButton()
+--         :setPosition(4, 4)
+--         :setText("Click me!")
+--         :onClick(
+--             function()
+--                 basalt.debug("I got clicked!")
+--             end)
 
-local button = monitorFrame
-        :addButton()
-        :setPosition(4, 4)
-        :setText("Click me!")
-        :onClick(
-            function()
-                basalt.debug("I got clicked!")
-            end)
+local column1 = main:addFrame():setSize("parent.w/2", "parent.h")
+local column2 = main:addFrame():setSize("parent.w/2", "parent.h"):setPosition("parent.w/2+1", 1)
+
+column1.setText("Test!")
+column1.setText("Test2!")
 
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
@@ -42,15 +47,14 @@ local function handleMessages()
       machines[message.machineName] = message
 
       if(not exists) then
-        print("new machine, sorting")
+        print("New machine, sorting")
         table.sort(machines, sortFunc)
-        button:setText("test")
       end
      end
   end
 end
 
-monitorFrame:addThread():start(handleMessages)
+main:addThread():start(handleMessages)
 
 basalt.autoUpdate();
 
