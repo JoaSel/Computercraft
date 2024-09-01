@@ -12,54 +12,51 @@ local modem = pWrapper.find("modem")
 local monitor = pWrapper.find("monitor")
 local basalt = require("basalt")
 
+local translations = {
+  ["gtceu:alloy_blast_smelter"] = "Alloy Blast Smelter"
+}
+
 local machines = {}
 
 local main = basalt.addMonitor()
 main:setMonitor(monitor)
 
--- local button = main
---         :addButton()
---         :setPosition(4, 4)
---         :setText("Click me!")
---         :onClick(
---             function()
---                 basalt.debug("I got clicked!")
---             end)
-
 local flex = main:addFlexbox()
   :setWrap("wrap")
-  :setBackground(colors.lightGray)
+  :setBackground(colors)
   :setPosition(1, 1)
   :setSize("parent.w", "parent.h")
 
-flex:addLabel():setSize("parent.w/2 - 1", 10):setText("Test!")
+local function updateMachine(machineData)
+  local exists = machines[machineData.machineId]
+      if (exists) then
+        machines[machineData.machineId].machineData = machineData
+      else
+        print("New machine")
+        machines[machineData.machineId] = { machineData = machineData }
+      end
+      local machine = machines[machineData.machineId]
 
-flex:addLabel():setSize("parent.w/2 - 1", 10):setText("Test!")
-
-flex:addLabel():setSize("parent.w/2 - 1", 10):setText("Test!")
+      if(not machine.displayFrame) then
+        machine.displayFrame = flex:addLabel():setSize("parent.w/2 - 1", 10):setText("Test!")
+      end
+end
 
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
   print("started")
-  local sortFunc = function(a, b)
-    return a.machineName > b.machineName
-  end
+  
 
   while (true) do
     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
-    if (channel == sendChannel and message.machineName) then
-      local exists = machines[message.machineName]
-      if (exists) then
-        machines[message.machineName].machineData = message
-      else
-        machines[message.machineName] = { machineData = message }
-        print("New machine, sorting")
-        table.sort(machines, sortFunc)
-      end
+    if (channel == sendChannel and message.machineId) then
+      updateMachine(message)
     end
   end
 end
+
+
 
 main:addThread():start(handleMessages)
 

@@ -28,6 +28,7 @@ while (true) do
             end
         end
 
+        data.machineId = machineName
         data.machineName = machineName
         modem.transmit(sendChannel, ackChannel, data)
     end
