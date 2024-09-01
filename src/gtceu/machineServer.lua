@@ -46,10 +46,10 @@ local function handleMessages(machines)
     -- mMon.writeLine(dump.text(message))
 
     if(channel == sendChannel and message.machineName) then
-      local shouldSort = machines[message.machineName]
+      local exists = machines[message.machineName]
       machines[message.machineName] = message
 
-      if(shouldSort) then
+      if(not exists) then
         print("new machine, sorting")
         table.sort(machines, sortFunc)
       end
