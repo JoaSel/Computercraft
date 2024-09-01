@@ -29,8 +29,8 @@ main:setMonitor(monitor)
 local column1 = main:addFrame():setSize("parent.w/2", "parent.h")
 local column2 = main:addFrame():setSize("parent.w/2", "parent.h"):setPosition("parent.w/2+1", 1)
 
-column1.setText("Test!")
-column1.setText("Test2!")
+column1:setText("Test!")
+column2:setText("Test2!")
 
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
