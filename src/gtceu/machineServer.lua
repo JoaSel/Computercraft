@@ -43,8 +43,9 @@ local function updateMachine(machineData)
       end
 
       local displayName = translations[machineData.machineName] or machineData.machineName
-      
+
       machine.displayFrame:editItem(1, displayName)
+      machine.displayFrame:editItem(2, machineData.recipeLogic.status)
 end
 
 local function handleMessages()
