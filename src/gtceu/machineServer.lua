@@ -42,7 +42,9 @@ local function updateMachine(machineData)
         machine.displayFrame = flex:addLabel():setSize("parent.w/2 - 1", 10)
       end
 
-      machine.displayFrame:setText(machineData.machineName)
+      local displayName = translations[machineData.machineName] or machineData.machineName
+
+      machine.displayFrame:setText(displayName)
 end
 
 local function handleMessages()
