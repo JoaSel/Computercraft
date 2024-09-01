@@ -48,7 +48,6 @@ local function handleMessages()
   local event, side, channel, replyChannel, message, distance
   print("started")
   
-
   while (true) do
     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
