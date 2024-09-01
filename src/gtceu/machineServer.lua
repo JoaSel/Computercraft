@@ -27,6 +27,8 @@ local flex = main:addFlexbox()
   :setPosition(1, 1)
   :setSize("parent.w", "parent.h")
 
+flex:addLabel():setSize("parent.w/2 - 1", 10)
+  
 local function updateMachine(machineData)
   local exists = machines[machineData.machineId]
       if (exists) then
