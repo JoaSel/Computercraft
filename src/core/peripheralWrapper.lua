@@ -10,9 +10,9 @@ local function find(peripheralType, ignoreError)
     end)
 
     print(ignoreError)
-    if(not ignoreError and not next(peripherals)) then
-        error("Can't find any peripheral with type: " .. peripheralType)
-    end
+    -- if(not ignoreError and not next(peripherals)) then
+    --     error("Can't find any peripheral with type: " .. peripheralType)
+    -- end
 
     return unpack(peripherals)
 end

@@ -15,7 +15,7 @@ local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
 
 local inputBuses = { gtceuIO.findInputBuses() }
 local inputHatches = { gtceuIO.findInputHatches() }
-print("test")
+
 local outputBuses = { gtceuIO.findOutputBuses() }
 local outputHatches = { gtceuIO.findOutputHatches() }
 
