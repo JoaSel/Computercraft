@@ -61,14 +61,16 @@ end
 
 local machines = {}
 
-parallel.waitForAny(
-	function()
-		render(machines)
-	end,
-	function()
-		handleMessages(machines)
-	end
-)
+handleMessages(machines)
+
+-- parallel.waitForAny(
+-- 	function()
+-- 		render(machines)
+-- 	end,
+-- 	function()
+-- 		handleMessages(machines)
+-- 	end
+-- )
 
 
 
