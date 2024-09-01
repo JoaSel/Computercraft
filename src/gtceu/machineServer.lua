@@ -15,18 +15,18 @@ local modem = pWrapper.find("modem")
 local monitor = pWrapper.find("monitor")
 
 modem.open(sendChannel)
-mMon.setMonitor(monitor)
+mMon.setMonitor(monitor, 0.5)
 
 
 
 local function render(machines)
   while (true) do
-    mMon.clear()
+    mMon.reset()
 
     for _, machine in pairs(machines) do
       mMon.writeLine(machine.machineName)
     end
-    
+
     os.sleep(1)
   end
 end

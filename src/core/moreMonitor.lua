@@ -4,8 +4,13 @@ local _monitor = nil
 local _oldColor = nil
 local _mWidth = nil
 
-local function setMonitor(monitor)
+local function setMonitor(monitor, textScale)
     _monitor = monitor
+	
+	if(textScale) then
+		_monitor.setTextScale(textScale)
+	end
+
     _oldColor = _monitor.getTextColor()
 	_mWidth, _ = _monitor.getSize()
 end
