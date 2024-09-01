@@ -26,8 +26,8 @@ main:setMonitor(monitor)
 --                 basalt.debug("I got clicked!")
 --             end)
 
-local column1 = main:addFrame()
--- local column2 = main:addFrame():setSize("parent.w/2", "parent.h"):setPosition("parent.w/2+1", 1)
+local column1 = main:addFrame():setSize("parent.w/2", "parent.h")
+local column2 = main:addFrame():setSize("parent.w/2", "parent.h"):setPosition("parent.w/2+1", 1)
 
 -- column1:setText("Test!")
 -- column2:setText("Test2!")
