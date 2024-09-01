@@ -31,9 +31,6 @@ local button = monitorFrame
                 basalt.debug("I got clicked!")
             end)
 
-basalt.autoUpdate()
-
-
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
   print("started")
