@@ -9,10 +9,10 @@ local gtceuIO = require("libs.gtceuIO")
 local mMon = require("moreMonitor")
 local time = require("time")
 
--- local sendChannel = 43
--- local ackChannel = 44
+local sendChannel = 43
+local ackChannel = 44
 
--- local modem = pWrapper.find("modem")
+local modem = pWrapper.find("modem")
 local monitor = pWrapper.find("monitor")
 
 -- modem.open(sendChannel)
@@ -78,6 +78,7 @@ local button = monitorFrame --> Basalt returns an instance of the object on most
 
 basalt.autoUpdate()
 
+print("test")
 
 -- parallel.waitForAny(
 -- 	render,
