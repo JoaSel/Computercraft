@@ -3,11 +3,7 @@
 package.path = package.path .. ";../../../?.lua"
 package.path = package.path .. ";../core/?.lua"
 
-local dump = require("dump")
 local pWrapper = require("peripheralWrapper")
-local gtceuIO = require("libs.gtceuIO")
-local mMon = require("moreMonitor")
-local time = require("time")
 
 local sendChannel = 43
 local ackChannel = 44
@@ -18,9 +14,9 @@ local basalt = require("basalt")
 
 local machines = {}
 
-
 local monitorFrame = basalt.addMonitor()
 monitorFrame:setMonitor(monitor)
+
 
 local button = monitorFrame
         :addButton()
@@ -55,11 +51,9 @@ local function handleMessages()
   end
 end
 
-parallel.waitForAny(
-	basalt.autoUpdate,
-	handleMessages
-)
+monitorFrame:addThread():start(handleMessages)
 
+basalt.autoUpdate();
 
 
 
