@@ -39,14 +39,12 @@ local function updateMachine(machineData)
       local machine = machines[machineData.machineId]
 
       if(not machine.displayFrame) then
-        machine.displayFrame = flex:addLabel():setSize("parent.w/2 - 1", 10)
+        machine.displayFrame = flex:addList():setSize("parent.w/2 - 1", 10)
       end
 
       local displayName = translations[machineData.machineName] or machineData.machineName
-
-      local displayText = string.format("%s\n%s", displayName, "test")
-
-      machine.displayFrame:setText(displayText)
+      
+      machine.displayFrame:editItem(1, displayName)
 end
 
 local function handleMessages()
