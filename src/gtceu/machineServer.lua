@@ -24,10 +24,13 @@ while (true) do
   print("listening")
   event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
   monitor.clear();
+
+  mMon.writeLine(time.getTime())
+  mMon.newLine()
+  mMon.writeLine(dump.text(message))
+
   if(channel == sendChannel) then
-    mMon.writeLine(time.getTime())
-    mMon.newLine()
-    mMon.writeLine(dump.text(message))
+    
   end
 end
 
