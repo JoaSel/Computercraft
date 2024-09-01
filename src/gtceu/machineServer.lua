@@ -26,6 +26,7 @@ while (true) do
   --monitor.clear();
 
   print(channel)
+  mMon.writeLine("test")
 
   mMon.writeLine(time.getTime())
   mMon.newLine()
