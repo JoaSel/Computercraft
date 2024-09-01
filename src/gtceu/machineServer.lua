@@ -26,11 +26,9 @@ main:setMonitor(monitor)
 --                 basalt.debug("I got clicked!")
 --             end)
 
-local column1 = main:addFrame():setSize("parent.w/2", "parent.h")
-local column2 = main:addFrame():setSize("parent.w/2", "parent.h"):setPosition("parent.w/2+1", 1)
+local flex = main:addFlexbox():setWrap("wrap"):setBackground(colors.lightGray):setPosition(1, 1):setSize("parent.w", "parent.h")
 
-column1:addLabel():setText("Test!")
-column2:addLabel():setText("Test2!")
+flex:addLabel():setSize("parent.w/2", 10):setText("Test!")
 
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
@@ -44,7 +42,11 @@ local function handleMessages()
 
     if(channel == sendChannel and message.machineName) then
       local exists = machines[message.machineName]
-      machines[message.machineName] = message
+      if() then
+        
+      end
+
+      machines[message.machineName].machineData = message
 
       if(not exists) then
         print("New machine, sorting")
