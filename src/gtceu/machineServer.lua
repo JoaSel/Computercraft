@@ -44,7 +44,9 @@ local function updateMachine(machineData)
 
       local displayName = translations[machineData.machineName] or machineData.machineName
 
-      machine.displayFrame:setText(displayName)
+      local displayText = string.format("%s\n%s", displayName, "test")
+
+      machine.displayFrame:setText(displayText)
 end
 
 local function handleMessages()
