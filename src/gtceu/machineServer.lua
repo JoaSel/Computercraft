@@ -32,11 +32,11 @@ local flex = main:addFlexbox()
   :setPosition(1, 1)
   :setSize("parent.w", "parent.h")
 
-flex:addLabel():setSize("parent.w/2", 10):setText("Test!")
+flex:addLabel():setSize("parent.w/2 - 1", 10):setText("Test!")
 
-flex:addLabel():setSize("parent.w/2", 10):setText("Test!")
+flex:addLabel():setSize("parent.w/2 - 1", 10):setText("Test!")
 
-flex:addLabel():setSize("parent.w/2", 10):setText("Test!")
+flex:addLabel():setSize("parent.w/2 - 1", 10):setText("Test!")
 
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
