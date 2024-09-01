@@ -33,35 +33,29 @@ flex:addLabel():setSize("parent.w/2", 10):setText("Test!")
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
   print("started")
-  local sortFunc = function (a, b)
+  local sortFunc = function(a, b)
     return a.machineName > b.machineName
   end
 
   while (true) do
     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
-    if(channel == sendChannel and message.machineName) then
+    if (channel == sendChannel and message.machineName) then
       local exists = machines[message.machineName]
-      if() then
-        
-      end
-
-      machines[message.machineName].machineData = message
-
-      if(not exists) then
+      if (exists) then
+        machines[message.machineName].machineData = message
+      else
+        machines[message.machineName] = { machineData = message }
         print("New machine, sorting")
         table.sort(machines, sortFunc)
       end
-     end
+    end
   end
 end
 
 main:addThread():start(handleMessages)
 
 basalt.autoUpdate();
-
-
-
 -- {
 --   recipeLogic = {
 --     fuelMaxTime = 0,
