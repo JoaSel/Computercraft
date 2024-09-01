@@ -14,61 +14,16 @@ local ackChannel = 44
 
 local modem = pWrapper.find("modem")
 local monitor = pWrapper.find("monitor")
-
--- modem.open(sendChannel)
--- mMon.setMonitor(monitor, 0.5)
-
--- local machines = {}
-
--- local function render()
---   while (true) do
---     mMon.reset()
-
---     for _, machine in pairs(machines) do
---       mMon.writeLine(machine.machineName)
---     end
-
---     os.sleep(1)
---   end
--- end
-
--- local function handleMessages()
---   local event, side, channel, replyChannel, message, distance
---   print("started")
---   local sortFunc = function (a, b)
---     return a.machineName > b.machineName
---   end
-
---   while (true) do
---     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
-
---     -- mMon.reset()
---     -- mMon.writeLine(time.getTime())
---     -- mMon.newLine()
---     -- mMon.writeLine(dump.text(message))
---     print("Got message")
-
---     if(channel == sendChannel and message.machineName) then
---       local exists = machines[message.machineName]
---       machines[message.machineName] = message
-
---       if(not exists) then
---         print("new machine, sorting")
---         table.sort(machines, sortFunc)
---       end
---      end
---   end
--- end
-
-
 local basalt = require("basalt")
+
+local machines = {}
+
 
 local monitorFrame = basalt.addMonitor()
 monitorFrame:setMonitor(monitor)
 
--- local main = basalt.createFrame()
-local button = monitorFrame --> Basalt returns an instance of the object on most methods, to make use of "call-chaining"
-        :addButton() --> This is an example of call chaining
+local button = monitorFrame
+        :addButton()
         :setPosition(4, 4)
         :setText("Click me!")
         :onClick(
@@ -78,12 +33,33 @@ local button = monitorFrame --> Basalt returns an instance of the object on most
 
 basalt.autoUpdate()
 
-print("test")
 
--- parallel.waitForAny(
--- 	render,
--- 	handleMessages
--- )
+local function handleMessages()
+  local event, side, channel, replyChannel, message, distance
+  print("started")
+  local sortFunc = function (a, b)
+    return a.machineName > b.machineName
+  end
+
+  while (true) do
+    event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
+
+    if(channel == sendChannel and message.machineName) then
+      local exists = machines[message.machineName]
+      machines[message.machineName] = message
+
+      if(not exists) then
+        print("new machine, sorting")
+        table.sort(machines, sortFunc)
+      end
+     end
+  end
+end
+
+parallel.waitForAny(
+	basalt.autoUpdate,
+	handleMessages
+)
 
 
 
