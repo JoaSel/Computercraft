@@ -25,6 +25,7 @@ local displayNamesRoutes = {
 	["Raw Neodymium"] = "Storage Input",
 	["Raw Palladium"] = "Storage Input",
 	["Raw Sheldonite"] = "Storage Input",
+	["Raw Naquadah"] = "Storage Input",
 	["Hydrogen"] = "Storage Input",
 	["Oxygen"] = "Storage Input"
 }
