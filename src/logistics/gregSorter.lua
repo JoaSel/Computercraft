@@ -40,6 +40,9 @@ local miscRoutes = {
 		if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:ores")) then
 			return "Macerator"
 		end
+		if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:raw_materials")) then
+			return "Macerator"
+		end
 	end
 }
 
