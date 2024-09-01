@@ -23,7 +23,7 @@ local event, side, channel, replyChannel, message, distance
 while (true) do
   print("listening")
   event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
-  monitor.clear();
+  --monitor.clear();
 
   mMon.writeLine(time.getTime())
   mMon.newLine()
