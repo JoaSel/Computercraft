@@ -12,20 +12,20 @@ local modem = pWrapper.find("modem")
 local monitor = pWrapper.find("monitor")
 local basalt = require("basalt")
 
-local translations = {
-  ["gtceu:alloy_blast_smelter"] = "Alloy Blast Smelter"
-}
+-- local translations = {
+--   ["gtceu:alloy_blast_smelter"] = "Alloy Blast Smelter"
+-- }
 
 local machines = {}
 
 local main = basalt.addMonitor()
 main:setMonitor(monitor)
 
-local flex = main:addFlexbox()
-  :setWrap("wrap")
-  :setBackground(colors)
-  :setPosition(1, 1)
-  :setSize("parent.w", "parent.h")
+-- local flex = main:addFlexbox()
+--   :setWrap("wrap")
+--   :setBackground(colors)
+--   :setPosition(1, 1)
+--   :setSize("parent.w", "parent.h")
 
 local function updateMachine(machineData)
   local exists = machines[machineData.machineId]
@@ -47,7 +47,7 @@ end
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
   print("started")
-  
+
   while (true) do
     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
@@ -59,9 +59,10 @@ end
 
 
 
-main:addThread():start(handleMessages)
+--main:addThread():start(handleMessages)
 
 basalt.autoUpdate();
+
 -- {
 --   recipeLogic = {
 --     fuelMaxTime = 0,
