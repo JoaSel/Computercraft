@@ -25,6 +25,8 @@ while (true) do
   event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
   --monitor.clear();
 
+  print(channel)
+
   mMon.writeLine(time.getTime())
   mMon.newLine()
   mMon.writeLine(dump.text(message))
