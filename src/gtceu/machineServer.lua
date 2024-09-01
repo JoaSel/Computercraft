@@ -45,7 +45,6 @@ local function handleMessages()
         print("new machine, sorting")
         table.sort(machines, sortFunc)
         button:setText("test")
-        basalt.update()
       end
      end
   end
