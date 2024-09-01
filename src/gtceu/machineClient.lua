@@ -10,6 +10,7 @@ local sendChannel = 43
 local ackChannel = 44
 
 local modem = pWrapper.find("modem")
+local chest = pWrapper.find("minecraft:chest")
 --local blockReader = pWrapper.find("blockReader")
 
 --local machineName = blockReader.getBlockName()
@@ -28,15 +29,18 @@ while(true) do
     --     end
 
     --     data.machineName = machineName
-
     --     modem.transmit(sendChannel, ackChannel, data)
     -- end
-    modem.transmit(sendChannel, ackChannel, {
-        a = "testA",
-        b = "testB",
-        c = "testC",
-        d = "testD"
-    })
+    local item = chest.getItemDetail(1)
+
+    if (item) then
+        modem.transmit(sendChannel, ackChannel, {
+            a = "testA",
+            b = "testB",
+            c = "testC",
+            d = "testD"
+        })
+    end
 
     os.sleep(2)
 end
