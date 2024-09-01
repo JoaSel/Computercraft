@@ -44,6 +44,7 @@ local function handleMessages(machines)
     -- mMon.writeLine(time.getTime())
     -- mMon.newLine()
     -- mMon.writeLine(dump.text(message))
+    print("Got message")
 
     if(channel == sendChannel and message.machineName) then
       local exists = machines[message.machineName]
