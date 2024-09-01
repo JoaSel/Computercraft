@@ -1,5 +1,5 @@
-local function find(peripheralType)
-    local peripherals = { peripheral.find(peripheralType) or error("Can't find any peripheral with type: " .. peripheralType) }
+local function find(peripheralType, ignoreError)
+    local peripherals = { peripheral.find(peripheralType) or (ignoreError and error("Can't find any peripheral with type: " .. peripheralType)) }
 
     for _, p in pairs(peripherals) do
         p.name = peripheral.getName(p)
