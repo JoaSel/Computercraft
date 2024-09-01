@@ -21,10 +21,13 @@ local machines = {}
 local main = basalt.addMonitor()
 main:setMonitor(monitor)
 
-local flex = main:addFlexbox():setWrap("wrap"):setBackground(colors.black):setPosition(1, 1):setSize("parent.w", "parent.h")
+local flex = main
+  :addFlexbox()
+  :setWrap("wrap")
+  :setBackground(colors.black)
+  :setPosition(1, 1)
+  :setSize("parent.w", "parent.h")
 
--- flex:addLabel():setSize("parent.w/2 - 1", 10)
-  
 local function updateMachine(machineData)
   local exists = machines[machineData.machineId]
       if (exists) then
@@ -50,14 +53,14 @@ local function handleMessages()
     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
     if (channel == sendChannel and message.machineId) then
-      --updateMachine(message)
+      updateMachine(message)
     end
   end
 end
 
 
 
---main:addThread():start(handleMessages)
+main:addThread():start(handleMessages)
 
 basalt.autoUpdate();
 
