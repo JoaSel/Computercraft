@@ -6,6 +6,9 @@ local dump = require("dump")
 local pWrapper = require("peripheralWrapper")
 local gtceuIO = require("libs.gtceuIO")
 
+local sendChannel = 43
+local ackChannel = 44
+
 local modem = pWrapper.find("modem")
 local blockReader = pWrapper.find("blockReader")
 
@@ -26,7 +29,7 @@ while(true) do
 
         data.machineName = machineName
 
-        modem.transmit(43, 43, data)
+        modem.transmit(sendChannel, ackChannel, data)
     end
 
     os.sleep(2)
