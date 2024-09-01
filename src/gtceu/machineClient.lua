@@ -9,7 +9,7 @@ local gtceuIO = require("libs.gtceuIO")
 local sendChannel = 43
 local ackChannel = 44
 
---local modem = pWrapper.find("modem")
+local modem = pWrapper.find("modem")
 local blockReader = pWrapper.find("blockReader")
 
 local machineName = blockReader.getBlockName()
@@ -28,9 +28,9 @@ while (true) do
             end
         end
 
-        -- data.machineName = machineName
-        -- modem.transmit(sendChannel, ackChannel, data)
+        data.machineName = machineName
+        modem.transmit(sendChannel, ackChannel, data)
     end
 
-    os.sleep(2)
+    os.sleep(10)
 end
