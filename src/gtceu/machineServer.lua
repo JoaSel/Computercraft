@@ -12,9 +12,9 @@ local modem = pWrapper.find("modem")
 local monitor = pWrapper.find("monitor")
 local basalt = require("basalt")
 
--- local translations = {
---   ["gtceu:alloy_blast_smelter"] = "Alloy Blast Smelter"
--- }
+local translations = {
+  ["gtceu:alloy_blast_smelter"] = "Alloy Blast Smelter"
+}
 
 local machines = {}
 
