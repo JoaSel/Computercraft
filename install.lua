@@ -3,16 +3,20 @@
 
 local args = { ... }
 
-if(#args ~= 1) then
+if(#args < 1) then
     error("Usage: ....")
 end
 
 local gitUrl = "https://github.com/JoaSel/"
 local repoName = "Computercraft"
 local scriptName = args[1]
+local installBasalt = args[2]
 
 print("Installing SquidDev's git clone...")
 shell.run("wget", "https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b0b15a5c06c0603b/raw/clone.min.lua", "clone.lua")
+
+print("Installing basalt...")
+shell.run("wget", "wget run https://basalt.madefor.cc/install.lua packed")
 
 print("Creating startup file...")
 local startupFile = fs.open("startup", "w+")
