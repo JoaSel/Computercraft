@@ -26,7 +26,11 @@ main:setMonitor(monitor)
 --                 basalt.debug("I got clicked!")
 --             end)
 
-local flex = main:addFlexbox():setWrap("wrap"):setBackground(colors.lightGray):setPosition(1, 1):setSize("parent.w", "parent.h")
+local flex = main:addFlexbox()
+  :setWrap("wrap")
+  :setBackground(colors.lightGray)
+  :setPosition(1, 1)
+  :setSize("parent.w", "parent.h")
 
 flex:addLabel():setSize("parent.w/2", 10):setText("Test!")
 
