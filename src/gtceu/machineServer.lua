@@ -3,17 +3,17 @@
 package.path = package.path .. ";../../../?.lua"
 package.path = package.path .. ";../core/?.lua"
 
--- local dump = require("dump")
--- local pWrapper = require("peripheralWrapper")
--- local gtceuIO = require("libs.gtceuIO")
--- local mMon = require("moreMonitor")
--- local time = require("time")
+local dump = require("dump")
+local pWrapper = require("peripheralWrapper")
+local gtceuIO = require("libs.gtceuIO")
+local mMon = require("moreMonitor")
+local time = require("time")
 
 -- local sendChannel = 43
 -- local ackChannel = 44
 
 -- local modem = pWrapper.find("modem")
--- local monitor = pWrapper.find("monitor")
+local monitor = pWrapper.find("monitor")
 
 -- modem.open(sendChannel)
 -- mMon.setMonitor(monitor, 0.5)
@@ -63,8 +63,11 @@ package.path = package.path .. ";../core/?.lua"
 
 local basalt = require("basalt")
 
-local main = basalt.createMonitorFrame()
-local button = main --> Basalt returns an instance of the object on most methods, to make use of "call-chaining"
+local monitorFrame = basalt.addMonitor()
+monitorFrame:setMonitor(monitor)
+
+-- local main = basalt.createFrame()
+local button = monitorFrame --> Basalt returns an instance of the object on most methods, to make use of "call-chaining"
         :addButton() --> This is an example of call chaining
         :setPosition(4, 4)
         :setText("Click me!")
