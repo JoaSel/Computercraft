@@ -21,11 +21,11 @@ local machines = {}
 local main = basalt.addMonitor()
 main:setMonitor(monitor)
 
--- local flex = main:addFlexbox()
---   :setWrap("wrap")
---   :setBackground(colors)
---   :setPosition(1, 1)
---   :setSize("parent.w", "parent.h")
+local flex = main:addFlexbox()
+  :setWrap("wrap")
+  :setBackground(colors)
+  :setPosition(1, 1)
+  :setSize("parent.w", "parent.h")
 
 local function updateMachine(machineData)
   local exists = machines[machineData.machineId]
