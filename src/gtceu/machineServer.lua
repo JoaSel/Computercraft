@@ -2,71 +2,83 @@
 
 package.path = package.path .. ";../core/?.lua"
 
-local dump = require("dump")
-local pWrapper = require("peripheralWrapper")
-local gtceuIO = require("libs.gtceuIO")
-local mMon = require("moreMonitor")
-local time = require("time")
+-- local dump = require("dump")
+-- local pWrapper = require("peripheralWrapper")
+-- local gtceuIO = require("libs.gtceuIO")
+-- local mMon = require("moreMonitor")
+-- local time = require("time")
 
-local sendChannel = 43
-local ackChannel = 44
+-- local sendChannel = 43
+-- local ackChannel = 44
 
-local modem = pWrapper.find("modem")
-local monitor = pWrapper.find("monitor")
+-- local modem = pWrapper.find("modem")
+-- local monitor = pWrapper.find("monitor")
 
-modem.open(sendChannel)
-mMon.setMonitor(monitor, 0.5)
+-- modem.open(sendChannel)
+-- mMon.setMonitor(monitor, 0.5)
 
-local machines = {}
+-- local machines = {}
 
-local function render()
-  while (true) do
-    mMon.reset()
+-- local function render()
+--   while (true) do
+--     mMon.reset()
 
-    for _, machine in pairs(machines) do
-      mMon.writeLine(machine.machineName)
-    end
+--     for _, machine in pairs(machines) do
+--       mMon.writeLine(machine.machineName)
+--     end
 
-    os.sleep(1)
-  end
-end
+--     os.sleep(1)
+--   end
+-- end
 
-local function handleMessages()
-  local event, side, channel, replyChannel, message, distance
-  print("started")
-  local sortFunc = function (a, b)
-    return a.machineName > b.machineName
-  end
+-- local function handleMessages()
+--   local event, side, channel, replyChannel, message, distance
+--   print("started")
+--   local sortFunc = function (a, b)
+--     return a.machineName > b.machineName
+--   end
 
-  while (true) do
-    event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
+--   while (true) do
+--     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
-    -- mMon.reset()
-    -- mMon.writeLine(time.getTime())
-    -- mMon.newLine()
-    -- mMon.writeLine(dump.text(message))
-    print("Got message")
+--     -- mMon.reset()
+--     -- mMon.writeLine(time.getTime())
+--     -- mMon.newLine()
+--     -- mMon.writeLine(dump.text(message))
+--     print("Got message")
 
-    if(channel == sendChannel and message.machineName) then
-      local exists = machines[message.machineName]
-      machines[message.machineName] = message
+--     if(channel == sendChannel and message.machineName) then
+--       local exists = machines[message.machineName]
+--       machines[message.machineName] = message
 
-      if(not exists) then
-        print("new machine, sorting")
-        table.sort(machines, sortFunc)
-      end
-     end
-  end
-end
-
-
+--       if(not exists) then
+--         print("new machine, sorting")
+--         table.sort(machines, sortFunc)
+--       end
+--      end
+--   end
+-- end
 
 
+local basalt = require("basalt")
 
-parallel.waitForAny(
-	render,
-	handleMessages
-)
+local main = basalt.createFrame()
+local button = main --> Basalt returns an instance of the object on most methods, to make use of "call-chaining"
+        :addButton() --> This is an example of call chaining
+        :setPosition(4, 4)
+        :setText("Click me!")
+        :onClick(
+            function()
+                basalt.debug("I got clicked!")
+            end)
+
+basalt.autoUpdate()
+
+
+-- parallel.waitForAny(
+-- 	render,
+-- 	handleMessages
+-- )
 
 
 
