@@ -1,4 +1,4 @@
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/gtceu/machineServer.lua
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/gtceu/machineServer.lua true
 
 package.path = package.path .. ";../../../?.lua"
 package.path = package.path .. ";../core/?.lua"
@@ -63,7 +63,7 @@ package.path = package.path .. ";../core/?.lua"
 
 local basalt = require("basalt")
 
-local main = basalt.createFrame()
+local main = basalt.createMonitorFrame()
 local button = main --> Basalt returns an instance of the object on most methods, to make use of "call-chaining"
         :addButton() --> This is an example of call chaining
         :setPosition(4, 4)
