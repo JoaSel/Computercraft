@@ -26,6 +26,8 @@ main:setMonitor(monitor)
 
 local flex = main
   :addFlexbox()
+  :setForeground(colors.white)
+  :setBackground(colors.black)
   :setWrap("wrap")
   :setPosition(1, 1)
   :setSize("parent.w", "parent.h")
