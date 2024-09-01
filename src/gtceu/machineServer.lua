@@ -17,21 +17,58 @@ local monitor = pWrapper.find("monitor")
 modem.open(sendChannel)
 mMon.setMonitor(monitor)
 
-local event, side, channel, replyChannel, message, distance
 
-while (true) do
-  print("listening")
-  event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
-  mMon.reset()
-  mMon.writeLine(time.getTime())
-  mMon.newLine()
-  mMon.writeLine(dump.text(message))
+local function render(machines)
+  while (true) do
+    mMon.clear()
 
-  if(channel == sendChannel) then
+    for _, machine in pairs(machines) do
+      mMon.writeLine(machine.machineName)
+    end
     
+    os.sleep(1)
   end
 end
+
+local function handleMessages(machines)
+  local event, side, channel, replyChannel, message, distance
+  local sortFunc = function (a, b)
+    return a.machineName > b.machineName
+  end
+
+  while (true) do
+    event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
+
+    -- mMon.reset()
+    -- mMon.writeLine(time.getTime())
+    -- mMon.newLine()
+    -- mMon.writeLine(dump.text(message))
+
+    if(channel == sendChannel and message.machineName) then
+      local shouldSort = machines[message.machineName]
+      machines[message.machineName] = message
+
+      if(shouldSort) then
+        print("new machine, sorting")
+        table.sort(machines, sortFunc)
+      end
+     end
+  end
+end
+
+local machines = {}
+
+parallel.waitForAny(
+	function()
+		render(machines)
+	end,
+	function()
+		handleMessages(machines)
+	end
+)
+
+
 
 
 -- {
