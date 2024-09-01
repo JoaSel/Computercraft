@@ -10,6 +10,11 @@ local function setMonitor(monitor)
 	_mWidth, _ = _monitor.getSize()
 end
 
+local function reset()
+	_monitor.clear()
+	_monitor.setCursorPos(1, 1)
+end
+
 local function newLine()
     local _, y = _monitor.getCursorPos()
     _monitor.setCursorPos(1, y + 1)
@@ -79,5 +84,6 @@ return
     writeLine = writeLine,
     writeTabbedLine = writeTabbedLine,
 	toggleColor = toggleColor,
-	writeCenter = writeCenter
+	writeCenter = writeCenter,
+	reset = reset
 }

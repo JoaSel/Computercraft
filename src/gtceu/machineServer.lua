@@ -15,7 +15,6 @@ local modem = pWrapper.find("modem")
 local monitor = pWrapper.find("monitor")
 
 modem.open(sendChannel)
-monitor.setTextScale(0.5)
 mMon.setMonitor(monitor)
 
 local event, side, channel, replyChannel, message, distance
@@ -23,11 +22,8 @@ local event, side, channel, replyChannel, message, distance
 while (true) do
   print("listening")
   event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
-  --monitor.clear();
 
-  print(channel)
-  mMon.writeLine("test")
-
+  mMon.reset()
   mMon.writeLine(time.getTime())
   mMon.newLine()
   mMon.writeLine(dump.text(message))
