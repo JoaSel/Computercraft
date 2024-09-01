@@ -30,7 +30,7 @@ local column1 = main:addFrame():setSize("parent.w/2", "parent.h")
 local column2 = main:addFrame():setSize("parent.w/2", "parent.h"):setPosition("parent.w/2+1", 1)
 
 column1:addLabel():setText("Test!")
-column1:addLabel():setText("Test2!")
+column2:addLabel():setText("Test2!")
 
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
