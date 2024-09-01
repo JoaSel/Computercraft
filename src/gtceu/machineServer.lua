@@ -38,8 +38,10 @@ local function updateMachine(machineData)
       local machine = machines[machineData.machineId]
 
       if(not machine.displayFrame) then
-        machine.displayFrame = flex:addLabel():setSize("parent.w/2 - 1", 10):setText("Test!")
+        machine.displayFrame = flex:addLabel():setSize("parent.w/2 - 1", 10)
       end
+
+      machine.displayFrame:setText(machineData.machineName)
 end
 
 local function handleMessages()
