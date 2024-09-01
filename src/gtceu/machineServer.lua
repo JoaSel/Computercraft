@@ -51,6 +51,7 @@ local function handleMessages()
       if(not exists) then
         print("new machine, sorting")
         table.sort(machines, sortFunc)
+        button:setText("test")
       end
      end
   end
