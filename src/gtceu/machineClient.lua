@@ -10,27 +10,33 @@ local sendChannel = 43
 local ackChannel = 44
 
 local modem = pWrapper.find("modem")
-local blockReader = pWrapper.find("blockReader")
+--local blockReader = pWrapper.find("blockReader")
 
-local machineName = blockReader.getBlockName()
+--local machineName = blockReader.getBlockName()
 
-print(string.format("Monitoring %s...", machineName))
+--print(string.format("Monitoring %s...", machineName))
 
 while(true) do
-    local data = blockReader.getBlockData()
+    -- local data = blockReader.getBlockData()
 
-    if(data) then
-        if(data.recipeLogic.lastRecipe) then
-            data.recipeLogic.lastRecipe = nil
-        end
-        if(data.recipeLogic.lastOriginRecipe) then
-            data.recipeLogic.lastOriginRecipe = nil
-        end
+    -- if(data) then
+    --     if(data.recipeLogic.lastRecipe) then
+    --         data.recipeLogic.lastRecipe = nil
+    --     end
+    --     if(data.recipeLogic.lastOriginRecipe) then
+    --         data.recipeLogic.lastOriginRecipe = nil
+    --     end
 
-        data.machineName = machineName
+    --     data.machineName = machineName
 
-        modem.transmit(sendChannel, ackChannel, data)
-    end
+    --     modem.transmit(sendChannel, ackChannel, data)
+    -- end
+    modem.transmit(sendChannel, ackChannel, {
+        a = "testA",
+        b = "testB",
+        c = "testC",
+        d = "testD"
+    })
 
     os.sleep(2)
 end

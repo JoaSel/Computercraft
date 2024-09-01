@@ -15,17 +15,17 @@
 -- 	print(dump(o))
 -- end
 
-local function serialise(o)
+local function text(o)
 	return textutils.serialise(o, { allow_repetitions = true })
 end
 
 local function print(o)
-	print(serialise(o))
+	print(text(o))
 end
 
 
 local function toFile(o, filename)
-	local data = serialise(o)
+	local data = text(o)
 
 	local file = fs.open(filename, "w+")
 	file.write(data)
@@ -33,7 +33,7 @@ local function toFile(o, filename)
 end
 
 local function toPastebin(o)
-	local data = serialise(o)
+	local data = text(o)
 
 	local file = fs.open("pastebinData", "w+")
 	file.write(data)
@@ -55,4 +55,4 @@ local function shallow(o)
 	end
 end
 
-return { print = print, shallow = shallow, toFile = toFile, toPastebin = toPastebin }
+return { print = print, shallow = shallow, toFile = toFile, toPastebin = toPastebin, text = text }

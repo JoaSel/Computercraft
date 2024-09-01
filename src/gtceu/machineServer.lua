@@ -5,20 +5,27 @@ package.path = package.path .. ";../core/?.lua"
 local dump = require("dump")
 local pWrapper = require("peripheralWrapper")
 local gtceuIO = require("libs.gtceuIO")
+local mMon = require("moreMonitor")
+
+local sendChannel = 43
+local ackChannel = 44
 
 local modem = pWrapper.find("modem")
-modem.open(43) -- Open 43 so we can receive replies
+local monitor = pWrapper.find("monitor")
 
-print("Listening...")
+modem.open(sendChannel)
+mMon.setMonitor(monitor)
 
 local event, side, channel, replyChannel, message, distance
 
---while (true) do
+while (true) do
   event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
   if(channel == 43) then
-    dump.print(message)
+    mMon.writeLine(os.time("utc"))
+    mMon.newLine()
+    mMon.writeLine(dump.text(message))
   end
---end
+end
 
 
 -- {
