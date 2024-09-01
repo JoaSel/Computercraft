@@ -13,18 +13,19 @@ local modem = pWrapper.find("modem")
 local blockReader = pWrapper.find("blockReader")
 
 local machineName = blockReader.getBlockName()
-
 print(string.format("Monitoring %s...", machineName))
 
-while(true) do
+while (true) do
     local data = blockReader.getBlockData()
 
-    if(data) then
-        if(data.recipeLogic.lastRecipe) then
-            data.recipeLogic.lastRecipe = nil
-        end
-        if(data.recipeLogic.lastOriginRecipe) then
-            data.recipeLogic.lastOriginRecipe = nil
+    if (data) then
+        if (data.recipeLogic) then
+            if (data.recipeLogic.lastRecipe) then
+                data.recipeLogic.lastRecipe = nil
+            end
+            if (data.recipeLogic.lastOriginRecipe) then
+                data.recipeLogic.lastOriginRecipe = nil
+            end
         end
 
         data.machineName = machineName
