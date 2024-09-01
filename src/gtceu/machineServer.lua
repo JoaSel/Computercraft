@@ -19,9 +19,9 @@ local translations = {
 local machines = {}
 
 local main = basalt.addMonitor()
-  :setTextColor(colors.white)
-  :setBackgroundColor(colors.black)
-  
+  :setForeground(colors.white)
+  :setBackground(colors.black)
+
 main:setMonitor(monitor)
 
 local flex = main
