@@ -28,8 +28,8 @@ while (true) do
             end
         end
 
-        data.machineName = machineName
-        modem.transmit(sendChannel, ackChannel, data)
+        -- data.machineName = machineName
+        -- modem.transmit(sendChannel, ackChannel, data)
     end
 
     os.sleep(2)
