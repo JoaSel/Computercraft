@@ -1,5 +1,5 @@
 local function find(peripheralType, ignoreError)
-    local peripherals = { peripheral.find(peripheralType) or (ignoreError and error("Can't find any peripheral with type: " .. peripheralType)) }
+    local peripherals = { peripheral.find(peripheralType) }
 
     for _, p in pairs(peripherals) do
         p.name = peripheral.getName(p)
@@ -8,6 +8,10 @@ local function find(peripheralType, ignoreError)
     table.sort(peripherals, function(a, b)
         return a.name < b.name
     end)
+
+    if(not ignoreError and not next(peripherals)) then
+        error("Can't find any peripheral with type: " .. peripheralType)
+    end
 
     return unpack(peripherals)
 end
