@@ -34,12 +34,7 @@ while(true) do
     local item = chest.getItemDetail(1)
 
     if (item) then
-        modem.transmit(sendChannel, ackChannel, {
-            a = "testA",
-            b = "testB",
-            c = "testC",
-            d = "testD"
-        })
+        modem.transmit(sendChannel, ackChannel, item)
     end
 
     os.sleep(2)
