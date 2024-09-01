@@ -33,6 +33,7 @@ end
 
 local function handleMessages(machines)
   local event, side, channel, replyChannel, message, distance
+  print("started")
   local sortFunc = function (a, b)
     return a.machineName > b.machineName
   end
