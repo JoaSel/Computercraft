@@ -26,7 +26,9 @@ local displayNamesRoutes = {
 	["Purified Galena Ore"] = "Storage Input",
 	["Granite Salt Ore"] = "Storage Input",
 	["Red Granite Salt Ore"] = "Storage Input",
-	["Tuff Salt Ore"] = "Storage Input"
+	["Tuff Salt Ore"] = "Storage Input",
+	["Basalt Salt Ore"] = "Storage Input",
+	["Blackstone Salt Ore"] = "Storage Input",
 }
 
 local tagsRoutes = {
