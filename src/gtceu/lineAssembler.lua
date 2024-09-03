@@ -9,7 +9,7 @@ local gtceuIO = require("libs.gtceuIO")
 local machine = pWrapper.find("blockReader")
 
 --local input = pWrapper.wrap("entangled:tile_22")
-local input = pWrapper.wrap("mincraft:shulker_box")
+local input = pWrapper.wrap("minecraft:shulker_box")
 local output = pWrapper.wrap("entangled:tile_21")
 
 local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
@@ -30,25 +30,19 @@ local function importItems()
     local inputItems = input.list()
 
     local busIndex = 1
-    local sentToThisBus = 0
     local currentBus = inputBuses[busIndex]
-    local busSize = currentBus.size() - 1
+
+
+    dump.print(inputBuses)
     for fromSlot, item in pairs(inputItems) do
         if(item.name == "gtceu:data_stick") then
             print("Importing " .. item.name .. " to " .. currentBus.name)
             input.pushItems(dataAccessHatch.name, fromSlot)
         else
-            if(sentToThisBus >= busSize) then
-                busIndex = busIndex + 1
-                sentToThisBus = 0
-                currentBus = inputBuses[busIndex]
-                busSize = currentBus.size() - 1
-            end
-
             print("Importing " .. item.name .. " to " .. currentBus.name)
             input.pushItems(currentBus.name, fromSlot, 64)
 
-            sentToThisBus = sentToThisBus + 1
+            busIndex = busIndex + 1
         end
     end
 end
