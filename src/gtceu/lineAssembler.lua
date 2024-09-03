@@ -9,7 +9,7 @@ local gtceuIO = require("libs.gtceuIO")
 local machine = pWrapper.find("blockReader")
 
 --local input = pWrapper.wrap("entangled:tile_22")
-local input = pWrapper.wrap("minecraft:shulker_box")
+local input = pWrapper.wrap("minecraft:shulker_box_0")
 local output = pWrapper.wrap("entangled:tile_21")
 
 local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
