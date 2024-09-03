@@ -1,19 +1,17 @@
--- local function dump(o)
--- 	if type(o) == 'table' then
--- 		local s = '{ '
--- 		for k, v in pairs(o) do
--- 			if type(k) ~= 'number' then k = '"' .. k .. '"' end
--- 			s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
--- 		end
--- 		return s .. '} '
--- 	else
--- 		return tostring(o)
--- 	end
--- end
+local function text2(o)
+	if type(o) == 'table' then
+		local s = '{ '
+		for k, v in pairs(o) do
+			if type(k) ~= 'number' then k = '"' .. k .. '"' end
+			s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
+		end
+		return s .. '} '
+	else
+		return tostring(o)
+	end
+end
 
--- local function printDump(o)
--- 	print(dump(o))
--- end
+
 
 local function text(o)
 	return textutils.serialise(o, { allow_repetitions = true })
@@ -21,6 +19,10 @@ end
 
 local function print(o)
 	print(text(o))
+end
+
+local function print2(o)
+	print(text2(o))
 end
 
 
@@ -55,4 +57,4 @@ local function shallow(o)
 	end
 end
 
-return { print = print, shallow = shallow, toFile = toFile, toPastebin = toPastebin, text = text }
+return { print = print, print2 = print2, shallow = shallow, toFile = toFile, toPastebin = toPastebin, text = text }

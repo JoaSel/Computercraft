@@ -33,7 +33,7 @@ local function importItems()
     local currentBus = inputBuses[busIndex]
 
 
-    dump.print(inputBuses)
+    dump.print2(inputBuses)
     for fromSlot, item in pairs(inputItems) do
         if(item.name == "gtceu:data_stick") then
             print("Importing " .. item.name .. " to " .. currentBus.name)
