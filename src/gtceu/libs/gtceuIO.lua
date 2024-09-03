@@ -26,7 +26,12 @@ local function find(postfix)
     end
 
     table.sort(ret, function(a, b)
-        return a.name < b.name
+        local aLen = string.len(a)
+        local bLen = string.len(b)
+        if(aLen == bLen) then
+            return a.name < b.name
+        end
+        return aLen < bLen
     end)
 
     return unpack(ret)
