@@ -21,9 +21,9 @@ local outputBuses = { gtceuIO.findOutputBuses() }
 local outputHatches = { gtceuIO.findOutputHatches() }
 
 local function getStatus()
-    local data = machine.getBlockData()
-
-    return data.recipeLogic.status
+    --local data = machine.getBlockData()
+    return "IDLE"
+    --return data.recipeLogic.status
 end
 
 local function importItems()
