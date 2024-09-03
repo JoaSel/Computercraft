@@ -36,7 +36,7 @@ local function importItems()
         print(value.name)
     end
 
-
+    exit()
     
     for fromSlot, item in pairs(inputItems) do
         if(item.name == "gtceu:data_stick") then
