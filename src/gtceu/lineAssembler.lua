@@ -20,8 +20,6 @@ local inputHatches = { gtceuIO.findInputHatches() }
 local outputBuses = { gtceuIO.findOutputBuses() }
 local outputHatches = { gtceuIO.findOutputHatches() }
 
-exit()
-
 local function getStatus()
     local data = machine.getBlockData()
 
