@@ -75,6 +75,7 @@ local function exportItems(count)
         end
 
         if(#outputBus.list() > 0) then
+            print("Failed to export trying again.")
             exportItems(count + 1)
         end
     end
