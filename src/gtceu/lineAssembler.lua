@@ -32,21 +32,21 @@ local function importItems()
     local busIndex = 1
     for fromSlot, item in pairs(inputItems) do
         print("Handling " .. item.name)
-        -- if(busIndex > #inputBuses) then
-        --     error("Build a longer assembly line.")
-        -- end
 
-        local currentBus = inputBuses[busIndex]
-        if(item.name == "gtceu:data_stick") then
+        if (item.name == "gtceu:data_stick") then
             print("Importing " .. item.name .. " to " .. currentBus.name)
             input.pushItems(dataAccessHatch.name, fromSlot)
         else
-            dump.toTerm(item)
-            exit()
-            print("Importing " .. item.name .. " to " .. currentBus.name)
-            input.pushItems(currentBus.name, fromSlot, 64)
+            for i = 0, item.count, 64 do
+                if (busIndex > #inputBuses) then
+                    error("Build a longer assembly line.")
+                end
+                local currentBus = inputBuses[busIndex]
 
-            busIndex = busIndex + 1
+                print("Importing " .. item.name .. " to " .. currentBus.name)
+                input.pushItems(currentBus.name, fromSlot, 64)
+                busIndex = busIndex + 1
+            end
         end
     end
 end
