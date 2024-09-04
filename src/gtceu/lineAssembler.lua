@@ -92,11 +92,12 @@ local function exportItems(count)
 end
 
 while (true) do
-    exportItems(0)
+    print("running")
+    --exportItems(0)
 
     if(getStatus() == "IDLE") then
-        importItems()
-        importFluids()
+        --importItems()
+        --importFluids()
     end
 
     os.sleep(1)
