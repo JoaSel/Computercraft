@@ -54,9 +54,7 @@ local function importFluids()
 
     for _, item in pairs(inputFluids) do
         print("Importing " .. item.name)
-        for _, inputHatch in pairs(inputHatches) do
-            input.pushFluid(inputHatch.name)
-        end
+        input.pushFluid(inputHatches[1].name)
     end
 end
 
@@ -96,7 +94,7 @@ while (true) do
 
     if(getStatus() == "IDLE") then
         importItems()
-        --importFluids()
+        importFluids()
     end
 
     os.sleep(1)
