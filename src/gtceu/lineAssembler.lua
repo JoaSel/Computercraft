@@ -29,6 +29,8 @@ end
 local function importItems()
     local inputItems = input.list()
 
+    exit()
+
     local busIndex = 1
     for fromSlot, item in pairs(inputItems) do
         -- if(busIndex > #inputBuses) then
