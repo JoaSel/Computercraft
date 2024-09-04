@@ -31,10 +31,8 @@ local function importItems()
 
     local busIndex = 1
     for fromSlot, item in pairs(inputItems) do
-        print("Handling " .. item.name)
-
         if (item.name == "gtceu:data_stick") then
-            print("Importing " .. item.name .. " to " .. currentBus.name)
+            print("Importing " .. item.name .. " to " .. dataAccessHatch.name)
             input.pushItems(dataAccessHatch.name, fromSlot)
         else
             for i = 0, item.count, 64 do
