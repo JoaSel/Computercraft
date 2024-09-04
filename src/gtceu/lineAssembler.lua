@@ -41,7 +41,7 @@ local function importItems()
                 end
                 local currentBus = inputBuses[busIndex]
 
-                print(item.name .. " => " .. currentBus.name)
+                print(i .. " " .. item.name .. " => " .. currentBus.name)
                 input.pushItems(currentBus.name, fromSlot, 64)
                 busIndex = busIndex + 1
             end
@@ -92,7 +92,6 @@ local function exportItems(count)
 end
 
 while (true) do
-    print("running")
     exportItems(0)
 
     if(getStatus() == "IDLE") then
