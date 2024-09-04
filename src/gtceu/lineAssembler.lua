@@ -97,7 +97,7 @@ while (true) do
     exportItems(0)
 
     if(getStatus() == "IDLE") then
-        --importItems()
+        importItems()
         --importFluids()
     end
 
