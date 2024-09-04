@@ -37,13 +37,11 @@ local function importItems()
         -- end
 
         local currentBus = inputBuses[busIndex]
-
-        exit()
         if(item.name == "gtceu:data_stick") then
             print("Importing " .. item.name .. " to " .. currentBus.name)
             input.pushItems(dataAccessHatch.name, fromSlot)
         else
-            dump.print(item)
+            dump.shallow(item)
             exit()
             print("Importing " .. item.name .. " to " .. currentBus.name)
             input.pushItems(currentBus.name, fromSlot, 64)
