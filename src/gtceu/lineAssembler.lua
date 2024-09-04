@@ -35,7 +35,7 @@ local function importItems()
             print(item.name .. " => " .. dataAccessHatch.name)
             input.pushItems(dataAccessHatch.name, fromSlot)
         else
-            for i = 0, item.count, 64 do
+            for i = 1, item.count, 64 do
                 if (busIndex > #inputBuses) then
                     error("Build a longer assembly line.")
                 end
