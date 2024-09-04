@@ -104,7 +104,7 @@ local function updateSingleStatus(itemRequest, tagInfo)
 	local searchTbl = {name = itemRequest.name}
 
 	local existingItem = bridge.getItem(searchTbl)
-	if(existingItem) then
+	if(existingItem and existingItem.amount) then
 		if(existingItem.amount > (itemRequest.existingAmount or 0)) then
 			itemRequest.startingTries = 0
 		end
