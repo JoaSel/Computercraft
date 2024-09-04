@@ -41,7 +41,7 @@ local function importItems()
             print("Importing " .. item.name .. " to " .. currentBus.name)
             input.pushItems(dataAccessHatch.name, fromSlot)
         else
-            dump.shallow(item)
+            dump.toTerm(item)
             exit()
             print("Importing " .. item.name .. " to " .. currentBus.name)
             input.pushItems(currentBus.name, fromSlot, 64)

@@ -17,11 +17,11 @@ local function text(o)
 	return textutils.serialise(o, { allow_repetitions = true })
 end
 
-local function print(o)
+local function toTerm(o)
 	print(text(o))
 end
 
-local function print2(o)
+local function toTerm2(o)
 	print(text2(o))
 end
 
@@ -57,4 +57,4 @@ local function shallow(o)
 	end
 end
 
-return { print = print, print2 = print2, shallow = shallow, toFile = toFile, toPastebin = toPastebin, text = text }
+return { toTerm = toTerm, print2 = toTerm2, shallow = shallow, toFile = toFile, toPastebin = toPastebin, text = text }
