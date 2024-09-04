@@ -93,7 +93,7 @@ end
 
 while (true) do
     print("running")
-    --exportItems(0)
+    exportItems(0)
 
     if(getStatus() == "IDLE") then
         --importItems()
