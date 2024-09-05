@@ -12,11 +12,6 @@ local modem = pWrapper.find("modem")
 local monitor = pWrapper.find("monitor")
 local basalt = require("basalt")
 
-local translations = {
-  ["gtceu:alloy_blast_smelter"] = "Alloy Blast Smelter",
-  ["gtceu:advanced_large_chemical_reactor"] = "Chemical Reactor"
-}
-
 local machines = {}
 
 monitor.setTextScale(0.5)
@@ -31,8 +26,8 @@ local flex = main
   :setForeground(colors.white)
   :setBackground(colors.black)
   :setWrap("wrap")
-  :setPosition(1, 1)
-  :setSize("parent.w", "parent.h")
+  :setPosition(1, 2)
+  :setSize("parent.w", "parent.h - 1")
 
 local function updateMachine(machineData)
   local exists = machines[machineData.machineId]
