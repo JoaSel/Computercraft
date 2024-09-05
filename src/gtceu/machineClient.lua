@@ -18,7 +18,7 @@ local inputBuses = { gtceuIO.findInputBuses() }
 local inputHatches = { gtceuIO.findInputHatches() }
 
 local machineName = blockReader.getBlockName()
-local label = getLabel()
+local label = os.getComputerLabel()
 
 print(label)
 
