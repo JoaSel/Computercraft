@@ -18,11 +18,14 @@ local destinationI = 1
 local function create(input, destinationType, onlyEmpty, verbose)
 	_input = pWrapper.wrap(input)
 
-	print(_input.name)
+	
 
 	_destinations = { pWrapper.find(destinationType, function (p)
 		return p ~= input.name
 	end) }
+
+	print(_input.name)
+	print("-----")
 
 	for index, value in pairs(_destinations) do
 		print(value.name)
