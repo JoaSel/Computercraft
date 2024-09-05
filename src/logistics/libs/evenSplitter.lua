@@ -24,12 +24,10 @@ local function create(input, destinationType, onlyEmpty, verbose)
 		return p ~= input.name
 	end) }
 
-	print(_input.name)
-	print("-----")
+	-- print(_input.name)
+	-- print("-----")
 
-	for index, value in pairs(_destinations) do
-		print(value.name)
-	end
+	
 
 	_onlyEmpty = onlyEmpty
 
