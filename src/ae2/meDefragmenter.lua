@@ -163,8 +163,8 @@ while (true) do
 		created = true
 	end
 
-	jGui.updateSlider("bulkSlider", bulkOcc)
-	jGui.updateSlider("nbtSlider", nbtOcc)
+	jGui.updateSliderValue("bulkSlider", bulkOcc)
+	jGui.updateSliderValue("nbtSlider", nbtOcc)
 	jGui.draw()
 
 	os.sleep(5)
