@@ -19,11 +19,9 @@ local translations = {
 local machines = {}
 
 
-event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
+local event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
-    if (channel == sendChannel and message.machineId) then
-      print("message received.")
-    end
+print("message received: " .. channel)
 
 local main = basalt.addMonitor()
   :setForeground(colors.white)
