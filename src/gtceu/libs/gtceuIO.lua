@@ -8,18 +8,18 @@ local function find(postfix)
     local ret = {}
 
     for _, tier in pairs(tiers) do
-        local perips = { pWrapper.find("gtceu:" .. tier .. postfix, true) }
+        local perips = { pWrapper.find("gtceu:" .. tier .. postfix, nil, true) }
 
         for _, perip in pairs(perips) do
             table.insert(ret, perip)
         end
 
-        perips = { pWrapper.find("gtceu:" .. tier .. postfix .. "_4x", true) }
+        perips = { pWrapper.find("gtceu:" .. tier .. postfix .. "_4x", nil, true) }
         for _, perip in pairs(perips) do
             table.insert(ret, perip)
         end
 
-        perips = { pWrapper.find("gtceu:" .. tier .. postfix .. "_9x", true) }
+        perips = { pWrapper.find("gtceu:" .. tier .. postfix .. "_9x", nil, true) }
         for _, perip in pairs(perips) do
             table.insert(ret, perip)
         end
