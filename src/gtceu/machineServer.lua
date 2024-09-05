@@ -61,7 +61,7 @@ local function updateMachine(machineData)
         errorStatus = string.format("Status: ERROR (%s)", machineData.blockData.recipeLogic.status)
       end
 
-      machine.displayFrame:setBackground(displayColor):setTextAlign("center")
+      machine.displayFrame:setBackground(displayColor)
       machine.displayFrame:editItem(1, machineData.machineId)
       machine.displayFrame:editItem(2, errorStatus or string.format("Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
