@@ -17,13 +17,9 @@ local inputHatches = { gtceuIO.findInputHatches() }
 
 local machineName = blockReader.getBlockName()
 print(string.format("Monitoring %s...", machineName))
-modem.open(ackChannel)
-print(modem.transmit)
 
 local function getMachineStatus()
-    print("getting machine status")
     local data = blockReader.getBlockData()
-    print(data)
 
     if (data) then
         if (data.recipeLogic) then
@@ -51,6 +47,8 @@ local function getMachineStatus()
                 data.hasInputFluids = true
             end
         end
+
+        return data
     end
 end
 
