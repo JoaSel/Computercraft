@@ -34,6 +34,7 @@ end
 print(string.format("Monitoring %s as %s", machineName, label))
 
 local function getMachineStatus()
+    local data = {}
     local data = blockReader.getBlockData()
 
     if (data) then

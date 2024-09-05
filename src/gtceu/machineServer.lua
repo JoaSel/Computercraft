@@ -16,6 +16,12 @@ local basalt = require("basalt")
 
 local machines = {}
 
+local displayColors = {
+  ["IDLE"] = colors.green,
+  ["WORKING"] = colors.orange,
+  ["ERROR"] = colors.red,
+}
+
 monitor.setTextScale(0.5)
 local main = basalt.addMonitor()
   :setForeground(colors.white)
@@ -45,16 +51,17 @@ local function updateMachine(machineData)
         machine.displayFrame = flex:addList():setSize("parent.w/2 - 1", 2)
       end
 
+      local displayColor = displayColors[machineData.recipeLogic.status]
+      local errorStatus
 
       if(machineData.recipeLogic.status == "IDLE" and (machineData.hasInputItems or machineData.hasInputFluids)) then
-        machine.displayFrame:setBackground(colors.red)
-        machine.displayFrame:editItem(1, machineData.machineId)
-        machine.displayFrame:editItem(2, string.format("Status: ERROR (%s)", machineData.recipeLogic.status))
-      else
-        machine.displayFrame:setBackground(colors.green)
-        machine.displayFrame:editItem(1, machineData.machineId)
-        machine.displayFrame:editItem(2, string.format("Status: OK (%s)", machineData.recipeLogic.status))
+        displayColor = colors.red
+        errorStatus = string.format("Status: ERROR (%s)", machineData.recipeLogic.status)
       end
+
+      machine.displayFrame:setBackground(displayColor)
+      machine.displayFrame:editItem(1, machineData.machineId)
+      machine.displayFrame:editItem(2, errorStatus or string.format("Status: OK (%s)", machineData.recipeLogic.status))
 end
 
 local function handleMessages()
