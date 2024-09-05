@@ -29,6 +29,10 @@ local function removeAll(t, predicate)
         table.remove(t, deleteKey)
     end
 
+    for key, value in pairs(t) do
+        print(key .. value)
+    end
+
     return #toRemove
 end
 
