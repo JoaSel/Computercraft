@@ -58,12 +58,8 @@ local function getMachineStatus()
 
     data.blockData = blockReader.getBlockData()
     if (data.blockData.recipeLogic) then
-        if (data.blockData.recipeLogic.lastRecipe) then
-            data.blockData.recipeLogic.lastRecipe = nil
-        end
-        if (data.blockData.recipeLogic.lastOriginRecipe) then
-            data.blockData.recipeLogic.lastOriginRecipe = nil
-        end
+        data.blockData.recipeLogic.lastRecipe = nil
+        data.blockData.recipeLogic.lastOriginRecipe = nil
     end
 
     return data
