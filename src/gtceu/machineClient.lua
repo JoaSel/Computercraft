@@ -13,16 +13,22 @@ local ackChannel = 44
 local modem = pWrapper.find("modem", function(_, modem)
     return modem.isWireless()
 end)
+
 local blockReader = pWrapper.find("blockReader")
 
 local inputBuses = { gtceuIO.findInputBuses() }
 local inputHatches = { gtceuIO.findInputHatches() }
 
+local allowedItems = {
+    ["gtceu:programmed_circuit"] = true,
+    ["alltheores:zinc_dust"] = true
+}
+
 local machineName = blockReader.getBlockName()
 local label = os.getComputerLabel()
 
 local filterItems = function (item)
-    return item.name == "gtceu:programmed_circuit"
+    return allowedItems[item.name]
 end
 
 print(string.format("Monitoring %s as %s", machineName, label))
