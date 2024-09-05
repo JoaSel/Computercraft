@@ -27,7 +27,7 @@ local allowedItems = {
 local machineName = blockReader.getBlockName()
 local label = os.getComputerLabel()
 
-local filterItems = function (item)
+local filterItems = function(item)
     return allowedItems[item.name]
 end
 
@@ -35,40 +35,38 @@ print(string.format("Monitoring %s as %s", machineName, label))
 
 local function getMachineStatus()
     local data = {}
-    local data = blockReader.getBlockData()
 
-    if (data) then
-        if (data.recipeLogic) then
-            if (data.recipeLogic.lastRecipe) then
-                data.recipeLogic.lastRecipe = nil
-            end
-            if (data.recipeLogic.lastOriginRecipe) then
-                data.recipeLogic.lastOriginRecipe = nil
-            end
+    data.machineId = label
+    data.machineName = machineName
+
+    data.hasInputItems = false
+    for _, inputBus in pairs(inputBuses) do
+        local items = inputBus.list()
+        mTable.removeAll(items, filterItems)
+        if (next(items)) then
+            print("Has Items")
+            data.hasInputItems = true
         end
-
-        data.machineId = label
-        data.machineName = machineName
-
-        data.hasInputItems = false
-        for _, inputBus in pairs(inputBuses) do
-            local items = inputBus.list()
-            mTable.removeAll(items, filterItems)
-            if(next(items)) then
-                print("Has Items")
-                data.hasInputItems = true
-            end
-        end
-
-        data.hasInputFluids = false
-        for _, inputHatch in pairs(inputHatches) do
-            if(next(inputHatch.tanks())) then
-                data.hasInputFluids = true
-            end
-        end
-
-        return data
     end
+
+    data.hasInputFluids = false
+    for _, inputHatch in pairs(inputHatches) do
+        if (next(inputHatch.tanks())) then
+            data.hasInputFluids = true
+        end
+    end
+
+    data.blockData = blockReader.getBlockData()
+    if (data.blockData.recipeLogic) then
+        if (data.blockData.recipeLogic.lastRecipe) then
+            data.blockData.recipeLogic.lastRecipe = nil
+        end
+        if (data.blockData.recipeLogic.lastOriginRecipe) then
+            data.blockData.recipeLogic.lastOriginRecipe = nil
+        end
+    end
+
+    return data
 end
 
 

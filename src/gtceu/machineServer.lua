@@ -51,17 +51,17 @@ local function updateMachine(machineData)
         machine.displayFrame = flex:addList():setSize("parent.w/2 - 1", 2)
       end
 
-      local displayColor = displayColors[machineData.recipeLogic.status]
+      local displayColor = displayColors[machineData.blockData.recipeLogic.status]
       local errorStatus
 
-      if(machineData.recipeLogic.status == "IDLE" and (machineData.hasInputItems or machineData.hasInputFluids)) then
+      if(machineData.blockData.recipeLogic.status == "IDLE" and (machineData.hasInputItems or machineData.hasInputFluids)) then
         displayColor = colors.red
-        errorStatus = string.format("Status: ERROR (%s)", machineData.recipeLogic.status)
+        errorStatus = string.format("Status: ERROR (%s)", machineData.blockData.recipeLogic.status)
       end
 
       machine.displayFrame:setBackground(displayColor)
       machine.displayFrame:editItem(1, machineData.machineId)
-      machine.displayFrame:editItem(2, errorStatus or string.format("Status: OK (%s)", machineData.recipeLogic.status))
+      machine.displayFrame:editItem(2, errorStatus or string.format("Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
 
 local function handleMessages()
