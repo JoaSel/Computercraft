@@ -25,6 +25,7 @@ local function removeAll(t, predicate)
     end
 
     for _, deleteKey in pairs(toRemove) do
+        print("removing key: " .. deleteKey)
         table.remove(t, deleteKey)
     end
 
