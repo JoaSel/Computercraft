@@ -14,11 +14,12 @@ local function findKey(table, predicate)
     end
 end
 
-local function removeAll(t, predicate --[[int]])
+local function removeAll(t, predicate)
     local toRemove = {}
 
     for key, value in pairs(t) do
         if(predicate(value)) then
+            print("Adding remove key: " .. key)
             table.insert(toRemove, key)
         end
     end
