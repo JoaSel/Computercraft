@@ -51,6 +51,7 @@ local function updateMachine(machineData)
       local displayName = translations[machineData.machineName] or machineData.machineName
 
       machine.displayFrame:editItem(1, displayName)
+      machine.displayFrame:editItem(2, "Status: OK")
       machine.displayFrame:editItem(2, machineData.recipeLogic.status, (machineData.recipeLogic.status == "WORKING" and colors.green or colors.orange) )
 end
 
