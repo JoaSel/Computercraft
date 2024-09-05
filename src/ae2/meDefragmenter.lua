@@ -136,27 +136,27 @@ end
 
 
 
-mMon.writeCenter("Bulk Storage", 1)
-mMon.writeCenter("NBT Storage", 6)
+mMon.writeCenter("Bulk Storage", nil, 1)
+mMon.writeCenter("NBT Storage", nil, 6)
 
 local created = false
 while (true) do
-	mMon.writeCenter("Defragmenting", 11)
-	mMon.writeCenter("Bulk Storage", 12)
+	mMon.writeCenter("Defragmenting", nil, 11)
+	mMon.writeCenter("Bulk Storage", nil, 12)
 	local bulkOcc, bulkTot = defragmentStorages(bulkStorages)
 	
 
-	mMon.writeCenter("Moving items to", 11)
-	mMon.writeCenter("NBT Storage", 12)
+	mMon.writeCenter("Moving items to", nil, 11)
+	mMon.writeCenter("NBT Storage", nil, 12)
 	moveToNbt()
 
-	mMon.writeCenter("Defragmenting", 11)
-	mMon.writeCenter("NBT Storage", 12)
+	mMon.writeCenter("Defragmenting", nil, 11)
+	mMon.writeCenter("NBT Storage", nil, 12)
 	local nbtOcc, nbtTot = defragmentStorages(nbtStorages)
 	
 
-	mMon.writeCenter("Moving items to", 11)
-	mMon.writeCenter("Bulk Storage", 12)
+	mMon.writeCenter("Moving items to", nil, 11)
+	mMon.writeCenter("Bulk Storage", nil, 12)
 	moveToBulk()
 
 	--createSlider(name, maxValue, length, height, barForegroundColor, barBackgroundColor, infoType, onClick)
