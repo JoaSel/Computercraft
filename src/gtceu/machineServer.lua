@@ -13,7 +13,8 @@ local monitor = pWrapper.find("monitor")
 local basalt = require("basalt")
 
 local translations = {
-  ["gtceu:alloy_blast_smelter"] = "Alloy Blast Smelter"
+  ["gtceu:alloy_blast_smelter"] = "Alloy Blast Smelter",
+  ["gtceu:advanced_large_chemical_reactor"] = "Chemical Reactor"
 }
 
 local machines = {}
