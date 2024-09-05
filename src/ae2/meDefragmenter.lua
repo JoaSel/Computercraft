@@ -144,6 +144,7 @@ while (true) do
 	mMon.writeCenter("Defragmenting", 11)
 	mMon.writeCenter("Bulk Storage", 12)
 	local bulkOcc, bulkTot = defragmentStorages(bulkStorages)
+	
 
 	mMon.writeCenter("Moving items to", 11)
 	mMon.writeCenter("NBT Storage", 12)
@@ -152,20 +153,28 @@ while (true) do
 	mMon.writeCenter("Defragmenting", 11)
 	mMon.writeCenter("NBT Storage", 12)
 	local nbtOcc, nbtTot = defragmentStorages(nbtStorages)
+	
 
 	mMon.writeCenter("Moving items to", 11)
 	mMon.writeCenter("Bulk Storage", 12)
 	moveToBulk()
 
+	--createSlider(name, maxValue, length, height, barForegroundColor, barBackgroundColor, infoType, onClick)
 	if (not created) then
 		-- jGui.createSlider("bulkSlider", bulkTot, 2, 2, mWidth - 2, 3, colors.red, colors.lime, "Percent")
 		-- jGui.createSlider("nbtSlider", nbtTot, 2, 7, mWidth - 2, 3, colors.red, colors.lime, "Percent")
+		jGui.createSlider("bulkSlider", bulkTot, -2, 3, colors.red, colors.lime, "Percent")
+		jGui.createSlider("nbtSlider", nbtTot, -2, 3, colors.red, colors.lime, "Percent")
 		created = true
 	end
 
 	jGui.updateSliderValue("bulkSlider", bulkOcc)
 	jGui.updateSliderValue("nbtSlider", nbtOcc)
-	jGui.draw()
 
+	monitor.setCursorPos(2, 2)
+	jGui.drawSlider("bulkSlider")
+	monitor.setCursorPos(2, 7)
+	jGui.drawSlider("nbtSlider")
+	
 	os.sleep(5)
 end
