@@ -23,7 +23,7 @@ local function create(input, destinationType, onlyEmpty, verbose)
 		return d.name == _input.name
 	end)
 
-	dump.toTerm(_destinations)
+	dump.toTerm2(_destinations)
 
 	_onlyEmpty = onlyEmpty
 
