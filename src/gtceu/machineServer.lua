@@ -54,12 +54,13 @@ end
 
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
-  print("Started")
+  print("Started listening on " .. sendChannel)
 
   while (true) do
     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
     if (channel == sendChannel and message.machineId) then
+      print("message received.")
       updateMachine(message)
     end
   end
