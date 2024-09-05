@@ -57,8 +57,13 @@ local function updateMachine(machineData)
       local errorStatus
 
       if(machineData.blockData.recipeLogic.status == "IDLE" and (machineData.hasInputItems or machineData.hasInputFluids)) then
-        displayColor = colors.red
-        errorStatus = string.format(" Status: ERROR (%s)", machineData.blockData.recipeLogic.status)
+        if(machine.error) then
+          displayColor = colors.red
+          errorStatus = string.format(" Status: ERROR (%s)", machineData.blockData.recipeLogic.status)
+        end
+        machine.error = true
+      else
+        machine.error = false
       end
 
       machine.displayFrame:setBackground(displayColor)
