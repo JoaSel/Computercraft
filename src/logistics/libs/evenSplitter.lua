@@ -21,7 +21,7 @@ local function create(input, destinationType, onlyEmpty, verbose)
 	print(_input.name)
 
 	_destinations = { pWrapper.find(destinationType, function (p)
-		print(peripheral.getName(p))
+		print(p)
 		return peripheral.getName(p) ~= input.name
 	end) }
 
