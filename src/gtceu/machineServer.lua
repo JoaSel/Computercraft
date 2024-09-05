@@ -18,7 +18,7 @@ local translations = {
 
 local machines = {}
 
-
+modem.open(sendChannel)
 local event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
 print("message received: " .. channel)
