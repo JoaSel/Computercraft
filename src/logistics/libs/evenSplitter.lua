@@ -17,13 +17,9 @@ local destinationI = 1
 
 local function create(input, destinationType, onlyEmpty, verbose)
 	_input = pWrapper.wrap(input)
-	_destinations = { pWrapper.find(destinationType) }
-
-	mTable.removeAll(_destinations, function(d)
-		return d.name == _input.name
-	end)
-
-	dump.toTerm2(_destinations)
+	_destinations = { pWrapper.find(destinationType, function (p)
+		return p.name ~= input.name
+	end) }
 
 	_onlyEmpty = onlyEmpty
 
