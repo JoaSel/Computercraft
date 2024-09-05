@@ -21,8 +21,7 @@ local function create(input, destinationType, onlyEmpty, verbose)
 	print(_input.name)
 
 	_destinations = { pWrapper.find(destinationType, function (p)
-		print(p)
-		return peripheral.getName(p) ~= input.name
+		return p ~= input.name
 	end) }
 
 	for index, value in pairs(_destinations) do
