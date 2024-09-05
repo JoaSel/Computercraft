@@ -9,13 +9,10 @@ local gtceuIO = require("libs.gtceuIO")
 local sendChannel = 43
 local ackChannel = 44
 
-local modem = pWrapper.find("modem")
+local modem = pWrapper.find("modem", function(_, modem)
+    return modem.isWireless()
+end)
 local blockReader = pWrapper.find("blockReader")
-
-print("Sending on channel " .. sendChannel)
-modem.transmit(sendChannel, ackChannel, {test = "test"})
-
-exit()
 
 local inputBuses = { gtceuIO.findInputBuses() }
 local inputHatches = { gtceuIO.findInputHatches() }
