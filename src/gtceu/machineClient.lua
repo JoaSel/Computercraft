@@ -41,7 +41,7 @@ local function getMachineStatus()
         data.hasInputItems = false
         for _, inputBus in pairs(inputBuses) do
             if(next(inputBus.list())) then
-                print("Has items")
+                dump.toTerm(inputBus.list())
                 data.hasInputItems = true
             end
         end

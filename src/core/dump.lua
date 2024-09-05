@@ -57,4 +57,4 @@ local function shallow(o)
 	end
 end
 
-return { toTerm = toTerm, print2 = toTerm2, shallow = shallow, toFile = toFile, toPastebin = toPastebin, text = text }
+return { toTerm = toTerm, toTerm2 = toTerm2, shallow = shallow, toFile = toFile, toPastebin = toPastebin, text = text }
