@@ -46,7 +46,7 @@ local function getMachineStatus()
         data.hasInputItems = false
         for _, inputBus in pairs(inputBuses) do
             local items = inputBus.list()
-            mTable.removeAll(items, filterItems)
+            print(mTable.removeAll(items, filterItems))
             dump.toTerm(items)
             if(next(items)) then
                 data.hasInputItems = true
