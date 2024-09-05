@@ -51,7 +51,6 @@ local function updateMachine(machineData)
         machine.displayFrame = flex
           :addList()
           :setSize("parent.w/2 - 1", 2)
-          :setTextAlign("center")
       end
 
       local displayColor = displayColors[machineData.blockData.recipeLogic.status]
@@ -63,7 +62,7 @@ local function updateMachine(machineData)
       end
 
       machine.displayFrame:setBackground(displayColor)
-      machine.displayFrame:editItem(1, machineData.machineId)
+      machine.displayFrame:editItem(1, machineData.machineId):setTextAlign("center")
       machine.displayFrame:editItem(2, errorStatus or string.format("Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
 
