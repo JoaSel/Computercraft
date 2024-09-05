@@ -12,10 +12,13 @@ local ackChannel = 44
 local modem = pWrapper.find("modem")
 local blockReader = pWrapper.find("blockReader")
 
+local inputBuses = { gtceuIO.findInputBuses() }
+local inputHatches = { gtceuIO.findInputHatches() }
+
 local machineName = blockReader.getBlockName()
 print(string.format("Monitoring %s...", machineName))
 
-while (true) do
+local function getMachineStatus()
     local data = blockReader.getBlockData()
 
     if (data) then
@@ -30,8 +33,30 @@ while (true) do
 
         data.machineId = machineName
         data.machineName = machineName
-        modem.transmit(sendChannel, ackChannel, data)
+
+        data.hasInputItems = false
+        for _, inputBus in pairs(inputBuses) do
+            if(next(inputBus.list())) then
+                data.hasInputItems = true
+            end
+        end
+
+        data.hasInputFluids = false
+        for _, inputHatch in pairs(inputHatches) do
+            if(next(inputHatch.tanks())) then
+                data.hasInputFluids = true
+            end
+        end
+    end
+end
+
+
+while (true) do
+    local status = getMachineStatus()
+
+    if (status) then
+        modem.transmit(sendChannel, ackChannel, status)
     end
 
-    os.sleep(10)
+    os.sleep(2)
 end

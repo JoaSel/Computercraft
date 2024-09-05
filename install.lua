@@ -17,7 +17,7 @@ shell.run("wget", "https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b
 
 if(installBasalt) then
     print("Installing basalt...")
-    shell.run("wget", "wget run https://basalt.madefor.cc/install.lua packed")
+    shell.run("wget", "run", "https://basalt.madefor.cc/install.lua packed")
 end
 
 print("Creating startup file...")
