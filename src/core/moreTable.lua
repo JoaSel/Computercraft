@@ -19,19 +19,12 @@ local function removeAll(t, predicate)
 
     for key, value in pairs(t) do
         if(predicate(value)) then
-            print("Adding remove key: " .. key)
             table.insert(toRemove, key)
         end
     end
 
     for _, deleteKey in pairs(toRemove) do
-        print("removing key: " .. deleteKey)
         t[deleteKey] = nil
-        --print(table.remove(t, deleteKey))
-    end
-
-    for key, value in pairs(t) do
-        print(key .. tostring(value))
     end
 
     return #toRemove
