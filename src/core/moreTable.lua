@@ -30,7 +30,7 @@ local function removeAll(t, predicate)
     end
 
     for key, value in pairs(t) do
-        print(key .. value)
+        print(key .. tostring(value))
     end
 
     return #toRemove
