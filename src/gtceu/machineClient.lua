@@ -21,6 +21,7 @@ modem.open(ackChannel)
 print(modem.transmit)
 
 local function getMachineStatus()
+    print("getting machine status")
     local data = blockReader.getBlockData()
 
     if (data) then
