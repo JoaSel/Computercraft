@@ -23,6 +23,7 @@ print(modem.transmit)
 local function getMachineStatus()
     print("getting machine status")
     local data = blockReader.getBlockData()
+    print(data)
 
     if (data) then
         if (data.recipeLogic) then
