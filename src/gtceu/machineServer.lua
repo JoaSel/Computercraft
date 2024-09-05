@@ -48,11 +48,16 @@ local function updateMachine(machineData)
         machine.displayFrame = flex:addList():setSize("parent.w/2 - 1", 10)
       end
 
-      --local displayName = translations[machineData.machineName] or machineData.machineName
 
-      machine.displayFrame:editItem(1, machineData.machineId)
-      machine.displayFrame:editItem(2, "Status: OK")
-      machine.displayFrame:editItem(3, machineData.recipeLogic.status, (machineData.recipeLogic.status == "WORKING" and colors.green or colors.orange) )
+      if(machineData.recipeLogic.status == "IDLE" and (machineData.hasInputItems or machineData.hasInputFluids)) then
+        machine.displayFrame:setBackground(colors.red)
+        machine.displayFrame:editItem(1, machineData.machineId)
+        machine.displayFrame:editItem(2, string.format("Status: ERROR (%s)", machineData.recipeLogic.status))
+      else
+        machine.displayFrame:setBackground(colors.green)
+        machine.displayFrame:editItem(1, machineData.machineId)
+        machine.displayFrame:editItem(2, string.format("Status: OK (%s)", machineData.recipeLogic.status))
+      end
 end
 
 local function handleMessages()
