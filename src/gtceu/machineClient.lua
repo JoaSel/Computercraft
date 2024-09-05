@@ -3,6 +3,7 @@
 package.path = package.path .. ";../core/?.lua"
 
 local dump = require("dump")
+local mTable = require("moreTable")
 local pWrapper = require("peripheralWrapper")
 local gtceuIO = require("libs.gtceuIO")
 
@@ -19,6 +20,10 @@ local inputHatches = { gtceuIO.findInputHatches() }
 
 local machineName = blockReader.getBlockName()
 local label = os.getComputerLabel()
+
+local filterItems = function (item)
+    return item.name == "gtceu:programmed_circuit"
+end
 
 print(string.format("Monitoring %s as %s", machineName, label))
 
@@ -40,8 +45,10 @@ local function getMachineStatus()
 
         data.hasInputItems = false
         for _, inputBus in pairs(inputBuses) do
+            local items = inputBus.list()
+            mTable.removeAll(items, filterItems)
+            dump.toTerm(inputBus.list())
             if(next(inputBus.list())) then
-                dump.toTerm(inputBus.list())
                 data.hasInputItems = true
             end
         end

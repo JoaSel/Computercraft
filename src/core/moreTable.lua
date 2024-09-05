@@ -14,7 +14,7 @@ local function findKey(table, predicate)
     end
 end
 
-local function removeAll(t, predicate)
+local function removeAll(t, predicate --[[int]])
     local toRemove = {}
 
     for key, value in pairs(t) do
