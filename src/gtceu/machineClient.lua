@@ -12,6 +12,9 @@ local ackChannel = 44
 local modem = pWrapper.find("ender_modem")
 local blockReader = pWrapper.find("blockReader")
 
+print("Sending on channel " .. sendChannel)
+modem.transmit(sendChannel, ackChannel, {test = "test"})
+
 local inputBuses = { gtceuIO.findInputBuses() }
 local inputHatches = { gtceuIO.findInputHatches() }
 
