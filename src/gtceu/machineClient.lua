@@ -57,6 +57,7 @@ while (true) do
     local status = getMachineStatus()
 
     if (status) then
+        print("Sending on channel " .. sendChannel)
         modem.transmit(sendChannel, ackChannel, status)
     end
 
