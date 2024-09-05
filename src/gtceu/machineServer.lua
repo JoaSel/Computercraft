@@ -52,7 +52,7 @@ local function updateMachine(machineData)
 
       machine.displayFrame:editItem(1, displayName)
       machine.displayFrame:editItem(2, "Status: OK")
-      --machine.displayFrame:editItem(3, machineData.recipeLogic.status, (machineData.recipeLogic.status == "WORKING" and colors.green or colors.orange) )
+      machine.displayFrame:editItem(3, machineData.recipeLogic.status, (machineData.recipeLogic.status == "WORKING" and colors.green or colors.orange) )
 end
 
 local function handleMessages()
