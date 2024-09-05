@@ -8,7 +8,9 @@ local pWrapper = require("peripheralWrapper")
 local sendChannel = 43
 local ackChannel = 44
 
-local modem = pWrapper.find("modem")
+local modem = pWrapper.find("modem", function(_, modem)
+  return modem.isWireless()
+end)
 local monitor = pWrapper.find("monitor")
 local basalt = require("basalt")
 
@@ -58,6 +60,7 @@ end
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
   print("Started listening on " .. sendChannel)
+  modem.open(sendChannel)
 
   while (true) do
     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
