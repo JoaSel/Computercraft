@@ -23,6 +23,8 @@ local function create(input, destinationType, onlyEmpty, verbose)
 		return d.name == _input.name
 	end)
 
+	dump.toTerm(_destinations)
+
 	_onlyEmpty = onlyEmpty
 
 	_verbose = verbose
@@ -83,7 +85,5 @@ local function run()
 		end
 	end
 end
-
-
 
 return { create = create, run = run }
