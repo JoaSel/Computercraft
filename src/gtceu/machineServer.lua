@@ -54,6 +54,7 @@ end
 
 local function handleMessages()
   local event, side, channel, replyChannel, message, distance
+  modem.open(sendChannel)
   print("Started listening on " .. sendChannel)
 
   while (true) do
