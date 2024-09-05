@@ -19,6 +19,7 @@ local translations = {
 
 local machines = {}
 
+monitor.setTextScale(0.5)
 local main = basalt.addMonitor()
   :setForeground(colors.white)
   :setBackground(colors.black)
