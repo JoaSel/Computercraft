@@ -3,6 +3,7 @@ local function find(peripheralType, ignoreError)
 
     for _, p in pairs(peripherals) do
         p.name = peripheral.getName(p)
+        print(string.format("Found peripheral of type %s named %s", peripheralType, p.name))
     end
 
     table.sort(peripherals, function(a, b)
