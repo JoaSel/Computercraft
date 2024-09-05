@@ -18,6 +18,10 @@ local inputBuses = { gtceuIO.findInputBuses() }
 local inputHatches = { gtceuIO.findInputHatches() }
 
 local machineName = blockReader.getBlockName()
+local label = computer.getLabel()
+
+print(label)
+
 print(string.format("Monitoring %s...", machineName))
 
 local function getMachineStatus()
@@ -59,7 +63,6 @@ while (true) do
     local status = getMachineStatus()
 
     if (status) then
-        print("Sending on channel " .. sendChannel)
         modem.transmit(sendChannel, ackChannel, status)
     end
 
