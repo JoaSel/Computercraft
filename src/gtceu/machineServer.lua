@@ -45,7 +45,7 @@ local function updateMachine(machineData)
       local machine = machines[machineData.machineId]
 
       if(not machine.displayFrame) then
-        machine.displayFrame = flex:addList():setSize("parent.w/2 - 1", 10)
+        machine.displayFrame = flex:addList():setSize("parent.w/2 - 1", 2)
       end
 
 
