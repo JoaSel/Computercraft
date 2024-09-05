@@ -21,6 +21,10 @@ local function create(input, destinationType, onlyEmpty, verbose)
 		return p.name ~= input.name
 	end) }
 
+	for index, value in pairs(_destinations) do
+		print(value.name)
+	end
+
 	_onlyEmpty = onlyEmpty
 
 	_verbose = verbose
