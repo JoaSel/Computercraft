@@ -17,6 +17,9 @@ local destinationI = 1
 
 local function create(input, destinationType, onlyEmpty, verbose)
 	_input = pWrapper.wrap(input)
+
+	print(_input.name)
+
 	_destinations = { pWrapper.find(destinationType, function (p)
 		return p.name ~= input.name
 	end) }
