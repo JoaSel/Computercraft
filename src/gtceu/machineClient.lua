@@ -20,9 +20,7 @@ local inputHatches = { gtceuIO.findInputHatches() }
 local machineName = blockReader.getBlockName()
 local label = os.getComputerLabel()
 
-print(label)
-
-print(string.format("Monitoring %s...", machineName))
+print(string.format("Monitoring %s as %s", machineName, label))
 
 local function getMachineStatus()
     local data = blockReader.getBlockData()
@@ -37,7 +35,7 @@ local function getMachineStatus()
             end
         end
 
-        data.machineId = machineName
+        data.machineId = label
         data.machineName = machineName
 
         data.hasInputItems = false

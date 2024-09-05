@@ -48,9 +48,9 @@ local function updateMachine(machineData)
         machine.displayFrame = flex:addList():setSize("parent.w/2 - 1", 10)
       end
 
-      local displayName = translations[machineData.machineName] or machineData.machineName
+      --local displayName = translations[machineData.machineName] or machineData.machineName
 
-      machine.displayFrame:editItem(1, displayName)
+      machine.displayFrame:editItem(1, machineData.machineId)
       machine.displayFrame:editItem(2, "Status: OK")
       machine.displayFrame:editItem(3, machineData.recipeLogic.status, (machineData.recipeLogic.status == "WORKING" and colors.green or colors.orange) )
 end
