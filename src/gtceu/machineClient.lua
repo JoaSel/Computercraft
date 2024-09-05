@@ -17,7 +17,7 @@ local inputHatches = { gtceuIO.findInputHatches() }
 
 local machineName = blockReader.getBlockName()
 print(string.format("Monitoring %s...", machineName))
-print(modem)
+print(modem.transmit)
 
 local function getMachineStatus()
     local data = blockReader.getBlockData()
