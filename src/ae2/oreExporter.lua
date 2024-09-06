@@ -2,5 +2,9 @@
 
 local meExporter = require("libs.meExporter")
 
-meExporter.create()
+local function filterFunc(item)
+    return item.name == "gtceu:raw_neodymium"
+end
+
+meExporter.create(filterFunc)
 meExporter.run()
