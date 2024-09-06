@@ -54,4 +54,25 @@ local function forEach(t, func)
     end
 end
 
-return {  find = find, findKey = findKey, removeAll = removeAll, length = length, firstOrDefault = firstOrDefault, forEach = forEach }
+local function select(t, func)
+    local ret = {}
+    for key, value in pairs(t) do
+        ret[key] = func(value)
+    end
+
+    return ret
+end
+
+local function where(t, func)
+    local ret = {}
+
+    for key, value in pairs(t) do
+        if(func(value)) then
+            table.insert(ret, value)
+        end
+    end
+
+    return ret
+end
+
+return {  find = find, findKey = findKey, removeAll = removeAll, length = length, firstOrDefault = firstOrDefault, forEach = forEach, select = select, where = where }
