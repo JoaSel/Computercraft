@@ -47,8 +47,6 @@ local function run()
 			itemToExport = itemsToExport[1]
 		end
 
-		dump.toPastebin(itemToExport)
-
 		meBridge.exportItem(itemToExport, _direction)
 
 		i = i + 1
@@ -58,3 +56,19 @@ end
 
 
 return { create = create, run = run }
+
+
+-- {
+-- 	tags = {
+-- 	  "minecraft:item/forge:raw_materials",
+-- 	  "minecraft:item/forge:raw_materials/neodymium",
+-- 	},
+-- 	name = "gtceu:raw_neodymium",
+-- 	amount = 1822851,
+-- 	fingerprint = "91C35BE56CCEC42CD71B927AF2B8E7D0",
+-- 	isCraftable = false,
+-- 	nbt = {
+-- 	  id = "gtceu:raw_neodymium",
+-- 	},
+-- 	displayName = "Raw Neodymium",
+--   }
