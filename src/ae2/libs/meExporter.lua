@@ -8,12 +8,16 @@ local dump = require("dump")
 
 local meBridge = pWrapper.find("meBridge")
 
+local _direction = "top"
 local _filterFunc = nil
+local _singleSlot = false
+
 local _verbose = false
 
-local function create(filterFunc)
+local function create(filterFunc, singleSlot)
 	_filterFunc = filterFunc
-	
+	_singleSlot = singleSlot
+
 	print("meExporter created.")
 end
 
@@ -31,7 +35,9 @@ local function run()
 			itemsToExport = getRelevantItems()
 		end
 
-
+		for key, value in pairs(itemsToExport) do
+			print(key)
+		end
 
 		i = i + 1
 		os.sleep(5)
