@@ -6,5 +6,5 @@ local function filterFunc(item)
     return item.name == "gtceu:raw_neodymium"
 end
 
-meExporter.create(filterFunc)
+meExporter.create(filterFunc, true)
 meExporter.run()

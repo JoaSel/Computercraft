@@ -11,13 +11,13 @@ local meBridge = pWrapper.find("meBridge")
 local _direction = "top"
 local _sleepTime = 5
 local _filterFunc = nil
-local _singleSlot = false
+local _randomMode = false
 
 local _verbose = false
 
-local function create(filterFunc, singleSlot)
+local function create(filterFunc, randomMode)
 	_filterFunc = filterFunc
-	_singleSlot = singleSlot
+	_randomMode = randomMode
 
 	print("meExporter created.")
 end
@@ -36,21 +36,22 @@ local function run()
 			itemsToExport = getRelevantItems()
 		end
 
-		for _, value in pairs(itemsToExport) do
-			meBridge.exportItem(value, _direction)
-			os.sleep(_sleepTime)
+		if(mTable.length(itemsToExport) == 0) then
+			error("Found no valid items")
 		end
+
+		local itemToExport = nil
+		if(_randomMode) then
+			itemToExport = itemsToExport[ math.random(#itemsToExport) ]
+		else
+			itemToExport = itemsToExport[1]
+		end
+
+		meBridge.exportItem(itemToExport, _direction)
 
 		i = i + 1
 		os.sleep(5)
 	end
-	local searchItem = {
-		name = "gtceu:raw_neodymium",
-		tags = {
-			"forge:raw_materials"
-		}
-	}
-	dump.toTerm()
 end
 
 
