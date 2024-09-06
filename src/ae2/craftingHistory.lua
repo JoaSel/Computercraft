@@ -3,7 +3,6 @@
 
 package.path = package.path .. ";../core/?.lua"
 
-local file = require("file")
 local mMon = require("moreMonitor")
 local aeNameUtil = require("libs.aeNameUtil")
 
@@ -26,8 +25,6 @@ local soundBlackList = {
 	["gtceu:styrene_butadiene_rubber"] = true
 }
 
-local autoRequestData = file.readAllAndParse("Computercraft/src/ae2/libs/meRequesterData.txt")
-
 local function jobStarted(cpuNum, craftingJob)
 	craftingJob.startedTime = os.time("utc")
 	craftingJob.lastUpdated = os.time("utc")
@@ -36,7 +33,7 @@ local function jobStarted(cpuNum, craftingJob)
 end
 
 local function jobEnded(cpuNum, craftingJob)
-	if (not autoRequestData[craftingJob.storage.name] and not soundBlackList[craftingJob.storage.name]) then
+	if (not soundBlackList[craftingJob.storage.name]) then
 		--speaker.playSound("minecraft:block.anvil.place")
 		print(craftingJob.storage.name)
 	end
