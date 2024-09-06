@@ -15,9 +15,10 @@ local _randomMode = false
 
 local _verbose = false
 
-local function create(filterFunc, randomMode)
+local function create(filterFunc, randomMode, verbose)
 	_filterFunc = filterFunc
 	_randomMode = randomMode
+	_verbose = verbose
 
 	print("meExporter created.")
 end
@@ -47,10 +48,13 @@ local function run()
 			itemToExport = itemsToExport[1]
 		end
 
+		if(_verbose) then
+			print("Exporting " .. itemToExport.displayName)
+		end
 		meBridge.exportItem(itemToExport, _direction)
 
 		i = i + 1
-		os.sleep(5)
+		os.sleep(_sleepTime)
 	end
 end
 

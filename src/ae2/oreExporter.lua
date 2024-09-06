@@ -1,6 +1,6 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/oreExporter.lua
 
-local meExporter = require("libs.meExporter")
+local meExporter = require("libs.meItemExporter")
 
 local function filterFunc(item)
     for _, tag in pairs(item.tags) do
@@ -11,5 +11,5 @@ local function filterFunc(item)
     return false
 end
 
-meExporter.create(filterFunc, true)
+meExporter.create(filterFunc, true, true)
 meExporter.run()
