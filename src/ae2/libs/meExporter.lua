@@ -12,6 +12,7 @@ local _verbose = false
 
 local function create()
 	local searchItem = {
+		name = "gtceu:raw_neodymium",
 		tags = {
 			"forge:raw_materials"
 		}
