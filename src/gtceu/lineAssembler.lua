@@ -12,6 +12,11 @@ local input = pWrapper.wrap("entangled:tile_36")
 --local input = pWrapper.wrap("minecraft:shulker_box_2")
 local output = pWrapper.wrap("entangled:tile_37")
 
+local dataItems = {
+    ["gtceu:data_stick"] = true,
+    ["gtceu:data_orb"] = true
+}
+
 local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
 
 local inputBuses = { gtceuIO.findInputBuses() }
@@ -30,7 +35,7 @@ local function importItems()
 
     local busIndex = 1
     for fromSlot, item in pairs(inputItems) do
-        if (item.name == "gtceu:data_stick") then
+        if (dataItems[item.name]) then
             print(item.name .. " => " .. dataAccessHatch.name)
             input.pushItems(dataAccessHatch.name, fromSlot)
         else
@@ -84,7 +89,7 @@ local function exportItems(count)
     end
 
     if(#dataAccessHatch.list() > 0) then
-        error("Failed to export data stick")
+        error("Failed to export data items")
     end
 end
 
