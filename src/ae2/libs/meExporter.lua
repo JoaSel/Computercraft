@@ -35,8 +35,8 @@ local function run()
 			itemsToExport = getRelevantItems()
 		end
 
-		for key, value in pairs(itemsToExport) do
-			print(key)
+		for _, value in pairs(itemsToExport) do
+			dump.toTerm(value)
 		end
 
 		i = i + 1
