@@ -3,7 +3,12 @@
 local meExporter = require("libs.meExporter")
 
 local function filterFunc(item)
-    return item.tags["minecraft:item/forge:raw_materials"]
+    for _, tag in pairs(item.tags) do
+        if(tag == "minecraft:item/forge:raw_materials") then
+            return true
+        end
+    end
+    return false
 end
 
 meExporter.create(filterFunc, true)
