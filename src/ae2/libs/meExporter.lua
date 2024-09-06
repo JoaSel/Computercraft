@@ -9,6 +9,7 @@ local dump = require("dump")
 local meBridge = pWrapper.find("meBridge")
 
 local _direction = "top"
+local _sleepTime = 5
 local _filterFunc = nil
 local _singleSlot = false
 
@@ -36,7 +37,8 @@ local function run()
 		end
 
 		for _, value in pairs(itemsToExport) do
-			dump.toTerm(value)
+			meBridge.exportItem(value, _direction)
+			os.sleep(_sleepTime)
 		end
 
 		i = i + 1
