@@ -3,7 +3,7 @@
 local meExporter = require("libs.meExporter")
 
 local function filterFunc(item)
-    return item.tags["forge:raw_materials"]
+    return item.tags["minecraft:item/forge:raw_materials"]
 end
 
 meExporter.create(filterFunc, true)
