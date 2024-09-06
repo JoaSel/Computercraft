@@ -12,11 +12,12 @@ local _verbose = false
 
 local function create()
 	local searchItem = {
+		name = "gtceu:raw_neodymium",
 		tags = {
 			"forge:raw_materials"
 		}
 	}
-	dump.toTerm(meBridge.getItem(searchItem))
+	dump.toTerm(meBridge.listItems())
 	print("meExporter created.")
 end
 
