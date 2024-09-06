@@ -24,6 +24,9 @@ local function create(filterFunc, randomMode, verbose)
 end
 
 local function getRelevantItems()
+	if(_verbose) then
+		print("Running filter func")
+	end
 	return mTable.where(meBridge.listItems(), _filterFunc)
 end
 
