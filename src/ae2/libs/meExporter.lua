@@ -47,6 +47,8 @@ local function run()
 			itemToExport = itemsToExport[1]
 		end
 
+		dump.toPastebin(itemToExport)
+
 		meBridge.exportItem(itemToExport, _direction)
 
 		i = i + 1
