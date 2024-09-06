@@ -23,13 +23,14 @@ local displayNamesRoutes = {
 	["Rare Earth Dust"] = "Centrifuge Input",
 	["Raw Neodymium"] = "Storage Input",
 	["Purified Sphalerite Ore"] = "Storage Input",
-	["Purified Galena Ore"] = "Storage Input",
-	["Granite Salt Ore"] = "Storage Input",
-	["Red Granite Salt Ore"] = "Storage Input",
-	["Tuff Salt Ore"] = "Storage Input",
-	["Basalt Salt Ore"] = "Storage Input",
-	["Blackstone Salt Ore"] = "Storage Input",
+	["Purified Galena Ore"] = "Storage Input"
 }
+
+-- ["Granite Salt Ore"] = "Storage Input",
+-- ["Red Granite Salt Ore"] = "Storage Input",
+-- ["Tuff Salt Ore"] = "Storage Input",
+-- ["Basalt Salt Ore"] = "Storage Input",
+-- ["Blackstone Salt Ore"] = "Storage Input",
 
 local tagsRoutes = {
 	["forge:crushed_ores"] = "Washer",
@@ -44,6 +45,9 @@ local miscRoutes = {
 		end
 		if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:raw_materials")) then
 			return "Macerator"
+		end
+		if(string.match(item.name, "_salt_ore$:")) then
+			return "Storage Input"
 		end
 	end
 }

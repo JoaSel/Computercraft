@@ -44,12 +44,6 @@ local function getDestination(item)
 		return itemDest
 	end
 
-	for tag, destination in pairs(_tagRoutes) do
-		if (hasTag(item, tag)) then
-			return destination
-		end
-	end
-
 	for _, destinationFunc in pairs(_miscRoutes) do
 		local dest = destinationFunc(item)
 		if(dest) then
@@ -57,6 +51,12 @@ local function getDestination(item)
 		end
 	end
 
+	for tag, destination in pairs(_tagRoutes) do
+		if (hasTag(item, tag)) then
+			return destination
+		end
+	end
+	
 	return _defaultDestination
 end
 
