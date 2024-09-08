@@ -25,7 +25,8 @@ local allowedItems = {
     ["gtceu:blue_glass_lens"] = true,
     ["gtceu:brown_glass_lens"] = true,
     ["gtceu:light_blue_glass_lens"] = true,
-    ["gtceu:gray_glass_lens"] = true
+    ["gtceu:gray_glass_lens"] = true,
+    ["gtceu:green_glass_lens"] = true
 }
 
 local machineName = blockReader.getBlockName()
