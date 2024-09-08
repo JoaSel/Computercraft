@@ -67,6 +67,9 @@ local function updateMachine(machineData)
         machine.error = false
       end
 
+      if(not displayColor) then
+        error("ERROR")
+      end
       machine.displayFrame:setBackground(displayColor)
       machine.displayFrame:editItem(1, " " .. machineData.machineId)
       machine.displayFrame:editItem(2, errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
