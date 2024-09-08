@@ -38,6 +38,7 @@ local flex = main
   :setSize("parent.w", "parent.h - 1")
 
 local function updateMachine(machineData)
+  print("Running update machine on " .. machineData.machineId)
   local exists = machines[machineData.machineId]
       if (exists) then
         machines[machineData.machineId].machineData = machineData
@@ -87,11 +88,7 @@ end
 
 
 
-main:addThread():start(function ()
-  if(not pcall(handleMessages)) then
-    print("handleMessages raised errors.")
-  end
-end)
+main:addThread():start(handleMessages)
 
 basalt.autoUpdate();
 
