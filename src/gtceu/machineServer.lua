@@ -18,6 +18,7 @@ local machines = {}
 
 local displayColors = {
   ["IDLE"] = colors.green,
+  ["WAITING"] = colors.orange,
   ["WORKING"] = colors.orange,
   ["ERROR"] = colors.red,
 }
@@ -38,7 +39,6 @@ local flex = main
   :setSize("parent.w", "parent.h - 1")
 
 local function updateMachine(machineData)
-  print("Running update machine on " .. machineData.machineId)
   local exists = machines[machineData.machineId]
       if (exists) then
         machines[machineData.machineId].machineData = machineData
@@ -67,9 +67,6 @@ local function updateMachine(machineData)
         machine.error = false
       end
 
-      if(not displayColor) then
-        error("ERROR: " .. machineData.blockData.recipeLogic.status)
-      end
       machine.displayFrame:setBackground(displayColor)
       machine.displayFrame:editItem(1, " " .. machineData.machineId)
       machine.displayFrame:editItem(2, errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
