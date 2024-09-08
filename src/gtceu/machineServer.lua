@@ -55,6 +55,9 @@ local function updateMachine(machineData)
       end
 
       local displayColor = displayColors[machineData.blockData.recipeLogic.status]
+      if(not displayColor) then
+        error("Unkown status: " .. machineData.blockData.recipeLogic.statu)
+      end
       local errorStatus
 
       if(machineData.blockData.recipeLogic.status == "IDLE" and (machineData.hasInputItems or machineData.hasInputFluids)) then
