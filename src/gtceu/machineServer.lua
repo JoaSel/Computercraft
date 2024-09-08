@@ -38,8 +38,6 @@ local flex = main
   :setSize("parent.w", "parent.h - 1")
 
 local function updateMachine(machineData)
-  print("Running update machine on " .. machineData.machineId)
-  os.sleep(0.2)
   local exists = machines[machineData.machineId]
       if (exists) then
         machines[machineData.machineId].machineData = machineData
