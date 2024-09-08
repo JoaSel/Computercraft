@@ -9,7 +9,8 @@ local destinationNames = {
 	["Washer"] = "dimstorage:dimensional_chest_16",
 	["Thermal Centrifuge"] = "dimstorage:dimensional_chest_17",
 	["Storage Input"] = "dimstorage:dimensional_chest_20",
-	["Centrifuge Input"] = "dimstorage:dimensional_chest_22"
+	["Centrifuge Input"] = "dimstorage:dimensional_chest_22",
+	["Electrolyzer Input"] = "dimstorage:dimensional_chest_25",
 }
 
 local displayNamesRoutes = {
@@ -23,7 +24,9 @@ local displayNamesRoutes = {
 	["Rare Earth Dust"] = "Centrifuge Input",
 	["Raw Neodymium"] = "Storage Input",
 	["Purified Sphalerite Ore"] = "Storage Input",
-	["Purified Galena Ore"] = "Storage Input"
+	["Purified Galena Ore"] = "Storage Input",
+	["Mica Dust"] = "Electrolyzer Input",
+	["Lepidolite Dust"] = "Electrolyzer Input",
 }
 
 -- ["Granite Salt Ore"] = "Storage Input",
