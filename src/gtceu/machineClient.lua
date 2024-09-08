@@ -22,7 +22,9 @@ local inputHatches = { gtceuIO.findInputHatches() }
 local allowedItems = {
     ["gtceu:programmed_circuit"] = true,
     ["alltheores:zinc_dust"] = true,
-    ["gtceu:blue_glass_lens"] = true
+    ["gtceu:blue_glass_lens"] = true,
+    ["gtceu:brown_glass_lens"] = true,
+    ["gtceu:light_blue_glass_lens"] = true
 }
 
 local machineName = blockReader.getBlockName()
