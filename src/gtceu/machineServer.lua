@@ -87,7 +87,11 @@ end
 
 
 
-main:addThread():start(handleMessages)
+main:addThread():start(function ()
+  if(not pcall(handleMessages)) then
+    print("handleMessages raised errors.")
+  end
+end)
 
 basalt.autoUpdate();
 
