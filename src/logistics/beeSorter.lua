@@ -16,6 +16,7 @@ local destinationNames = {
 	["Furnace Input"] = "dimstorage:dimensional_chest_12",
 	["Compactor Input"] = "dimstorage:dimensional_chest_13",
 	["Nugget Input"] = "dimstorage:dimensional_chest_21",
+	["Greg Input"] = "entangled:tile_38",
 }
 
 local displayNamesRoutes = {
@@ -27,7 +28,9 @@ local displayNamesRoutes = {
 	["Raw Sheldonite"] = "Storage Input",
 	["Raw Naquadah"] = "Storage Input",
 	["Hydrogen"] = "Storage Input",
-	["Oxygen"] = "Storage Input"
+	["Oxygen"] = "Storage Input",
+	["Mica Dust"] = "Greg Input",
+	["Lepidolite Dust"] = "Greg Input",
 }
 
 local tagsRoutes = {
