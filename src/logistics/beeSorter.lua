@@ -27,10 +27,11 @@ local displayNamesRoutes = {
 	["Raw Palladium"] = "Storage Input",
 	["Raw Sheldonite"] = "Storage Input",
 	["Raw Naquadah"] = "Storage Input",
+	["Raw Cobaltite"] = "Greg Input",
 	["Hydrogen"] = "Storage Input",
 	["Oxygen"] = "Storage Input",
 	["Mica Dust"] = "Greg Input",
-	["Lepidolite Dust"] = "Greg Input",
+	["Lepidolite Dust"] = "Greg Input"
 }
 
 local tagsRoutes = {
