@@ -15,6 +15,10 @@ local function findKey(table, predicate)
 end
 
 local function removeAll(t, predicate)
+    if(not t) then
+        return 0
+    end
+    
     local toRemove = {}
 
     for key, value in pairs(t) do
