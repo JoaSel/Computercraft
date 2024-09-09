@@ -30,7 +30,17 @@ local allowedItems = {
     ["gtceu:lime_glass_lens"] = true,
     ["gtceu:orange_glass_lens"] = true,
     ["gtceu:pink_glass_lens"] = true,
-    ["gtceu:yellow_glass_lens"] = true
+    ["gtceu:yellow_glass_lens"] = true,
+    ["gtceu:huge_pipe_extruder_mold"] = true,
+    ["gtceu:large_pipe_extruder_mold"] = true,
+    ["gtceu:normal_pipe_extruder_mold"] = true,
+    ["gtceu:small_pipe_extruder_mold"] = true,
+    ["gtceu:tiny_pipe_extruder_mold"] = true,
+    ["gtceu:long_rod_extruder_mold"] = true,
+    ["gtceu:gear_extruder_mold"] = true,
+    ["gtceu:small_gear_extruder_mold"] = true,
+    ["gtceu:rotor_extruder_mold"] = true,
+    ["gtceu:ring_extruder_mold"] = true
 }
 
 local machineName = blockReader.getBlockName()
