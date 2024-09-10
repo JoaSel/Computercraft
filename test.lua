@@ -5,33 +5,6 @@ package.path = package.path .. ";./src/core/?.lua"
 local jGui = require("jGui")
 local dump = require("dump")
 
-local monitor = peripheral.find("monitor")
+local x = peripheral.wrap("back")
 
-monitor.setTextScale(0.5)
-monitor.clear()
-
-jGui.setMonitor(monitor)
-
-jGui.createSlider("testSlider", 100, -2, 2, colors.red, colors.lime, "Percent")
-
-monitor.setCursorPos(2, 2)
-
-jGui.draw("testSlider")
-
-monitor.setCursorPos(5, 5)
-
-jGui.draw("testSlider")
-
-monitor.setCursorPos(5, 10)
-
-jGui.draw("testSlider")
-
--- while true do
-    
--- end
-
--- local x, y = monitor.getSize()
--- monitor.setCursorPos(x, 1)
-
--- monitor.write("Test")
-
+dump.toTerm(os.pullEvent())
