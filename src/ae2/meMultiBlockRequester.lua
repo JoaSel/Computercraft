@@ -14,8 +14,8 @@ local bridge = peripheral.find("meBridge")
 print("test")
 
 local function getCrafingRecipe(table, url)
-    print(url)
-    local name = url:sub(string.find(url, "/.*%.json$"))
+    local index = url:match'^.*()/'
+    local name = url:sub(index)
     print(name)
 
     --net.getJson("https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/minecraft.crafting_shaped.json")
