@@ -3,6 +3,7 @@
 package.path = package.path .. ";../core/?.lua"
 
 local pWrapper = require("peripheralWrapper")
+local net = require("net")
 local mTerm = require("moreTerm")
 local dump = require("dump")
 
@@ -11,3 +12,5 @@ local reader = pWrapper.find("blockReader")
 local bridge = peripheral.find("meBridge")
 
 print("test")
+
+print(net.getJson("https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/recipes.json"))
