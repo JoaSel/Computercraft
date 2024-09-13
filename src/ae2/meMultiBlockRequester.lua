@@ -13,4 +13,4 @@ local bridge = peripheral.find("meBridge")
 
 print("test")
 
-print(net.getJson("https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/recipes-1.json"))
+print(net.getJson("https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/minecraft.crafting_shaped.json"))
