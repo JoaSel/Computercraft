@@ -13,6 +13,18 @@ local bridge = peripheral.find("meBridge")
 
 print("test")
 
-local test = net.getJson("https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/minecraft.crafting_shaped.json")
+local function getCrafingRecipe(table, url)
+    print(string.find(url, "/", -1, true))
 
-dump.toTerm(test[1])
+    --net.getJson("https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/minecraft.crafting_shaped.json")
+end
+
+local function getCrafingRecipes()
+    local ret = {};
+    --net.getJson()
+    getCrafingRecipe(ret, "https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/minecraft.crafting_shaped.json")
+
+    return ret
+end
+
+local craftingRecips = getCrafingRecipes()
