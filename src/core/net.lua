@@ -32,12 +32,12 @@ local function getJson(url)
 
 	socket.close()
 
-	-- local parsed = textutils.unserialize(content)
-	-- if (not parsed) then
-	-- 	error("Could not unserialize request data from " .. url)
-	-- end
+	local parsed = textutils.unserializeJSON(content)
+	if (not parsed) then
+		error("Could not unserialize request data from " .. url)
+	end
 
-	return content
+	return parsed
 end
 
 return { getTable = getTable, getJson = getJson }
