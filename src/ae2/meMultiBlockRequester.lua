@@ -30,7 +30,7 @@ local function getCrafingRecipes()
     return ret
 end
 
-local craftingRecips = getCrafingRecipes()
+local craftingRecipes = getCrafingRecipes()
 
 local main = basalt.createFrame()
 local flex = main
@@ -39,22 +39,15 @@ local flex = main
     :setBackground(colors.black)
     :setWrap("wrap")
     :setPosition(1, 1)
-    :setSize("parent.w", "parent.h - 1")
+    :setSize("parent.w", "parent.h")
 
-local button = flex
-    :addButton()
-    :setText("Click me!")
-    :onClick(
-        function()
-            basalt.debug("I got clicked!")
-        end)
-
-local button2 = flex
-    :addButton()
-    :setText("Click me!")
-    :onClick(
-        function()
-            basalt.debug("I got clicked!")
-        end)
+for category, recipes in pairs(craftingRecipes) do
+    flex:addButton()
+        :setText(category)
+        :onClick(
+            function()
+                basalt.debug("I got clicked!")
+            end)
+end
 
 basalt.autoUpdate()
