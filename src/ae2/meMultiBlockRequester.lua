@@ -63,13 +63,11 @@ local function addCategoryFrame(category, recipes)
                 categoryFrame:show()
             end)
 
-    local i = 0
     for key, value in pairs(recipes) do
-        basalt.debug(key)
-        recipeList:addItem(key)
 
-        i = i + 1
-        if (i > maxRecipes) then
+        recipeList:addItem(value.result.item)
+
+        if (key > maxRecipes) then
             return
         end
     end
