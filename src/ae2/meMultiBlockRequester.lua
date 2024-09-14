@@ -36,8 +36,8 @@ local craftingRecipes = getCrafingRecipes()
 local main = basalt.createFrame()
 local flex = main
     :addFlexbox()
-    -- :setForeground(colors.white)
-    -- :setBackground(colors.black)
+    :setForeground(colors.white)
+    :setBackground(colors.black)
     :setWrap("wrap")
     :setPosition(1, 1)
     :setSize("parent.w", "parent.h")
@@ -47,8 +47,13 @@ for category, recipes in pairs(craftingRecipes) do
     local categoryFrame = basalt.createFrame()
         :hide()
 
-    categoryFrame:addLabel()
-        :setText(categoryName)
+    local recipeList = categoryFrame:addLabel()
+
+    recipeList:addItem("1. Entry")
+
+
+    categoryFrame:addList()
+        :setText("Category: " .. categoryName)
 
     basalt.debug(category)
     flex:addButton()
