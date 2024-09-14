@@ -16,6 +16,8 @@ local translate = {
     ["minecraft:crafting_shaped"] = "Shaped"
 }
 
+local maxRecipes = 10
+
 local function getCrafingRecipe(table, url)
     local name = url:sub(url:match('^.*()/') + 1, url:len() - 5):gsub("%.", ":")
 
@@ -47,12 +49,21 @@ for category, recipes in pairs(craftingRecipes) do
     local categoryFrame = basalt.createFrame()
         :hide()
 
-    local recipeList = categoryFrame:addList()
-
     categoryFrame:addLabel()
         :setText("Category: " .. categoryName)
 
-    recipeList:addItem("1. Entry")
+    local recipeList = categoryFrame:addList()
+        :setPosition(1, 3)
+
+    local i = 0
+    for key, value in pairs(recipes) do
+        recipeList:addItem(key)
+        i = i + 1
+        if(i > maxRecipes) then
+            return
+        end
+    end
+    
 
     basalt.debug(category)
     flex:addButton()
