@@ -55,15 +55,6 @@ local function addCategoryFrame(category, recipes)
     local recipeList = categoryFrame:addList()
         :setPosition(1, 3)
 
-    local i = 0
-    for key, value in pairs(recipes) do
-        recipeList:addItem("test")
-        i = i + 1
-        if (i > maxRecipes) then
-            return 
-        end
-    end
-
     flex:addButton()
         :setText(categoryName)
         :onClick(
@@ -71,6 +62,15 @@ local function addCategoryFrame(category, recipes)
                 main:hide()
                 categoryFrame:show()
             end)
+
+    local i = 0
+    for key, value in pairs(recipes) do
+        recipeList:addItem("test")
+        i = i + 1
+        if (i > maxRecipes) then
+            return
+        end
+    end
 end
 
 for category, recipes in pairs(craftingRecipes) do
