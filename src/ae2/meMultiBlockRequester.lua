@@ -44,7 +44,7 @@ local flex = main
     :setPosition(1, 1)
     :setSize("parent.w", "parent.h")
 
-for category, recipes in pairs(craftingRecipes) do
+local function addCategoryFrame(category, recipes)
     local categoryName = translate[category] or category
     local categoryFrame = basalt.createFrame()
         :hide()
@@ -59,13 +59,11 @@ for category, recipes in pairs(craftingRecipes) do
     for key, value in pairs(recipes) do
         recipeList:addItem(key)
         i = i + 1
-        if(i > maxRecipes) then
-            return
+        if (i > maxRecipes) then
+
         end
     end
-    
 
-    basalt.debug(category)
     flex:addButton()
         :setText(categoryName)
         :onClick(
@@ -73,6 +71,10 @@ for category, recipes in pairs(craftingRecipes) do
                 main:hide()
                 categoryFrame:show()
             end)
+end
+
+for category, recipes in pairs(craftingRecipes) do
+    addCategoryFrame(category, recipes)
 end
 
 basalt.autoUpdate()
