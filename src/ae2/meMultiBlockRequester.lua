@@ -1,6 +1,6 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/meMultiBlockRequester.lua true
 
-package.path = package.path .. ";../core/?.lua"
+package.path = package.path .. ";../core/?.lua" .. ";../?.lua"
 
 local pWrapper = require("peripheralWrapper")
 local net = require("net")
