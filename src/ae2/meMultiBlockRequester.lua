@@ -31,9 +31,16 @@ end
 local craftingRecips = getCrafingRecipes()
 
 local main = basalt.createFrame()
-local button = main --> Basalt returns an instance of the object on most methods, to make use of "call-chaining"
-        :addButton() --> This is an example of call chaining
-        :setPosition(4, 4)
+local flex = main
+  :addFlexbox()
+  :setForeground(colors.white)
+  :setBackground(colors.black)
+  :setWrap("wrap")
+  :setPosition(1, 2)
+  :setSize("parent.w", "parent.h - 1")
+
+local button = flex
+        :addButton()
         :setText("Click me!")
         :onClick(
             function()
