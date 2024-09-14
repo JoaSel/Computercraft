@@ -13,7 +13,7 @@ local reader = pWrapper.find("blockReader")
 local bridge = peripheral.find("meBridge")
 
 local translate = {
-    ["minecraft.crafting_shaped"] = "Shaped"
+    ["minecraft:crafting_shaped"] = "Shaped"
 }
 
 local function getCrafingRecipe(table, url)
