@@ -65,6 +65,7 @@ local function addCategoryFrame(category, recipes)
 
     local i = 0
     for key, value in pairs(recipes) do
+        basalt.debug(key)
         recipeList:addItem(key)
 
         i = i + 1
