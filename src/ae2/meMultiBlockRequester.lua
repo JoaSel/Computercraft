@@ -17,13 +17,15 @@ print("test")
 local function getCrafingRecipe(table, url)
     local name = url:sub(url:match('^.*()/') + 1, url:len() - 5):gsub("%.", ":")
 
-    table[name] = net.getJson("https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/minecraft.crafting_shaped.json")
+    table[name] = net.getJson(
+    "https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/minecraft.crafting_shaped.json")
 end
 
 local function getCrafingRecipes()
     local ret = {};
 
-    getCrafingRecipe(ret, "https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/minecraft.crafting_shaped.json")
+    getCrafingRecipe(ret,
+        "https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/minecraft.crafting_shaped.json")
 
     return ret
 end
@@ -32,19 +34,27 @@ local craftingRecips = getCrafingRecipes()
 
 local main = basalt.createFrame()
 local flex = main
-  :addFlexbox()
-  :setForeground(colors.white)
-  :setBackground(colors.black)
-  :setWrap("wrap")
-  :setPosition(1, 2)
-  :setSize("parent.w", "parent.h - 1")
+    :addFlexbox()
+    :setForeground(colors.white)
+    :setBackground(colors.black)
+    :setWrap("wrap")
+    :setPosition(1, 1)
+    :setSize("parent.w", "parent.h - 1")
 
 local button = flex
-        :addButton()
-        :setText("Click me!")
-        :onClick(
-            function()
-                basalt.debug("I got clicked!")
-            end)
+    :addButton()
+    :setText("Click me!")
+    :onClick(
+        function()
+            basalt.debug("I got clicked!")
+        end)
+
+local button2 = flex
+    :addButton()
+    :setText("Click me!")
+    :onClick(
+        function()
+            basalt.debug("I got clicked!")
+        end)
 
 basalt.autoUpdate()
