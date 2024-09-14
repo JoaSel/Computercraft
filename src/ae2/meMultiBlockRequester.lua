@@ -65,7 +65,8 @@ local function addCategoryFrame(category, recipes)
 
     local i = 0
     for key, value in pairs(recipes) do
-        recipeList:addItem("test")
+        recipeList:addItem(key)
+
         i = i + 1
         if (i > maxRecipes) then
             return
