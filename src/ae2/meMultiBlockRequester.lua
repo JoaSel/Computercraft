@@ -44,6 +44,7 @@ local flex = main
     :setSize("parent.w", "parent.h")
 
 for category, recipes in pairs(craftingRecipes) do
+    basalt.debug(category)
     flex:addButton()
         :setText(translate[category] or category)
         :onClick(
