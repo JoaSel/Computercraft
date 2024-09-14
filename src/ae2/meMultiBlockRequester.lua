@@ -12,7 +12,9 @@ local chest = pWrapper.find("sophisticatedstorage:shulker_box")
 local reader = pWrapper.find("blockReader")
 local bridge = peripheral.find("meBridge")
 
-print("test")
+local translate = {
+    ["minecraft.crafting_shaped"] = "Shaped"
+}
 
 local function getCrafingRecipe(table, url)
     local name = url:sub(url:match('^.*()/') + 1, url:len() - 5):gsub("%.", ":")
@@ -43,7 +45,7 @@ local flex = main
 
 for category, recipes in pairs(craftingRecipes) do
     flex:addButton()
-        :setText(category)
+        :setText(translate[category] or category)
         :onClick(
             function()
                 basalt.debug("I got clicked!")
