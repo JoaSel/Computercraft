@@ -28,11 +28,8 @@ startupFile.writeLine(string.format("local repoName = \"%s\"", repoName))
 startupFile.writeLine(string.format("local repoBakName = \"%s\"", repoName .. "Bak"))
 startupFile.writeLine(string.format("local gitUrl = \"%s\"", gitUrl))
 
-startupFile.writeLine("shell.run(\"rm\", repoBakName)")
-startupFile.writeLine("shell.run(\"mv\", repoName, repoBakName)")
-startupFile.writeLine("if(not shell.run(\"clone.lua\", gitUrl .. repoName) and fs.exists(repoBakName)) then")
-startupFile.writeLine("shell.run(\"mv\", repoBakName, repoName)")
-startupFile.writeLine("end")
+startupFile.writeLine("shell.run(\"rm\", repoName)")
+startupFile.writeLine("shell.run(\"clone.lua\", gitUrl .. repoName)")
 
 startupFile.writeLine("shell.run(repoName .. \"/\" .. scriptName)")
 startupFile.close()
