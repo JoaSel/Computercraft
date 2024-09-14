@@ -20,7 +20,7 @@ local function getCrafingRecipe(table, url)
     local name = url:sub(url:match('^.*()/') + 1, url:len() - 5):gsub("%.", ":")
 
     table[name] = net.getJson(
-    "https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/minecraft.crafting_shaped.json")
+        "https://raw.githubusercontent.com/JoaSel/ComputercraftLibs/main/ATM9/minecraft.crafting_shaped.json")
 end
 
 local function getCrafingRecipes()
@@ -33,7 +33,6 @@ local function getCrafingRecipes()
 end
 
 local craftingRecipes = getCrafingRecipes()
-
 local main = basalt.createFrame()
 local flex = main
     :addFlexbox()
@@ -44,12 +43,21 @@ local flex = main
     :setSize("parent.w", "parent.h")
 
 for category, recipes in pairs(craftingRecipes) do
+    local categoryName = translate[category] or category
+    local categoryFrame = basalt.createFrame()
+        :hide()
+
+    categoryFrame:addLabel()
+        :setText(categoryName)
+        :setFontSize(2)
+
     basalt.debug(category)
     flex:addButton()
-        :setText(translate[category] or category)
+        :setText(categoryName)
         :onClick(
             function()
-                basalt.debug("I got clicked!")
+                main:hide()
+                categoryFrame:show()
             end)
 end
 
