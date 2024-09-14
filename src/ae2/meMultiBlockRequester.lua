@@ -47,13 +47,12 @@ for category, recipes in pairs(craftingRecipes) do
     local categoryFrame = basalt.createFrame()
         :hide()
 
-    local recipeList = categoryFrame:addLabel()
+    local recipeList = categoryFrame:addList()
+
+    categoryFrame:addLabel()
+        :setText("Category: " .. categoryName)
 
     recipeList:addItem("1. Entry")
-
-
-    categoryFrame:addList()
-        :setText("Category: " .. categoryName)
 
     basalt.debug(category)
     flex:addButton()
