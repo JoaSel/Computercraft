@@ -54,6 +54,7 @@ local function addCategoryFrame(category, recipes)
 
     local recipeList = categoryFrame:addList()
         :setPosition(1, 3)
+        :setSize("parent.w", "parent.h - 3")
 
     flex:addButton()
         :setText(categoryName)
