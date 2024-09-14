@@ -60,7 +60,7 @@ local function addCategoryFrame(category, recipes)
         recipeList:addItem("test")
         i = i + 1
         if (i > maxRecipes) then
-
+            return 
         end
     end
 
