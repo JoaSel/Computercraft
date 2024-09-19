@@ -20,7 +20,9 @@ local pedestal4 = pWrapper.wrap("modularrouters:modular_router_5")
 print(forgeInput.name)
 
 local function handleBloodLevels(blockData)
-    print("Handling blood levels")
+    print("Handling blood levels: " .. blockData.Essences.blood)
+
+
     if(blockData.Essences.blood < 50000) then
         redstone.setOutput("bottom", true)
         return true
