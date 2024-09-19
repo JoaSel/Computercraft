@@ -49,7 +49,7 @@ local function handleInput(blockData)
     local destinationSlot = 1
     for slot, item in pairs(items) do
         for i = 1, item.count, 1 do
-            input.pushItems(slot, inputDestinations[destinationSlot].name, 1)
+            input.pushItems(inputDestinations[destinationSlot].name, slot, 1)
             destinationSlot = destinationSlot + 1
         end
     end
