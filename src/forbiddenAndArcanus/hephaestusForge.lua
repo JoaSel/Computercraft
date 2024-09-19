@@ -19,7 +19,28 @@ local pedestal4 = pWrapper.wrap("modularrouters:modular_router_5")
 
 print(forgeInput.name)
 
+local function handleBloodLevels(blockData)
+    print("Handling blood levels")
+    if(blockData.Essences.Blood < 50000) then
+        redstone.setOutput("bottom", true)
+        return true
+    end
+    redstone.setOutput("bottom", false)
+    return false
+end
 
+local function tick()
+    local blockData = forgeReader.getBlockData()
+
+    if(handleBloodLevels(blockData)) then
+        return
+    end
+end
+
+while (true) do
+    tick()
+    os.sleep(2)
+end
 
 -- {
 --     Inventory = {
