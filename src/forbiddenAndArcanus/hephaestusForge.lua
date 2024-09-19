@@ -23,7 +23,7 @@ local function handleBloodLevels(blockData)
     print("Handling blood levels: " .. blockData.Essences.blood)
 
 
-    if(blockData.Essences.blood < 50000) then
+    if(blockData.Essences.blood < 100000) then
         redstone.setOutput("bottom", true)
         return true
     end
