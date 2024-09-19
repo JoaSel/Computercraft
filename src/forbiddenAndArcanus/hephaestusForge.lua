@@ -46,8 +46,12 @@ local function handleInput(blockData)
         error("Too many items in input.")
     end
 
+    local destinationSlot = 0
     for slot, item in pairs(items) do
-        input.pushItems(slot, inputDestinations[slot].name)
+        for i = 1, item.count, 1 do
+            input.pushItems(slot, inputDestinations[destinationSlot].name, 1)
+            destinationSlot = destinationSlot + 1
+        end
     end
 end
 
