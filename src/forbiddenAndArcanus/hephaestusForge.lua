@@ -21,7 +21,7 @@ print(forgeInput.name)
 
 local function handleBloodLevels(blockData)
     print("Handling blood levels")
-    if(blockData.Essences.Blood < 50000) then
+    if(blockData.Essences.blood < 50000) then
         redstone.setOutput("bottom", true)
         return true
     end
