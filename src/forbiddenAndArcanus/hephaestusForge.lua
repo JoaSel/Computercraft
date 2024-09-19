@@ -11,30 +11,54 @@ local input = pWrapper.find("minecraft:chest")
 local forgeGavel = pWrapper.wrap("modularrouters:modular_router_1")
 local forgeReader = pWrapper.find("blockReader")
 
-local forgeInput = pWrapper.find("forbidden_arcanus:hephaestus_forge")
-local pedestal1 = pWrapper.wrap("modularrouters:modular_router_2")
-local pedestal2 = pWrapper.wrap("modularrouters:modular_router_3")
-local pedestal3 = pWrapper.wrap("modularrouters:modular_router_4")
-local pedestal4 = pWrapper.wrap("modularrouters:modular_router_5")
+local inputDestinations = {
+    pWrapper.find("forbidden_arcanus:hephaestus_forge"),
+    pWrapper.wrap("modularrouters:modular_router_2"),
+    pWrapper.wrap("modularrouters:modular_router_3"),
+    pWrapper.wrap("modularrouters:modular_router_4"),
+    pWrapper.wrap("modularrouters:modular_router_5")
+}
 
-print(forgeInput.name)
-
-local function handleBloodLevels(blockData)
-    print("Handling blood levels: " .. blockData.Essences.blood)
+local function handleBlood(blockData)
+    print("Handling blood: " .. blockData.Essences.blood)
 
 
-    if(blockData.Essences.blood < 100000) then
+    if(blockData.Essences.blood < 50000) then
         redstone.setOutput("bottom", true)
         return true
     end
+
     redstone.setOutput("bottom", false)
     return false
+end
+
+local function handleInput(blockData)
+    if(next(blockData.Ritual)) then
+        print("Doing ritual, waiting: " .. blockData.Ritual.ActiveRitual)
+        return true
+    end
+    local items = input.list()
+    if(not next(items)) then
+        return false
+    end
+
+    if(#items > 4) then
+        error("Too many items in input.")
+    end
+
+    for slot, item in pairs(items) do
+        input.pushItems(slot, inputDestinations[slot].name)
+    end
 end
 
 local function tick()
     local blockData = forgeReader.getBlockData()
 
-    if(handleBloodLevels(blockData)) then
+    if(handleBlood(blockData)) then
+        return
+    end
+
+    if(handleInput(blockData)) then
         return
     end
 
