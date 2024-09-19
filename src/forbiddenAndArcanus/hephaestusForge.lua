@@ -8,12 +8,39 @@ local dump = require("dump")
 
 local input = pWrapper.find("minecraft:chest")
 
-local forge = pWrapper.wrap("modularrouters:modular_router_1")
+local forgeGavel = pWrapper.wrap("modularrouters:modular_router_1")
 local forgeReader = pWrapper.find("blockReader")
 
+local forgeInput = pWrapper.find("forbidden_arcanus:hephaestus_forge")
 local pedestal1 = pWrapper.wrap("modularrouters:modular_router_2")
 local pedestal2 = pWrapper.wrap("modularrouters:modular_router_3")
 local pedestal3 = pWrapper.wrap("modularrouters:modular_router_4")
 local pedestal4 = pWrapper.wrap("modularrouters:modular_router_5")
 
-dump.toPastebin(forgeReader.getBlockData())
+print(forgeInput.name)
+
+
+
+-- {
+--     Inventory = {
+--       Items = {
+--         {
+--           id = "minecraft:diamond",
+--           Count = 1,
+--           Slot = 4,
+--         },
+--       },
+--       Size = 9,
+--     },
+--     Ritual = {
+--       ActiveRitual = "ResourceKey[forbidden_arcanus:hephaestus_forge/ritual / forbidden_arcanus:eternal_stella]",
+--       Counter = 37,
+--     },
+--     Essences = {
+--       souls = 33,
+--       aureal = 19918,
+--       experience = 432,
+--       blood = 73580,
+--     },
+--     ForgeCaps = {},
+--   }
