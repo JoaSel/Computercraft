@@ -16,4 +16,4 @@ local pedestal2 = pWrapper.wrap("modularrouters:modular_router_3")
 local pedestal3 = pWrapper.wrap("modularrouters:modular_router_4")
 local pedestal4 = pWrapper.wrap("modularrouters:modular_router_5")
 
-print(forge.name)
+dump.toPastebin(forgeReader.getBlockData())
