@@ -35,6 +35,8 @@ local function tick()
     if(handleBloodLevels(blockData)) then
         return
     end
+
+    print("Tick End")
 end
 
 while (true) do
