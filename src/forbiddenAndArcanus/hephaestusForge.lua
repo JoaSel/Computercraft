@@ -6,7 +6,12 @@ local pWrapper = require("peripheralWrapper")
 local mTerm = require("moreTerm")
 local dump = require("dump")
 
-local input = pWrapper.find("minecraft:chest")
+local outputList = {
+    ["forbidden_arcanus:eternal_stella"] = true
+}
+
+local input = pWrapper.wrap("minecraft:chest_6")
+local input = pWrapper.wrap("minecraft:chest_7")
 
 local forgeGavel = pWrapper.wrap("modularrouters:modular_router_1")
 local forgeReader = pWrapper.find("blockReader")
@@ -58,7 +63,7 @@ local function handleInput(blockData)
     end
 end
 
-local function handleOutput()
+local function handleOutput(blockData)
     local items = forgeInput.list()
     dump.toTerm(items)
 end
