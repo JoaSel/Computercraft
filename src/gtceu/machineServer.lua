@@ -80,6 +80,7 @@ local function getOrAddCategory(category)
 
   return root[category]
 end
+
 local function getOrAddMachine(machineData)
   local split = mString.split(machineData.machineId, "-")
 
@@ -99,6 +100,8 @@ local function getOrAddMachine(machineData)
     category.machines[machineId].machineData = machineData
   else
     print("New machine")
+
+    dump.toTerm(category)
     -- category.machines[machineId] = { machineData = machineData }
     -- category.machines[machineId].displayFrame = category.machines[category]
     --     :addList()
