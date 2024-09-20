@@ -60,9 +60,11 @@ local function getOrAddCategory(category)
     --     :setPosition(1, 2)
     --     :setSize("parent.w", "parent.h - 1")
     --     :hide()
+
+    root[category].machines = {}
   end
 
-  return allMachines[category]
+  return root[category]
 end
 local function getOrAddMachine(machineData)
   local split = mString.split(machineData.machineId, "-")
@@ -76,20 +78,20 @@ local function getOrAddMachine(machineData)
     category = split[1]
     machineId = split[2]
   end
-  local machinesInCat = getOrAddCategory(category)
+  local category = getOrAddCategory(category)
 
-  local exists = machinesInCat[machineId]
+  local exists = category.machines[machineId]
   if (exists) then
-    machinesInCat[machineId].machineData = machineData
+    category.machines[machineId].machineData = machineData
   else
     print("New machine")
-    machinesInCat[machineId] = { machineData = machineData }
-    machinesInCat[machineId].displayFrame = categoryFrames[category]
+    category.machines[machineId] = { machineData = machineData }
+    category.machines[machineId].displayFrame = category.machines[category]
         :addList()
         :setSize("parent.w/2 - 1", 2)
   end
 
-  return machinesInCat[machineId]
+  return category.machines[machineId]
 end
 
 local function updateMachine(machineData)
