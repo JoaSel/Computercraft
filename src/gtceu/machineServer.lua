@@ -54,6 +54,13 @@ local categoryFrame = main
 local function getOrAddCategory(category)
   if (not allMachines[category]) then
     allMachines[category] = {}
+
+    local x = categoryFrame
+        :addList()
+        :setSize("parent.w/2 - 1", 2)
+
+    x:editItem(1, category)
+
     categoryFrames[category] = categoryFrame
         :addFlexbox()
         :setForeground(colors.white)
