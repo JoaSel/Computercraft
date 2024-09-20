@@ -80,9 +80,9 @@ local function handleOutput(blockData)
 
     print("gaveling")
     os.sleep(5)
-    gavelRedstone.setOutput("east", true)
+    gavelRedstone.setOutput("back", true)
     os.sleep(1)
-    gavelRedstone.setOutput("east", false)
+    gavelRedstone.setOutput("back", false)
 end
 local function tick()
     local blockData = forgeReader.getBlockData()
