@@ -74,9 +74,8 @@ local function handleOutput(blockData)
 
     if(outputList[middleItem.name]) then
         forgeInput.pushItems(output.name, 5)
+        return false
     end
-
-    dump.toTerm(items)
 end
 local function tick()
     local blockData = forgeReader.getBlockData()
