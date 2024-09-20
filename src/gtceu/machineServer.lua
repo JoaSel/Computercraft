@@ -47,16 +47,20 @@ local function updateMachine(machineData)
   local machines
   local machineId
   if (#split == 1) then
+    if(not allMachines["Unkown"]) then
+      allMachines["Unkown"] = {}
+    end
     machines = allMachines["Unkown"]
     machineId = split[1]
   else
+    if(not allMachines[split[1]]) then
+      allMachines[split[1]] = {}
+    end
     machines = allMachines[split[1]]
     machineId = split[2]
   end
 
-  if(not machines) then
-    machines = {}
-  end
+  
 
   dump.toTerm(allMachines)
 
