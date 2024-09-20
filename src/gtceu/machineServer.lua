@@ -48,7 +48,7 @@ local flex = main
     :setWrap("wrap")
     :setPosition(1, 2)
     :setSize("parent.w", "parent.h - 1")
-    :Hide()
+    :hide()
 
 local function updateMachine(machineData)
   local split = mString.split(machineData.machineId, "-")
