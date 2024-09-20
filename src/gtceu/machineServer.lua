@@ -54,8 +54,10 @@ local function getOrAddCategory(category)
         :setSize("parent.w", "parent.h - 1")
         :hide()
 
+        --root[category].frame
+
     root[category].buttonFrame = categoryFrame
-        :addButton()
+        :addLabel()
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :setText(category)
