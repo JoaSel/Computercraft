@@ -54,7 +54,7 @@ local function handleInput(blockData)
     local destinationSlot = 1
     for slot, item in pairs(items) do
         if(item.name == "forbidden_arcanus:soul") then
-            input.pushItems(forgeInput.name, slot, 64, 2)
+            input.pushItems(forgeInput.name, slot, 64, 1)
         else
             for i = 1, item.count, 1 do
                 input.pushItems(inputDestinations[destinationSlot].name, slot, 1)
@@ -88,7 +88,7 @@ local function tick()
     local blockData = forgeReader.getBlockData()
 
     if(next(blockData.Ritual)) then
-        print("Doing ritual, waiting: " .. blockData.Ritual.ActiveRitual)
+        print("Waiting for ritual")
         return true
     end
 
