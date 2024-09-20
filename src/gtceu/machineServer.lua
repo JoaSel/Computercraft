@@ -96,6 +96,11 @@ local function getOrAddMachine(machineData)
 
     category.machines[machineData.machineName].displayFrame
         :addLabel()
+        :setTextAlign("center")
+        :setText(machineData.machineName)
+
+    category.machines[machineData.machineName].statusLabel = category.machines[machineData.machineName].displayFrame
+        :addLabel()
         :setTextAlign("right")
         :setText(machineData.machineName)
   end
