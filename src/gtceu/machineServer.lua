@@ -30,8 +30,7 @@ monitor.setTextScale(0.5)
 local main = basalt.addMonitor()
     :setForeground(colors.white)
     :setBackground(colors.black)
-
-main:setMonitor(monitor)
+    :setMonitor(monitor)
 
 local categoryFrame = main
     :addFlexbox()
@@ -45,9 +44,9 @@ local function getOrAddCategory(category)
   if (not root[category]) then
     root[category] = {}
 
-    local scrollBox = main.addScrollableFrame()
+    -- local scrollBox = main.addScrollableFrame()
 
-    root[category].frame = scrollBox
+    root[category].frame = main
         :addFlexbox()
         :setForeground(colors.white)
         :setBackground(colors.black)
