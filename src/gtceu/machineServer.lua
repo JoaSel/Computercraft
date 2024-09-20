@@ -5,6 +5,10 @@ package.path = package.path .. ";../core/?.lua"
 
 local pWrapper = require("peripheralWrapper")
 
+local basalt = require("basalt")
+local mString = require("moreString")
+local dump = require("dump")
+
 local sendChannel = 43
 local ackChannel = 44
 
@@ -12,7 +16,6 @@ local modem = pWrapper.find("modem", function(_, modem)
   return modem.isWireless()
 end)
 local monitor = pWrapper.find("monitor")
-local basalt = require("basalt")
 
 local machines = {}
 
@@ -39,6 +42,9 @@ local flex = main
   :setSize("parent.w", "parent.h - 1")
 
 local function updateMachine(machineData)
+  local x = mString.split(machineData.machineId)
+  dump.toTerm(x)
+
   local exists = machines[machineData.machineId]
       if (exists) then
         machines[machineData.machineId].machineData = machineData
