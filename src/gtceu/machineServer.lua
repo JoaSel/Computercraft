@@ -58,7 +58,7 @@ local function updateMachine(machineData)
     machines = {}
   end
 
-  dump.print(allMachines)
+  dump.toTerm(allMachines)
 
   -- local exists = machines[machineId]
   -- if (exists) then
