@@ -55,10 +55,11 @@ local function handleInput(blockData)
     for slot, item in pairs(items) do
         if(item.name == "forbidden_arcanus:soul") then
             input.pushItems(forgeInput.name, slot, 64, 2)
-        end
-        for i = 1, item.count, 1 do
-            input.pushItems(inputDestinations[destinationSlot].name, slot, 1)
-            destinationSlot = destinationSlot + 1
+        else
+            for i = 1, item.count, 1 do
+                input.pushItems(inputDestinations[destinationSlot].name, slot, 1)
+                destinationSlot = destinationSlot + 1
+            end
         end
     end
 end
