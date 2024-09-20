@@ -101,8 +101,9 @@ local function getOrAddMachine(machineData)
 
     category.machines[machineData.machineName].statusLabel = category.machines[machineData.machineName].displayFrame
         :addLabel()
+        :setPosition(1, 2)
         :setTextAlign("right")
-        :setText(machineData.machineName)
+        :setText("TEST")
   end
 
   return category.machines[machineData.machineName]
