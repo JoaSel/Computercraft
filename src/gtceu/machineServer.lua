@@ -42,7 +42,7 @@ local flex = main
   :setSize("parent.w", "parent.h - 1")
 
 local function updateMachine(machineData)
-  local x = mString.split(machineData.machineId)
+  local x = mString.split(machineData.machineId, "-")
   dump.toTerm(x)
 
   local exists = machines[machineData.machineId]
