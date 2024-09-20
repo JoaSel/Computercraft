@@ -51,8 +51,6 @@ local name
 
 local split = mString.split(os.getComputerLabel(), "-")
 
-dump.toTerm(split)
-
 if (#split == 1) then
   category = "Unkown"
   name = split[1]
@@ -66,8 +64,8 @@ local filterItems = function(item)
 end
 
 print(string.format("Monitoring %s", machineName))
-print(string.format("Category: ", machineName, category))
-print(string.format("Name: ", machineName, name))
+print(string.format("Category: %s", category))
+print(string.format("Name: %s", name))
 
 local function getMachineStatus()
     local data = {}
