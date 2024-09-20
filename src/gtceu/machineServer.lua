@@ -100,12 +100,11 @@ local function getOrAddMachine(machineData)
     category.machines[machineId].machineData = machineData
   else
     print("New machine")
-
-    dump.toTerm(category)
-    -- category.machines[machineId] = { machineData = machineData }
-    -- category.machines[machineId].displayFrame = category.machines[category]
-    --     :addList()
-    --     :setSize("parent.w/2 - 1", 2)
+    category.machines[machineId] = { machineData = machineData }
+    category.machines[machineId].displayFrame = category.frame
+        :addList()
+        :setSize("parent.w/2 - 1", 2)
+        :editItem(1, " " .. machineData.machineId)
   end
 
   return category.machines[machineId]
