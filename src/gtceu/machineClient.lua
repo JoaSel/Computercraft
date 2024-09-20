@@ -51,6 +51,8 @@ local name
 
 local split = mString.split(os.getComputerLabel(), "-")
 
+dump.toTerm(split)
+
 if (#split == 1) then
   category = "Unkown"
   name = split[1]
