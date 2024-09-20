@@ -73,7 +73,7 @@ local function handleOutput(blockData)
     end
 
     if(outputList[middleItem.name]) then
-        forgeInput.pushItems(5, output.name)
+        forgeInput.pushItems(output.name, 5)
     end
 
     dump.toTerm(items)
