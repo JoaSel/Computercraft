@@ -45,7 +45,9 @@ local function getOrAddCategory(category)
   if (not root[category]) then
     root[category] = {}
 
-    root[category].frame = main
+    local scrollBox = main.addScrollableFrame()
+
+    root[category].frame = scrollBox
         :addFlexbox()
         :setForeground(colors.white)
         :setBackground(colors.black)
