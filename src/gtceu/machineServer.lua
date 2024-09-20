@@ -129,9 +129,9 @@ local function updateMachine(machineData)
     machine.error = false
   end
 
-  machine.displayFrame:setBackground(displayColor)
-  machine.displayFrame:editItem(2,
-    errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
+  machine.displayFrame
+    :setBackground(displayColor)
+    :editItem(2, errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
 
 local function handleMessages()
@@ -142,7 +142,7 @@ local function handleMessages()
   while (true) do
     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
-    if (channel == sendChannel and message.machineId) then
+    if (channel == sendChannel and message.machineId and message.machineCategory) then
       updateMachine(message)
     end
   end

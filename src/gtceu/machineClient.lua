@@ -6,6 +6,7 @@ local dump = require("dump")
 local mTable = require("moreTable")
 local pWrapper = require("peripheralWrapper")
 local gtceuIO = require("libs.gtceuIO")
+local mString = require("moreString")
 
 local sendChannel = 43
 local ackChannel = 44
@@ -44,19 +45,33 @@ local allowedItems = {
 }
 
 local machineName = blockReader.getBlockName()
-local label = os.getComputerLabel()
+
+local category
+local name
+
+local split = mString.split(os.getComputerLabel(), "-")
+
+if (#split == 1) then
+  category = "Unkown"
+  name = split[1]
+else
+  category = split[1]
+  name = split[2]
+end
 
 local filterItems = function(item)
     return allowedItems[item.name]
 end
 
-print(string.format("Monitoring %s as %s", machineName, label))
+print(string.format("Monitoring %s", machineName))
+print(string.format("Category: ", machineName, category))
+print(string.format("Name: ", machineName, name))
 
 local function getMachineStatus()
     local data = {}
 
-    data.machineId = label
-    data.machineName = machineName
+    data.machineCategory = category
+    data.machineName = name
 
     data.hasInputItems = false
     for _, inputBus in pairs(inputBuses) do
