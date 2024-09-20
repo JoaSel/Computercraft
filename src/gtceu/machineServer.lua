@@ -54,7 +54,11 @@ local function updateMachine(machineData)
     machineId = split[2]
   end
 
-  print(machineId)
+  if(not machines) then
+    machines = {}
+  end
+
+  dump.print(allMachines)
 
   -- local exists = machines[machineId]
   -- if (exists) then
