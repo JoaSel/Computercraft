@@ -130,7 +130,9 @@ local function updateMachine(machineData)
 
   machine.displayFrame
     :setBackground(displayColor)
-    --:editItem(2, errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
+
+  machine.statusLabel
+    :setText(errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
 
 local function handleMessages()
