@@ -54,6 +54,7 @@ local function updateMachine(machineData)
     machineId = split[2]
   end
 
+  print(machineId)
   local exists = machines[machineId]
   if (exists) then
     machines[machineId].machineData = machineData
