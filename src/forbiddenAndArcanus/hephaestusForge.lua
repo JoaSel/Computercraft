@@ -78,6 +78,7 @@ local function handleOutput(blockData)
         return false
     end
 
+    print("gaveling")
     os.sleep(5)
     gavelRedstone.setOutput("east", true)
     os.sleep(1)
