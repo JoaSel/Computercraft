@@ -28,10 +28,10 @@ local inputDestinations = {
 local forgeInput = inputDestinations[1]
 
 local function handleBlood(blockData)
-    print("Handling blood: " .. blockData.Essences.blood)
-
+    
 
     if(blockData.Essences.blood < 50000) then
+        print("Handling blood: " .. blockData.Essences.blood)
         redstone.setOutput("bottom", true)
         return true
     end
@@ -41,11 +41,6 @@ local function handleBlood(blockData)
 end
 
 local function handleInput(blockData)
-    if(next(blockData.Ritual)) then
-        print("Doing ritual, waiting: " .. blockData.Ritual.ActiveRitual)
-        return true
-    end
-
     local items = input.list()
     if(not next(items)) then
         return false
@@ -55,6 +50,7 @@ local function handleInput(blockData)
         error("Too many items in input.")
     end
 
+    print("Handling input")
     local destinationSlot = 1
     for slot, item in pairs(items) do
         for i = 1, item.count, 1 do
@@ -81,11 +77,16 @@ local function handleOutput(blockData)
     print("gaveling")
     os.sleep(5)
     gavelRedstone.setOutput("east", true)
-    os.sleep(1)
+    os.sleep(5)
     gavelRedstone.setOutput("east", false)
 end
 local function tick()
     local blockData = forgeReader.getBlockData()
+
+    if(next(blockData.Ritual)) then
+        print("Doing ritual, waiting: " .. blockData.Ritual.ActiveRitual)
+        return true
+    end
 
     if(handleBlood(blockData)) then
         return
