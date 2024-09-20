@@ -100,7 +100,6 @@ local function getOrAddMachine(machineData)
 end
 
 local function updateMachine(machineData)
-  print("updatring")
   local machine = getOrAddMachine(machineData)
 
   local displayColor = displayColors[machineData.blockData.recipeLogic.status]
