@@ -18,6 +18,7 @@ end)
 local monitor = pWrapper.find("monitor")
 
 local allMachines = {}
+local categoryFrames = {}
 
 local displayColors = {
   ["IDLE"] = colors.green,
@@ -33,7 +34,7 @@ local main = basalt.addMonitor()
 
 main:setMonitor(monitor)
 
-local categories = main
+local categoryFrame = main
     :addFlexbox()
     :setForeground(colors.white)
     :setBackground(colors.black)
@@ -41,48 +42,60 @@ local categories = main
     :setPosition(1, 2)
     :setSize("parent.w", "parent.h - 1")
 
-local flex = main
-    :addFlexbox()
-    :setForeground(colors.white)
-    :setBackground(colors.black)
-    :setWrap("wrap")
-    :setPosition(1, 2)
-    :setSize("parent.w", "parent.h - 1")
-    :hide()
+-- local flex = main
+--     :addFlexbox()
+--     :setForeground(colors.white)
+--     :setBackground(colors.black)
+--     :setWrap("wrap")
+--     :setPosition(1, 2)
+--     :setSize("parent.w", "parent.h - 1")
+--     :hide()
 
-local function updateMachine(machineData)
+local function getOrAddCategory(category)
+  if (not allMachines[category]) then
+    allMachines[category] = {}
+    categoryFrames[category] = categoryFrame
+        :addFlexbox()
+        :setForeground(colors.white)
+        :setBackground(colors.black)
+        :setWrap("wrap")
+        :setPosition(1, 2)
+        :setSize("parent.w", "parent.h - 1")
+        :hide()
+  end
+
+  return allMachines[category]
+end
+local function getOrAddMachine(machineData)
   local split = mString.split(machineData.machineId, "-")
 
-  local machines
+  local category
   local machineId
   if (#split == 1) then
-    if(not allMachines["Unkown"]) then
-      allMachines["Unkown"] = {}
-    end
-    machines = allMachines["Unkown"]
+    category = "Unkown"
     machineId = split[1]
   else
-    if(not allMachines[split[1]]) then
-      allMachines[split[1]] = {}
-    end
-    machines = allMachines[split[1]]
+    category = split[1]
     machineId = split[2]
   end
+  local machinesInCat = getOrAddCategory(category)
 
-  local exists = machines[machineId]
+  local exists = machinesInCat[machineId]
   if (exists) then
-    machines[machineId].machineData = machineData
+    machinesInCat[machineId].machineData = machineData
   else
     print("New machine")
-    machines[machineId] = { machineData = machineData }
-  end
-  local machine = machines[machineId]
-
-  if (not machine.displayFrame) then
-    machine.displayFrame = flex
+    machinesInCat[machineId] = { machineData = machineData }
+    machinesInCat[machineId].displayFrame = categoryFrames[category]
         :addList()
         :setSize("parent.w/2 - 1", 2)
   end
+
+  return machinesInCat[machineId]
+end
+
+local function updateMachine(machineData)
+  local machine = getOrAddMachine(machineData)
 
   local displayColor = displayColors[machineData.blockData.recipeLogic.status]
   if (not displayColor) then
@@ -115,7 +128,7 @@ local function handleMessages()
     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
     if (channel == sendChannel and message.machineId) then
-      updateMachine(message)
+      --updateMachine(message)
     end
   end
 end
