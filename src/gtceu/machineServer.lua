@@ -40,6 +40,8 @@ local categoryFrame = main
     :setPosition(1, 2)
     :setSize("parent.w", "parent.h - 1")
 
+local yTest = 1
+
 local function getOrAddCategory(category)
   if (not root[category]) then
     root[category] = {}
@@ -51,9 +53,11 @@ local function getOrAddCategory(category)
         :setForeground(colors.white)
         :setBackground(colors.black)
         --:setWrap("wrap")
-        :setPosition(1, 2)
+        :setPosition(1, yTest)
         :setSize("parent.w", "parent.h - 1")
         :hide()
+
+      yTest = yTest + 2
 
     root[category].frame
       :addLabel()
