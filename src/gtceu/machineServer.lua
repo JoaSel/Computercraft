@@ -44,22 +44,25 @@ local categoryFrame = main
 local function getOrAddCategory(category)
   if (not root[category]) then
     root[category] = {}
-    root[category].frame = nil
+
+    root[category].frame = main
+        :addFlexbox()
+        :setForeground(colors.white)
+        :setBackground(colors.black)
+        :setWrap("wrap")
+        :setPosition(1, 2)
+        :setSize("parent.w", "parent.h - 1")
+        :hide()
+
     root[category].buttonFrame = categoryFrame
         :addButton()
+        :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
-
-    root[category].buttonFrame:setBackground(colors.blue)
-    root[category].buttonFrame:setText(category)
-
-    -- categoryFrames[category] = categoryFrame
-    --     :addFlexbox()
-    --     :setForeground(colors.white)
-    --     :setBackground(colors.black)
-    --     :setWrap("wrap")
-    --     :setPosition(1, 2)
-    --     :setSize("parent.w", "parent.h - 1")
-    --     :hide()
+        :setText(category)
+        :onClick(function ()
+          categoryFrame:hide()
+          root[category].frame:show()
+        end)
 
     root[category].machines = {}
   end
