@@ -13,7 +13,8 @@ local outputList = {
 local input = pWrapper.wrap("minecraft:chest_6")
 local output = pWrapper.wrap("minecraft:chest_7")
 
-local forgeGavel = pWrapper.wrap("modularrouters:modular_router_1")
+local gavelRouter = pWrapper.wrap("modularrouters:modular_router_1")
+local gavelRedstone = pWrapper.find("redstoneIntegrator")
 local forgeReader = pWrapper.find("blockReader")
 
 local inputDestinations = {
@@ -76,6 +77,11 @@ local function handleOutput(blockData)
         forgeInput.pushItems(output.name, 5)
         return false
     end
+
+    os.sleep(5)
+    gavelRedstone.setOutput("east", true)
+    os.sleep(1)
+    gavelRedstone.setOutput("east", false)
 end
 local function tick()
     local blockData = forgeReader.getBlockData()
