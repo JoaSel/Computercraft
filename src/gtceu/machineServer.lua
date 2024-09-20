@@ -138,16 +138,18 @@ local function handleMessages()
   print("Started listening on " .. sendChannel)
   modem.open(sendChannel)
 
+  local i = 1
+
   while (true) do
     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
     if (channel == sendChannel and message.machineCategory) then
       updateMachine(message)
+    else
+      print(message.machineId)
     end
   end
 end
-
-
 
 main:addThread():start(handleMessages)
 
