@@ -92,6 +92,7 @@ local function getOrAddMachine(machineData)
   else
     category = split[1]
     machineId = split[2]
+    print(machineId)
   end
   local category = getOrAddCategory(category)
 
