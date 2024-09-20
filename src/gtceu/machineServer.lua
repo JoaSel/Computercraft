@@ -55,42 +55,42 @@ local function updateMachine(machineData)
   end
 
   print(machineId)
-  return false
-  local exists = machines[machineId]
-  if (exists) then
-    machines[machineId].machineData = machineData
-  else
-    print("New machine")
-    machines[machineId] = { machineData = machineData }
-  end
-  local machine = machines[machineId]
 
-  if (not machine.displayFrame) then
-    machine.displayFrame = flex
-        :addList()
-        :setSize("parent.w/2 - 1", 2)
-  end
+  -- local exists = machines[machineId]
+  -- if (exists) then
+  --   machines[machineId].machineData = machineData
+  -- else
+  --   print("New machine")
+  --   machines[machineId] = { machineData = machineData }
+  -- end
+  -- local machine = machines[machineId]
 
-  local displayColor = displayColors[machineData.blockData.recipeLogic.status]
-  if (not displayColor) then
-    error("Unkown status: " .. machineData.blockData.recipeLogic.statu)
-  end
+  -- if (not machine.displayFrame) then
+  --   machine.displayFrame = flex
+  --       :addList()
+  --       :setSize("parent.w/2 - 1", 2)
+  -- end
 
-  local errorStatus
-  if (machineData.blockData.recipeLogic.status == "IDLE" and (machineData.hasInputItems or machineData.hasInputFluids)) then
-    if (machine.error) then
-      displayColor = colors.red
-      errorStatus = string.format(" Status: ERROR (%s)", machineData.blockData.recipeLogic.status)
-    end
-    machine.error = true
-  else
-    machine.error = false
-  end
+  -- local displayColor = displayColors[machineData.blockData.recipeLogic.status]
+  -- if (not displayColor) then
+  --   error("Unkown status: " .. machineData.blockData.recipeLogic.statu)
+  -- end
 
-  machine.displayFrame:setBackground(displayColor)
-  machine.displayFrame:editItem(1, " " .. machineData.machineId)
-  machine.displayFrame:editItem(2,
-    errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
+  -- local errorStatus
+  -- if (machineData.blockData.recipeLogic.status == "IDLE" and (machineData.hasInputItems or machineData.hasInputFluids)) then
+  --   if (machine.error) then
+  --     displayColor = colors.red
+  --     errorStatus = string.format(" Status: ERROR (%s)", machineData.blockData.recipeLogic.status)
+  --   end
+  --   machine.error = true
+  -- else
+  --   machine.error = false
+  -- end
+
+  -- machine.displayFrame:setBackground(displayColor)
+  -- machine.displayFrame:editItem(1, " " .. machineData.machineId)
+  -- machine.displayFrame:editItem(2,
+  --   errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
 
 local function handleMessages()
