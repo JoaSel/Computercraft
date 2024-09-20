@@ -10,8 +10,8 @@ local outputList = {
     ["forbidden_arcanus:eternal_stella"] = true
 }
 
-local input = pWrapper.wrap("engangled:tile_39")
-local output = pWrapper.wrap("engangled:tile_40")
+local input = pWrapper.wrap("entangled:tile_39")
+local output = pWrapper.wrap("entangled:tile_40")
 
 local gavelRouter = pWrapper.wrap("modularrouters:modular_router_1")
 local gavelRedstone = pWrapper.find("redstoneIntegrator")
