@@ -93,6 +93,7 @@ local function getOrAddMachine(machineData)
     category.machines[machineData.machineName].displayFrame = category.frame
         :addFrame()
         :setSize("parent.w/2 - 1", 2)
+        :setTextAlign("center")
 
     category.machines[machineData.machineName].displayFrame
         :addLabel()
