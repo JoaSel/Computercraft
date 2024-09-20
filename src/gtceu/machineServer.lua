@@ -17,7 +17,7 @@ local modem = pWrapper.find("modem", function(_, modem)
 end)
 local monitor = pWrapper.find("monitor")
 
-local machines = {}
+local allMachines = {}
 
 local displayColors = {
   ["IDLE"] = colors.green,
@@ -28,57 +28,67 @@ local displayColors = {
 
 monitor.setTextScale(0.5)
 local main = basalt.addMonitor()
-  :setForeground(colors.white)
-  :setBackground(colors.black)
+    :setForeground(colors.white)
+    :setBackground(colors.black)
 
 main:setMonitor(monitor)
 
 local flex = main
-  :addFlexbox()
-  :setForeground(colors.white)
-  :setBackground(colors.black)
-  :setWrap("wrap")
-  :setPosition(1, 2)
-  :setSize("parent.w", "parent.h - 1")
+    :addFlexbox()
+    :setForeground(colors.white)
+    :setBackground(colors.black)
+    :setWrap("wrap")
+    :setPosition(1, 2)
+    :setSize("parent.w", "parent.h - 1")
 
 local function updateMachine(machineData)
-  local x = mString.split(machineData.machineId, "-")
-  dump.toTerm(x)
+  local split = mString.split(machineData.machineId, "-")
 
-  local exists = machines[machineData.machineId]
-      if (exists) then
-        machines[machineData.machineId].machineData = machineData
-      else
-        print("New machine")
-        machines[machineData.machineId] = { machineData = machineData }
-      end
-      local machine = machines[machineData.machineId]
+  local machines
+  local machineId
+  if (#split == 1) then
+    machines = allMachines["Unkown"]
+    machineId = split[1]
+  else
+    machines = allMachines[split[1]]
+    machineId = split[2]
+  end
 
-      if(not machine.displayFrame) then
-        machine.displayFrame = flex
-          :addList()
-          :setSize("parent.w/2 - 1", 2)
-      end
+  local exists = machines[machineId]
+  if (exists) then
+    machines[machineId].machineData = machineData
+  else
+    print("New machine")
+    machines[machineId] = { machineData = machineData }
+  end
+  local machine = machines[machineId]
 
-      local displayColor = displayColors[machineData.blockData.recipeLogic.status]
-      if(not displayColor) then
-        error("Unkown status: " .. machineData.blockData.recipeLogic.statu)
-      end
-      local errorStatus
+  if (not machine.displayFrame) then
+    machine.displayFrame = flex
+        :addList()
+        :setSize("parent.w/2 - 1", 2)
+  end
 
-      if(machineData.blockData.recipeLogic.status == "IDLE" and (machineData.hasInputItems or machineData.hasInputFluids)) then
-        if(machine.error) then
-          displayColor = colors.red
-          errorStatus = string.format(" Status: ERROR (%s)", machineData.blockData.recipeLogic.status)
-        end
-        machine.error = true
-      else
-        machine.error = false
-      end
+  local displayColor = displayColors[machineData.blockData.recipeLogic.status]
+  if (not displayColor) then
+    error("Unkown status: " .. machineData.blockData.recipeLogic.statu)
+  end
 
-      machine.displayFrame:setBackground(displayColor)
-      machine.displayFrame:editItem(1, " " .. machineData.machineId)
-      machine.displayFrame:editItem(2, errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
+  local errorStatus
+  if (machineData.blockData.recipeLogic.status == "IDLE" and (machineData.hasInputItems or machineData.hasInputFluids)) then
+    if (machine.error) then
+      displayColor = colors.red
+      errorStatus = string.format(" Status: ERROR (%s)", machineData.blockData.recipeLogic.status)
+    end
+    machine.error = true
+  else
+    machine.error = false
+  end
+
+  machine.displayFrame:setBackground(displayColor)
+  machine.displayFrame:editItem(1, " " .. machineData.machineId)
+  machine.displayFrame:editItem(2,
+    errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
 
 local function handleMessages()
