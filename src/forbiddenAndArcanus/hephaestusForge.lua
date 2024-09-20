@@ -10,8 +10,8 @@ local outputList = {
     ["forbidden_arcanus:eternal_stella"] = true
 }
 
-local input = pWrapper.wrap("minecraft:chest_6")
-local output = pWrapper.wrap("minecraft:chest_7")
+local input = pWrapper.wrap("engangled:tile_39")
+local output = pWrapper.wrap("engangled:tile_40")
 
 local gavelRouter = pWrapper.wrap("modularrouters:modular_router_1")
 local gavelRedstone = pWrapper.find("redstoneIntegrator")
@@ -46,13 +46,16 @@ local function handleInput(blockData)
         return false
     end
 
-    if(#items > 4) then
+    if(#items > 5) then
         error("Too many items in input.")
     end
 
     print("Handling input")
     local destinationSlot = 1
     for slot, item in pairs(items) do
+        if(item.name == "forbidden_arcanus:soul") then
+            input.pushItems(inputDestinations[forgeInput].name, slot)
+        end
         for i = 1, item.count, 1 do
             input.pushItems(inputDestinations[destinationSlot].name, slot, 1)
             destinationSlot = destinationSlot + 1
@@ -74,7 +77,7 @@ local function handleOutput(blockData)
         return false
     end
 
-    print("gaveling")
+    print("Starting ritual")
     os.sleep(5)
     gavelRedstone.setOutput("east", true)
     os.sleep(5)
