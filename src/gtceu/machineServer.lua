@@ -92,7 +92,6 @@ local function getOrAddMachine(machineData)
   else
     category = split[1]
     machineId = split[2]
-    print(machineId)
   end
   local category = getOrAddCategory(category)
 
@@ -105,7 +104,7 @@ local function getOrAddMachine(machineData)
     category.machines[machineId].displayFrame = category.frame
         :addList()
         :setSize("parent.w/2 - 1", 2)
-        :editItem(1, " " .. machineData.machineId)
+        :editItem(1, " " .. machineId)
   end
 
   return category.machines[machineId]
