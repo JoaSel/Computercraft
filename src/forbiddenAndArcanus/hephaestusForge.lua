@@ -79,9 +79,8 @@ local function handleOutput(blockData)
     end
 
     print("Starting ritual")
-    os.sleep(5)
     gavelRedstone.setOutput("east", true)
-    os.sleep(5)
+    os.sleep(1)
     gavelRedstone.setOutput("east", false)
 
     return true
