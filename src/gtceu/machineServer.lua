@@ -132,7 +132,7 @@ local function handleMessages()
   while (true) do
     event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
 
-    if (channel == sendChannel and message.machineId and message.machineCategory) then
+    if (channel == sendChannel and message.machineCategory) then
       updateMachine(message)
     end
   end
