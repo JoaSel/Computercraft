@@ -11,7 +11,7 @@ local outputList = {
 }
 
 local input = pWrapper.wrap("minecraft:chest_6")
-local input = pWrapper.wrap("minecraft:chest_7")
+local output = pWrapper.wrap("minecraft:chest_7")
 
 local forgeGavel = pWrapper.wrap("modularrouters:modular_router_1")
 local forgeReader = pWrapper.find("blockReader")
@@ -65,9 +65,19 @@ end
 
 local function handleOutput(blockData)
     local items = forgeInput.list()
+
+    local middleItem = items[5]
+
+    if (not middleItem) then
+        return false
+    end
+
+    if(outputList[middleItem.name]) then
+        forgeInput.pushItems(5, output.name)
+    end
+
     dump.toTerm(items)
 end
-
 local function tick()
     local blockData = forgeReader.getBlockData()
 
