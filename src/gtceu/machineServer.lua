@@ -44,10 +44,10 @@ local function getOrAddCategory(category)
   if (not root[category]) then
     root[category] = {}
 
-    -- local scrollBox = main.addScrollableFrame()
+    --local scrollBox = main.addScrollableFrame()
 
     root[category].frame = main
-        :addFlexbox()
+        :addScrollableFrame()
         :setForeground(colors.white)
         :setBackground(colors.black)
         :setWrap("wrap")
@@ -59,7 +59,7 @@ local function getOrAddCategory(category)
       :addLabel()
       :setSize("parent.w", "2")
       :setTextAlign("center")
-      :setText(category .. "\n test")
+      :setText(category)
       :onClick(function ()
         root[category].frame:hide()
         categoryFrame:show()
