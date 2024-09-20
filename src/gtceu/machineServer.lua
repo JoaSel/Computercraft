@@ -17,8 +17,7 @@ local modem = pWrapper.find("modem", function(_, modem)
 end)
 local monitor = pWrapper.find("monitor")
 
-local allMachines = {}
-local categoryFrames = {}
+local root = {}
 
 local displayColors = {
   ["IDLE"] = colors.green,
@@ -42,33 +41,25 @@ local categoryFrame = main
     :setPosition(1, 2)
     :setSize("parent.w", "parent.h - 1")
 
--- local flex = main
---     :addFlexbox()
---     :setForeground(colors.white)
---     :setBackground(colors.black)
---     :setWrap("wrap")
---     :setPosition(1, 2)
---     :setSize("parent.w", "parent.h - 1")
---     :hide()
-
 local function getOrAddCategory(category)
-  if (not allMachines[category]) then
-    allMachines[category] = {}
-
-    local x = categoryFrame
+  if (not root[category]) then
+    root[category] = {}
+    root[category].frame = nil
+    root[category].buttonFrame = categoryFrame
         :addList()
         :setSize("parent.w/2 - 1", 2)
 
-    x:editItem(1, category)
+    root[category].buttonFrame:setBackground(colors.blue)
+    root[category].buttonFrame:editItem(1, category)
 
-    categoryFrames[category] = categoryFrame
-        :addFlexbox()
-        :setForeground(colors.white)
-        :setBackground(colors.black)
-        :setWrap("wrap")
-        :setPosition(1, 2)
-        :setSize("parent.w", "parent.h - 1")
-        :hide()
+    -- categoryFrames[category] = categoryFrame
+    --     :addFlexbox()
+    --     :setForeground(colors.white)
+    --     :setBackground(colors.black)
+    --     :setWrap("wrap")
+    --     :setPosition(1, 2)
+    --     :setSize("parent.w", "parent.h - 1")
+    --     :hide()
   end
 
   return allMachines[category]
@@ -145,6 +136,15 @@ end
 main:addThread():start(handleMessages)
 
 basalt.autoUpdate();
+
+-- local flex = main
+--     :addFlexbox()
+--     :setForeground(colors.white)
+--     :setBackground(colors.black)
+--     :setWrap("wrap")
+--     :setPosition(1, 2)
+--     :setSize("parent.w", "parent.h - 1")
+--     :hide()
 
 -- {
 --   recipeLogic = {
