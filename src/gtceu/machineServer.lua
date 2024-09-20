@@ -91,9 +91,9 @@ local function getOrAddMachine(machineData)
     print("New machine")
     category.machines[machineData.machineName] = { machineData = machineData }
     category.machines[machineData.machineName].displayFrame = category.frame
-        :addList()
+        :addFrame()
         :setSize("parent.w/2 - 1", 2)
-        :editItem(1, " " .. machineData.machineName)
+        :addLabel(machineData.machineName)
   end
 
   return category.machines[machineData.machineName]
@@ -121,7 +121,7 @@ local function updateMachine(machineData)
 
   machine.displayFrame
     :setBackground(displayColor)
-    :editItem(2, errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
+    --:editItem(2, errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
 
 local function handleMessages()
