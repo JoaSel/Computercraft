@@ -57,7 +57,8 @@ local function getOrAddCategory(category)
     root[category].frame
       :addLabel()
       :setSize("parent.w", "2")
-      :setText("category")
+      :setTextAlign("center")
+      :setText(category)
 
     root[category].buttonFrame = categoryFrame
         :addLabel()
