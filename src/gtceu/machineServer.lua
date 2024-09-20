@@ -33,6 +33,14 @@ local main = basalt.addMonitor()
 
 main:setMonitor(monitor)
 
+local categories = main
+    :addFlexbox()
+    :setForeground(colors.white)
+    :setBackground(colors.black)
+    :setWrap("wrap")
+    :setPosition(1, 2)
+    :setSize("parent.w", "parent.h - 1")
+
 local flex = main
     :addFlexbox()
     :setForeground(colors.white)
@@ -40,6 +48,7 @@ local flex = main
     :setWrap("wrap")
     :setPosition(1, 2)
     :setSize("parent.w", "parent.h - 1")
+    :Hide()
 
 local function updateMachine(machineData)
   local split = mString.split(machineData.machineId, "-")
