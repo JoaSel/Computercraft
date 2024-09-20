@@ -50,7 +50,7 @@ local function getOrAddCategory(category)
         :setSize("parent.w/2 - 1", 2)
 
     root[category].buttonFrame:setBackground(colors.blue)
-    root[category].buttonFrame:setTex(category)
+    root[category].buttonFrame:setText(category)
 
     -- categoryFrames[category] = categoryFrame
     --     :addFlexbox()
