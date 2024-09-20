@@ -82,32 +82,21 @@ local function getOrAddCategory(category)
 end
 
 local function getOrAddMachine(machineData)
-  local split = mString.split(machineData.machineId, "-")
+  local category = getOrAddCategory(machineData.machineCategory)
 
-  local category
-  local machineId
-  if (#split == 1) then
-    category = "Unkown"
-    machineId = split[1]
-  else
-    category = split[1]
-    machineId = split[2]
-  end
-  local category = getOrAddCategory(category)
-
-  local exists = category.machines[machineId]
+  local exists = category.machines[machineData.machineName]
   if (exists) then
-    category.machines[machineId].machineData = machineData
+    exists.machineData = machineData
   else
     print("New machine")
-    category.machines[machineId] = { machineData = machineData }
-    category.machines[machineId].displayFrame = category.frame
+    category.machines[machineData.machineName] = { machineData = machineData }
+    category.machines[machineData.machineName].displayFrame = category.frame
         :addList()
         :setSize("parent.w/2 - 1", 2)
-        :editItem(1, " " .. machineId)
+        :editItem(1, " " .. machineData.machineName)
   end
 
-  return category.machines[machineId]
+  return category.machines[machineData.machineName]
 end
 
 local function updateMachine(machineData)
