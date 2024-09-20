@@ -75,7 +75,7 @@ local function handleOutput(blockData)
 
     if(outputList[middleItem.name]) then
         forgeInput.pushItems(output.name, 5)
-        return false
+        return true
     end
 
     print("Starting ritual")
@@ -83,6 +83,8 @@ local function handleOutput(blockData)
     gavelRedstone.setOutput("east", true)
     os.sleep(5)
     gavelRedstone.setOutput("east", false)
+
+    return true
 end
 local function tick()
     local blockData = forgeReader.getBlockData()
