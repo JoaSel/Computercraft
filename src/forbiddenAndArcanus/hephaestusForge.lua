@@ -19,6 +19,8 @@ local inputDestinations = {
     pWrapper.wrap("modularrouters:modular_router_5")
 }
 
+local forgeInput = inputDestinations[1]
+
 local function handleBlood(blockData)
     print("Handling blood: " .. blockData.Essences.blood)
 
@@ -37,6 +39,7 @@ local function handleInput(blockData)
         print("Doing ritual, waiting: " .. blockData.Ritual.ActiveRitual)
         return true
     end
+
     local items = input.list()
     if(not next(items)) then
         return false
@@ -55,10 +58,19 @@ local function handleInput(blockData)
     end
 end
 
+local function handleOutput()
+    local items = forgeInput.list()
+    dump.toTerm(items)
+end
+
 local function tick()
     local blockData = forgeReader.getBlockData()
 
     if(handleBlood(blockData)) then
+        return
+    end
+
+    if(handleOutput(blockData)) then
         return
     end
 
