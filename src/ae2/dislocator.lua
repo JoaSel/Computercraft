@@ -18,6 +18,10 @@ local playerInventory = pWrapper.find("inventoryManager")
 
 monitor.setTextScale(0.5)
 
+local translate = {
+  ["minecraft:overworld"] = "Overworld"
+}
+
 local root = {}
 root.children = {}
 
@@ -153,7 +157,7 @@ local function createDestinationFrames(dislocators)
     dump.toTerm(dislocator)
 
     local desc = string.format("%d, %d, %d at %s", dislocator.nbt.tag.target.x, dislocator.nbt.tag.target.y,
-      dislocator.nbt.tag.target.z, dislocator.nbt.tag.target.dim)
+      dislocator.nbt.tag.target.z, translate[dislocator.nbt.tag.target.dim] or dislocator.nbt.tag.target.dim)
 
     currChild.statusLabel = currChild.miniFrame
         :addLabel()
@@ -171,9 +175,6 @@ local function initialize()
   local dislocators = mTable.where(allItems, function(d)
     return d.name == "draconicevolution:dislocator" and d.displayName ~= "Dislocator"
   end)
-
-  local t1, t2 = next(dislocators)
-  dump.toFile(t2, "test")
 
   createCategoryFrames(dislocators)
   createDestinationFrames(dislocators)
