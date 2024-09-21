@@ -140,11 +140,9 @@ local function createDestinationFrames(dislocators)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
           dump.toTerm(playerInventory.getItemInOffHand())
-            print(playerInventory.addItemToPlayer("up", { name = "minecraft:cobblestone", count = 1, toSlot = 9*4 + 0 }))
-            os.sleep(0.2)
-          -- playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, fromSlot = slot - 1 })
+          playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = 36, fromSlot = slot - 1 })
           -- os.sleep(0.5)
-          -- playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1 })
+          playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1 })
         end)
 
     currChild.miniFrame
