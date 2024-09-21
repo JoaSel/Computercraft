@@ -150,10 +150,12 @@ local function createDestinationFrames(dislocators)
         :setPosition(2, 1)
         :setText(name)
 
+    local desc = string.format("%s", dislocator.tag.target.x)
+
     currChild.statusLabel = currChild.miniFrame
         :addLabel()
         :setPosition(1, 2)
-        :setText("  Initialized")
+        :setText(desc)
 
     category.childCount   = category.childCount + 1
     category.childCountLabel
