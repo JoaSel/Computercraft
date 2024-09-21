@@ -1,4 +1,4 @@
---wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/gtceu/machineServer.lua true
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/dislocator.lua true
 
 package.path = package.path .. ";../../../?.lua"
 package.path = package.path .. ";../core/?.lua"
@@ -9,27 +9,16 @@ local basalt = require("basalt")
 local mString = require("moreString")
 local dump = require("dump")
 
-local sendChannel = 43
-local ackChannel = 44
 
-local modem = pWrapper.find("modem", function(_, modem)
-  return modem.isWireless()
-end)
 local monitor = pWrapper.find("monitor")
 
 local bridge = pWrapper.find("meBridge")
 local playerInventory = pWrapper.find("inventoryManager")
 
+monitor.setTextScale(0.5)
+
 local root = {}
 
-local displayColors = {
-  ["IDLE"] = colors.green,
-  ["WAITING"] = colors.orange,
-  ["WORKING"] = colors.orange,
-  ["ERROR"] = colors.red,
-}
-
-monitor.setTextScale(0.5)
 local main = basalt.addMonitor()
     :setForeground(colors.white)
     :setBackground(colors.black)
@@ -183,72 +172,6 @@ local function updateMachine(machineData)
       :setText(errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
 
-local function handleMessages()
-  local event, side, channel, replyChannel, message, distance
-  print("Started listening on " .. sendChannel)
-  modem.open(sendChannel)
-
-  local i = 1
-
-  while (true) do
-    event, side, channel, replyChannel, message, distance = os.pullEvent("modem_message")
-
-    if (channel == sendChannel and message.machineCategory) then
-      updateMachine(message)
-    else
-      print(message.machineId)
-    end
-  end
-end
-
-main:addThread():start(handleMessages)
+print("test")
 
 basalt.autoUpdate();
-
--- local flex = main
---     :addFlexbox()
---     :setForeground(colors.white)
---     :setBackground(colors.black)
---     :setWrap("wrap")
---     :setPosition(1, 2)
---     :setSize("parent.w", "parent.h - 1")
---     :hide()
-
--- {
---   recipeLogic = {
---     fuelMaxTime = 0,
---     status = "IDLE",
---     duration = 0,
---     progress = 0,
---     fuelTime = 0,
---     isActive = 0,
---     totalContinuousRunningTime = 0,
---   },
---   isFormed = 1,
---   ForgeCaps = {},
---   cover = {},
---   activeRecipeType = 0,
---   isFlipped = 0,
---   paintingColor = -1,
---   isMuffled = 0,
--- }
-
-
--- {
---   recipeLogic = {
---     duration = 750,
---     status = "WORKING",
---     fuelMaxTime = 0,
---     progress = 128,
---     fuelTime = 0,
---     isActive = 1,
---     totalContinuousRunningTime = 128,
---   },
---   isFormed = 1,
---   ForgeCaps = {},
---   cover = {},
---   activeRecipeType = 0,
---   isFlipped = 0,
---   paintingColor = -1,
---   isMuffled = 0,
--- }
