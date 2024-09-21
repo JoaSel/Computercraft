@@ -153,7 +153,7 @@ local function createDestinationFrames(dislocators)
     dump.toTerm(dislocator)
 
     local desc = string.format("%d, %d, %d at %s", dislocator.nbt.tag.target.x, dislocator.nbt.tag.target.y,
-      dislocator.nbt.tag.target.z, dislocator.nbt.tag.target.dimension)
+      dislocator.nbt.tag.target.z, dislocator.nbt.tag.target.dim)
 
     currChild.statusLabel = currChild.miniFrame
         :addLabel()
