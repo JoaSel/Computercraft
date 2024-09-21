@@ -151,7 +151,7 @@ local function createDestinationFrames(dislocators)
         :setText(name)
 
         dump.toTerm(dislocator)
-    local desc = string.format("%s", dislocator.nbt.tag.target.x)
+    local desc = string.format("X: %d, Z: %d, Y: %d at %s", dislocator.nbt.tag.target.x, dislocator.nbt.tag.target.y, dislocator.nbt.tag.target.z)
 
     
 
