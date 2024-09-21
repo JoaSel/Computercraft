@@ -142,8 +142,8 @@ local function createDestinationFrames(dislocators)
     local currChild = category.children[name]
 
     local itemToExtract = {
-      name = "minecraft:enchanted_book",
-      nbt= "{StoredEnchantments: [{lvl: 2s, id: \"minecraft:blast_protection\"}]}"
+      name = "minecraft:enchanted_book"
+      --nbt= "{StoredEnchantments: [{lvl: 2s, id: \"minecraft:blast_protection\"}]}"
     }
     
 
