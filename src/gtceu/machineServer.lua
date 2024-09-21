@@ -67,11 +67,10 @@ local function getOrAddCategory(category)
         categoryFrame:show()
       end)
 
-    currCategory.buttonFrame = categoryFrame
-        :addFrame()
+    currCategory.miniFrame = categoryFrame
+        :addList()
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
-        :setTextAlign("center")
         :onClick(function ()
           if(not currCategory.sorted) then
             table.sort(currCategory.machines, function (a, b)
@@ -84,9 +83,7 @@ local function getOrAddCategory(category)
         end)
 
       currCategory.buttonFrame
-        :addLabel()
-        :setText(category)
-        :setTextAlign("center")
+        :editItem(1, category)
 
     currCategory.machines = {}
   end
