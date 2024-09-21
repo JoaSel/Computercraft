@@ -76,15 +76,15 @@ local function createCategoryFrames(dislocators)
           :setText(categoryId)
           :onClick(function()
             currCategory.frame:hide()
-            categoryFrame:show()
+            root.frame:show()
           end)
 
-      currCategory.miniFrame = categoryFrame
+      currCategory.miniFrame = root.frame
           :addFrame()
           :setBackground(colors.blue)
           :setSize("parent.w/2 - 1", 2)
           :onClick(function()
-            categoryFrame:hide()
+            root.frame:hide()
             currCategory.frame:show()
           end)
 
@@ -104,7 +104,7 @@ local function fixPositions()
   print("Sorting")
 
   local keyset = {}
-  for k, _ in pairs(category.machines) do
+  for k, _ in pairs(root.frame.machines) do
     table.insert(keyset, k)
   end
 
@@ -113,7 +113,7 @@ local function fixPositions()
   end)
 
   for i, key in pairs(keyset) do
-    local machine = category.machines[key]
+    local machine = root.frame.machines[key]
 
     local xPos = i % 2 == 0 and "parent.w/2 + 1" or 0
     local yPos = math.floor((i - 1) / 2) * 3 + 4
@@ -168,7 +168,7 @@ local function initialize()
   createCategoryFrames(dislocators)
   createDestinationFrames(dislocators)
 
-  fixPositions()
+  --fixPositions()
 end
 
 initialize()
