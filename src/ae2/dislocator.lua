@@ -13,7 +13,7 @@ local dump = require("dump")
 
 local monitor = pWrapper.find("monitor")
 
-local bridge = pWrapper.find("meBridge")
+local inventory = pWrapper.find("sophisticatedstorage:shulker_box")
 local playerInventory = pWrapper.find("inventoryManager")
 
 monitor.setTextScale(0.5)
@@ -144,7 +144,7 @@ local function createDestinationFrames(dislocators)
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
-          print(bridge.exportItem({ name = "draconicevolution:dislocator"}, "up"))
+          --print(bridge.exportItem({ name = "draconicevolution:dislocator"}, "up"))
         end)
 
     currChild.miniFrame
@@ -166,19 +166,21 @@ local function createDestinationFrames(dislocators)
   end
 end
 local function initialize()
-  local allItems = bridge.listItems({ name = "draconicevolution:dislocator" })
+  local allItems = inventory.list()
 
-  local dislocators = mTable.where(allItems, function(d)
-    return d.name == "draconicevolution:dislocator" and d.displayName ~= "Dislocator"
-  end)
+  term.dump(allItems)
 
-  createCategoryFrames(dislocators)
-  createDestinationFrames(dislocators)
+  -- local dislocators = mTable.where(allItems, function(d)
+  --   return d.name == "draconicevolution:dislocator" and d.displayName ~= "Dislocator"
+  -- end)
 
-  fixPositions(root)
-  for _, category in pairs(root.children) do
-    fixPositions(category)
-  end
+  -- createCategoryFrames(dislocators)
+  -- createDestinationFrames(dislocators)
+
+  -- fixPositions(root)
+  -- for _, category in pairs(root.children) do
+  --   fixPositions(category)
+  -- end
 end
 
 initialize()
