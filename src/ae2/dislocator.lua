@@ -6,6 +6,7 @@ package.path = package.path .. ";../core/?.lua"
 local pWrapper = require("peripheralWrapper")
 
 local basalt = require("basalt")
+local mTable = require("moreTable")
 local mString = require("moreString")
 local dump = require("dump")
 
@@ -173,7 +174,11 @@ local function updateMachine(machineData)
 end
 
 local function initialize()
-  local dislocators = bridge.listItems({ name = "draconicevolution:dislocator"})
+  local allItems = bridge.listItems({ name = "draconicevolution:dislocator"})
+
+  local dislocators = mTable.where(allItems, function (d)
+    return d.name == "draconicevolution:dislocator"
+  end)
 
   local t1, t2 = next(dislocators)
 
