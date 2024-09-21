@@ -144,7 +144,7 @@ local function createDestinationFrames(dislocators)
 
     local itemToExtract = {
       name = "minecraft:enchanted_book",
-      nbt= "{StoredEnchantments: [{id = \"minecraft:blast_protection\", lvl = 2}]}"
+      nbt= "{StoredEnchantments: {id = \"minecraft:blast_protection\", lvl = 2}}"
     }
     
 
