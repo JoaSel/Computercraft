@@ -46,15 +46,15 @@ local categoryFrame = main
 local function sortFrames(category)
   print("Sorting")
 
-  for _, machine in pairs(category.machines) do
-    machine.miniFrame:remove()
-  end
+  -- for _, machine in pairs(category.machines) do
+  --   machine.miniFrame:remove()
+  -- end
 
-  for _, machine in pairs(category.machines) do
-    category.frame:addChild(machine.miniFrame)
-  end
+  -- for _, machine in pairs(category.machines) do
+  --   category.frame:addChild(machine.miniFrame)
+  -- end
 
-  dump.shallow(category)
+  -- dump.shallow(category)
 end
 
 local function getOrAddCategory(category)
@@ -66,10 +66,11 @@ local function getOrAddCategory(category)
     currCategory.machineCount = 0
 
     currCategory.frame = main
-        :addFlexbox()
+        --:addFlexbox()
+        :addFrame()
         :setForeground(colors.white)
         :setBackground(colors.black)
-        :setWrap("wrap")
+        --:setWrap("wrap")
         :setPosition(1, 1)
         :setSize("parent.w", "parent.h")
         :hide()
@@ -125,6 +126,7 @@ local function getOrAddMachine(machineData)
     currMachine.miniFrame = category.frame
         :addFrame()
         :setSize("parent.w/2 - 1", 2)
+        :setPosition(category.machineCount, category.machineCount)
         :onClick(function ()
           print("clicked machine")
         end)
