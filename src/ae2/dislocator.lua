@@ -174,6 +174,8 @@ local function initialize()
     return d.name == "draconicevolution:dislocator"
   end)
 
+  dump.toTerm(dislocators)
+
   createCategoryFrames(dislocators)
   createDestinationFrames(dislocators)
 
