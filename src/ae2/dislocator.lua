@@ -156,7 +156,7 @@ local function createDestinationFrames(dislocators)
 
     category.childCount   = category.childCount + 1
     category.childCountLabel
-        :setText(category.childCount)
+        :setText(category.childCount .. " Destinations")
   end
 end
 local function initialize()
