@@ -120,7 +120,7 @@ local function getOrAddMachine(machineData)
         :setPosition(1, 2)
         :setText("Initialized")
 
-    category.machineCountLabel:setText(#category.machines)
+    category.machineCountLabel:setText(machineData.machineName)
   end
 
   return category.machines[machineData.machineName]
