@@ -96,6 +96,7 @@ local function getOrAddMachine(machineData)
     category.machines[machineData.machineName].displayFrame = category.frame
         :addFrame()
         :setSize("parent.w/2 - 1", 2)
+        :setPosition(1, yTest)
 
     category.machines[machineData.machineName].displayFrame
         :addLabel()
@@ -103,7 +104,7 @@ local function getOrAddMachine(machineData)
 
     category.machines[machineData.machineName].statusLabel = category.machines[machineData.machineName].displayFrame
         :addLabel()
-        :setPosition(1, yTest)
+        :setPosition(1, 2)
         :setText("TEST")
 
         yTest = yTest + 2
