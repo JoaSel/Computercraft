@@ -17,6 +17,9 @@ local modem = pWrapper.find("modem", function(_, modem)
 end)
 local monitor = pWrapper.find("monitor")
 
+local bridge = pWrapper.find("meBridge")
+local playerInventory = pWrapper.find("inventoryManager")
+
 local root = {}
 
 local displayColors = {
@@ -73,6 +76,7 @@ local function getOrAddCategory(category)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function ()
           if(not currCategory.sorted) then
+            print("sorting")
             table.sort(currCategory.machines, function (a, b)
               return a.machineName > b.machineName
             end)
