@@ -46,8 +46,8 @@ local categoryFrame = main
 local function sortFrames(category)
   print("Sorting")
 
-  for _, machine in pairs(category.machines) do
-    print(machine.machineName)
+  for i, machine in pairs(category.machines) do
+    print(i)
   end
 
   -- for _, machine in pairs(category.machines) do
