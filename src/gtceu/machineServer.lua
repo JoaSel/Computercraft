@@ -86,7 +86,7 @@ local function getOrAddCategory(category)
         :addLabel()
         :setText(category)
 
-      currCategory.miniFrame
+      currCategory.machineCountLabel = currCategory.miniFrame
         :addLabel()
         :setText(currCategory.machineCount)
         :setPosition(1, 2)
@@ -105,7 +105,6 @@ local function getOrAddMachine(machineData)
     exists.machineData = machineData
   else
     print("New machine")
-    category.machineCount = category.machineCount + 1
 
     category.machines[machineData.machineName] = { machineData = machineData }
     category.machines[machineData.machineName].displayFrame = category.frame
@@ -120,6 +119,8 @@ local function getOrAddMachine(machineData)
         :addLabel()
         :setPosition(1, 2)
         :setText("Initialized")
+
+    category.machineCountLabel:setText(#category.machines)
   end
 
   return category.machines[machineData.machineName]
