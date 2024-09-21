@@ -17,12 +17,6 @@ local playerInventory = pWrapper.find("inventoryManager")
 
 monitor.setTextScale(0.5)
 
-
-
-local translate = {
-  ["minecraft:overworld"] = "Overworld"
-}
-
 local root = {}
 root.children = {}
 
@@ -145,9 +139,9 @@ local function createDestinationFrames(dislocators)
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
-          --nbt="{tag.modifier: \"forbidden_arcanus:eternal\"}"
-          print(slot)
-          print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, fromSlot = slot - 1 }))
+          playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, fromSlot = slot - 1 })
+          os.sleep(3)
+          playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1 })
         end)
 
     currChild.miniFrame
@@ -169,7 +163,7 @@ local function createDestinationFrames(dislocators)
   end
 end
 local function initialize()
-  local allItems = mTable.select(inventory.list(), function (slot, _)
+  local allItems = mTable.select(inventory.list(), function(slot, _)
     return inventory.getItemDetail(slot)
   end)
 
