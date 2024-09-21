@@ -68,7 +68,7 @@ local function getOrAddCategory(category)
       end)
 
     currCategory.buttonFrame = categoryFrame
-        :addLabel()
+        :addFrame()
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function ()
