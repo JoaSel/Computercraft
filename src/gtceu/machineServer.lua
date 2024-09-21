@@ -46,6 +46,10 @@ local categoryFrame = main
 local function sortFrames(category)
   print("Sorting")
 
+  for _, machine in pairs(category.machines) do
+    machine.miniFrame:remove()
+  end
+
   dump.shallow(category)
 end
 
