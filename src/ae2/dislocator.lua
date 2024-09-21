@@ -113,8 +113,6 @@ local function fixPositions(t)
     return a < b
   end)
 
-  dump.toTerm(keys)
-
   for i, key in pairs(keys) do
     local child = t.children[key]
 
@@ -131,7 +129,7 @@ local function createDestinationFrames(dislocators)
 
     local category = root.children[categoryId]
 
-    if(not category.children) then
+    if (not category.children) then
       category.children = {}
     end
 
@@ -140,27 +138,27 @@ local function createDestinationFrames(dislocators)
     local currChild = category.children[name]
 
     currChild.miniFrame = category.frame
-      :addFrame()
-      :setSize("parent.w/2 - 1", 2)
-      :onClick(function()
-        print("clicked machine")
-      end)
+        :addFrame()
+        :setSize("parent.w/2 - 1", 2)
+        :onClick(function()
+          print("clicked machine")
+        end)
 
     currChild.miniFrame
-      :addLabel()
-      :setPosition(2, 1)
-      :setText(name)
+        :addLabel()
+        :setPosition(2, 1)
+        :setText(name)
 
     currChild.statusLabel = currChild.miniFrame
-      :addLabel()
-      :setPosition(1, 2)
-      :setText("Initialized")
+        :addLabel()
+        :setPosition(1, 2)
+        :setText("Initialized")
 
+    category.childCount   = category.childCount + 1
     category.childCountLabel
-      :setText(category.childCount)
+        :setText(category.childCount)
   end
 end
-
 local function initialize()
   local allItems = bridge.listItems({ name = "draconicevolution:dislocator" })
 
@@ -172,7 +170,6 @@ local function initialize()
   createDestinationFrames(dislocators)
 
   fixPositions(root)
-
   for _, category in pairs(root.children) do
     fixPositions(category)
   end
