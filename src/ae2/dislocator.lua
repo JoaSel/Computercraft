@@ -147,7 +147,7 @@ local function createDestinationFrames(dislocators)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
           --nbt="{tag.modifier: \"forbidden_arcanus:eternal\"}"
-          print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", nbt = "{tag.modifier: \"forbidden_arcanus:eternal\"}"}))
+          print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", nbt = "{[\"forbidden_arcanus:eternal\"}]"}))
         end)
 
     currChild.miniFrame
