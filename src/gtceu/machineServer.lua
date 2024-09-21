@@ -71,6 +71,7 @@ local function getOrAddCategory(category)
         :addFrame()
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
+        :setTextAlign("center")
         :onClick(function ()
           if(not currCategory.sorted) then
             table.sort(currCategory.machines, function (a, b)
