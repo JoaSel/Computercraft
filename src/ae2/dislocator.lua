@@ -12,7 +12,8 @@ local dump = require("dump")
 
 local monitor = pWrapper.find("monitor")
 
-local inventory = pWrapper.find("sophisticatedstorage:shulker_box")
+--local inventory = pWrapper.find("sophisticatedstorage:shulker_box")
+local inventory = pWrapper.find("minecraft:chest")
 local playerInventory = pWrapper.find("inventoryManager")
 
 monitor.setTextScale(0.5)
