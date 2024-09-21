@@ -154,10 +154,10 @@ local function createDestinationFrames(dislocators)
     -- local desc = string.format("%d, %d, %d at %s", dislocator.nbt.tag.target.x, dislocator.nbt.tag.target.y,
     --   dislocator.nbt.tag.target.z, translate[dislocator.nbt.tag.target.dim] or dislocator.nbt.tag.target.dim)
 
-    currChild.statusLabel = currChild.miniFrame
-        :addLabel()
-        :setPosition(1, 2)
-        :setText("")
+    -- currChild.statusLabel = currChild.miniFrame
+    --     :addLabel()
+    --     :setPosition(1, 2)
+    --     :setText("")
 
     category.childCount   = category.childCount + 1
     category.childCountLabel
