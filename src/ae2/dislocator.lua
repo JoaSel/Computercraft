@@ -18,6 +18,8 @@ local playerInventory = pWrapper.find("inventoryManager")
 
 monitor.setTextScale(0.5)
 
+--nbt="{tag.modifier: \"forbidden_arcanus:eternal\"}"
+
 local translate = {
   ["minecraft:overworld"] = "Overworld"
 }
@@ -144,7 +146,7 @@ local function createDestinationFrames(dislocators)
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
-          print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", fingerprint = "A36A6FC8A77C9085A92C7117A84C761A"}))
+          print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator"}))
         end)
 
     currChild.miniFrame
