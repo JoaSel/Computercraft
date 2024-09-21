@@ -144,7 +144,7 @@ local function createDestinationFrames(dislocators)
 
     local itemToExtract = {
       name = "minecraft:enchanted_book",
-      nbt= "{StoredEnchantments: [{lvl: 2s, id: \"minecraft:blast_protection\"}]}"
+      nbt= "{StoredEnchantments: [{id = \"minecraft:blast_protection\", lvl = 2}]}"
     }
     
 
@@ -155,8 +155,7 @@ local function createDestinationFrames(dislocators)
         :onClick(function()
           --nbt="{tag.modifier: \"forbidden_arcanus:eternal\"}"
           --print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", nbt = "{[\"forbidden_arcanus:eternal\"}]"}))
-          --print(playerInventory.addItemToPlayer("up", itemToExtract))
-          dump.toPastebin(bridge.getItem({fingerprint = "9B7E8E28E3433FD34BED17A25933759C"}))
+          print(playerInventory.addItemToPlayer("up", itemToExtract))
         end)
 
     currChild.miniFrame
