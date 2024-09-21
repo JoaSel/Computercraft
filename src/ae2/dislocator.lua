@@ -90,6 +90,7 @@ local function createCategoryFrames(dislocators)
 
       currCategory.miniFrame
           :addLabel()
+          :setTextAlign("center")
           :setText(categoryId)
 
       currCategory.childCountLabel = currCategory.miniFrame
