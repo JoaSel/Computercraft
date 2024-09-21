@@ -150,10 +150,10 @@ local function createDestinationFrames(dislocators)
         :setPosition(2, 1)
         :setText(name)
 
-        dump.toTerm(dislocator)
-    local desc = string.format("X: %d, Z: %d, Y: %d at %s", dislocator.nbt.tag.target.x, dislocator.nbt.tag.target.y, dislocator.nbt.tag.target.z)
+    dump.toTerm(dislocator)
 
-    
+    local desc = string.format("%d, %d, %d at %s", dislocator.nbt.tag.target.x, dislocator.nbt.tag.target.y,
+      dislocator.nbt.tag.target.z, dislocator.nbt.tag.target.dimension)
 
     currChild.statusLabel = currChild.miniFrame
         :addLabel()
@@ -172,7 +172,7 @@ local function initialize()
     return d.name == "draconicevolution:dislocator" and d.displayName ~= "Dislocator"
   end)
 
-  local t1,t2 = next(dislocators)
+  local t1, t2 = next(dislocators)
   dump.toFile(t2, "test")
 
   createCategoryFrames(dislocators)
