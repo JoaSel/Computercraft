@@ -52,16 +52,17 @@ local function sortFrames(category)
   end
 
   table.sort(keyset, function (a, b)
-    return a > b
+    return a < b
   end)
 
-  dump.toTerm(keyset)
+  for i, key in pairs(keyset) do
+    local machine = category.machines[key]
 
-  -- for _, machine in pairs(category.machines) do
-  --   category.frame:addChild(machine.miniFrame)
-  -- end
+    local xPos = i % 2 ~= 0 and "parent.w/2 + 1" or 0
+    local yPos = math.floor((i - 1) / 2) * 3 + 4
 
-  -- dump.shallow(category)
+    machine.miniFrame.setPosition(xPos, yPos)
+  end
 end
 
 local function getOrAddCategory(category)
