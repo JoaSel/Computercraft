@@ -172,6 +172,11 @@ local function updateMachine(machineData)
       :setText(errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
 
-print("test")
+local function initialize()
+  local dislocators = bridge.getItem({ name = "Dislocator"})
+  dump.toTerm(dislocators)
+end
+
+initialize()
 
 basalt.autoUpdate();
