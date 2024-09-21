@@ -61,29 +61,29 @@ local function getOrAddCategory(category)
         :hide()
 
     currCategory.frame
-      :addLabel()
-      :setSize("parent.w", "2")
-      :setTextAlign("center")
-      :setText(category)
-      :onClick(function ()
-        currCategory.frame:hide()
-        categoryFrame:show()
-      end)
+        :addLabel()
+        :setSize("parent.w", "2")
+        :setTextAlign("center")
+        :setText(category)
+        :onClick(function()
+          currCategory.frame:hide()
+          categoryFrame:show()
+        end)
 
     currCategory.miniFrame = categoryFrame
         :addFrame()
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
-        :onClick(function ()
+        :onClick(function()
           categoryFrame:hide()
           currCategory.frame:show()
         end)
 
-      currCategory.miniFrame
+    currCategory.miniFrame
         :addLabel()
         :setText(category)
 
-      currCategory.machineCountLabel = currCategory.miniFrame
+    currCategory.machineCountLabel = currCategory.miniFrame
         :addLabel()
         :setText(currCategory.machineCount)
         :setPosition(1, 2)
@@ -103,22 +103,28 @@ local function getOrAddMachine(machineData)
   else
     print("New machine")
     category.machineCount = category.machineCount + 1
-
     category.machines[machineData.machineName] = { machineData = machineData }
-    category.machines[machineData.machineName].miniFrame = category.frame
+
+    local currMachine = category.machines[machineData.machineName]
+
+    currMachine.miniFrame = category.frame
         :addFrame()
         :setSize("parent.w/2 - 1", 2)
+        :onClick(function ()
+          currMachine.miniFrame:hide()
+        end)
 
-    category.machines[machineData.machineName].miniFrame
+    currMachine.miniFrame
         :addLabel()
         :setText(machineData.machineName)
 
-    category.machines[machineData.machineName].statusLabel = category.machines[machineData.machineName].miniFrame
+    currMachine.statusLabel = currMachine.miniFrame
         :addLabel()
         :setPosition(1, 2)
         :setText("Initialized")
 
-    category.machineCountLabel:setText(category.machineCount)
+    category.machineCountLabel
+        :setText(category.machineCount)
   end
 
   return category.machines[machineData.machineName]
@@ -144,10 +150,10 @@ local function updateMachine(machineData)
   end
 
   machine.miniFrame
-    :setBackground(displayColor)
+      :setBackground(displayColor)
 
   machine.statusLabel
-    :setText(errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
+      :setText(errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
 
 local function handleMessages()
