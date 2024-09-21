@@ -54,7 +54,7 @@ local function getOrAddCategory(category)
         :setBackground(colors.black)
         :setWrap("wrap")
         :setPosition(1, 1)
-        :setSize("parent.w", "parent.h - 1")
+        :setSize("parent.w", "parent.h")
         :hide()
 
     currCategory.frame
