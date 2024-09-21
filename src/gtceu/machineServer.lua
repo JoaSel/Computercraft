@@ -46,6 +46,17 @@ local categoryFrame = main
 local function sortFrames(category)
   print("Sorting")
 
+  local keyset = {}
+  for k, _ in pairs(category.machines) do
+    table.insert(keyset, k)
+  end
+
+  table.sort(keyset, function (a, b)
+    return a > b
+  end)
+
+  dump.toTerm(keyset)
+
   for i, machine in pairs(category.machines) do
     print(i)
   end
