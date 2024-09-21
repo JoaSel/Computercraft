@@ -180,13 +180,9 @@ local function initialize()
     return d.name == "draconicevolution:dislocator"
   end)
 
-  local t1, t2 = next(dislocators)
-
-  dump.toTerm(t2)
   
   for _, dislocator in pairs(dislocators) do
-    
-    --dump.shallow(dislocator)
+    print(dislocator.displayName)
   end
 end
 
