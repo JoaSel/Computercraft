@@ -141,7 +141,7 @@ local function createDestinationFrames(dislocators)
         :onClick(function()
           dump.toTerm(playerInventory.getItemInOffHand())
           playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = 36, fromSlot = slot - 1 })
-          -- os.sleep(0.5)
+          os.sleep(0.5)
           playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1 })
         end)
 
