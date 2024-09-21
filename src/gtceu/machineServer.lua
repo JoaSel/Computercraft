@@ -51,7 +51,7 @@ local function sortFrames(category)
   end
 
   local t1, t2 = next(category.machines)
-  category.frame:addChild(t2)
+  category.frame:addChild(t2.miniFrame)
 
   dump.shallow(category)
 end
