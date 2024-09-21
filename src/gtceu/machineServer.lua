@@ -105,15 +105,15 @@ local function getOrAddMachine(machineData)
     category.machineCount = category.machineCount + 1
 
     category.machines[machineData.machineName] = { machineData = machineData }
-    category.machines[machineData.machineName].displayFrame = category.frame
+    category.machines[machineData.machineName].miniFrame = category.frame
         :addFrame()
         :setSize("parent.w/2 - 1", 2)
 
-    category.machines[machineData.machineName].displayFrame
+    category.machines[machineData.machineName].miniFrame
         :addLabel()
         :setText(machineData.machineName)
 
-    category.machines[machineData.machineName].statusLabel = category.machines[machineData.machineName].displayFrame
+    category.machines[machineData.machineName].statusLabel = category.machines[machineData.machineName].miniFrame
         :addLabel()
         :setPosition(1, 2)
         :setText("Initialized")
@@ -143,7 +143,7 @@ local function updateMachine(machineData)
     machine.error = false
   end
 
-  machine.displayFrame
+  machine.miniFrame
     :setBackground(displayColor)
 
   machine.statusLabel
