@@ -100,26 +100,28 @@ local function createCategoryFrames(dislocators)
   end
 end
 
-local function fixPositions()
+local function fixPositions(t)
   print("Sorting")
 
   local keyset = {}
-  for k, _ in pairs(root.frame.machines) do
+  for k, _ in pairs(root.children) do
     table.insert(keyset, k)
   end
 
-  table.sort(keyset, function(a, b)
-    return a < b
-  end)
+  dump.toTerm(keyset)
 
-  for i, key in pairs(keyset) do
-    local machine = root.frame.machines[key]
+  -- table.sort(keyset, function(a, b)
+  --   return a < b
+  -- end)
 
-    local xPos = i % 2 == 0 and "parent.w/2 + 1" or 0
-    local yPos = math.floor((i - 1) / 2) * 3 + 4
+  -- for i, key in pairs(keyset) do
+  --   local machine = root.frame.machines[key]
 
-    machine.miniFrame:setPosition(xPos, yPos)
-  end
+  --   local xPos = i % 2 == 0 and "parent.w/2 + 1" or 0
+  --   local yPos = math.floor((i - 1) / 2) * 3 + 4
+
+  --   machine.miniFrame:setPosition(xPos, yPos)
+  -- end
 end
 
 local function createDestinationFrames(dislocators)
@@ -168,7 +170,7 @@ local function initialize()
   createCategoryFrames(dislocators)
   createDestinationFrames(dislocators)
 
-  --fixPositions()
+  fixPositions(root)
 end
 
 initialize()
