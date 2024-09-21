@@ -135,19 +135,21 @@ local function createDestinationFrames(dislocators)
     local currChild = category.children[name]
 
     currChild.miniFrame = category.frame
-        :addFrame()
+        :addLabel()
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
+        :setText(name)
+        :setTextAlign("center")
         :onClick(function()
           playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = 36, fromSlot = slot - 1 })
           os.sleep(0.5)
           playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1 })
         end)
 
-    currChild.miniFrame
-        :addLabel()
-        :setPosition(2, 1)
-        :setText(name)
+    -- currChild.miniFrame
+    --     :addLabel()
+    --     :setPosition(2, 1)
+    --     
 
     -- local desc = string.format("%d, %d, %d at %s", dislocator.nbt.tag.target.x, dislocator.nbt.tag.target.y,
     --   dislocator.nbt.tag.target.z, translate[dislocator.nbt.tag.target.dim] or dislocator.nbt.tag.target.dim)
