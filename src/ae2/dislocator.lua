@@ -113,6 +113,8 @@ local function fixPositions(t)
     return a < b
   end)
 
+  dump.toTerm(keys)
+
   for i, key in pairs(keys) do
     local child = root.children[key]
 
