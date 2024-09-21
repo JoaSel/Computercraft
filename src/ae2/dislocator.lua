@@ -12,7 +12,6 @@ local dump = require("dump")
 
 local monitor = pWrapper.find("monitor")
 
---local inventory = pWrapper.find("sophisticatedstorage:shulker_box")
 local inventory = pWrapper.find("dankstorage:dank_tile")
 local playerInventory = pWrapper.find("inventoryManager")
 
@@ -143,7 +142,7 @@ local function createDestinationFrames(dislocators)
           print(slot)
           print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, fromSlot = slot - 1 }))
           os.sleep(3)
-          playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = 4 })
+          playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1 })
         end)
 
     currChild.miniFrame
