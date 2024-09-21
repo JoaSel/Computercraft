@@ -58,7 +58,7 @@ local function sortFrames(category)
   for i, key in pairs(keyset) do
     local machine = category.machines[key]
 
-    local xPos = i % 2 ~= 0 and "parent.w/2 + 1" or 0
+    local xPos = i % 2 == 0 and "parent.w/2 + 1" or 0
     local yPos = math.floor((i - 1) / 2) * 3 + 4
 
     machine.miniFrame:setPosition(xPos, yPos)
