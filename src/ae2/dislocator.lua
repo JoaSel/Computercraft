@@ -147,7 +147,7 @@ local function createDestinationFrames(dislocators)
     currChild.miniFrame
       :addLabel()
       :setPosition(2, 1)
-      :setText("testing")
+      :setText(name)
 
     currChild.statusLabel = currChild.miniFrame
       :addLabel()
