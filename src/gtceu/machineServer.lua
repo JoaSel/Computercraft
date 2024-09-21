@@ -40,7 +40,7 @@ local categoryFrame = main
     :setPosition(1, 2)
     :setSize("parent.w", "parent.h - 1")
 
-local yTest = 1
+local yTest = 2
 
 local function getOrAddCategory(category)
   if (not root[category]) then
@@ -53,11 +53,9 @@ local function getOrAddCategory(category)
         :setForeground(colors.white)
         :setBackground(colors.black)
         --:setWrap("wrap")
-        :setPosition(1, yTest)
+        :setPosition(1, 2)
         :setSize("parent.w", "parent.h - 1")
         :hide()
-
-      yTest = yTest + 2
 
     root[category].frame
       :addLabel()
@@ -105,8 +103,10 @@ local function getOrAddMachine(machineData)
 
     category.machines[machineData.machineName].statusLabel = category.machines[machineData.machineName].displayFrame
         :addLabel()
-        :setPosition(1, 2)
+        :setPosition(1, yTest)
         :setText("TEST")
+
+        yTest = yTest + 2
   end
 
   return category.machines[machineData.machineName]
