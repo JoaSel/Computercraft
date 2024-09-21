@@ -150,7 +150,7 @@ local function createDestinationFrames(dislocators)
         :setPosition(2, 1)
         :setText(name)
 
-        dump.toTerm(dislocator.tag)
+        dump.toTerm(dislocator)
     local desc = string.format("%s", dislocator.tag.target.x)
 
     
