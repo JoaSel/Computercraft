@@ -41,7 +41,7 @@ local function sortFrames(category)
     table.insert(keyset, k)
   end
 
-  table.sort(keyset, function (a, b)
+  table.sort(keyset, function(a, b)
     return a < b
   end)
 
@@ -126,7 +126,7 @@ local function getOrAddMachine(machineData)
         :addFrame()
         :setSize("parent.w/2 - 1", 2)
         :setPosition(xPos, yPos)
-        :onClick(function ()
+        :onClick(function()
           print("clicked machine")
         end)
 
@@ -173,16 +173,33 @@ local function updateMachine(machineData)
       :setText(errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
 end
 
-local function initialize()
-  local allItems = bridge.listItems({ name = "draconicevolution:dislocator"})
+local function addDislocator(dislocator)
+  local category
+  local name
 
-  local dislocators = mTable.where(allItems, function (d)
+  local split = mString.split(dislocator.displayName, "-")
+  if (#split == 1) then
+    category = "Unkown"
+    name = split[1]
+  else
+    category = split[1]
+    name = split[2]
+  end
+
+  print(category)
+  print(name)
+end
+
+local function initialize()
+  local allItems = bridge.listItems({ name = "draconicevolution:dislocator" })
+
+  local dislocators = mTable.where(allItems, function(d)
     return d.name == "draconicevolution:dislocator" and d.displayName ~= "Dislocator"
   end)
 
-  
+
   for _, dislocator in pairs(dislocators) do
-    print(dislocator.displayName)
+    addDislocator(dislocator)
   end
 end
 
