@@ -61,7 +61,7 @@ local function sortFrames(category)
     local xPos = i % 2 ~= 0 and "parent.w/2 + 1" or 0
     local yPos = math.floor((i - 1) / 2) * 3 + 4
 
-    machine.miniFrame.setPosition(xPos, yPos)
+    machine.miniFrame:setPosition(xPos, yPos)
   end
 end
 
