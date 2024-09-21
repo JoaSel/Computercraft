@@ -139,9 +139,10 @@ local function createDestinationFrames(dislocators)
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
-          playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, fromSlot = slot - 1 })
-          os.sleep(0.5)
-          playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1 })
+          dump.toTerm(playerInventory.getItemInOffHand())
+          -- playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, fromSlot = slot - 1 })
+          -- os.sleep(0.5)
+          -- playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1 })
         end)
 
     currChild.miniFrame
