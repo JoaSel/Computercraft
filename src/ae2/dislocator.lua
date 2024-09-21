@@ -129,7 +129,7 @@ local function fixPositions(t)
 end
 
 local function createDestinationFrames(dislocators)
-  for _, dislocator in pairs(dislocators) do
+  for slot, dislocator in pairs(dislocators) do
     local categoryId, name = splitDisplayName(dislocator.displayName)
 
     local category = root.children[categoryId]
@@ -142,19 +142,13 @@ local function createDestinationFrames(dislocators)
 
     local currChild = category.children[name]
 
-    local itemToExtract = {
-      name = "minecraft:enchanted_book",
-      nbt= "{StoredEnchantments: {id = \"minecraft:blast_protection\", lvl = 2}}"
-    }
-    
-
     currChild.miniFrame = category.frame
         :addFrame()
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
           --nbt="{tag.modifier: \"forbidden_arcanus:eternal\"}"
-          print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1 }))
+          print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, fromSlot = slot }))
         end)
 
     currChild.miniFrame
