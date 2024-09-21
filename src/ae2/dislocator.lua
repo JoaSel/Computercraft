@@ -144,7 +144,7 @@ local function createDestinationFrames(dislocators)
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
-          print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", displayName = dislocator.displayName}))
+          print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", fingerprint = dislocator.nbt}))
         end)
 
     currChild.miniFrame
