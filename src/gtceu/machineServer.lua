@@ -124,7 +124,9 @@ local function getOrAddMachine(machineData)
     local currMachine = category.machines[machineData.machineName]
 
     local xPos = category.machineCount % 2 and "parent.w/2" or 0
-    local yPos = math.floor(category.machineCount / 2)
+    local yPos = math.floor(category.machineCount / 2) * 2
+
+    print(xPos)
 
     currMachine.miniFrame = category.frame
         :addFrame()
