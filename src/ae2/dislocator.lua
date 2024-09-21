@@ -168,7 +168,7 @@ end
 local function initialize()
   local allItems = inventory.list()
 
-  term.dump(allItems)
+  dump.toTerm(allItems)
 
   -- local dislocators = mTable.where(allItems, function(d)
   --   return d.name == "draconicevolution:dislocator" and d.displayName ~= "Dislocator"
