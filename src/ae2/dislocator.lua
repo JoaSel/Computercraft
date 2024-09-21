@@ -61,7 +61,7 @@ local function getOrAddCategory(category)
 
     local currCategory = root[category]
 
-    currCategory.machineCount = 0
+    currCategory.childCount = 0
 
     currCategory.frame = main
         :addFrame()
@@ -97,7 +97,7 @@ local function getOrAddCategory(category)
 
     currCategory.machineCountLabel = currCategory.miniFrame
         :addLabel()
-        :setText(currCategory.machineCount)
+        :setText(currCategory.childCount)
         :setPosition(1, 2)
 
     currCategory.machines = {}
@@ -114,13 +114,13 @@ local function getOrAddMachine(machineData)
     exists.machineData = machineData
   else
     print("New machine")
-    category.machineCount = category.machineCount + 1
+    category.childCount = category.childCount + 1
     category.machines[machineData.machineName] = { machineData = machineData }
 
     local currMachine = category.machines[machineData.machineName]
 
-    local xPos = category.machineCount % 2 == 0 and "parent.w/2 + 1" or 0
-    local yPos = math.floor((category.machineCount - 1) / 2) * 3 + 4
+    local xPos = category.childCount % 2 == 0 and "parent.w/2 + 1" or 0
+    local yPos = math.floor((category.childCount - 1) / 2) * 3 + 4
 
     currMachine.miniFrame = category.frame
         :addFrame()
@@ -141,7 +141,7 @@ local function getOrAddMachine(machineData)
         :setText("Initialized")
 
     category.machineCountLabel
-        :setText(category.machineCount)
+        :setText(category.childCount)
   end
 
   return category.machines[machineData.machineName]
@@ -186,7 +186,7 @@ local function addDislocator(dislocator)
     name = split[2]
   end
 
-  print(category)
+  local x = getOrAddCategory(category)
   print(name)
 end
 
