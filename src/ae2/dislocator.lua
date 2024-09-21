@@ -170,6 +170,10 @@ local function initialize()
   createDestinationFrames(dislocators)
 
   fixPositions(root)
+
+  for _, category in pairs(root.children) do
+    fixPositions(category)
+  end
 end
 
 initialize()
