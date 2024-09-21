@@ -89,6 +89,7 @@ local function getOrAddCategory(category)
       currCategory.miniFrame
         :addLabel()
         :setText("13")
+        :setPosition(1, 2)
 
     currCategory.machines = {}
   end
