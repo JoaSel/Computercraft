@@ -141,13 +141,20 @@ local function createDestinationFrames(dislocators)
 
     local currChild = category.children[name]
 
+    local itemToExtract = {
+      name = "minecraft:enchanted_book",
+      nbt= "{StoredEnchantments: [{lvl: 2s, id: \"minecraft:blast_protection\"}]}"
+    }
+    
+
     currChild.miniFrame = category.frame
         :addFrame()
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
           --nbt="{tag.modifier: \"forbidden_arcanus:eternal\"}"
-          print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", nbt = "{[\"forbidden_arcanus:eternal\"}]"}))
+          --print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", nbt = "{[\"forbidden_arcanus:eternal\"}]"}))
+          print(playerInventory.addItemToPlayer("up", itemToExtract))
         end)
 
     currChild.miniFrame
