@@ -103,25 +103,24 @@ end
 local function fixPositions(t)
   print("Sorting")
 
-  local keyset = {}
+  local keys = {}
   for k, _ in pairs(root.children) do
-    table.insert(keyset, k)
+    table.insert(keys, k)
   end
 
-  dump.toTerm(keyset)
 
-  -- table.sort(keyset, function(a, b)
-  --   return a < b
-  -- end)
+  table.sort(keys, function(a, b)
+    return a < b
+  end)
 
-  -- for i, key in pairs(keyset) do
-  --   local machine = root.frame.machines[key]
+  for i, key in pairs(keys) do
+    local child = root.children[key]
 
-  --   local xPos = i % 2 == 0 and "parent.w/2 + 1" or 0
-  --   local yPos = math.floor((i - 1) / 2) * 3 + 4
+    local xPos = i % 2 == 0 and "parent.w/2 + 1" or 0
+    local yPos = math.floor((i - 1) / 2) * 3 + 4
 
-  --   machine.miniFrame:setPosition(xPos, yPos)
-  -- end
+    child.miniFrame:setPosition(xPos, yPos)
+  end
 end
 
 local function createDestinationFrames(dislocators)
