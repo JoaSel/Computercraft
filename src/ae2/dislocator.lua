@@ -142,7 +142,7 @@ local function createDestinationFrames(dislocators)
           print(slot)
           print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, fromSlot = slot - 1 }))
           os.sleep(3)
-          playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1 })
+          playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, fromSlot = slot - 1 })
         end)
 
     currChild.miniFrame
@@ -172,7 +172,7 @@ local function initialize()
       dislocators[slot] = inventory.getItemDetail(slot)
     end
   end
-  
+
   createCategoryFrames(dislocators)
   createDestinationFrames(dislocators)
 
