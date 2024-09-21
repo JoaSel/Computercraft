@@ -57,10 +57,6 @@ local function sortFrames(category)
 
   dump.toTerm(keyset)
 
-  for i, machine in pairs(category.machines) do
-    print(i)
-  end
-
   -- for _, machine in pairs(category.machines) do
   --   category.frame:addChild(machine.miniFrame)
   -- end
