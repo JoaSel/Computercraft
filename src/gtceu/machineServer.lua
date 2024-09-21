@@ -55,6 +55,7 @@ local function getOrAddCategory(category)
         --:setWrap("wrap")
         :setPosition(1, 2)
         :setSize("parent.w", "parent.h - 1")
+        :setScrollable(true)
         :hide()
 
     root[category].frame
