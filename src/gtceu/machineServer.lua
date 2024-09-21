@@ -46,6 +46,8 @@ local function getOrAddCategory(category)
 
     local currCategory = root[category]
 
+    currCategory.machineCount = 0
+
     currCategory.frame = main
         :addFlexbox()
         :setForeground(colors.white)
@@ -82,6 +84,12 @@ local function getOrAddCategory(category)
           currCategory.frame:show()
         end)
 
+      currCategory.buttonFrame
+        :addLabel()
+        :setText("Test")
+        :setTextAlign("center")
+        :setPosition(1, 2)
+
     currCategory.machines = {}
   end
 
@@ -96,6 +104,8 @@ local function getOrAddMachine(machineData)
     exists.machineData = machineData
   else
     print("New machine")
+    category.machineCount = category.machineCount + 1
+
     category.machines[machineData.machineName] = { machineData = machineData }
     category.machines[machineData.machineName].displayFrame = category.frame
         :addFrame()
