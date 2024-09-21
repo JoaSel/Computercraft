@@ -44,7 +44,9 @@ local function getOrAddCategory(category)
   if (not root[category]) then
     root[category] = {}
 
-    root[category].frame = main
+    local currCategory = root[category]
+
+    currCategory.frame = main
         :addFlexbox()
         :setForeground(colors.white)
         :setBackground(colors.black)
@@ -53,28 +55,34 @@ local function getOrAddCategory(category)
         :setSize("parent.w", "parent.h - 1")
         :hide()
 
-    root[category].frame
+    currCategory.frame
       :addLabel()
       :setSize("parent.w", "2")
       :setTextAlign("center")
       :setText(category)
       :onClick(function ()
-        root[category].frame:hide()
+        currCategory.frame:hide()
         categoryFrame:show()
       end)
 
-    root[category].buttonFrame = categoryFrame
+    currCategory.buttonFrame = categoryFrame
         :addLabel()
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :setText(category)
         :setTextAlign("center")
         :onClick(function ()
+          if(not currCategory.sorted) then
+            table.sort(currCategory.machines, function (a, b)
+              return a.machineName > b.machineName
+            end)
+            currCategory.sorted = true
+          end
           categoryFrame:hide()
-          root[category].frame:show()
+          currCategory.frame:show()
         end)
 
-    root[category].machines = {}
+    currCategory.machines = {}
   end
 
   return root[category]
