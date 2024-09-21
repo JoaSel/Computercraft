@@ -107,17 +107,7 @@ local function getOrAddCategory(category)
 end
 
 local function addDislocator(dislocator)
-  local categoryId
-  local nameId
 
-  local split = mString.split(dislocator.displayName, "-")
-  if (#split == 1) then
-    categoryId = "Unkown"
-    nameId = split[1]
-  else
-    categoryId = split[1]
-    nameId = split[2]
-  end
 
   local category = getOrAddCategory(categoryId)
 
@@ -151,6 +141,73 @@ local function addDislocator(dislocator)
       :setText(category.childCount)
 end
 
+local function splitDisplayName(displayName)
+  local category
+  local name
+
+  local split = mString.split(displayName, "-")
+  if (#split == 1) then
+    category = "Unkown"
+    name = split[1]
+  else
+    category = split[1]
+    name = split[2]
+  end
+
+  return category, name
+end
+
+local function createCategoryFrames(dislocators)
+  for _, dislocator in pairs(dislocators) do
+    local categoryId = splitDisplayName(dislocator.displayName)
+    if (not root[categoryId]) then
+      print("Adding category: " .. categoryId)
+      root[categoryId] = {}
+
+      local currCategory = root[categoryId]
+
+      currCategory.childCount = 0
+
+      currCategory.frame = main
+          :addFrame()
+          :setForeground(colors.white)
+          :setBackground(colors.black)
+          :setPosition(1, 1)
+          :setSize("parent.w", "parent.h")
+          :hide()
+
+      currCategory.frame
+          :addLabel()
+          :setSize("parent.w", "2")
+          :setTextAlign("center")
+          :setText(categoryId)
+          :onClick(function()
+            currCategory.frame:hide()
+            categoryFrame:show()
+          end)
+
+      currCategory.miniFrame = categoryFrame
+          :addFrame()
+          :setBackground(colors.blue)
+          :setSize("parent.w/2 - 1", 2)
+          :onClick(function()
+            sortFrames(currCategory)
+            categoryFrame:hide()
+            currCategory.frame:show()
+          end)
+
+      currCategory.miniFrame
+          :addLabel()
+          :setText(categoryId)
+
+      currCategory.childCountLabel = currCategory.miniFrame
+          :addLabel()
+          :setText(currCategory.childCount)
+          :setPosition(1, 2)
+    end
+  end
+end
+
 local function initialize()
   local allItems = bridge.listItems({ name = "draconicevolution:dislocator" })
 
@@ -158,6 +215,7 @@ local function initialize()
     return d.name == "draconicevolution:dislocator" and d.displayName ~= "Dislocator"
   end)
 
+  createCategoryFrames(dislocators)
 
   for _, dislocator in pairs(dislocators) do
     addDislocator(dislocator)
