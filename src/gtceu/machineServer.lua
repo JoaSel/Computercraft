@@ -50,8 +50,11 @@ local function sortFrames(category)
     machine.miniFrame:remove()
   end
 
-  local t1, t2 = next(category.machines)
-  category.frame:addChild(t2.miniFrame)
+  for _, machine in pairs(category.machines) do
+    category.frame:addChild(machine.miniFrame)
+  end
+
+  
 
   dump.shallow(category)
 end
