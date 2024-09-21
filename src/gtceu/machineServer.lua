@@ -43,6 +43,12 @@ local categoryFrame = main
     :setPosition(1, 2)
     :setSize("parent.w", "parent.h - 1")
 
+local function sortFrames(category)
+  print("Sorting")
+
+  dump.toTerm(category)
+end
+
 local function getOrAddCategory(category)
   if (not root[category]) then
     root[category] = {}
@@ -75,6 +81,7 @@ local function getOrAddCategory(category)
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
+          sortFrames(currCategory)
           categoryFrame:hide()
           currCategory.frame:show()
         end)
