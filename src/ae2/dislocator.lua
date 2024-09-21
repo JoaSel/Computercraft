@@ -150,7 +150,10 @@ local function createDestinationFrames(dislocators)
         :setPosition(2, 1)
         :setText(name)
 
+        dump.toTerm(dislocator.tag)
     local desc = string.format("%s", dislocator.tag.target.x)
+
+    
 
     currChild.statusLabel = currChild.miniFrame
         :addLabel()
