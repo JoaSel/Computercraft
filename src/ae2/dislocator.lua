@@ -10,10 +10,8 @@ local mTable = require("moreTable")
 local mString = require("moreString")
 local dump = require("dump")
 
-
 local monitor = pWrapper.find("monitor")
 
-local bridge =  pWrapper.find("meBridge")
 local inventory = pWrapper.find("sophisticatedstorage:shulker_box")
 local playerInventory = pWrapper.find("inventoryManager")
 
