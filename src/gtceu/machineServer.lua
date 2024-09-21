@@ -129,7 +129,7 @@ local function getOrAddMachine(machineData)
     currMachine.miniFrame = category.frame
         :addFrame()
         :setSize("parent.w/2 - 1", 2)
-        :setPosition(category.machineCount, category.machineCount)
+        :setPosition(xPos, yPos)
         :onClick(function ()
           print("clicked machine")
         end)
