@@ -104,7 +104,7 @@ local function fixPositions(t)
   print("Sorting")
 
   local keys = {}
-  for k, _ in pairs(root.children) do
+  for k, _ in pairs(t.children) do
     table.insert(keys, k)
   end
 
@@ -116,7 +116,7 @@ local function fixPositions(t)
   dump.toTerm(keys)
 
   for i, key in pairs(keys) do
-    local child = root.children[key]
+    local child = t.children[key]
 
     local xPos = i % 2 == 0 and "parent.w/2 + 1" or 0
     local yPos = math.floor((i - 1) / 2) * 3 + 4
