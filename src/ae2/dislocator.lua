@@ -173,7 +173,7 @@ local function updateMachine(machineData)
 end
 
 local function initialize()
-  local dislocators = bridge.getItem({ name = "draconicevolution:dislocator"})
+  local dislocators = bridge.listItems({ name = "draconicevolution:dislocator"})
   
   for key, dislocator in pairs(dislocators) do
     print(key)
