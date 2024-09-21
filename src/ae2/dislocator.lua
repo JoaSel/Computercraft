@@ -156,7 +156,7 @@ local function createDestinationFrames(dislocators)
     currChild.statusLabel = currChild.miniFrame
         :addLabel()
         :setPosition(1, 2)
-        :setText("test")
+        :setText("")
 
     category.childCount   = category.childCount + 1
     category.childCountLabel
