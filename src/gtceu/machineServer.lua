@@ -131,7 +131,7 @@ local function getOrAddMachine(machineData)
 
     local currMachine = category.machines[machineData.machineName]
 
-    local xPos = category.machineCount % 2 ~= 0 and "parent.w/2 + 1" or 0
+    local xPos = category.machineCount % 2 == 0 and "parent.w/2 + 1" or 0
     local yPos = math.floor((category.machineCount - 1) / 2) * 3 + 4
 
     currMachine.miniFrame = category.frame
