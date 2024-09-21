@@ -167,7 +167,7 @@ local function createDestinationFrames(dislocators)
 end
 local function initialize()
   local allItems = mTable.select(inventory.list(), function (slot, _)
-    inventory.getItemDetail(slot)
+    return inventory.getItemDetail(slot)
   end)
 
   dump.toTerm(allItems)
