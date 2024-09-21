@@ -136,6 +136,7 @@ local function createDestinationFrames(dislocators)
 
     currChild.miniFrame = category.frame
         :addLabel()
+        :setForeground(colors.black)
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :setText(name)
