@@ -13,6 +13,7 @@ local dump = require("dump")
 
 local monitor = pWrapper.find("monitor")
 
+local bridge =  pWrapper.find("meBridge")
 local inventory = pWrapper.find("sophisticatedstorage:shulker_box")
 local playerInventory = pWrapper.find("inventoryManager")
 
@@ -142,8 +143,8 @@ local function createDestinationFrames(dislocators)
     local currChild = category.children[name]
 
     local itemToExtract = {
-      name = "minecraft:enchanted_book"
-      --nbt= "{StoredEnchantments: [{lvl: 2s, id: \"minecraft:blast_protection\"}]}"
+      name = "minecraft:enchanted_book",
+      nbt= "{StoredEnchantments: [{lvl: 2s, id: \"minecraft:blast_protection\"}]}"
     }
     
 
@@ -154,7 +155,8 @@ local function createDestinationFrames(dislocators)
         :onClick(function()
           --nbt="{tag.modifier: \"forbidden_arcanus:eternal\"}"
           --print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", nbt = "{[\"forbidden_arcanus:eternal\"}]"}))
-          print(playerInventory.addItemToPlayer("up", itemToExtract))
+          --print(playerInventory.addItemToPlayer("up", itemToExtract))
+          print(bridge.getItem(itemToExtract))
         end)
 
     currChild.miniFrame
