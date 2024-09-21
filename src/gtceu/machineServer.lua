@@ -46,9 +46,9 @@ local categoryFrame = main
 local function sortFrames(category)
   print("Sorting")
 
-  -- for _, machine in pairs(category.machines) do
-  --   machine.miniFrame:remove()
-  -- end
+  for _, machine in pairs(category.machines) do
+    print(machine.machineName)
+  end
 
   -- for _, machine in pairs(category.machines) do
   --   category.frame:addChild(machine.miniFrame)
