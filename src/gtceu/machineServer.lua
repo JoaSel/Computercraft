@@ -126,8 +126,6 @@ local function getOrAddMachine(machineData)
     local xPos = category.machineCount % 2 ~= 0 and "parent.w/2" or 0
     local yPos = math.floor((category.machineCount - 1) / 2) * 3 + 4
 
-    print(category.machineCount % 2)
-
     currMachine.miniFrame = category.frame
         :addFrame()
         :setSize("parent.w/2 - 1", 2)
@@ -138,6 +136,7 @@ local function getOrAddMachine(machineData)
 
     currMachine.miniFrame
         :addLabel()
+        :setPosition(2, 1)
         :setText(machineData.machineName)
 
     currMachine.statusLabel = currMachine.miniFrame
