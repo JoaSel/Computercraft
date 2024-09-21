@@ -61,7 +61,7 @@ end
 local function select(t, func)
     local ret = {}
     for key, value in pairs(t) do
-        ret[key] = func(value)
+        ret[key] = func(key, value)
     end
 
     return ret
