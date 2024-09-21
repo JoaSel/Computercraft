@@ -217,9 +217,6 @@ local function initialize()
 
   createCategoryFrames(dislocators)
 
-  for _, dislocator in pairs(dislocators) do
-    addDislocator(dislocator)
-  end
 end
 
 initialize()
