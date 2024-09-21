@@ -82,7 +82,7 @@ local function getOrAddCategory(category)
           currCategory.frame:show()
         end)
 
-      currCategory.buttonFrame
+      currCategory.miniFrame
         :editItem(1, category)
 
     currCategory.machines = {}
