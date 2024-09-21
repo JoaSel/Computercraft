@@ -68,7 +68,7 @@ local function getOrAddCategory(category)
       end)
 
     currCategory.miniFrame = categoryFrame
-        :addList()
+        :addFrame()
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function ()
@@ -83,7 +83,12 @@ local function getOrAddCategory(category)
         end)
 
       currCategory.miniFrame
-        :editItem(1, category)
+        :addLabel()
+        :setText(category)
+
+      currCategory.miniFrame
+        :addLabel()
+        :setText("13")
 
     currCategory.machines = {}
   end
