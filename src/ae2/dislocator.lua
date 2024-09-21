@@ -105,8 +105,6 @@ local function createCategoryFrames(dislocators)
 end
 
 local function fixPositions(t)
-  print("Sorting")
-
   local keys = {}
   for k, _ in pairs(t.children) do
     table.insert(keys, k)
