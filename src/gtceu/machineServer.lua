@@ -46,7 +46,7 @@ local categoryFrame = main
 local function sortFrames(category)
   print("Sorting")
 
-  dump.toTerm2(category)
+  dump.shallow(category)
 end
 
 local function getOrAddCategory(category)
