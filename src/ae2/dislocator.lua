@@ -156,7 +156,7 @@ local function createDestinationFrames(dislocators)
           --nbt="{tag.modifier: \"forbidden_arcanus:eternal\"}"
           --print(playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", nbt = "{[\"forbidden_arcanus:eternal\"}]"}))
           --print(playerInventory.addItemToPlayer("up", itemToExtract))
-          dump.toTerm(bridge.getItem(itemToExtract))
+          dump.toTerm(bridge.getItem({fingerprint = "9B7E8E28E3433FD34BED17A25933759C"}}))
         end)
 
     currChild.miniFrame
