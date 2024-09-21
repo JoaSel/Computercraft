@@ -152,13 +152,13 @@ local function createDestinationFrames(dislocators)
         :setPosition(2, 1)
         :setText(name)
 
-    local desc = string.format("%d, %d, %d at %s", dislocator.nbt.tag.target.x, dislocator.nbt.tag.target.y,
-      dislocator.nbt.tag.target.z, translate[dislocator.nbt.tag.target.dim] or dislocator.nbt.tag.target.dim)
+    -- local desc = string.format("%d, %d, %d at %s", dislocator.nbt.tag.target.x, dislocator.nbt.tag.target.y,
+    --   dislocator.nbt.tag.target.z, translate[dislocator.nbt.tag.target.dim] or dislocator.nbt.tag.target.dim)
 
     currChild.statusLabel = currChild.miniFrame
         :addLabel()
         :setPosition(1, 2)
-        :setText(desc)
+        :setText("test")
 
     category.childCount   = category.childCount + 1
     category.childCountLabel
@@ -170,10 +170,8 @@ local function initialize()
     return inventory.getItemDetail(slot)
   end)
 
-  dump.toTerm(allItems)
-
   local dislocators = mTable.where(allItems, function(d)
-    return d.name == "draconicevolution:dislocator" and d.displayName ~= "Dislocator"
+    return d.name == "draconicevolution:dislocator"
   end)
 
   createCategoryFrames(dislocators)
