@@ -95,99 +95,60 @@ local function getOrAddCategory(category)
         :addLabel()
         :setText(category)
 
-    currCategory.machineCountLabel = currCategory.miniFrame
+    currCategory.childCountLabel = currCategory.miniFrame
         :addLabel()
         :setText(currCategory.childCount)
         :setPosition(1, 2)
 
-    currCategory.machines = {}
+    currCategory.children = {}
   end
 
   return root[category]
 end
 
-local function getOrAddMachine(machineData)
-  local category = getOrAddCategory(machineData.machineCategory)
-
-  local exists = category.machines[machineData.machineName]
-  if (exists) then
-    exists.machineData = machineData
-  else
-    print("New machine")
-    category.childCount = category.childCount + 1
-    category.machines[machineData.machineName] = { machineData = machineData }
-
-    local currMachine = category.machines[machineData.machineName]
-
-    local xPos = category.childCount % 2 == 0 and "parent.w/2 + 1" or 0
-    local yPos = math.floor((category.childCount - 1) / 2) * 3 + 4
-
-    currMachine.miniFrame = category.frame
-        :addFrame()
-        :setSize("parent.w/2 - 1", 2)
-        :setPosition(xPos, yPos)
-        :onClick(function()
-          print("clicked machine")
-        end)
-
-    currMachine.miniFrame
-        :addLabel()
-        :setPosition(2, 1)
-        :setText(machineData.machineName)
-
-    currMachine.statusLabel = currMachine.miniFrame
-        :addLabel()
-        :setPosition(1, 2)
-        :setText("Initialized")
-
-    category.machineCountLabel
-        :setText(category.childCount)
-  end
-
-  return category.machines[machineData.machineName]
-end
-
-local function updateMachine(machineData)
-  local machine = getOrAddMachine(machineData)
-
-  local displayColor = displayColors[machineData.blockData.recipeLogic.status]
-  if (not displayColor) then
-    error("Unkown status: " .. machineData.blockData.recipeLogic.statu)
-  end
-
-  local errorStatus
-  if (machineData.blockData.recipeLogic.status == "IDLE" and (machineData.hasInputItems or machineData.hasInputFluids)) then
-    if (machine.error) then
-      displayColor = colors.red
-      errorStatus = string.format(" Status: ERROR (%s)", machineData.blockData.recipeLogic.status)
-    end
-    machine.error = true
-  else
-    machine.error = false
-  end
-
-  machine.miniFrame
-      :setBackground(displayColor)
-
-  machine.statusLabel
-      :setText(errorStatus or string.format(" Status: OK (%s)", machineData.blockData.recipeLogic.status))
-end
-
 local function addDislocator(dislocator)
-  local category
-  local name
+  local categoryId
+  local nameId
 
   local split = mString.split(dislocator.displayName, "-")
   if (#split == 1) then
-    category = "Unkown"
-    name = split[1]
+    categoryId = "Unkown"
+    nameId = split[1]
   else
-    category = split[1]
-    name = split[2]
+    categoryId = split[1]
+    nameId = split[2]
   end
 
-  local x = getOrAddCategory(category)
-  print(name)
+  local category = getOrAddCategory(categoryId)
+
+  category.childCount = category.childCount + 1
+  category.children[nameId] = { }
+
+  local currChild = category.children[nameId]
+
+  local xPos = category.childCount % 2 == 0 and "parent.w/2 + 1" or 0
+  local yPos = math.floor((category.childCount - 1) / 2) * 3 + 4
+
+  currChild.miniFrame = category.frame
+      :addFrame()
+      :setSize("parent.w/2 - 1", 2)
+      :setPosition(xPos, yPos)
+      :onClick(function()
+        print("clicked machine")
+      end)
+
+    currChild.miniFrame
+      :addLabel()
+      :setPosition(2, 1)
+      :setText("testing")
+
+    currChild.statusLabel = currChild.miniFrame
+      :addLabel()
+      :setPosition(1, 2)
+      :setText("Initialized")
+
+  category.childCountLabel
+      :setText(category.childCount)
 end
 
 local function initialize()
