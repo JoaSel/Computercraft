@@ -146,7 +146,7 @@ local function createDestinationFrames(dislocators)
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
-          print("clicked machine")
+          bridge.exportItem({ fingerprint = dislocator.fingerprint}, "up")
         end)
 
     currChild.miniFrame
