@@ -124,7 +124,7 @@ local function getOrAddMachine(machineData)
     local currMachine = category.machines[machineData.machineName]
 
     local xPos = category.machineCount % 2 ~= 0 and "parent.w/2" or 0
-    local yPos = math.floor((category.machineCount - 1) / 2) * 2 + 4
+    local yPos = math.floor((category.machineCount - 1) / 2) * 3 + 4
 
     print(category.machineCount % 2)
 
