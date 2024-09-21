@@ -75,13 +75,6 @@ local function getOrAddCategory(category)
         :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function ()
-          if(not currCategory.sorted) then
-            print("sorting")
-            table.sort(currCategory.machines, function (a, b)
-              return a.machineName > b.machineName
-            end)
-            currCategory.sorted = true
-          end
           categoryFrame:hide()
           currCategory.frame:show()
         end)
