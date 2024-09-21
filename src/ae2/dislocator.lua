@@ -168,7 +168,7 @@ local function initialize()
   end)
 
   local t1,t2 = next(dislocators)
-  dump.toTerm(t2)
+  dump.toFile(t2, "test")
 
   createCategoryFrames(dislocators)
   createDestinationFrames(dislocators)
