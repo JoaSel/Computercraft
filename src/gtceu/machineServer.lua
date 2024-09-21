@@ -40,22 +40,17 @@ local categoryFrame = main
     :setPosition(1, 2)
     :setSize("parent.w", "parent.h - 1")
 
-local yTest = 2
-
 local function getOrAddCategory(category)
   if (not root[category]) then
     root[category] = {}
 
-    --local scrollBox = main.addScrollableFrame()
-
     root[category].frame = main
-        :addScrollableFrame()
+        :addFlexbox()
         :setForeground(colors.white)
         :setBackground(colors.black)
-        --:setWrap("wrap")
+        :setWrap("wrap")
         :setPosition(1, 2)
         :setSize("parent.w", "parent.h - 1")
-        :setDirection("vertical")
         :hide()
 
     root[category].frame
@@ -97,7 +92,6 @@ local function getOrAddMachine(machineData)
     category.machines[machineData.machineName].displayFrame = category.frame
         :addFrame()
         :setSize("parent.w/2 - 1", 2)
-        :setPosition(1, yTest)
 
     category.machines[machineData.machineName].displayFrame
         :addLabel()
@@ -106,9 +100,7 @@ local function getOrAddMachine(machineData)
     category.machines[machineData.machineName].statusLabel = category.machines[machineData.machineName].displayFrame
         :addLabel()
         :setPosition(1, 2)
-        :setText("TEST")
-
-        yTest = yTest + 2
+        :setText("Initialized")
   end
 
   return category.machines[machineData.machineName]
