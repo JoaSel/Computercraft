@@ -139,6 +139,7 @@ local function createDestinationFrames(dislocators)
 
     currChild.miniFrame = category.frame
         :addFrame()
+        :setBackground(colors.blue)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
           print("clicked machine")
