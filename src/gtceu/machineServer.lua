@@ -111,7 +111,7 @@ local function getOrAddMachine(machineData)
         :addFrame()
         :setSize("parent.w/2 - 1", 2)
         :onClick(function ()
-          currMachine.miniFrame:hide()
+          print("clicked machine")
         end)
 
     currMachine.miniFrame
