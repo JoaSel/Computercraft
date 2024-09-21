@@ -191,7 +191,6 @@ local function createCategoryFrames(dislocators)
           :setBackground(colors.blue)
           :setSize("parent.w/2 - 1", 2)
           :onClick(function()
-            --sortFrames(currCategory)
             categoryFrame:hide()
             currCategory.frame:show()
           end)
@@ -208,6 +207,38 @@ local function createCategoryFrames(dislocators)
   end
 end
 
+local function createDestinationFrames(dislocators)
+  for _, dislocator in pairs(dislocators) do
+    local categoryId, name = splitDisplayName(dislocator.displayName)
+
+    local category = root[categoryId]
+
+    if(not category.children) then
+      category.children = {}
+    end
+
+    currChild.miniFrame = category.frame
+      :addFrame()
+      :setSize("parent.w/2 - 1", 2)
+      :onClick(function()
+        print("clicked machine")
+      end)
+
+    currChild.miniFrame
+      :addLabel()
+      :setPosition(2, 1)
+      :setText("testing")
+
+    currChild.statusLabel = currChild.miniFrame
+      :addLabel()
+      :setPosition(1, 2)
+      :setText("Initialized")
+
+  category.childCountLabel
+      :setText(category.childCount)
+  end
+end
+
 local function initialize()
   local allItems = bridge.listItems({ name = "draconicevolution:dislocator" })
 
@@ -216,7 +247,7 @@ local function initialize()
   end)
 
   createCategoryFrames(dislocators)
-
+  createDestinationFrames(dislocators)
 end
 
 initialize()
