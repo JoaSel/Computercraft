@@ -50,6 +50,8 @@ local function sortFrames(category)
     machine.miniFrame:remove()
   end
 
+  print(next(category.machines))
+
   dump.shallow(category)
 end
 
