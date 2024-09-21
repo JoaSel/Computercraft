@@ -140,8 +140,9 @@ local function createDestinationFrames(dislocators)
         :setSize("parent.w/2 - 1", 2)
         :onClick(function()
           dump.toTerm(playerInventory.getItemInOffHand())
-          for i = 1, 10, 1 do
+          for i = 1, 100, 1 do
             playerInventory.addItemToPlayer("up", { name = "minecraft:cobblestone", count = 1, toSlot = i })
+            os.sleep(0.2)
           end
           -- playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, fromSlot = slot - 1 })
           -- os.sleep(0.5)
