@@ -54,8 +54,6 @@ local function sortFrames(category)
     category.frame:addChild(machine.miniFrame)
   end
 
-  
-
   dump.shallow(category)
 end
 
