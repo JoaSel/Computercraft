@@ -13,7 +13,7 @@ local dump = require("dump")
 local monitor = pWrapper.find("monitor")
 
 --local inventory = pWrapper.find("sophisticatedstorage:shulker_box")
-local inventory = pWrapper.find("sophisticatedstorage:chest")
+local inventory = pWrapper.find("dankstorage:dank_tile")
 local playerInventory = pWrapper.find("inventoryManager")
 
 monitor.setTextScale(0.5)
