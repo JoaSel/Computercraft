@@ -164,16 +164,15 @@ local function createDestinationFrames(dislocators)
   end
 end
 local function initialize()
-  local allItems = mTable.select(inventory.list(), function(slot, _)
-    return inventory.getItemDetail(slot)
-  end)
+  local allItems = inventory.list()
+  local dislocators = {}
 
-  local dislocators = mTable.where(allItems, function(d)
-    return d.name == "draconicevolution:dislocator"
-  end)
-
-  dump.toTerm(dislocators)
-
+  for slot, item in pairs(allItems) do
+    if(item.name == "draconicevolution:dislocator") then
+      dislocators[slot] = inventory.getItemDetail(slot)
+    end
+  end
+  
   createCategoryFrames(dislocators)
   createDestinationFrames(dislocators)
 
