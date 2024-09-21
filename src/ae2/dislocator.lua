@@ -176,6 +176,7 @@ local function initialize()
   local dislocators = bridge.getItem({ name = "draconicevolution:dislocator"})
   
   for _, dislocator in pairs(dislocators) do
+    print("test")
     print(dislocator)
     --dump.shallow(dislocator)
   end
