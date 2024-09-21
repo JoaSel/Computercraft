@@ -217,6 +217,10 @@ local function createDestinationFrames(dislocators)
       category.children = {}
     end
 
+    category.children[name] = {}
+
+    local currChild = category.children[name]
+
     currChild.miniFrame = category.frame
       :addFrame()
       :setSize("parent.w/2 - 1", 2)
@@ -234,7 +238,7 @@ local function createDestinationFrames(dislocators)
       :setPosition(1, 2)
       :setText("Initialized")
 
-  category.childCountLabel
+    category.childCountLabel
       :setText(category.childCount)
   end
 end
