@@ -53,7 +53,7 @@ local function getOrAddCategory(category)
         :setForeground(colors.white)
         :setBackground(colors.black)
         :setWrap("wrap")
-        :setPosition(1, 2)
+        :setPosition(1, 1)
         :setSize("parent.w", "parent.h - 1")
         :hide()
 
@@ -106,7 +106,7 @@ local function getOrAddMachine(machineData)
   else
     print("New machine")
     category.machineCount = category.machineCount + 1
-    
+
     category.machines[machineData.machineName] = { machineData = machineData }
     category.machines[machineData.machineName].displayFrame = category.frame
         :addFrame()
