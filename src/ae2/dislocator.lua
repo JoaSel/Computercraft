@@ -14,6 +14,7 @@ local monitor = pWrapper.find("monitor")
 
 local inventory = pWrapper.find("dankstorage:dank_tile")
 local playerInventory = pWrapper.find("inventoryManager")
+local playerDetector = pWrapper.find("playerDetector")
 
 monitor.setTextScale(0.5)
 
@@ -145,9 +146,11 @@ local function createDestinationFrames(dislocators)
         :setText(name)
         :setTextAlign("center")
         :onClick(function()
-          playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = 36, fromSlot = slot - 1 })
-          os.sleep(0.5)
-          playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1, fromSlot = 36 })
+          local oldPos = playerDetector.getPlayerPos("EvilKurt")
+          dump.toTerm(oldPos)
+          -- playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = 36, fromSlot = slot - 1 })
+          -- os.sleep(0.5)
+          -- playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1, fromSlot = 36 })
         end)
 
     -- currChild.miniFrame
