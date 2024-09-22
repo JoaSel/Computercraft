@@ -115,8 +115,11 @@ local function fixPositions(t)
 
     local xPos = i % 2 == 0 and "parent.w/2 + 1" or 0
     local yPos = math.floor((i - 1) / 2) * 3 + 4
+    local color = i % 2 == 0 and colors.blue or colors.cyan
 
-    child.miniFrame:setPosition(xPos, yPos)
+    child.miniFrame
+      :setPosition(xPos, yPos)
+      :setBackground(color)
   end
 end
 
