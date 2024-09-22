@@ -50,6 +50,10 @@ local function splitDisplayName(displayName)
   return category, name
 end
 
+local function getDistance(x1, x2, y1, y2, z1, z2)
+  return math.sqrt(math.pow(x2 - x1, 2) + math.pow(y2 - y1, 2) + math.pow(z2 - z1, 2))
+end
+
 local function createCategoryFrames(dislocators)
   for _, dislocator in pairs(dislocators) do
     local categoryId = splitDisplayName(dislocator.displayName)
@@ -124,6 +128,19 @@ local function fixPositions(t)
   end
 end
 
+local function sleepUntilPlayerMoved()
+  local oldPos = playerDetector.getPlayerPos("EvilKurt2")
+  for i = 1, 50, 1 do
+    local newPos = playerDetector.getPlayerPos("EvilKurt2")
+
+    if(getDistance(newPos.x, oldPos.x, newPos.y, oldPos.y, newPos.z, oldPos.z) > 10) then
+      return
+    end
+
+    sleep(0.2)
+  end
+end
+
 local function createDestinationFrames(dislocators)
   for slot, dislocator in pairs(dislocators) do
     local categoryId, name = splitDisplayName(dislocator.displayName)
@@ -146,11 +163,9 @@ local function createDestinationFrames(dislocators)
         :setText(name)
         :setTextAlign("center")
         :onClick(function()
-          local oldPos = playerDetector.getPlayerPos("EvilKurt2")
-          dump.toTerm(oldPos)
-          -- playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = 36, fromSlot = slot - 1 })
-          -- os.sleep(0.5)
-          -- playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1, fromSlot = 36 })
+          playerInventory.addItemToPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = 36, fromSlot = slot - 1 })
+          sleepUntilPlayerMoved()
+          playerInventory.removeItemFromPlayer("up", { name = "draconicevolution:dislocator", count = 1, toSlot = slot - 1, fromSlot = 36 })
         end)
 
     -- currChild.miniFrame
