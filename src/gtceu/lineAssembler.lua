@@ -14,7 +14,8 @@ local output = pWrapper.wrap("entangled:tile_37")
 
 local dataItems = {
     ["gtceu:data_stick"] = true,
-    ["gtceu:data_orb"] = true
+    ["gtceu:data_orb"] = true,
+    ["gtceu:data_module"] = true
 }
 
 local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
