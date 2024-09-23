@@ -36,7 +36,8 @@ local function importItems()
 
     local busIndex = 1
     for fromSlot, item in pairs(inputItems) do
-        if (dataItems[item.name]) then
+
+        if (dataItems[item.name] and item.nbt) then
             print(item.name .. " => " .. dataAccessHatch.name)
             input.pushItems(dataAccessHatch.name, fromSlot)
         else
