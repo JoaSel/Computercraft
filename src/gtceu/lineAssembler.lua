@@ -18,7 +18,7 @@ local dataItems = {
     ["gtceu:data_module"] = true
 }
 
-local dataAccessHatch = pWrapper.find("gtceu:data_access_hatch")
+local dataAccessHatch = pWrapper.find("gtceu:advanced_data_access_hatch")
 
 local inputBuses = { gtceuIO.findInputBuses() }
 local inputHatches = { gtceuIO.findInputHatches() }
