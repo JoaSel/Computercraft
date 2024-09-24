@@ -58,7 +58,6 @@ local function importFluids()
     local inputFluids = input.tanks()
 
     for _, item in pairs(inputFluids) do
-        print("Importing " .. item.name)
         input.pushFluid(inputHatches[1].name)
     end
 end
