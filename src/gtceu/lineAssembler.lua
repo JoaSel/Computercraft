@@ -18,7 +18,7 @@ local dataItems = {
     ["gtceu:data_module"] = true
 }
 
-local dataAccessHatch = pWrapper.find("gtceu:advanced_data_access_hatch")
+--local dataAccessHatch = pWrapper.find("gtceu:advanced_data_access_hatch")
 
 local inputBuses = { gtceuIO.findInputBuses() }
 local inputHatches = { gtceuIO.findInputHatches() }
@@ -38,8 +38,8 @@ local function importItems()
     for fromSlot, item in pairs(inputItems) do
 
         if (dataItems[item.name] and item.nbt) then
-            print(item.name .. " => " .. dataAccessHatch.name)
-            input.pushItems(dataAccessHatch.name, fromSlot)
+            -- print(item.name .. " => " .. dataAccessHatch.name)
+            -- input.pushItems(dataAccessHatch.name, fromSlot)
         else
             for i = 1, item.count, 64 do
                 if (busIndex > #inputBuses) then
@@ -47,7 +47,6 @@ local function importItems()
                 end
                 local currentBus = inputBuses[busIndex]
 
-                print(i .. " " .. item.name .. " => " .. currentBus.name)
                 input.pushItems(currentBus.name, fromSlot, 64)
                 busIndex = busIndex + 1
             end
@@ -83,16 +82,16 @@ local function exportItems(count)
         end
     end
 
-    local dataAccessItems = dataAccessHatch.list()
+    --local dataAccessItems = dataAccessHatch.list()
 
-    for fromSlot, item in pairs(dataAccessItems) do
-        print("Exporting " .. item.name)
-        dataAccessHatch.pushItems(output.name, fromSlot)
-    end
+    -- for fromSlot, item in pairs(dataAccessItems) do
+    --     print("Exporting " .. item.name)
+    --     dataAccessHatch.pushItems(output.name, fromSlot)
+    -- end
 
-    if(#dataAccessHatch.list() > 0) then
-        error("Failed to export data items")
-    end
+    -- if(#dataAccessHatch.list() > 0) then
+    --     error("Failed to export data items")
+    -- end
 end
 
 while (true) do
