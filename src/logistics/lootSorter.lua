@@ -62,7 +62,7 @@ end
 initializeRoutes(saveStash, "Storage Input")
 initializeRoutes(trashStash, "Trash")
 
-dump.toTerm(displayNamesRoutes)
+--dump.toTerm(displayNamesRoutes)
 
 circularSorter.create(input, internalBuffer, "Storage Input", destinationNames, displayNamesRoutes, tagsRoutes, miscRoutes, true)
 circularSorter.run()
