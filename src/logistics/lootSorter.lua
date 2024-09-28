@@ -4,6 +4,8 @@ package.path = package.path .. ";../core/?.lua"
 
 local circularSorter = require("libs.circularSorter")
 local pWrapper = require("peripheralWrapper")
+local dump = require("dump")
+
 
 local input = pWrapper.wrap("dankstorage:dank_tile_34")
 local internalBuffer = pWrapper.wrap("dankstorage:dank_tile_35")
@@ -59,6 +61,7 @@ end
 initializeRoutes(saveStash, "Storage Input")
 initializeRoutes(trashStash, "Trash")
 
+dump.toTerm(displayNamesRoutes)
 
 circularSorter.create(input, internalBuffer, "Storage Input", destinationNames, displayNamesRoutes, tagsRoutes, miscRoutes, true)
 circularSorter.run()
