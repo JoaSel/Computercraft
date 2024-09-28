@@ -59,6 +59,7 @@ local function getDestination(item)
 		end
 	end
 	
+	print("using default route")
 	return _defaultDestination
 end
 
