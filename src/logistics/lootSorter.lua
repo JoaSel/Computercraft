@@ -1,5 +1,7 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/logistics/lootSorter.lua
 
+package.path = package.path .. ";../core/?.lua"
+
 local circularSorter = require("libs.circularSorter")
 local pWrapper = require("peripheralWrapper")
 
@@ -8,7 +10,6 @@ local internalBuffer = pWrapper.wrap("dankstorage:dank_tile_35")
 
 local saveStash = pWrapper.wrap("sophisticatedstorage:shulker_box_10")
 local trashStash = pWrapper.wrap("sophisticatedstorage:shulker_box_11")
-
 
 local curses = {
     ["minecraft:binding_curse"] = true,
