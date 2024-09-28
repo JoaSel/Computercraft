@@ -37,20 +37,42 @@ local displayNamesRoutes = {}
 
 local tagsRoutes = {}
 
-local miscRoutes = {
-	-- function(item)
-	-- 	if(string.match(item.name, "_salt_ore$")) then
-	-- 		return "Storage Input"
-	-- 	end
-	-- 	if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:ores")) then
-	-- 		return "Macerator"
-	-- 	end
-	-- 	if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:raw_materials")) then
-	-- 		return "Macerator"
-	-- 	end
-	-- end
-}
+local function isOnlyCursed(item)
+    for _, enchantment in pairs(item.enchantments) do
+        if(not curses[enchantment.name]) then
+            return false
+        end
+    end
+    return true
+end
 
+local function hasTag(item, tag)
+    if(item.tags == nil) then
+        return false
+    elseif(item.tags[tag] == nil) then
+        return false
+    end
+    return item.tags[tag]
+end
+
+local miscRoutes = {
+	function(item)
+		if (item.enchantments ~= nil) then
+			if (item.name == "minecraft:enchanted_book") then
+				return "Library"
+			elseif (isOnlyCursed(item)) then
+				return "Salvage"
+			else
+				return "Disenchant"
+			end
+		elseif (hasTag(item, "forge:tools") or
+				hasTag(item, "forge:armors") or
+				toolItems[item.name]
+			) then
+			return "Salvage"
+		end
+	end
+}
 
 local function initializeRoutes(peripheral, destination)
     for slot, item in pairs(peripheral.list()) do
@@ -62,7 +84,6 @@ end
 initializeRoutes(saveStash, "Storage Input")
 initializeRoutes(trashStash, "Trash")
 
---dump.toTerm(displayNamesRoutes)
 
 circularSorter.create(input, internalBuffer, "Storage Input", destinationNames, displayNamesRoutes, tagsRoutes, miscRoutes, true)
 circularSorter.run()
