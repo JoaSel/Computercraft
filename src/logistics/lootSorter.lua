@@ -22,7 +22,8 @@ local curses = {
 }
 
 local toolItems = {
-    ["forbidden_arcanus:zombie_arm"] = true
+    ["forbidden_arcanus:zombie_arm"] = true,
+	["cataclysm:athame"] = true
 }
 
 local destinationNames = {
