@@ -1,129 +1,66 @@
-local input = peripheral.find("entangled:tile")
-local trash = peripheral.find("trashcans:item_trash_can_tile")
+--wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/logistics/lootSorter.lua
 
-local dimChests = { peripheral.find("dimstorage:dimensional_chest") }
-local disenchant = dimChests[1]
-local mainStorage = dimChests[2]
-local salvage = dimChests[3]
-local library = dimChests[4]
+local circularSorter = require("libs.circularSorter")
+local pWrapper = require("peripheralWrapper")
 
-local shulkerBoxes = { peripheral.find("sophisticatedstorage:shulker_box") }
-local trashStage = shulkerBoxes[1]
-local trashStash = shulkerBoxes[2]
-local saveStash = shulkerBoxes[3]
+local input = pWrapper.wrap("dankstorage:dank_tile_34")
+local internalBuffer = pWrapper.wrap("dankstorage:dank_tile_35")
 
-local USETRASHSTAGE = false
-local trashStageI = 1
+local saveStash = pWrapper.wrap("sophisticatedstorage:shulker_box_10")
+local trashStash = pWrapper.wrap("sophisticatedstorage:shulker_box_11")
+
 
 local curses = {
-	["minecraft:binding_curse"] = true,
-	["minecraft:vanishing_curse"] = true,
-	["evilcraft:breaking"] = true,
-	["evilcraft:vengeance"] = true,
-	["enderio:shimmer"] = true
+    ["minecraft:binding_curse"] = true,
+    ["minecraft:vanishing_curse"] = true,
+    ["evilcraft:breaking"] = true,
+    ["evilcraft:vengeance"] = true,
+    ["enderio:shimmer"] = true
 }
 
 local toolItems = {
-	["forbidden_arcanus:zombie_arm"] = true
+    ["forbidden_arcanus:zombie_arm"] = true
 }
 
-local function moveItems(fromPeripheral, toLoc, fromSlot, toMoveCount) 
-    local ret = 0
-    repeat
-        local moved = fromPeripheral.pushItems(toLoc, fromSlot)
-        ret = ret + moved
-    until (ret >= toMoveCount or moved == 0)
-    return ret
-end
+local destinationNames = {
+	["Storage Input"] = "sophisticatedstorage:chest_3",
+	["Disenchant"] = "dimstorage:dimensional_chest_26",
+	["Library"] = "dimstorage:dimensional_chest_27",
+	["Salvage"] = "dimstorage:dimensional_chest_28",
+	["Trash"] = "trashcans:item_trash_can_tile_2",
+}
 
-local function assignItems(peripheral)
-	local ret = {}
-	for _, item in pairs(peripheral.list()) do
-  		ret[item.name] = true
+local displayNamesRoutes = {}
+
+local tagsRoutes = {}
+
+local miscRoutes = {
+	function(item)
+		if(string.match(item.name, "_salt_ore$")) then
+			return "Storage Input"
+		end
+		if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:ores")) then
+			return "Macerator"
+		end
+		if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:raw_materials")) then
+			return "Macerator"
+		end
 	end
-	return ret
-end
+}
 
 
-local saveNames = assignItems(saveStash)
-local trashNames = assignItems(trashStash)
-
-local function hasValue (tab, val)
-    for index, value in ipairs(tab) do
-        if value == val then
-            return true
-        end
+local function initializeRoutes(peripheral, destination)
+    for _, item in pairs(peripheral.list()) do
+        displayNamesRoutes[item.name] = "destination"
     end
-    return false
 end
 
-local function hasTag(item, tag)
-	if(item.tags == nil) then
-		return false
-	elseif(item.tags[tag] == nil) then
-		return false
-	end
-	return item.tags[tag]
-end
-
-local function trashItem(i, itemCount)
-	if(USETRASHSTAGE) then
-		trashStage.pushItems(peripheral.getName(trash), trashStageI)
-		trashStageI = (trashStageI % 132) + 1
-		input.pushItems(peripheral.getName(trashStage), i)
-	else
-		moveItems(input, peripheral.getName(trash), i, itemCount) 
-	end
-end
-
-local function isOnlyCursed(item)
-	for _, enchantment in pairs(item.enchantments) do
-  		if(not curses[enchantment.name]) then
-			return false
-		end
-	end
-	return true
-end
-
-local function handleItem(item, i)
-	if(item.enchantments ~= nil) then
-		if(item.name == "minecraft:enchanted_book") then
-			input.pushItems(peripheral.getName(library), i)
-		elseif(isOnlyCursed(item)) then
-			input.pushItems(peripheral.getName(salvage), i)
-		else			
-			input.pushItems(peripheral.getName(disenchant), i)
-		end
-	elseif(hasTag(item, "forge:tools") or 
-           hasTag(item, "forge:armors") or
-           toolItems[item.name]
-        ) then
-		input.pushItems(peripheral.getName(salvage), i)
-	elseif(trashNames[item.name]) then
-		trashItem(i, item.count)
-	elseif(saveNames[item.name]) then
-		moveItems(input, peripheral.getName(mainStorage), i, item.count) 
-	elseif(hasTag(item, "travelersbackpack:custom_travelers_backpack")) then
-		input.pushItems(peripheral.getName(mainStorage), i)
-	end
-end
-
-while(true) do
-	for i=1,input.size() do 
-		local item = input.getItemDetail(i)
-		if(item ~= nil) then
-			handleItem(item, i)
-		elseif(i == 1) then
-			os.sleep(5)
-		end
-	end
-end
+initializeRoutes(saveStash, "Storage Input")
+initializeRoutes(trashStash, "Trash")
 
 
-
-
-
-
+circularSorter.create(input, internalBuffer, "Storage Input", destinationNames, displayNamesRoutes, tagsRoutes, miscRoutes)
+circularSorter.run()
 
 
 
