@@ -38,17 +38,17 @@ local displayNamesRoutes = {}
 local tagsRoutes = {}
 
 local miscRoutes = {
-	function(item)
-		if(string.match(item.name, "_salt_ore$")) then
-			return "Storage Input"
-		end
-		if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:ores")) then
-			return "Macerator"
-		end
-		if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:raw_materials")) then
-			return "Macerator"
-		end
-	end
+	-- function(item)
+	-- 	if(string.match(item.name, "_salt_ore$")) then
+	-- 		return "Storage Input"
+	-- 	end
+	-- 	if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:ores")) then
+	-- 		return "Macerator"
+	-- 	end
+	-- 	if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:raw_materials")) then
+	-- 		return "Macerator"
+	-- 	end
+	-- end
 }
 
 
