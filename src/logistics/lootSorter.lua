@@ -53,9 +53,9 @@ local miscRoutes = {
 
 
 local function initializeRoutes(peripheral, destination)
-    for _, item in pairs(peripheral.list()) do
-		dump.toTerm(item)
-        displayNamesRoutes[item.name] = destination
+    for slot, item in pairs(peripheral.list()) do
+		local info = peripheral.getItemDetail(slot)
+        displayNamesRoutes[info.displayName] = destination
     end
 end
 
