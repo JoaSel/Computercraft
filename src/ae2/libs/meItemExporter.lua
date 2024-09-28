@@ -8,7 +8,7 @@ local dump = require("dump")
 
 local meBridge = pWrapper.find("meBridge")
 
-local _direction = "top"
+local _direction = "up"
 local _sleepTime = 5
 local _filterFunc = nil
 local _randomMode = false
@@ -53,8 +53,9 @@ local function run()
 
 		if(_verbose) then
 			print("Exporting " .. itemToExport.displayName)
+			dump.toTerm(itemToExport)
 		end
-		meBridge.exportItem(itemToExport, _direction)
+		meBridge.exportItem({ name = itemToExport.name, nbt = itemToExport.nbt }, _direction)
 
 		i = i + 1
 		os.sleep(_sleepTime)
