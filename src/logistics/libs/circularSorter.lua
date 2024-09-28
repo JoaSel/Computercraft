@@ -41,12 +41,14 @@ end
 local function getDestination(item)
 	local itemDest = _displayNameRoutes[item.displayName]
 	if (itemDest ~= nil) then
+		print("got _displayNameRoutes")
 		return itemDest
 	end
 
 	for _, destinationFunc in pairs(_miscRoutes) do
 		local dest = destinationFunc(item)
 		if(dest) then
+			print("got _miscRoutes")
 			return dest
 		end
 	end
