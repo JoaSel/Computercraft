@@ -1,6 +1,7 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/ae2/meDefragmenter.lua true
 
 package.path = package.path .. ";../core/?.lua"
+package.path = package.path .. ";../../../?.lua"
 
 local pWrapper = require("peripheralWrapper")
 
