@@ -26,6 +26,5 @@ root.frame = main
     :addFrame()
     :setForeground(colors.white)
     :setBackground(colors.black)
-    :setWrap("wrap")
     :setPosition(1, 2)
     :setSize("parent.w", "parent.h - 1")
