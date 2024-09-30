@@ -157,10 +157,10 @@ mainPage.statusLabel = mainPage.frame
 	:setSize("parent.w", 1)
 	:setPosition(1, "parent.h")
 
-local function createCapacityBar(name, row)
+local function createCapacityBar(name, row, count)
 	mainPage.frame
 		:addLabel()
-		:setText(name)
+		:setText(string.format("%s [%d]", name, count))
 		:setTextAlign("center")
 		:setSize("parent.w", 1)
 		:setPosition(1, row)
@@ -186,8 +186,8 @@ local function createCapacityBar(name, row)
 	return bar, percentLabel
 end
 
-mainPage.bulkItemBar, mainPage.bulkItemPercent = createCapacityBar("Bulk Item Storage", 1);
-mainPage.NBTItemBar, mainPage.NBTItemPercent = createCapacityBar("NBT Item Storage", 5);
+mainPage.bulkItemBar, mainPage.bulkItemPercent = createCapacityBar("Bulk Item Storage", 1, #bulkStorages);
+mainPage.NBTItemBar, mainPage.NBTItemPercent = createCapacityBar("NBT Item Storage", 5, #nbtStorages);
 
 local function defrag()
 	while true do
