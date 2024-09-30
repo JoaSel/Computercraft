@@ -27,6 +27,7 @@ local displayNamesRoutes = {
 	["Purified Galena Ore"] = "Storage Input",
 	["Mica Dust"] = "Electrolyzer Input",
 	["Lepidolite Dust"] = "Electrolyzer Input",
+	["Chromite Dust"] = "Electrolyzer Input"
 }
 
 -- ["Granite Salt Ore"] = "Storage Input",
