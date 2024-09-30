@@ -64,6 +64,7 @@ mainPage.frame
 	:addLabel()
 	:setText("testing")
 	:setPosition("parent.w * 0.125", 6)
+	:setZIndex(2)
 
 
 basalt.autoUpdate();
