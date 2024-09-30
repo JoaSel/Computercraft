@@ -34,5 +34,11 @@ mainPage.frame
 	:setTextAlign("center")
 	:setSize("parent.w", "1")
 
+mainPage.frame
+	:addProgressbar()
+	:setDirection("right")
+	:setProgress(50)
+	:setProgressBar(colors.blue)
+
 
 basalt.autoUpdate();
