@@ -155,7 +155,7 @@ mainPage.statusLabel = mainPage.frame
 	:setText("Starting")
 	:setTextAlign("center")
 	:setSize("parent.w", 1)
-	:setPosition("parent.h - 2", "parent.w")
+	:setPosition(1, "parent.h - 1")
 
 local function createCapacityBar(name, row)
 	mainPage.frame
