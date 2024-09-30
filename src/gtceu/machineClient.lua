@@ -32,6 +32,7 @@ local allowedItems = {
     ["gtceu:orange_glass_lens"] = true,
     ["gtceu:pink_glass_lens"] = true,
     ["gtceu:yellow_glass_lens"] = true,
+    ["gtceu:black_glass_lens"] = true,
     ["gtceu:huge_pipe_extruder_mold"] = true,
     ["gtceu:large_pipe_extruder_mold"] = true,
     ["gtceu:normal_pipe_extruder_mold"] = true,
