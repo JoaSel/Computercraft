@@ -28,46 +28,37 @@ mainPage.frame = base
     :setPosition(1, 1)
     :setSize("parent.w", "parent.h - 1")
 
-mainPage.frame
-	:addLabel()
-	:setText("Bulk Item Storage")
-	:setTextAlign("center")
-	:setSize("parent.w", "1")
-	:setPosition(1, 1)
 
-mainPage.frame
-	:addProgressbar()
-	:setDirection("right")
-	:setProgress(50)
-	:setProgressBar(colors.green)
-	:setBackground(colors.red)
-	:setPosition("parent.w * 0.125", 2)
-	:setSize("parent.w * 0.75", 2)
 
-mainPage.frame
-	:addLabel()
-	:setText("NBT Item Storage")
-	:setTextAlign("center")
-	:setSize("parent.w", "1")
-	:setPosition(1, 5)
+local function createCapacityBar(name, row)
+	mainPage.frame
+		:addLabel()
+		:setText(name)
+		:setTextAlign("center")
+		:setSize("parent.w", row)
+		:setPosition(1, 5)
 
-mainPage.frame
-	:addProgressbar()
-	:setDirection("right")
-	:setProgress(50)
-	:setProgressBar(colors.green)
-	:setBackground(colors.red)
-	:setPosition("parent.w * 0.125", 6)
-	:setSize("parent.w * 0.75", 2)
-	:setZIndex(1)
+	mainPage.frame
+		:addProgressbar()
+		:setDirection("right")
+		:setProgress(50)
+		:setProgressBar(colors.green)
+		:setBackground(colors.red)
+		:setPosition("parent.w * 0.125", row + 3)
+		:setSize("parent.w * 0.75", 2)
+		:setZIndex(1)
 
-mainPage.frame
-	:addLabel()
-	:setText(" 50%")
-	:setPosition("(parent.w / 2) - 1", 7)
-	:setZIndex(2)
-	:setForeground(colors.black)
-	:setTextAlign("center")
+	mainPage.frame
+		:addLabel()
+		:setText(" 50%")
+		:setPosition("(parent.w / 2) - 1", row + 4)
+		:setZIndex(2)
+		:setForeground(colors.black)
+		:setTextAlign("center")
+end
+
+createCapacityBar("Bulk Item Storage", 1);
+createCapacityBar("NBT Item Storage", 7);
 
 
 basalt.autoUpdate();
