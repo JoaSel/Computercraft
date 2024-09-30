@@ -38,10 +38,10 @@ mainPage.frame
 	:addProgressbar()
 	:setDirection("right")
 	:setProgress(50)
-	:setProgressBar(colors.blue)
+	:setProgressBar(colors.green)
+	:setBackground(colors.red)
 	:setPosition(1, 2)
 	:setSize("parent.w", "1")
-	:setBackgroundSymbol("test")
 
 
 basalt.autoUpdate();
