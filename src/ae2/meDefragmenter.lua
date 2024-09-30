@@ -12,7 +12,7 @@ local dump = require("dump")
 
 local monitor = pWrapper.find("monitor")
 
---monitor.setTextScale(0.5)
+monitor.setTextScale(0.5)
 
 local mainPage = {}
 
