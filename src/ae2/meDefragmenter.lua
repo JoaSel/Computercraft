@@ -57,7 +57,7 @@ mainPage.frame
 	:setProgress(50)
 	:setProgressBar(colors.green)
 	:setBackground(colors.red)
-	:setPosition("parent.w * 0.125", 10)
+	:setPosition("parent.w * 0.125", 6)
 	:setSize("parent.w * 0.75", 2)
 
 
