@@ -193,9 +193,9 @@ local function defrag()
 	while true do
 		mainPage.statusLabel:setText("Defragmenting Bulk Items")
 		local bulkOcc, bulkTot = defragmentStorages(bulkStorages)
-		local ratio = bulkOcc / bulkTot
-		mainPage.bulkItemBar:setProgress(ratio * 100)
-		mainPage.bulkItemPercent:setText(string.format("%f%%", ratio))
+		local percent = (bulkOcc / bulkTot) * 100
+		mainPage.bulkItemBar:setProgress(percent)
+		mainPage.bulkItemPercent:setText(string.format("%f%%", percent))
 		moveToNbt()
 
 		mainPage.statusLabel:setText("Defragmenting NBT Items")
