@@ -66,6 +66,7 @@ mainPage.frame
 	:setText("testing")
 	:setPosition("parent.w * 0.125", 7)
 	:setZIndex(2)
+	:setForeground(colors.black)
 
 
 basalt.autoUpdate();
