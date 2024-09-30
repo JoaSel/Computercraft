@@ -41,7 +41,7 @@ mainPage.frame
 	:setProgressBar(colors.green)
 	:setBackground(colors.red)
 	:setPosition(1, 2)
-	:setSize("parent.w - 4", "2")
+	:setSize("parent.w * 0.75", "2")
 
 
 basalt.autoUpdate();
