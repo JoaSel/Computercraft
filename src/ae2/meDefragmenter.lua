@@ -64,7 +64,7 @@ mainPage.frame
 mainPage.frame
 	:addLabel()
 	:setText("testing")
-	:setPosition("parent.w * 0.125", 6)
+	:setPosition("parent.w * 0.125", 7)
 	:setZIndex(2)
 
 
