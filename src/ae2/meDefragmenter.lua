@@ -188,13 +188,19 @@ createCapacityBar("Bulk Item Storage", 1);
 createCapacityBar("NBT Item Storage", 5);
 
 local function defrag()
-	local bulkOcc, bulkTot = defragmentStorages(bulkStorages)
+	while true do
+		mainPage.statusLabel:setText("Defragmenting Bulk Items")
+		local bulkOcc, bulkTot = defragmentStorages(bulkStorages)
+		moveToNbt()
 
-	moveToNbt()
+		mainPage.statusLabel:setText("Defragmenting NBT Items")
+		local nbtOcc, nbtTot = defragmentStorages(nbtStorages)
+		moveToBulk()
 
-	local nbtOcc, nbtTot = defragmentStorages(nbtStorages)
-
-	moveToBulk()
+		mainPage.statusLabel:setText("Sleeping")
+		os.sleep(5)
+	end
+	
 end
 
 base:addThread():start(defrag)
