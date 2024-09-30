@@ -40,6 +40,7 @@ mainPage.frame
 	:setProgress(50)
 	:setProgressBar(colors.blue)
 	:setPosition(1, 2)
+	:setSize("parent.w", "1")
 
 
 basalt.autoUpdate();
