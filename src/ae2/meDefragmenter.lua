@@ -31,7 +31,7 @@ mainPage.frame = base
 mainPage.frame
 	:addLabel()
 	:setText("Bulk Item Storage")
-	:setFontSize(2)
+	:setFontSize(3)
 
 
 basalt.autoUpdate();
