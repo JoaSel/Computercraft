@@ -64,7 +64,7 @@ mainPage.frame
 mainPage.frame
 	:addLabel()
 	:setText("50 %")
-	:setPosition("(parent.w / 2) - 2", 7)
+	:setPosition("(parent.w / 2) - 1", 7)
 	:setZIndex(2)
 	:setForeground(colors.black)
 	:setTextAlign("center")
