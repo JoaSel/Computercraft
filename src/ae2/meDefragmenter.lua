@@ -64,9 +64,10 @@ mainPage.frame
 mainPage.frame
 	:addLabel()
 	:setText("testing")
-	:setPosition("parent.w * 0.125", 7)
+	:setPosition("parent.w * 0.5", 7)
 	:setZIndex(2)
 	:setForeground(colors.black)
+	:setTextAlign("center")
 
 
 basalt.autoUpdate();
