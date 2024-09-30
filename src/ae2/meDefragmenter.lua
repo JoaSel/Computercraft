@@ -25,7 +25,7 @@ mainPage.frame = base
     :addFrame()
     :setForeground(colors.white)
     :setBackground(colors.black)
-    :setPosition(1, 2)
+    :setPosition(1, 1)
     :setSize("parent.w", "parent.h - 1")
 
 mainPage.frame
@@ -39,6 +39,7 @@ mainPage.frame
 	:setDirection("right")
 	:setProgress(50)
 	:setProgressBar(colors.blue)
+	:setPosition(1, 2)
 
 
 basalt.autoUpdate();
