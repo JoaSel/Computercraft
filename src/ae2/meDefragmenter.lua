@@ -16,6 +16,17 @@ monitor.setTextScale(0.5)
 
 local mainPage = {}
 
+local unstackableItems = {
+	["minecraft:bundle"] = true
+}
+
+local bulkStorages = { pWrapper.find("dankstorage:dank_tile") }
+local bulkStorageI = 1
+
+local nbtStorages = { pWrapper.find("entangled:tile") }
+local nbtStorageI = 1
+local nbtStorageLimit = 1024
+
 local base = basalt.addMonitor()
     :setForeground(colors.white)
     :setBackground(colors.black)
@@ -27,8 +38,6 @@ mainPage.frame = base
     :setBackground(colors.black)
     :setPosition(1, 1)
     :setSize("parent.w", "parent.h - 1")
-
-
 
 local function createCapacityBar(name, row)
 	mainPage.frame
@@ -60,5 +69,9 @@ end
 createCapacityBar("Bulk Item Storage", 1);
 createCapacityBar("NBT Item Storage", 5);
 
+local function defrag()
+end
+
+base:addThread():start(defrag)
 
 basalt.autoUpdate();
