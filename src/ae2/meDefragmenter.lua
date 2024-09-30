@@ -49,7 +49,7 @@ mainPage.frame
 	:setText("NBT Item Storage")
 	:setTextAlign("center")
 	:setSize("parent.w", "1")
-	:setPosition(1, 3)
+	:setPosition(1, 5)
 
 mainPage.frame
 	:addProgressbar()
