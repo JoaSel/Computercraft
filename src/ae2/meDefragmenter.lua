@@ -29,7 +29,8 @@ mainPage.frame = base
     :setSize("parent.w", "parent.h - 1")
 
 mainPage.frame
-	:addLabel("Bulk Item Storage")
+	:addLabel()
+	:setText("Bulk Item Storage")
 
 
 basalt.autoUpdate();
