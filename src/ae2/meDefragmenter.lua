@@ -35,8 +35,8 @@ local function createCapacityBar(name, row)
 		:addLabel()
 		:setText(name)
 		:setTextAlign("center")
-		:setSize("parent.w", row)
-		:setPosition(1, 5)
+		:setSize("parent.w", 1)
+		:setPosition(1, row)
 
 	mainPage.frame
 		:addProgressbar()
