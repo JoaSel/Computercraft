@@ -68,7 +68,7 @@ mainPage.frame
 	:setZIndex(2)
 	:setForeground(colors.black)
 	:setTextAlign("center")
-	:setTextScale(2)
+	:setFontSize(2)
 
 
 basalt.autoUpdate();
