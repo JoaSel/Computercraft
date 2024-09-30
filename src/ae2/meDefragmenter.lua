@@ -25,6 +25,9 @@ local main = basalt.addMonitor()
 root.frame = main
     :addFrame()
     :setForeground(colors.white)
-    :setBackground(colors.black)
+    :setBackground(colors.blue)
     :setPosition(1, 2)
     :setSize("parent.w", "parent.h - 1")
+
+
+	basalt.autoUpdate();
