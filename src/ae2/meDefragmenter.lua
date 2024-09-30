@@ -195,7 +195,7 @@ local function defrag()
 		local bulkOcc, bulkTot = defragmentStorages(bulkStorages)
 		local percent = (bulkOcc / bulkTot) * 100
 		mainPage.bulkItemBar:setProgress(percent)
-		mainPage.bulkItemPercent:setText(string.format("%f%%", percent))
+		mainPage.bulkItemPercent:setText(string.format("%.2f%%", percent))
 		moveToNbt()
 
 		mainPage.statusLabel:setText("Defragmenting NBT Items")
