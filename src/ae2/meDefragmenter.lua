@@ -43,5 +43,20 @@ mainPage.frame
 	:setPosition("parent.w * 0.125", 2)
 	:setSize("parent.w * 0.75", "2")
 
+mainPage.frame
+	:addLabel()
+	:setText("NBT Item Storage")
+	:setTextAlign("center")
+	:setSize("parent.w", "1")
+
+mainPage.frame
+	:addProgressbar()
+	:setDirection("right")
+	:setProgress(50)
+	:setProgressBar(colors.green)
+	:setBackground(colors.red)
+	:setPosition("parent.w * 0.125", 2)
+	:setSize("parent.w * 0.75", "2")
+
 
 basalt.autoUpdate();
