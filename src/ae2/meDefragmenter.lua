@@ -165,32 +165,37 @@ local function createCapacityBar(name, row)
 		:setSize("parent.w", 1)
 		:setPosition(1, row)
 
-	mainPage.frame
+	local bar = mainPage.frame
 		:addProgressbar()
 		:setDirection("right")
-		:setProgress(50)
+		:setProgress(0)
 		:setProgressBar(colors.green)
 		:setBackground(colors.red)
 		:setPosition("parent.w * 0.125", row + 1)
 		:setSize("parent.w * 0.75", 2)
 		:setZIndex(1)
 
-	mainPage.frame
+	local percentLabel = mainPage.frame
 		:addLabel()
-		:setText(" 50%")
+		:setText("0%")
 		:setPosition("(parent.w / 2) - 1", row + 2)
 		:setZIndex(2)
 		:setForeground(colors.black)
 		:setTextAlign("center")
+
+	return bar, percentLabel
 end
 
-createCapacityBar("Bulk Item Storage", 1);
-createCapacityBar("NBT Item Storage", 5);
+mainPage.bulkItemBar, mainPage.bulkItemPercent = createCapacityBar("Bulk Item Storage", 1);
+mainPage.NBTItemBar, mainPage.NBTItemPercent = createCapacityBar("NBT Item Storage", 5);
 
 local function defrag()
 	while true do
 		mainPage.statusLabel:setText("Defragmenting Bulk Items")
 		local bulkOcc, bulkTot = defragmentStorages(bulkStorages)
+		local ratio = bulkOcc / bulkTot
+		mainPage.bulkItemBar:setProgress(ratio * 100)
+		mainPage.bulkItemPercent:setText(string.format("%d", ratio))
 		moveToNbt()
 
 		mainPage.statusLabel:setText("Defragmenting NBT Items")
