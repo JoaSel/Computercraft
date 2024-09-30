@@ -51,7 +51,7 @@ mainPage.frame
 	:setSize("parent.w", "1")
 	:setPosition(1, 5)
 
-mainPage.frame
+local test = mainPage.frame
 	:addProgressbar()
 	:setDirection("right")
 	:setProgress(50)
@@ -59,6 +59,8 @@ mainPage.frame
 	:setBackground(colors.red)
 	:setPosition("parent.w * 0.125", 6)
 	:setSize("parent.w * 0.75", 2)
+
+test:addLabel():setText("testing")
 
 
 basalt.autoUpdate();
