@@ -58,7 +58,7 @@ local function createCapacityBar(name, row)
 end
 
 createCapacityBar("Bulk Item Storage", 1);
-createCapacityBar("NBT Item Storage", 7);
+createCapacityBar("NBT Item Storage", 5);
 
 
 basalt.autoUpdate();
