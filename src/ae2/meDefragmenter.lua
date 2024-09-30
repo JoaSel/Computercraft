@@ -32,6 +32,7 @@ mainPage.frame
 	:addLabel()
 	:setText("Bulk Item Storage")
 	:setTextAlign("center")
+	:setSize("parent.w", "1")
 
 
 basalt.autoUpdate();
