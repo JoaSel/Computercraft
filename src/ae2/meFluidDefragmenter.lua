@@ -34,12 +34,11 @@ for fluid, locations in pairs(fluidLocations) do
 		for _, location in pairs(locations) do
 			print("\t" .. location.reader .. " => " .. location.diskNo)
 		end
-		print("Getting ready to export")
-		local x = io.read()
-		for i = 1, 100, 1 do
-			print(bridge.exportFluid({ name = fluid, count = 72000 }, "up"))
-		end
-		
+		-- print("Getting ready to export")
+		-- local x = io.read()
+		-- for i = 1, 100, 1 do
+		-- 	print(bridge.exportFluid({ name = fluid, count = 72000 }, "up"))
+		-- end
 	end
 end
 
