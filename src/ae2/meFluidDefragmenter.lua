@@ -33,7 +33,7 @@ for fluid, locations in pairs(fluidLocations) do
 	if(#locations > 1) then
 		print(fluid .. " exists: ")
 		for _, location in pairs(locations) do
-			print("\t" .. location.name .. " => " .. location.diskNo)
+			print("\t" .. location.reader .. " => " .. location.diskNo)
 		end
 	end
 end
