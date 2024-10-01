@@ -18,8 +18,10 @@ for _, reader in pairs(readers) do
 	local blockData = reader.getBlockData()
 
 	for diskNo, inv in pairs(blockData.inv) do
-		for _, value in pairs(inv.tag.keys) do
-			print(diskNo .. " " .. value.id)
+		if(inv.tag.keys) then
+			for _, value in pairs(inv.tag.keys) do
+				print(diskNo .. " " .. value.id)
+			end
 		end
 	end
 end
