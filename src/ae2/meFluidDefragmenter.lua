@@ -13,8 +13,10 @@ local readers = { pWrapper.find("blockReader") }
 
 local blockData = readers[1].getBlockData()
 
-dump.toPastebin(blockData)
+print(readers[1].name)
 
 for _, reader in pairs(readers) do
 	
 end
+
+
