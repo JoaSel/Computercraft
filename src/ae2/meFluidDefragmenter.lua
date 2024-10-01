@@ -37,7 +37,7 @@ for fluid, locations in pairs(fluidLocations) do
 		print("Getting ready to export")
 		local x = io.read()
 		for i = 1, 100, 1 do
-			print(bridge.exportFluid({ name = fluid, count = 8000 }, "up"))
+			print(bridge.exportFluid({ name = fluid, count = 72000 }, "up"))
 		end
 		
 	end
