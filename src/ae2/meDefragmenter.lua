@@ -67,7 +67,7 @@ local function moveItems(fromPeripheral, toLoc, fromSlot, toMoveCount)
 	return ret
 end
 
-local function defragmentStorages(storages)
+local function defragmentItemStorages(storages)
 	local allItems = {}
 	local occupied = 0
 	local total = 0
@@ -186,23 +186,24 @@ local function createCapacityBar(name, row, count)
 	return bar, percentLabel
 end
 
+local function setCapacityBar(bar, label, percent)
+	bar:setProgress(percent)
+	label:setText(string.format("%.0f%%", percent))
+end
+
 mainPage.bulkItemBar, mainPage.bulkItemPercent = createCapacityBar("Bulk Item Storage", 1, #bulkStorages);
 mainPage.NBTItemBar, mainPage.NBTItemPercent = createCapacityBar("NBT Item Storage", 5, #nbtStorages);
 
 local function defrag()
 	while true do
 		mainPage.statusLabel:setText("Defragmenting Bulk Items")
-		local bulkOcc, bulkTot = defragmentStorages(bulkStorages)
-		local percent = (bulkOcc / bulkTot) * 100
-		mainPage.bulkItemBar:setProgress(percent)
-		mainPage.bulkItemPercent:setText(string.format("%.0f%%", percent))
+		local bulkOcc, bulkTot = defragmentItemStorages(bulkStorages)
+		setCapacityBar(mainPage.bulkItemBar, mainPage.bulkItemPercent, (bulkOcc / bulkTot) * 100)
 		moveToNbt()
 
 		mainPage.statusLabel:setText("Defragmenting NBT Items")
-		local nbtOcc, nbtTot = defragmentStorages(nbtStorages)
-		local percent = (nbtOcc / nbtTot) * 100
-		mainPage.NBTItemBar:setProgress(percent)
-		mainPage.NBTItemPercent:setText(string.format("%.0f%%", percent))
+		local nbtOcc, nbtTot = defragmentItemStorages(nbtStorages)
+		setCapacityBar(mainPage.NBTItemBar, mainPage.NBTItemPercent, (nbtOcc / nbtTot) * 100)
 		moveToBulk()
 
 		mainPage.statusLabel:setText("Sleeping")

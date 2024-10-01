@@ -18,7 +18,7 @@ local curses = {
     ["minecraft:vanishing_curse"] = true,
     ["evilcraft:breaking"] = true,
     ["evilcraft:vengeance"] = true,
-    ["enderio:shimmer"] = true
+    ["enderio:shimmer"] = true,
 }
 
 local toolItems = {
