@@ -23,7 +23,7 @@ for _, reader in pairs(readers) do
 				if(not fluidLocations[fluid.id]) then
 					fluidLocations[fluid.id] = {}
 				end
-				table.add(fluidLocations[fluid.id], { reader = reader.name, diskNo = diskNo})
+				table.insert(fluidLocations[fluid.id], { reader = reader.name, diskNo = diskNo})
 			end
 		end
 	end
