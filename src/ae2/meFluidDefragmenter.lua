@@ -8,11 +8,10 @@ local mTable = require("moreTable")
 local mString = require("moreString")
 local dump = require("dump")
 
+local bridge = pWrapper.find("meBridge")
 local readers = { pWrapper.find("blockReader") }
 
-
 local fluidLocations = {}
-
 
 for _, reader in pairs(readers) do
 	local blockData = reader.getBlockData()
