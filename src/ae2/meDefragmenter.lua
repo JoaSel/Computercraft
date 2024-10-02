@@ -10,15 +10,16 @@ local mTable = require("moreTable")
 local mString = require("moreString")
 local dump = require("dump")
 
-local monitor = pWrapper.find("monitor")
-
-monitor.setTextScale(0.5)
-
 local mainPage = {}
 
 local unstackableItems = {
 	["minecraft:bundle"] = true
 }
+
+local monitor = pWrapper.find("monitor")
+monitor.setTextScale(0.5)
+
+local bridge = pWrapper.find("meBridge")
 
 local bulkStorages = { pWrapper.find("dankstorage:dank_tile") }
 local bulkStorageI = 1
@@ -26,6 +27,8 @@ local bulkStorageI = 1
 local nbtStorages = { pWrapper.find("entangled:tile") }
 local nbtStorageI = 1
 local nbtStorageLimit = 1024
+
+
 
 local function indexItem(item, pName, collection)
 	if (item.nbt == nil) then
@@ -193,6 +196,7 @@ end
 
 mainPage.bulkItemBar, mainPage.bulkItemPercent = createCapacityBar("Bulk Item Storage", 1, #bulkStorages);
 mainPage.NBTItemBar, mainPage.NBTItemPercent = createCapacityBar("NBT Item Storage", 5, #nbtStorages);
+mainPage.fluidBar, mainPage.fluidPercent = createCapacityBar("Fluid Storage", 5, 10);
 
 local function defrag()
 	while true do
@@ -205,6 +209,9 @@ local function defrag()
 		local nbtOcc, nbtTot = defragmentItemStorages(nbtStorages)
 		setCapacityBar(mainPage.NBTItemBar, mainPage.NBTItemPercent, (nbtOcc / nbtTot) * 100)
 		moveToBulk()
+
+		mainPage.statusLabel:setText("Defragmenting Fluids")
+		setCapacityBar(mainPage.fluidBar, mainPage.fluidPercent, (bridge.getUsedFluidStorage() / bridge.getTotalFluidStorage()) * 100)
 
 		mainPage.statusLabel:setText("Sleeping")
 		os.sleep(5)
