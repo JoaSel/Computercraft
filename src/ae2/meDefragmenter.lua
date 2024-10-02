@@ -248,7 +248,7 @@ end
 
 local function setCapacityBar(bar, label, percent)
 	bar:setProgress(percent)
-	label:setText(string.format("%.0f%%", percent))
+	label:setText(string.format(" %.0f%%", percent))
 end
 
 mainPage.bulkItemBar, mainPage.bulkItemPercent = createCapacityBar("Bulk Item Storage", 1, #bulkStorages);
