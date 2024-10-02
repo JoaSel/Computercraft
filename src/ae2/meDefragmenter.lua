@@ -167,15 +167,17 @@ local function defragmentFluidStorages()
 		for diskNo, item in pairs(blockData.inv) do
 			if(item.tag and item.tag.keys) then
 				for _, fluid in pairs(item.tag.keys) do
-					if(not fluid.id) then
-						dump.toFile({ reader = reader.name, diskNo = diskNo}, "test")
-						dump.toFile(fluid, "test2")
+					if(fluid["#c"] == "ae2:f") then
+						if(not fluid.id) then
+							dump.toFile({ reader = reader.name, diskNo = diskNo}, "test")
+							dump.toFile(fluid, "test2")
+						end
+						if(not fluidLocations[fluid.id]) then
+							fluidLocations[fluid.id] = {}
+						end
+						table.insert(fluidLocations[fluid.id], { reader = reader.name, diskNo = diskNo})
+						occ = occ + 1
 					end
-					if(not fluidLocations[fluid.id]) then
-						fluidLocations[fluid.id] = {}
-					end
-					table.insert(fluidLocations[fluid.id], { reader = reader.name, diskNo = diskNo})
-					occ = occ + 1
 				end
 			end
 		end
