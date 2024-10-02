@@ -147,8 +147,8 @@ local function getFluidDisks()
 	for _, reader in pairs(readers) do
 		local blockData = reader.getBlockData()
 	
-		for diskNo, item in pairs(blockData.inv) do
-			if(item.tag and item.tag.keys and item.id == "megacells:fluid_storage_cell_256m") then
+		for _, item in pairs(blockData.inv) do
+			if(item.id == "megacells:fluid_storage_cell_256m") then
 				count = count + 1
 			end
 		end
