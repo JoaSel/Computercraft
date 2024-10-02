@@ -167,10 +167,9 @@ local function defragmentFluidStorages()
 		for diskNo, item in pairs(blockData.inv) do
 			if(item.tag and item.tag.keys) then
 				for _, fluid in pairs(item.tag.keys) do
-					
-					basalt.debug(reader.name)
-					basalt.debug(diskNo)
-
+					if(not fluid.id) then
+						dump.toFile({ reader = reader.name, diskNo = diskNo}, "test")
+					end
 					if(not fluidLocations[fluid.id]) then
 						fluidLocations[fluid.id] = {}
 					end
