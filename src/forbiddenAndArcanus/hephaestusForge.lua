@@ -104,8 +104,6 @@ local function tick()
     if(handleInput(blockData)) then
         return
     end
-
-    print("Tick End")
 end
 
 while (true) do
