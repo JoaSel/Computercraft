@@ -157,6 +157,41 @@ local function getFluidDisks()
 	return count
 end
 
+local function defragmentFluidStorages()
+	local occ = 0
+	local fluidLocations = {}
+
+	for _, reader in pairs(readers) do
+		local blockData = reader.getBlockData()
+
+		for diskNo, inv in pairs(blockData.inv) do
+			if(inv.tag and inv.tag.keys) then
+				for _, fluid in pairs(inv.tag.keys) do
+					if(not fluidLocations[fluid.id]) then
+						fluidLocations[fluid.id] = {}
+					end
+					table.insert(fluidLocations[fluid.id], { reader = reader.name, diskNo = diskNo})
+					occ = occ + 1
+				end
+			end
+		end
+	end
+
+	for fluid, locations in pairs(fluidLocations) do
+		if(#locations > 1) then
+			print(fluid .. " exists: ")
+			for _, location in pairs(locations) do
+				print("\t" .. location.reader .. " => " .. location.diskNo)
+			end
+		end
+	end
+
+	return occ
+end
+
+local fluidDisks = getFluidDisks()
+local fluidTypeCapacity = fluidDisks * 18
+
 local base = basalt.addMonitor()
     :setForeground(colors.white)
     :setBackground(colors.black)
@@ -212,7 +247,8 @@ end
 
 mainPage.bulkItemBar, mainPage.bulkItemPercent = createCapacityBar("Bulk Item Storage", 1, #bulkStorages);
 mainPage.NBTItemBar, mainPage.NBTItemPercent = createCapacityBar("NBT Item Storage", 5, #nbtStorages);
-mainPage.fluidBar, mainPage.fluidPercent = createCapacityBar("Fluid Storage", 9, getFluidDisks());
+mainPage.fluidBar, mainPage.fluidPercent = createCapacityBar("Fluid Storage", 9, fluidDisks);
+mainPage.fluidTypeBar, mainPage.fluidTypePercent = createCapacityBar("Fluid Type Storage", 13, fluidDisks);
 
 local function defrag()
 	while true do
@@ -228,6 +264,8 @@ local function defrag()
 
 		mainPage.statusLabel:setText("Defragmenting Fluids")
 		setCapacityBar(mainPage.fluidBar, mainPage.fluidPercent, (bridge.getUsedFluidStorage() / bridge.getTotalFluidStorage()) * 100)
+		local fluidTypeOcc = defragmentFluidStorages()
+		setCapacityBar(mainPage.fluidTypeBar, mainPage.fluidTypePercent, (fluidTypeOcc / fluidTypeCapacity) * 100)
 
 		mainPage.statusLabel:setText("Sleeping")
 		os.sleep(5)
