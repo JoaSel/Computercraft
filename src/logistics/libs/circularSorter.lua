@@ -72,7 +72,7 @@ local function addInputItems(itemsToAdd)
 	local inputItems = _input.list()
 	local addedItems = 0
 	for slot, item in pairs(inputItems) do
-		if(not _minCount or item.count > _minCount) then
+		if(not _minCount or item.count >= _minCount) then
 			_input.pushItems(peripheral.getName(_internalBuffer), slot)
 			addedItems = addedItems + 1
 			if (addedItems >= itemsToAdd) then

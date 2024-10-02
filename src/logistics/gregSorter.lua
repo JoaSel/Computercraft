@@ -9,8 +9,6 @@ local pWrapper = require("peripheralWrapper")
 local input = pWrapper.find("sophisticatedstorage:controller")
 local internalBuffer = pWrapper.find("dankstorage:dank_tile")
 
-print(internalBuffer.name)
-
 local destinationNames = {
 	["Macerator"] = "dimstorage:dimensional_chest_15",
 	["Washer"] = "dimstorage:dimensional_chest_16",
