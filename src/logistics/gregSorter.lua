@@ -58,5 +58,5 @@ local miscRoutes = {
 }
 
 
-circularSorter.create(input, internalBuffer, "Storage Input", destinationNames, displayNamesRoutes, tagsRoutes, miscRoutes)
+circularSorter.create(input, internalBuffer, "Storage Input", destinationNames, displayNamesRoutes, tagsRoutes, miscRoutes, 64)
 circularSorter.run()

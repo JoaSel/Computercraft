@@ -11,10 +11,12 @@ local _displayNameRoutes = {}
 local _tagRoutes = {};
 local _miscRoutes = {};
 
+local _minCount = 0;
+
 local _verbose = false
 
 local function create(input, internalBuffer, defaultDestination, destinationNames, displayNameRoutes, tagRoutes,
-					  miscRoutes, verbose)
+					  miscRoutes, minCount, verbose)
 	_input = input
 	_internalBuffer = internalBuffer
 	_internalBufferSize = math.ceil(internalBuffer.size() / 2)
@@ -25,6 +27,8 @@ local function create(input, internalBuffer, defaultDestination, destinationName
 	_displayNameRoutes = displayNameRoutes
 	_tagRoutes = tagRoutes
 	_miscRoutes = miscRoutes
+
+	_minCount = minCount
 
 	_verbose = verbose
 end
@@ -68,10 +72,12 @@ local function addInputItems(itemsToAdd)
 	local inputItems = _input.list()
 	local addedItems = 0
 	for slot, item in pairs(inputItems) do
-		_input.pushItems(peripheral.getName(_internalBuffer), slot)
-		addedItems = addedItems + 1
-		if (addedItems >= itemsToAdd) then
-			return
+		if(not _minCount or item.count > _minCount) then
+			_input.pushItems(peripheral.getName(_internalBuffer), slot)
+			addedItems = addedItems + 1
+			if (addedItems >= itemsToAdd) then
+				return
+			end
 		end
 	end
 end
