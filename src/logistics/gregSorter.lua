@@ -1,8 +1,12 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/logistics/gregSorter.lua
 local circularSorter = require("libs.circularSorter")
 
-local input = peripheral.find("dankstorage:dank_tile")
-local internalBuffer = peripheral.find("entangled:tile")
+local pWrapper = require("peripheralWrapper")
+
+local input = pWrapper.find("sophisticatedstorage:controller")
+local internalBuffer = pWrapper.find("dankstorage:dank_tile")
+
+print(internalBuffer.name)
 
 local destinationNames = {
 	["Macerator"] = "dimstorage:dimensional_chest_15",
