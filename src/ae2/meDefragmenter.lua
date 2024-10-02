@@ -168,10 +168,6 @@ local function defragmentFluidStorages()
 			if(item.tag and item.tag.keys) then
 				for _, fluid in pairs(item.tag.keys) do
 					if(fluid["#c"] == "ae2:f") then
-						if(not fluid.id) then
-							dump.toFile({ reader = reader.name, diskNo = diskNo}, "test")
-							dump.toFile(fluid, "test2")
-						end
 						if(not fluidLocations[fluid.id]) then
 							fluidLocations[fluid.id] = {}
 						end
@@ -183,14 +179,14 @@ local function defragmentFluidStorages()
 		end
 	end
 
-	for fluid, locations in pairs(fluidLocations) do
-		if(#locations > 1) then
-			print(fluid .. " exists: ")
-			for _, location in pairs(locations) do
-				print("\t" .. location.reader .. " => " .. location.diskNo)
-			end
-		end
-	end
+	-- for fluid, locations in pairs(fluidLocations) do
+	-- 	if(#locations > 1) then
+	-- 		print(fluid .. " exists: ")
+	-- 		for _, location in pairs(locations) do
+	-- 			print("\t" .. location.reader .. " => " .. location.diskNo)
+	-- 		end
+	-- 	end
+	-- end
 
 	return occ
 end
