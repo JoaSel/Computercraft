@@ -28,6 +28,8 @@ local nbtStorages = { pWrapper.find("entangled:tile") }
 local nbtStorageI = 1
 local nbtStorageLimit = 1024
 
+local readers = { pWrapper.find("blockReader") }
+
 
 
 local function indexItem(item, pName, collection)
@@ -102,7 +104,6 @@ end
 local function moveToNbt()
 	for i = 1, #bulkStorages do
 		local current = bulkStorages[i]
-		local currentName = peripheral.getName(current)
 
 		for slot, item in pairs(current.list()) do
 			if (item.count < nbtStorageLimit) then
@@ -118,7 +119,6 @@ local function moveToBulk()
 	local allItems = {}
 	for i = 1, #nbtStorages do
 		local current = nbtStorages[i]
-		local currentName = peripheral.getName(current)
 
 		for slot, item in pairs(current.list()) do
 			indexItemLoc(item, current, slot, allItems)
@@ -139,6 +139,22 @@ local function moveToBulk()
 			bulkStorageI = (bulkStorageI % #bulkStorages) + 1
 		end
 	end
+end
+
+local function getFluidDisks()
+	local count = 0
+
+	for _, reader in pairs(readers) do
+		local blockData = reader.getBlockData()
+	
+		for diskNo, item in pairs(blockData.inv) do
+			if(item.tag and item.tag.keys and item.id == "megacells:fluid_storage_cell_256m") then
+				count = count + 1
+			end
+		end
+	end
+
+	return count
 end
 
 local base = basalt.addMonitor()
@@ -196,7 +212,7 @@ end
 
 mainPage.bulkItemBar, mainPage.bulkItemPercent = createCapacityBar("Bulk Item Storage", 1, #bulkStorages);
 mainPage.NBTItemBar, mainPage.NBTItemPercent = createCapacityBar("NBT Item Storage", 5, #nbtStorages);
-mainPage.fluidBar, mainPage.fluidPercent = createCapacityBar("Fluid Storage", 9, 10);
+mainPage.fluidBar, mainPage.fluidPercent = createCapacityBar("Fluid Storage", 9, getFluidDisks());
 
 local function defrag()
 	while true do
