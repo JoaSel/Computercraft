@@ -164,9 +164,13 @@ local function defragmentFluidStorages()
 	for _, reader in pairs(readers) do
 		local blockData = reader.getBlockData()
 
-		for diskNo, inv in pairs(blockData.inv) do
-			if(inv.tag and inv.tag.keys) then
+		for diskNo, item in pairs(blockData.inv) do
+			if(item.tag and item.tag.keys) then
 				for _, fluid in pairs(inv.tag.keys) do
+					if(not fluid.id) then
+						print(reader.name)
+						print(diskNo)
+					end
 					if(not fluidLocations[fluid.id]) then
 						fluidLocations[fluid.id] = {}
 					end
