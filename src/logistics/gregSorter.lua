@@ -1,4 +1,7 @@
 --wget run https://raw.githubusercontent.com/JoaSel/Computercraft/main/install.lua src/logistics/gregSorter.lua
+
+package.path = package.path .. ";../core/?.lua"
+
 local circularSorter = require("libs.circularSorter")
 
 local pWrapper = require("peripheralWrapper")
