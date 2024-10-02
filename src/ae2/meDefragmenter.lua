@@ -196,7 +196,7 @@ end
 
 mainPage.bulkItemBar, mainPage.bulkItemPercent = createCapacityBar("Bulk Item Storage", 1, #bulkStorages);
 mainPage.NBTItemBar, mainPage.NBTItemPercent = createCapacityBar("NBT Item Storage", 5, #nbtStorages);
-mainPage.fluidBar, mainPage.fluidPercent = createCapacityBar("Fluid Storage", 5, 10);
+mainPage.fluidBar, mainPage.fluidPercent = createCapacityBar("Fluid Storage", 9, 10);
 
 local function defrag()
 	while true do
