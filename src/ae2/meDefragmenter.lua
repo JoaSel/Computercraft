@@ -169,6 +169,7 @@ local function defragmentFluidStorages()
 				for _, fluid in pairs(item.tag.keys) do
 					if(not fluid.id) then
 						dump.toFile({ reader = reader.name, diskNo = diskNo}, "test")
+						dump.toFile(fluid, "test2")
 					end
 					if(not fluidLocations[fluid.id]) then
 						fluidLocations[fluid.id] = {}
