@@ -261,7 +261,7 @@ local function defrag()
 
 		mainPage.statusLabel:setText("Defragmenting NBT Items")
 		local nbtOcc, nbtTot = defragmentItemStorages(nbtStorages)
-		setCapacityBar(mainPage.NBTItemBar, mainPage.NBTItemPercent, (nbtOcc / nbtTot) * 100)
+		setCapacityBar(mainPage.NBTItemBar, mainPage.NBTItemPercent, ((nbtOcc or 0) / (nbtTot or 1)) * 100)
 		moveToBulk()
 
 		mainPage.statusLabel:setText("Defragmenting Fluids")
