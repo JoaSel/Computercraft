@@ -24,6 +24,10 @@ local function hasTag(item, tag)
 	return false
 end
 
+local mekanismItems = {
+	["mekanism:pellet_polonium"]
+}
+
 local tagInfos =
 {
 	{
@@ -63,6 +67,15 @@ local tagInfos =
 		workers = 1,
 		validationFunc = function(item)
 			return string.match(item.name, "^gtceu:(.*)processor")
+		end
+	},
+	{
+		displayName = "Mekanism",
+		amount = 1000,
+		batchSize = 1,
+		workers = 1,
+		validationFunc = function(item)
+			return mekanismItems[item.name]
 		end
 	}
 }
