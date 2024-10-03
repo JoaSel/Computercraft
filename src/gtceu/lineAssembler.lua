@@ -9,16 +9,8 @@ local gtceuIO = require("libs.gtceuIO")
 local machine = pWrapper.find("blockReader")
 
 local inputs = { pWrapper.wrap("entangled:tile_36"), pWrapper.wrap("entangled:tile_53") }
---local input = pWrapper.wrap("minecraft:shulker_box_2")
-local output = pWrapper.wrap("entangled:tile_37")
+local output = pWrapper.wrap("entangled:tile_54")
 
-local dataItems = {
-    ["gtceu:data_stick"] = true,
-    ["gtceu:data_orb"] = true,
-    ["gtceu:data_module"] = true
-}
-
---local dataAccessHatch = pWrapper.find("gtceu:advanced_data_access_hatch")
 
 local inputBuses = { gtceuIO.findInputBuses() }
 local inputHatches = { gtceuIO.findInputHatches() }
