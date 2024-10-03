@@ -25,7 +25,7 @@ local function hasTag(item, tag)
 end
 
 local mekanismItems = {
-	["mekanism:pellet_polonium"]
+	["mekanism:pellet_polonium"] = true
 }
 
 local tagInfos =
