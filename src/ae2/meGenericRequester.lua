@@ -72,7 +72,7 @@ local tagInfos =
 	{
 		displayName = "Mekanism",
 		amount = 100000,
-		batchSize = 64,
+		batchSize = 256,
 		workers = 1,
 		validationFunc = function(item)
 			return mekanismItems[item.name]
