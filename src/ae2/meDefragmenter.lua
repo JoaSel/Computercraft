@@ -261,11 +261,11 @@ local function defrag()
 
 		mainPage.statusLabel:setText("Defragmenting NBT Items")
 		local nbtOcc, nbtTot = defragmentItemStorages(nbtStorages)
-		setCapacityBar(mainPage.NBTItemBar, mainPage.NBTItemPercent, ((nbtOcc or 0) / (nbtTot or 1)) * 100)
+		setCapacityBar(mainPage.NBTItemBar, mainPage.NBTItemPercent, (nbtOcc / nbtTot) * 100)
 		moveToBulk()
 
 		mainPage.statusLabel:setText("Defragmenting Fluids")
-		setCapacityBar(mainPage.fluidBar, mainPage.fluidPercent, (bridge.getUsedFluidStorage() / bridge.getTotalFluidStorage()) * 100)
+		setCapacityBar(mainPage.fluidBar, mainPage.fluidPercent, ((bridge.getUsedFluidStorage() or 0) / (bridge.getTotalFluidStorage() or 1)) * 100)
 		local fluidTypeOcc = defragmentFluidStorages()
 		setCapacityBar(mainPage.fluidTypeBar, mainPage.fluidTypePercent, (fluidTypeOcc / fluidTypeCapacity) * 100)
 
