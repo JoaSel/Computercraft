@@ -28,6 +28,7 @@ local displayNamesRoutes = {
 	["Raw Sheldonite"] = "Greg Input",
 	["Raw Naquadah"] = "Greg Input",
 	["Raw Cobaltite"] = "Greg Input",
+	["Raw Pyrochlore"] = "Greg Input",
 	["Hydrogen"] = "Storage Input",
 	["Oxygen"] = "Storage Input",
 	["Mica Dust"] = "Greg Input",
