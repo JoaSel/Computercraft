@@ -37,12 +37,6 @@ local displayNamesRoutes = {
 	["Ruby Dust"] = "Electrolyzer Input"
 }
 
--- ["Granite Salt Ore"] = "Storage Input",
--- ["Red Granite Salt Ore"] = "Storage Input",
--- ["Tuff Salt Ore"] = "Storage Input",
--- ["Basalt Salt Ore"] = "Storage Input",
--- ["Blackstone Salt Ore"] = "Storage Input",
-
 local tagsRoutes = {
 	["forge:crushed_ores"] = "Washer",
 	["forge:purified_ores"] = "Thermal Centrifuge",
@@ -60,9 +54,9 @@ local miscRoutes = {
 		if (string.match(item.name, "^gtceu:") and circularSorter.hasTag(item, "forge:raw_materials")) then
 			return "Macerator"
 		end
-		if (string.match(item.name, "^alltheores:") and circularSorter.hasTag(item, "forge:ores")) then
-			return "Macerator"
-		end
+		-- if (string.match(item.name, "^alltheores:") and circularSorter.hasTag(item, "forge:ores")) then
+		-- 	return "Macerator"
+		-- end
 		
 	end
 }
