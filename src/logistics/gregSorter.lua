@@ -28,6 +28,7 @@ local displayNamesRoutes = {
 	["Purified Chalcopyrite Ore"] = "Storage Input",
 	["Rare Earth Dust"] = "Centrifuge Input",
 	["Raw Neodymium"] = "Storage Input",
+	["Raw Uranium"] = "Storage Input",
 	["Purified Sphalerite Ore"] = "Storage Input",
 	["Purified Galena Ore"] = "Storage Input",
 	["Mica Dust"] = "Electrolyzer Input",
